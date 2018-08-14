@@ -12,7 +12,7 @@ public class DBConn {
 	private static final String PASSWORD = "1234";
 
 	private static Connection conn = null; //연결객체 
-
+	
 	private DBConn() { } //DBConn 객체 생성 방지
 
 	// Connection 객체 반환 - Singleton Pattern 
