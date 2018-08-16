@@ -6,6 +6,9 @@
 작성자 : 권미현
  --%>
 <%@include file="../main/header.jsp" %>
+<%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
+<link rel="stylesheet" href="../summernote/summernote-bs4.css" />
+<%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 
 	<h2><i class="fas fa-pencil-alt fa-2x"></i>게시글 작성</h2>
@@ -24,12 +27,6 @@
 	
 	<%-- 내용 --%>
 	<%-- summernote_start --%>
-	<%-- summernote 적용 안 됨. → summernote 함수를 못 찾음. --%>
-	<script type="text/javascript">
-    	$(document).ready(function() {
-      		$('#summernote').summernote();
-    	});
-  	</script>
   	<div id="summernote">Test Summernote</div>
   	<%-- summernote_end --%>
   	
@@ -54,4 +51,12 @@
 	</div>
 	
 </div>
+<%@include file="../main/scriptloader.jsp" %>
+<%-- 여기에 페이지에 사용할 js를 삽입하세요. --%>
+<script type="text/javascript" src="../summernote/summernote-bs4.js" ></script>
+<script type="text/javascript">
+    	$(document).ready(function() {
+      		$('#summernote').summernote();
+    	});
+</script>
 <%@include file="../main/footer.jsp" %>

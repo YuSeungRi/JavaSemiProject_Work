@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../main/header.jsp"%>
+<%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
+<%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 	<h1>
 		<span class="fas fa-address-card fa-fw mr-1"></span>마이페이지
@@ -134,4 +136,6 @@
 		</div>
 	</div>
 </div>
+<%@include file="../main/scriptloader.jsp" %>
+<%-- 여기에 페이지에 사용할 js를 삽입하세요. --%>
 <%@include file="../main/footer.jsp"%>
