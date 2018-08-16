@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@include file="./header.jsp" %>
 <%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
 <%@include file="./styleloader.jsp" %>
 <div class="container m-2">
+=======
+<%@include file="./header.jsp" %> 
+<div class="container m-3">	
+<!-- 탬플릿 부분(상단) -->
+
+>>>>>>> branch 'master' of https://github.com/jihoonys82/JavaSemiProject_Work.git
 	<h1><span class="fa fa-sign-in-alt fa-fw mr-1"></span>로그인</h1>
 	<div class="row justify-content-center">
 		<div class="col-lg-5 col-11 my-3"> 
@@ -35,7 +42,13 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 </div>
 <%@include file="./scriptloader.jsp" %>
 <%-- 여기에 페이지에 사용할 js를 삽입하세요. --%>
+=======
+	
+<!-- 탬플릿 부분(하단) -->
+</div>	
+>>>>>>> branch 'master' of https://github.com/jihoonys82/JavaSemiProject_Work.git
 <%@include file="./footer.jsp" %>
