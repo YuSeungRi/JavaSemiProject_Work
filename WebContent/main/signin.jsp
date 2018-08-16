@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="./header.jsp" %>
-<div class="container m-3">
+<%@include file="./header.jsp" %> 
+<div class="container m-3">	
+<!-- 탬플릿 부분(상단) -->
+
 	<h1><span class="fa fa-sign-in-alt fa-fw mr-1"></span>로그인</h1>
 	<div class="row justify-content-center">
 		<div class="col-lg-5 col-11 my-3"> 
@@ -33,5 +35,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+	
+<!-- 탬플릿 부분(하단) -->
+</div>	
 <%@include file="./footer.jsp" %>
