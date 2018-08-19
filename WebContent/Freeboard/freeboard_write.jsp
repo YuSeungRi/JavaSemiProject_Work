@@ -57,7 +57,7 @@
 <script type="text/javascript">
     	$(document).ready(function() {
       		$('#summernote').summernote({
-      			height : 500
+      			height : 500 // 높이 500 지정
       		});
     	});
 </script>
