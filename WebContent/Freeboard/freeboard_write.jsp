@@ -27,7 +27,7 @@
 	
 	<%-- 내용 --%>
 	<%-- summernote_start --%>
-  	<div id="summernote">Test Summernote</div>
+  	<div id="summernote">Test Summernote</div><br>
   	<%-- summernote_end --%>
   	
   	
@@ -56,7 +56,9 @@
 <script type="text/javascript" src="../summernote/summernote-bs4.js" ></script>
 <script type="text/javascript">
     	$(document).ready(function() {
-      		$('#summernote').summernote();
+      		$('#summernote').summernote({
+      			height : 500
+      		});
     	});
 </script>
 <%@include file="../main/footer.jsp" %>
