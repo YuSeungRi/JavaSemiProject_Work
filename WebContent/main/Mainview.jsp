@@ -318,4 +318,5 @@
 	
 <!-- 탬플릿 부분(하단) -->
 </div>	
-<%@include file="./footer.jsp" %>
+<%@include file="../main/scriptloader.jsp" %>
+<%@include file="../main/footer.jsp"%>
