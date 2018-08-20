@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../main/header.jsp"%>
-<%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
+<link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 	<h1>
