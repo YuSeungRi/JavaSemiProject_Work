@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-        </div><!-- Main Col END -->
+	</div><!-- Main Col END -->
     
 </div><!-- body-row END -->
 

@@ -3,6 +3,9 @@
 <%@include file="./header.jsp" %>
 <link rel="stylesheet" href="../css/Main.css" />
 
+<form method="get" action="/Mainview.jsp">
+<%@include file="./styleloader.jsp" %>
+
 <div class="container m-3">	
 <!-- 탬플릿 부분(상단) -->
 	
@@ -88,7 +91,7 @@
     <div class="col-md-6"><!-- board2 start -->
     
     	<h4>
-			공지사항
+			<i class="fa fa-bullhorn fa-fw mr-3"></i>공지사항
 		</h4>
 		
 			<table class="table table-hover table-bordered table-sm">
@@ -165,7 +168,7 @@
 	<div class="col-md-6"><!-- board3 start -->
 	
 		<h4>
-			구인구직
+			<i class="fa fa-users fa-fw mr-3"></i>구인구직
 		</h4>
 	
 			<table class="table table-hover table-bordered table-sm">
@@ -238,7 +241,7 @@
 	<div class="col-md-6"><!-- board4 start -->
 	
 		<h4>
-			Q&A
+			<i class="fa fa-question-circle fa-fw mr-3"></i>Q&A
 		</h4>
 	
 			<table class="table table-hover table-bordered table-sm">
@@ -313,6 +316,8 @@
    	</div><!-- containter END -->
        
     </div><!-- Main Col END -->
+    
+    </form>
 	
 <!-- 탬플릿 부분(하단) -->
 </div>	

@@ -17,20 +17,20 @@
       <!-- This menu is hidden in bigger devices with d-sm-none. 
            The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
       <li class="nav-item dropdown d-sm-block d-md-none">
-			<a class="dropdown-item" href="#">홈</a>
-            <a class="dropdown-item" href="#">공지사항</a>
-            <a class="dropdown-item" href="#">Q & A </a>
-            <a class="dropdown-item" href="#">구인구직</a>
-            <a class="dropdown-item" href="#">자유게시판</a>
-            <a class="dropdown-item" href="#">기술동향</a>
-            <a class="dropdown-item" href="#">프로젝트</a>
+			<a class="dropdown-item" href="../main/Mainview.jsp">홈</a>
+            <a class="dropdown-item" href="../Freeboard/freeboard.jsp">공지사항</a>
+            <a class="dropdown-item" href="../Freeboard/freeboard.jsp">Q & A </a>
+            <a class="dropdown-item" href="../Freeboard/freeboard.jsp">구인구직</a>
+            <a class="dropdown-item" href="../Freeboard/freeboard.jsp">자유게시판</a>
+            <a class="dropdown-item" href="../Freeboard/freeboard.jsp">기술동향</a>
+            <a class="dropdown-item" href="../Freeboard/freeboard.jsp">프로젝트</a>
             <hr>
-            <a class="dropdown-item" href="#">교육자료</a>
+            <a class="dropdown-item" href="../Freeboard/freeboard.jsp">교육자료</a>
             <hr>
-            <a class="dropdown-item" href="#">코드</a>
+            <a class="dropdown-item" href="../Freeboard/freeboard.jsp">코드</a>
             <hr>
-            <a class="dropdown-item" href="#">마이페이지</a>
-            <a class="dropdown-item" href="#">관리자게시판</a>
+            <a class="dropdown-item" href="../Freeboard/freeboard.jsp">마이페이지</a>
+            <a class="dropdown-item" href="../Freeboard/freeboard.jsp">관리자게시판</a>
       </li><!-- Smaller devices menu END -->
       
     </ul>
@@ -77,37 +77,37 @@
             <!-- /END Separator -->
             
             <!-- Menu with submenu -->        
-            <a href="#" class="list-group-item list-group-item-action bg-warning">
+            <a href="../Freeboard/freeboard.jsp" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-bullhorn fa-fw mr-3"></span>
                     <span class="menu-collapsed">공지사항</span>    
                 </div>
             </a>
-            <a href="#" class="list-group-item list-group-item-action bg-warning">
+            <a href="../Freeboard/freeboard.jsp" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-question-circle fa-fw mr-3"></span>
                     <span class="menu-collapsed">Q&A</span>    
                 </div>
             </a>
-            <a href="#" class="list-group-item list-group-item-action bg-warning">
+            <a href="../Freeboard/freeboard.jsp" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-users fa-fw mr-3"></span>
                     <span class="menu-collapsed">구인구직</span>    
                 </div>
             </a>
-            <a href="#" class="list-group-item list-group-item-action bg-warning">
+            <a href="../Freeboard/freeboard.jsp" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-comments fa-fw mr-3"></span>
                     <span class="menu-collapsed">자유게시판</span>    
                 </div>
             </a>
-            <a href="#" class="list-group-item list-group-item-action bg-warning">
+            <a href="../Freeboard/freeboard.jsp" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-laptop fa-fw mr-3"></span>
                     <span class="menu-collapsed">기술동향</span>    
                 </div>
             </a>
-            <a href="#" class="list-group-item list-group-item-action bg-warning">
+            <a href="../Freeboard/freeboard.jsp" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-project-diagram fa-fw mr-3"></span>
                     <span class="menu-collapsed">프로젝트</span>    
@@ -118,13 +118,13 @@
 <!--                 <small>OPTIONS</small> -->
             </li>
             <!-- /END Separator -->
-            <a href="#" class="list-group-item list-group-item-action bg-warning">
+            <a href="../Freeboard/freeboard.jsp" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-graduation-cap fa-fw mr-3"></span>
                     <span class="menu-collapsed">교육자료</span>    
                 </div>
             </a>
-            <a href="#" class="list-group-item list-group-item-action bg-warning">
+            <a href="../Freeboard/freeboard.jsp" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-code fa-fw mr-3"></span>
                     <span class="menu-collapsed">코드</span>    
@@ -134,7 +134,7 @@
             <!-- Separator without title -->
             <li class="list-group-item sidebar-separator menu-collapsed"></li>            
             <!-- /END Separator -->
-             <a href="#" class="list-group-item list-group-item-action bg-warning">
+             <a href="../Freeboard/freeboard.jsp" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-wrench fa-fw mr-3"></span>
                     <span class="menu-collapsed">관리자페이지</span>
