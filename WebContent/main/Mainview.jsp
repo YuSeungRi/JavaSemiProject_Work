@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@include file="./header.jsp" %>
 <link rel="stylesheet" href="../css/Main.css" />
-
-<form method="get" action="/Mainview.jsp">
 <%@include file="./styleloader.jsp" %>
 
 <div class="container m-3">	
@@ -317,7 +315,6 @@
        
     </div><!-- Main Col END -->
     
-    </form>
 	
 <!-- 탬플릿 부분(하단) -->
 </div>	
