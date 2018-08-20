@@ -31,7 +31,7 @@ CREATE TABLE board (
     board_user      VARCHAR2(50),
     board_read      NUMBER,
     board_recommand NUMBER,
-    boare_create    DATE,
+    board_create    DATE,
     board_modify    DATE,
     board_content   VARCHAR2(1500),
     board_tech      NUMBER,
@@ -95,11 +95,11 @@ CREATE TABLE "project" (
     project_no   NUMBER NOT NULL,
     location_no NUMBER,
     --tech_no     NUMBER, -- N:M  relation : 프로젝트-사용기술 테이블로 정규화
-    project_tile    VARCHAR2(100),
+    project_title    VARCHAR2(100),
     project_start   DATE, 
     project_end     DATE,
     project_content VARCHAR2(1500),
-    project_particpant  NUMBER,
+    project_participant  NUMBER,
     project_lead    VARCHAR2(50),
     
     CONSTRAINT project_PK   PRIMARY KEY (project_no)
