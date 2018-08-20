@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../main/header.jsp" %>
+<link rel="stylesheet" href="../css/Main.css" />
+<%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 	<h2>
 		<i class="far fa-comments fa-lg"></i>게시글 상세조회
@@ -69,4 +71,5 @@
 				</div>
 			</div>
 </div>
-<%@include file="../main/footer.jsp" %>
+<%@include file="../main/scriptloader.jsp" %>
+<%@include file="../main/footer.jsp"%>

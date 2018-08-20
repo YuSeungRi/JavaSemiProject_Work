@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../main/header.jsp"%>
+<%@include file="../main/header.jsp" %>
+<link rel="stylesheet" href="../css/Main.css" />
+<%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 	<h1>
 		<span class="fas fa-address-card fa-fw mr-1"></span>회원정보수정
@@ -66,4 +68,5 @@
 		</div>
 	</div>
 </div>
+<%@include file="../main/scriptloader.jsp" %>
 <%@include file="../main/footer.jsp"%>
