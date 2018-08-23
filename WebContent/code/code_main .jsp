@@ -4,6 +4,7 @@
 code게시판 Main 
  --%>
 <%@include file="../main/header.jsp" %>
+
 <%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
 <link rel="stylesheet" href="../highlight/styles/default.css">
 <style type="text/css">
