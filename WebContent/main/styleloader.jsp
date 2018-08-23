@@ -18,7 +18,7 @@
            The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
       <li class="nav-item dropdown d-sm-block d-md-none">
 			<a class="dropdown-item" href="/main.do">홈</a>
-            <a class="dropdown-item" href="/free.do">공지사항</a>
+            <a class="dropdown-item" href="/notice.do">공지사항</a>
             <a class="dropdown-item" href="/Q&A.do">Q & A </a>
             <a class="dropdown-item" href="/recruit.do">구인구직</a>
             <a class="dropdown-item" href="/free.do">자유게시판</a>
@@ -79,7 +79,7 @@
             <!-- /END Separator -->
             
             <!-- Menu with submenu -->        
-            <a href="/info.do" class="list-group-item list-group-item-action bg-warning">
+            <a href="/notice.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-bullhorn fa-fw mr-3"></span>
                     <span class="menu-collapsed">공지사항</span>    
