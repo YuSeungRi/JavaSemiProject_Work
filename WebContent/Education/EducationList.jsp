@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../main/header.jsp" %>    
+<%@include file="../main/styleloader.jsp" %>
 
 <div class="container m-3" >
 	<h1><span class="fa fa-graduation-cap mr-1"></span>교육 자료</h1>
