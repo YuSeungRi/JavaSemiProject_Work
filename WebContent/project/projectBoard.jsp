@@ -62,20 +62,50 @@
 			</div>
 				      	<div class="form-check form-check-inline">
 			  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-			  <label class="form-check-label" for="inlineCheckbox3">javascript</label>
+			  <label class="form-check-label" for="inlineCheckbox3">C#</label>
 			</div>
 			<div class="form-check form-check-inline">
 			  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
-			  <label class="form-check-label" for="inlineCheckbox4">CSS</label>
+			  <label class="form-check-label" for="inlineCheckbox4">javaScript</label>
 			</div>
 				      	<div class="form-check form-check-inline">
 			  <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
-			  <label class="form-check-label" for="inlineCheckbox5">HTML</label>
+			  <label class="form-check-label" for="inlineCheckbox5">CSS</label>
 			</div>
 			<div class="form-check form-check-inline">
 			  <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
-			  <label class="form-check-label" for="inlineCheckbox6">Oracle</label>
+			  <label class="form-check-label" for="inlineCheckbox6">HTML</label>
 			</div>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
+			  <label class="form-check-label" for="inlineCheckbox7">Node.js</label>
+			</div>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="option8">
+			  <label class="form-check-label" for="inlineCheckbox8">Oracle</label>
+			</div>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="option9">
+			  <label class="form-check-label" for="inlineCheckbox9">MySQL</label>
+			</div>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox10" value="option10">
+			  <label class="form-check-label" for="inlineCheckbox10">JSP</label>
+			</div>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox11" value="option11">
+			  <label class="form-check-label" for="inlineCheckbox11">Python</label>
+			</div>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox12" value="option12">
+			  <label class="form-check-label" for="inlineCheckbox12">PHP</label>
+			</div>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox13" value="option13">
+			  <label class="form-check-label" for="inlineCheckbox13">기타</label>
+			</div>
+			
+			
 	    </div>
 	  </div>
 		
