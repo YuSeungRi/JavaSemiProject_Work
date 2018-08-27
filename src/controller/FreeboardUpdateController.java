@@ -15,24 +15,21 @@ import dto.BoardDto;
 public class FreeboardUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private BoardService boardService = new BoardService();
+	private BoardService bsvc = new BoardService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String param = request.getParameter("boardNo");
-
-		int boardNo = 0;
-		if (!"".equals(param) && param != null) {
-			boardNo = Integer.parseInt(param);
+String param = request.getParameter("boardno");
+		
+		int boardno=0;
+		if(!"".equals(param) && param != null) {
+			boardno = Integer.parseInt(param);
 		}
-
-		BoardDto boarddto = new BoardDto();
-		boarddto.setBoardNo(boardNo);
-
-//		boarddto = boardService.view(boarddto);
-
-		request.setAttribute("board", boarddto);
+		
+		BoardDto dto = bsvc.getBoard(boardno);
+		
+		request.setAttribute("board", dto);
 
 		request.getRequestDispatcher("/Freeboard/freeboard_update.jsp").forward(request, response);
 	}
@@ -50,7 +47,7 @@ public class FreeboardUpdateController extends HttpServlet {
 		
 		System.out.println(boarddto);
 		
-//		boardService.update(boarddto);
+		bsvc.update(boarddto);
 		
 		response.sendRedirect("/Freeboard/free.do");
 

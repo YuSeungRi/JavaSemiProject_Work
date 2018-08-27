@@ -25,4 +25,9 @@ public class BoardService {
 		
 		return dao.getBoard(boardNo);
 	}
+	
+	public void update(BoardDto dto) {
+		dao.updateBoard(dto);
+	}
+	
 }

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../summernote/summernote-bs4.css" />
 <%@include file="../main/styleloader.jsp"%>
 <div class="container m-3">
-
+	<input type="hidden" name="boardno" value="${board.boardUser }" />
 	<h2>
 		<i class="fas fa-pencil-alt fa-2x"></i>게시글 수정
 	</h2>
@@ -22,7 +22,7 @@
 			<label for="title" class="col-sm-2 col-form-label">제목</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" id="title"
-					placeholder="제목을 입력해주세요.">
+					name="title" placeholder="${board.boardTitle }">
 			</div>
 		</div>
 
@@ -30,7 +30,7 @@
 
 		<%-- 내용 --%>
 		<%-- summernote_start --%>
-		<div id="summernote">Test Summernote</div>
+		<div id="summernote">${board.boardContent }</div>
 	
 		<%-- summernote_end --%>
 
