@@ -44,10 +44,10 @@
 					<tbody>
 					<c:forEach items="${boardList }" var="board">
 						<tr>
-							<td>${board.boardno }</td>
+							<td>${board.boardNo }</td>
 							<td>${board.boardCreate }</td>
 							<td>
-								<a href="/board/view.do?boardno=${board.boardno }">${board.boardTitle }</a>
+								<a href="/board/view.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
 							<td>${board.boardUser }</td>
 							<td>${board.boardRead }</td>
@@ -60,7 +60,7 @@
 			<br> <a href="#" class="btn btn-secondary btn-sm active"
 				role="button" aria-pressed="true">작성</a> <br> <br>
 
-			<jsp:include page="/util/paging.jsp" />
+			<jsp:include page="/util/boardPaging.jsp" />
 		</div>
 
 	</div>

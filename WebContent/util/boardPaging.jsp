@@ -12,7 +12,7 @@
   	<!-- 첫 페이지라면 금지 표시 -->
   	<c:if test="${paging.curPage eq 1 }"><!-- 첫페이지일때 -->
   	<li class="disabled">
-      <a href="/board/pagingList.do"
+      <a href="/board/free.do"
        aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
@@ -20,7 +20,7 @@
   	</c:if>
   	<c:if test="${paging.curPage ne 1 }"><!-- 첫페이지가아닐때 -->
   	<li>
-      <a href="/board/pagingList.do?curPage=${paging.curPage-1 }"
+      <a href="/board/free.do?curPage=${paging.curPage-1 }"
        aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
@@ -43,7 +43,7 @@
 	   	<li>
 	   	</c:if>
 	   	
-	   	<a href="/board/pagingList.do?curPage=${page }">
+	   	<a href="/board/free.do?curPage=${page }">
 	   		${page }
 	   	</a>
 	   	</li>
@@ -58,7 +58,7 @@
   	<!-- 마지막 페이지라면 금지 표시 -->
   	<c:if test="${paging.curPage eq paging.totalPage }"><!-- 마지막 페이지일때 -->
   	<li class="disabled">
-      <a href="/board/pagingList.do?curPage=${paging.totalPage }"
+      <a href="/board/free.do?curPage=${paging.totalPage }"
        aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
@@ -66,7 +66,7 @@
   	</c:if>
   	<c:if test="${paging.curPage ne paging.totalPage }"><!-- 마지막 페이지가아닐때 -->
   	<li>
-      <a href="/board/pagingList.do?curPage=${paging.curPage+1 }"
+      <a href="/board/free.do?curPage=${paging.curPage+1 }"
        aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
