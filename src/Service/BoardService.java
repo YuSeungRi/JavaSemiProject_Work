@@ -13,12 +13,11 @@ public class BoardService {
 	
 	public int getTotal(String categoryName) {
 		
-		return 0;
+		return dao.getTotal(categoryName);
 	}
 	
 	public List<BoardDto> getPagingList(Paging paging, String categoryName) {
-		
-		
-		return null;
+
+		return dao.getPagingList(paging, categoryName);
 	}
 }

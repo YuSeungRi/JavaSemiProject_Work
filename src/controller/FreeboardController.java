@@ -30,7 +30,7 @@ public class FreeboardController extends HttpServlet {
 		if( !"".equals(param) && param != null ) {
 			curPage = Integer.parseInt(
 				request.getParameter("curPage") );
-		}
+		}	// 페이지가 비어있거나 [""], null값일 때 curPage를 요청한다
 		
 		// 총 게시글 수
 		int totalCount = bsvc.getTotal(categoryName); // DB에서 카테고리게시물의 숫자를 가져옴

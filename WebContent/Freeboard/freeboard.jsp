@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../main/header.jsp" %>
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
@@ -41,84 +42,25 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${boardList }" var="board">
 						<tr>
-							<td>1</td>
-							<td>2018-08-02</td>
-							<td>놀러갑시다</td>
-							<td>관리자</td>
-							<td>1234</td>
-							<td>321</td>
+							<td>${board.boardno }</td>
+							<td>${board.boardCreate }</td>
+							<td>
+								<a href="/board/view.do?boardno=${board.boardno }">${board.boardTitle }</a>
+							</td>
+							<td>${board.boardUser }</td>
+							<td>${board.boardRead }</td>
+							<td>${board.boardRecommand }</td>
 						</tr>
-						<tr>
-							<td>2</td>
-							<td>2018-08-02</td>
-							<td>놀러갑시다</td>
-							<td>관리자</td>
-							<td>1234</td>
-							<td>321</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>2018-08-02</td>
-							<td>놀러갑시다</td>
-							<td>관리자</td>
-							<td>1234</td>
-							<td>321</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>2018-08-02</td>
-							<td>놀러갑시다</td>
-							<td>관리자</td>
-							<td>1234</td>
-							<td>321</td>
-						</tr>
-						<tr>
-							<td>5</td>
-							<td>2018-08-02</td>
-							<td>놀러갑시다</td>
-							<td>관리자</td>
-							<td>1234</td>
-							<td>321</td>
-						</tr>
-						<tr>
-							<td>6</td>
-							<td>2018-08-02</td>
-							<td>놀러갑시다</td>
-							<td>관리자</td>
-							<td>1234</td>
-							<td>321</td>
-						</tr>
-						<tr>
-							<td>7</td>
-							<td>2018-08-02</td>
-							<td>놀러갑시다</td>
-							<td>관리자</td>
-							<td>1234</td>
-							<td>321</td>
-						</tr>
-						<tr>
-							<td>8</td>
-							<td>2018-08-02</td>
-							<td>놀러갑시다</td>
-							<td>관리자</td>
-							<td>1234</td>
-							<td>321</td>
-						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 			<br> <a href="#" class="btn btn-secondary btn-sm active"
 				role="button" aria-pressed="true">작성</a> <br> <br>
 
-			<ul class="pagination justify-content-center">
-				<li class="page-item"><a class="page-link" href="#">&laquo</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">&raquo</a></li>
-			</ul>
-
+			<jsp:include page="/util/paging.jsp" />
 		</div>
 
 	</div>
