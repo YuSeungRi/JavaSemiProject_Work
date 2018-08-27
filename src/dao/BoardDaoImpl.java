@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import board.util.Paging;
 import dbutil.DBConn;
 import dto.BoardDto;
-import board.util.Paging;
 
 /*
  * 작성일 : 2018.08.19
@@ -21,19 +21,23 @@ import board.util.Paging;
  *  - '카테고리별 게시글 수 조회', '카테고리별 페이징 리스트 조회' 메소드 추가
  *  	public int getTotal(String categoryName){}
  *  	public List<BoardDto> getPagingList(Paging paging, String categoryName){}
+ *  - '게시글 삭제_관리자' 메소드 삭제
+ *  	public boolean deleteBoardManager(int boardNo){}
+ *  - '게시글 수정', '게시글 삭제' 메소드 수정
+ *  	public boolean updateBoard(BoardDto dto){}
+ *  	public boolean deleteBoard(int boardNo){}
+ *  - Connection 멤버필드에서 해결
  */
 
 public class BoardDaoImpl implements BoardDao {
 
-	private Connection conn;
+	private Connection conn = DBConn.getConnection();
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
 	
 	@Override
 	public BoardDto getBoard(int boardNo) {
-
-		conn = DBConn.getConnection();
 		
 		BoardDto dto = null;
 		
@@ -67,7 +71,6 @@ public class BoardDaoImpl implements BoardDao {
 			try {
 				if (rs != null) rs.close();
 				if (ps != null) ps.close();
-				if (conn != null) conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -75,12 +78,9 @@ public class BoardDaoImpl implements BoardDao {
 		}
 
 		return dto;
-		
 	}
 	@Override
 	public ArrayList<BoardDto> getCategoryBoard(String boardCategory) {
-
-		conn = DBConn.getConnection();
 		
 		ArrayList<BoardDto> list = new ArrayList<>();
 		BoardDto dto = null;
@@ -117,7 +117,6 @@ public class BoardDaoImpl implements BoardDao {
 			try {
 				if (rs != null) rs.close();
 				if (ps != null) ps.close();
-				if (conn != null) conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -125,13 +124,10 @@ public class BoardDaoImpl implements BoardDao {
 		}
 
 		return list;
-		
 	}
 	@Override
 	public int getTotal(String categoryName) {
 		int total = 0;
-		
-		conn = DBConn.getConnection();
 		
 		String sql = "SELECT count(*) FROM board"
 				+ " WHERE board_category=?"; // 1. category
@@ -150,7 +146,6 @@ public class BoardDaoImpl implements BoardDao {
 			try {
 				if(rs != null) rs.close();
 				if(ps != null) ps.close();
-				if(conn != null) conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -162,8 +157,6 @@ public class BoardDaoImpl implements BoardDao {
 	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName) {
 		ArrayList<BoardDto> list = new ArrayList<>();
 		BoardDto dto = null;
-		
-		conn = DBConn.getConnection();
 		
 		String sql = "SELECT * FROM (" + 
 				"    SELECT rownum rnum, B.* FROM (" + 
@@ -207,7 +200,6 @@ public class BoardDaoImpl implements BoardDao {
 			try {
 				if (rs != null) rs.close();
 				if (ps != null) ps.close();
-				if (conn != null) conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -218,8 +210,6 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public boolean createBoard(BoardDto dto) {
 		boolean result = false;	// 데이터베이스 저장 성공 여부
-		
-		conn = DBConn.getConnection();
 		
 		String sql = "INSERT INTO board"
 				+ " VALUES (BOARD_SEQ.nextval,"
@@ -248,77 +238,59 @@ public class BoardDaoImpl implements BoardDao {
 			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
+		
 		
 		return result;
 	}
 	@Override
-	public boolean updateBoard(String boardUser, int boardNo, BoardDto dto) {
+	public boolean updateBoard(BoardDto dto) {
 		boolean result = false;	// 데이터베이스 저장 성공 여부
-		
-		conn = DBConn.getConnection();
 		
 		String sql = "UPDATE board SET"
 				+ " board_title=?" // 1. title
 				+ ", board_modify=TO_CHAR(sysdate, 'YYYY-MM-DD')" // modify
 				+ ", board_content=?" // 2. content
-				+ " WHERE board_user=?" // 3. user
-				+ " and board_no=?"; // 4. no
+				+ " WHERE board_no=?"; // 3. no
 		
 		try {
 			ps = conn.prepareStatement(sql);
 			
 			ps.setString(1, dto.getBoardTitle());
 			ps.setString(2, dto.getBoardContent());
-			ps.setString(3, boardUser);
-			ps.setInt(4, boardNo);
+			ps.setInt(3, dto.getBoardNo());
 			
 			ps.executeUpdate();
 			
 			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return result;
 	}
 	@Override
-	public boolean deleteBoard(String boardUser, int boardNo) {
+	public boolean deleteBoard(int boardNo) {
 		boolean result = false;	// 데이터베이스 저장 성공 여부
-		
-		conn = DBConn.getConnection();
-		
-		String sql = "DELETE FROM board"
-				+ " WHERE board_user=?" // 1. user
-				+ " and board_no=?"; // 2. no
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			
-			ps.setString(1, boardUser);
-			ps.setInt(2, boardNo);
-			
-			ps.executeUpdate();
-			
-			result = true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
-	@Override
-	public boolean deleteBoardManager(int boardNo) {
-		boolean result = false;	// 데이터베이스 저장 성공 여부
-		
-		conn = DBConn.getConnection();
 		
 		String sql = "DELETE FROM board"
 				+ " WHERE board_no=?"; // 1. no
 		
 		try {
 			ps = conn.prepareStatement(sql);
-
+			
 			ps.setInt(1, boardNo);
 			
 			ps.executeUpdate();
@@ -326,6 +298,12 @@ public class BoardDaoImpl implements BoardDao {
 			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return result;

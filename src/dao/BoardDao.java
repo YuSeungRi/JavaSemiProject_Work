@@ -2,8 +2,8 @@ package dao;
 
 import java.util.ArrayList;
 
-import dto.BoardDto;
 import board.util.Paging;
+import dto.BoardDto;
 
 /*
  * 작성일 : 2018.08.19
@@ -16,6 +16,11 @@ import board.util.Paging;
  *  - '카테고리별 게시글 수 조회', '카테고리별 페이징 리스트 조회' 메소드 추가
  *  	public int getTotal(String categoryName)
  *  	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName)
+ *  - '게시글 삭제_관리자' 메소드 삭제
+ *  	public boolean deleteBoardManager(int boardNo)
+ *  - '게시글 수정', '게시글 삭제' 메소드 수정
+ *  	public boolean updateBoard(BoardDto dto)
+ *  	public boolean deleteBoard(int boardNo)
  */
 
 public interface BoardDao {
@@ -63,7 +68,7 @@ public interface BoardDao {
 	 * @param boardUser, boardNo, dto
 	 * @return true : 게시글 수정 성공 / false : 게시글 수정 실패
 	 */
-	public boolean updateBoard(String boardUser, int boardNo, BoardDto dto);
+	public boolean updateBoard(BoardDto dto);
 	
 	
 	/**
@@ -71,13 +76,6 @@ public interface BoardDao {
 	 * @param boardNo
 	 * @return true : 게시글 삭제 성공 / false : 게시글 삭제 실패
 	 */
-	public boolean deleteBoard(String boardUser, int boardNo);
-	
-	/**
-	 * 게시글 삭제_관리자
-	 * @param boardNo
-	 * @return true : 게시글 삭제 성공 / false : 게시글 삭제 실패
-	 */
-	public boolean deleteBoardManager(int boardNo);
+	public boolean deleteBoard(int boardNo);
 	
 }
