@@ -61,7 +61,7 @@
 					<a href="#" class="btn btn-secondary btn-sm active"
 					role="button" aria-pressed="true">작성</a>
 						
-					<a href="#" class="btn btn-secondary btn-sm active"
+					<a href="/Freeboard/update.do" class="btn btn-secondary btn-sm active"
 					role="button" aria-pressed="true">수정</a>
 					
 					<a href="#" class="btn btn-secondary btn-sm active"

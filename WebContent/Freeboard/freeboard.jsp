@@ -47,7 +47,7 @@
 							<td>${board.boardNo }</td>
 							<td>${board.boardCreate }</td>
 							<td>
-								<a href="/board/view.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+								<a href="/Freeboard/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
 							<td>${board.boardUser }</td>
 							<td>${board.boardRead }</td>
