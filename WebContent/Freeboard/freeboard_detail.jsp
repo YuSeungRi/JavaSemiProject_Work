@@ -57,14 +57,14 @@
 					
 				</div>
 				
-				<div class="row justify-content-center">
+				<div class="row fluid">
 					<a href="#" class="btn btn-secondary btn-sm active"
 					role="button" aria-pressed="true">작성</a>
 						
-					<a href="/Freeboard/update.do" class="btn btn-secondary btn-sm active"
+					<a href="/Freeboard/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active"
 					role="button" aria-pressed="true">수정</a>
 					
-					<a href="/Freeboard/delete.do" class="btn btn-secondary btn-sm active"
+					<a href="/Freeboard/delete.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active"
 					role="button" aria-pressed="true">삭제</a>
 				</div>
 			</div>
