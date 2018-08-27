@@ -8,15 +8,19 @@ import java.util.ArrayList;
 
 import dbutil.DBConn;
 import dto.BoardDto;
+import board.util.Paging;
 
 /*
  * 작성일 : 2018.08.19
  * 작성자 : 권미현
  * 
- * 수정일 : 2018.08.21
+ * 수정일 : 2018.08.27
  * 수정자 : 권미현
- *  - 게시글 생성, 수정, 삭제, 삭제_관리자 구현
- *  - 그외 오타 수정
+ *  - '내가 작성한 게시글 조회' 메소드 삭제
+ *  	public ArrayList<BoardDto> getUserBoard(String boardUser){}
+ *  - '카테고리별 게시글 수 조회', '카테고리별 페이징 리스트 조회' 메소드 추가
+ *  	public int getTotal(String categoryName){}
+ *  	public List<BoardDto> getPagingList(Paging paging, String categoryName){}
  */
 
 public class BoardDaoImpl implements BoardDao {
@@ -34,7 +38,7 @@ public class BoardDaoImpl implements BoardDao {
 		BoardDto dto = null;
 		
 		String sql = "SELECT * FROM board"
-				+ " WHERE board_no=?";
+				+ " WHERE board_no=?"; // 1. no
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -82,7 +86,7 @@ public class BoardDaoImpl implements BoardDao {
 		BoardDto dto = null;
 		
 		String sql = "SELECT * FROM board"
-				+ " WHERE board_category=?";
+				+ " WHERE board_category=?"; // 1. category
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -124,19 +128,60 @@ public class BoardDaoImpl implements BoardDao {
 		
 	}
 	@Override
-	public ArrayList<BoardDto> getUserBoard(String boardUser) {
+	public int getTotal(String categoryName) {
+		int total = 0;
 		
 		conn = DBConn.getConnection();
 		
-		ArrayList<BoardDto> list = new ArrayList<>();
-		BoardDto dto = null;
-		
-		String sql = "SELECT * FROM board"
-				+ " WHERE board_user=?";
+		String sql = "SELECT count(*) FROM board"
+				+ " WHERE board_category=?"; // 1. category
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, boardUser);
+			ps.setString(1, categoryName);
+			
+			rs = ps.executeQuery();
+			
+			rs.next();
+			total = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return total;
+	}
+	@Override
+	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName) {
+		ArrayList<BoardDto> list = new ArrayList<>();
+		BoardDto dto = null;
+		
+		conn = DBConn.getConnection();
+		
+		String sql = "SELECT * FROM (" + 
+				"    SELECT rownum rnum, B.* FROM (" + 
+				"        SELECT * FROM board" + 
+				"        WHERE board_category=?" +  // 1. category
+				"        ORDER BY board_no DESC" + 
+				"    ) B" + 
+				"    ORDER BY rnum" + 
+				")" + 
+				"WHERE rnum BETWEEN ?" // 2. paging.getStartNo()
+				+ " AND ?"; // 3. paging.getEndNo()
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, categoryName);
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
 			
 			rs = ps.executeQuery();
 			
@@ -156,7 +201,6 @@ public class BoardDaoImpl implements BoardDao {
 				
 				list.add(dto);
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -167,11 +211,9 @@ public class BoardDaoImpl implements BoardDao {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
 		}
-
-		return list;
 		
+		return list;
 	}
 	@Override
 	public boolean createBoard(BoardDto dto) {
