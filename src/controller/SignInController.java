@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/signin.do")
+@WebServlet("/main/signin.do")
 public class SignInController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

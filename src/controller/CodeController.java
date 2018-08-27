@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/code.do")
+@WebServlet("/code/code.do")
 public class CodeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

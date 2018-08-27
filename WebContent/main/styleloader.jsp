@@ -17,20 +17,20 @@
       <!-- This menu is hidden in bigger devices with d-sm-none. 
            The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
       <li class="nav-item dropdown d-sm-block d-md-none">
-			<a class="dropdown-item" href="/main.do">홈</a>
-            <a class="dropdown-item" href="/notice.do">공지사항</a>
-            <a class="dropdown-item" href="/Q&A.do">Q & A </a>
-            <a class="dropdown-item" href="/recruit.do">구인구직</a>
-            <a class="dropdown-item" href="/free.do">자유게시판</a>
-            <a class="dropdown-item" href="/tech.do">기술동향</a>
-            <a class="dropdown-item" href="/project.do">프로젝트</a>
+			<a class="dropdown-item" href="/main/main.do">홈</a>
+            <a class="dropdown-item" href="/notice/notice.do">공지사항</a>
+            <a class="dropdown-item" href="/question/Q&A.do">Q & A </a>
+            <a class="dropdown-item" href="/recruit/recruit.do">구인구직</a>
+            <a class="dropdown-item" href="/Freeboard/free.do">자유게시판</a>
+            <a class="dropdown-item" href="/tech/tech.do">기술동향</a>
+            <a class="dropdown-item" href="/project/project.do">프로젝트</a>
             <hr>
-            <a class="dropdown-item" href="/edu.do">교육자료</a>
+            <a class="dropdown-item" href="/Education/edu.do">교육자료</a>
             <hr>
-            <a class="dropdown-item" href="/code.do">코드</a>
+            <a class="dropdown-item" href="/code/code.do">코드</a>
             <hr>
-            <a class="dropdown-item" href="/mypage.do">마이페이지</a>
-            <a class="dropdown-item" href="/admin.do">관리자게시판</a>
+            <a class="dropdown-item" href="/mypage/mypage.do">마이페이지</a>
+            <a class="dropdown-item" href="/admin/admin.do">관리자게시판</a>
       </li><!-- Smaller devices menu END -->
       
     </ul>
@@ -46,7 +46,7 @@
         <ul class="list-group">
         	<!-- Logo -->
             <li class="bg-warning list-group-item logo-separator d-flex justify-content-center pb-5">
-               <a href="/main.do">
+               <a href="/main/main.do">
                 <img src='../img/logo1.png' width="70" height="40" alt="logo" />  
                </a>  
             </li>   
@@ -79,37 +79,37 @@
             <!-- /END Separator -->
             
             <!-- Menu with submenu -->        
-            <a href="/notice.do" class="list-group-item list-group-item-action bg-warning">
+            <a href="/notice/notice.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-bullhorn fa-fw mr-3"></span>
                     <span class="menu-collapsed">공지사항</span>    
                 </div>
             </a>
-            <a href="/Q&A.do" class="list-group-item list-group-item-action bg-warning">
+            <a href="/question/Q&A.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-question-circle fa-fw mr-3"></span>
                     <span class="menu-collapsed">Q&A</span>    
                 </div>
             </a>
-            <a href="recruit.do" class="list-group-item list-group-item-action bg-warning">
+            <a href="/recruit/recruit.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-users fa-fw mr-3"></span>
                     <span class="menu-collapsed">구인구직</span>    
                 </div>
             </a>
-            <a href="/free.do" class="list-group-item list-group-item-action bg-warning">
+            <a href="/Freeboard/free.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-comments fa-fw mr-3"></span>
                     <span class="menu-collapsed">자유게시판</span>    
                 </div>
             </a>
-            <a href="/tech.do" class="list-group-item list-group-item-action bg-warning">
+            <a href="/tech/tech.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-laptop fa-fw mr-3"></span>
                     <span class="menu-collapsed">기술동향</span>    
                 </div>
             </a>
-            <a href="/project.do" class="list-group-item list-group-item-action bg-warning">
+            <a href="/project/project.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-project-diagram fa-fw mr-3"></span>
                     <span class="menu-collapsed">프로젝트</span>    
@@ -120,13 +120,13 @@
 <!--                 <small>OPTIONS</small> -->
             </li>
             <!-- /END Separator -->
-            <a href="/edu.do" class="list-group-item list-group-item-action bg-warning">
+            <a href="/Education/edu.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-graduation-cap fa-fw mr-3"></span>
                     <span class="menu-collapsed">교육자료</span>    
                 </div>
             </a>
-            <a href="/code.do" class="list-group-item list-group-item-action bg-warning">
+            <a href="/code/code.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-code fa-fw mr-3"></span>
                     <span class="menu-collapsed">코드</span>    
@@ -136,7 +136,7 @@
             <!-- Separator without title -->
             <li class="list-group-item sidebar-separator menu-collapsed"></li>            
             <!-- /END Separator -->
-             <a href="/admin.do" class="list-group-item list-group-item-action bg-warning">
+             <a href="/admin/admin.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-wrench fa-fw mr-3"></span>
                     <span class="menu-collapsed">관리자페이지</span>

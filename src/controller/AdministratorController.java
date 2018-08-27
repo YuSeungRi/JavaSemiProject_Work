@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AdministratorController
  */
-@WebServlet("/admin.do")
+@WebServlet("/admin/admin.do")
 public class AdministratorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   

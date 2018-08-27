@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ProjectController
  */
-@WebServlet("/project.do")
+@WebServlet("/project/project.do")
 public class ProjectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

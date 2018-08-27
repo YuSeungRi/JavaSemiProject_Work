@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class TechController
  */
-@WebServlet("/tech.do")
+@WebServlet("/tech/tech.do")
 public class TechController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("/Tech/techboard.jsp").forward(request,response);
+		request.getRequestDispatcher("/tech/techboard.jsp").forward(request,response);
 	}
 
 	

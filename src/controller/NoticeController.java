@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class InformationController
  */
-@WebServlet("/notice.do")
+@WebServlet("/notice/notice.do")
 public class NoticeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("/Notice/noticeboard.jsp").forward(request,response);
+		request.getRequestDispatcher("/notice/noticeboard.jsp").forward(request,response);
 	}
 
 	

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/free.do")
+@WebServlet("/Freeboard/free.do")
 public class FreeboardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

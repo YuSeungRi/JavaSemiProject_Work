@@ -8,18 +8,18 @@
 <%
 	if(isLoggedIn) {
 %>
-	<a href="/mypage.do">
+	<a href="/mypage/mypage.do">
 	<button type="button" class="btn btn-sm bg-secondary text-light mr-1"><span class="fa fa-user fa-fw mr-1"></span><span class="menu-collapsed">정보수정</span></button>
 	</a>
 	<button type="button" class="btn btn-sm bg-secondary text-light" ><span class="fa fa-sign-out-alt fa-fw mr-1"></span><span class="menu-collapsed">로그아웃</span></button>
 <% } else {%>
 <!-- Button trigger modal -->
 
-	<a href="/signin.do">
+	<a href="/main/signin.do">
 	<button type="button" class="btn btn-sm bg-success text-light mr-1" ><span class="fa fa-sign-in-alt fa-fw mr-1"></span><span class="menu-collapsed">로그인</span></button>
 	</a>
 	
-	<a href="signup.do">
+	<a href="/main/signup.do">
 	<button type="button" class="btn btn-sm bg-secondary text-light" data-toggle="modal" data-target="#signIn"><span class="fa fa-user-plus fa-fw mr-1"></span><span class="menu-collapsed">회원가입</span></button>
 	</a>
 

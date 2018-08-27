@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/info.do")
+@WebServlet("/information/info.do")
 public class InformationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
