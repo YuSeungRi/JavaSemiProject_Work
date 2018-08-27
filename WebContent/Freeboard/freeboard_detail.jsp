@@ -29,37 +29,35 @@
 				</form>
 
 				<div class="row justify-content-center">
-					<table class="col-md-10 table table-hover table-sm">
-						<thead class="thead-light">
+					<table class="col-md-10 table table-hover table-sm table-striped">
+							<!-- 제목 -->
 							<tr>
-								<th>제목:</th>
-								<th>첫번 째 글 입니다</th>
-								<th></th>
-								<th></th>
-								<th></th>				
-								<th><i class="far fa-thumbs-up fa-sm"></i></th>
+								<td colspan="1">제목</td><td colspan="15">${board.boardTitle }</td>
 							</tr>
-						</thead>
+							<tr>
+								<td colspan="1">no.</td><td colspan="3">${board.boardNo }</td>
+								<td colspan="1">작성자</td><td colspan="2">${board.boardUser }</td>
+								<td colspan="1">조회수</td><td colspan="2">${board.boardRead }</td>
+								<td colspan="1">작성일</td><td colspan="2">${board.boardCreate }</td>	
+								<td colspan="2">${board.boardRecommand }</td><td colspan="1"><i class="far fa-thumbs-up fa-sm"></i></td>
+							</tr>
+							<tr>
+							
+							</tr>
+							<!-- 본문 -->
+							<tr>
+								<td colspan="16">${board.boardContent }</td>
+							</tr>
+							<!-- 수정 시간 -->
+							<tr>
+								<td colspan="16" align="left">최근 수정 시간 : ${board.boardModify }</td>
+							</tr>
+					
 					</table>
-					<div class="col-md-10">
-						<article>
-						<p>
-						첫번째 글은 내가 먹었으므로 우리 주변에는 규모를 가늠할 수 없을 정도로 많은 정보와 데이터를 합산하여
-						</p>
-						<p>
-						말과 행동이 완전한 인간이 되어라 입으로는 훌륭한 것을 말하되 행동은 영예롭게 하라 전자는 두뇌의 완성을
-						후자는 마음의 완성을 드러낸다
-						둘다 고상한 정신에서 나온다
-						말은 행동의 그림자이다
-						</p>
-						<br>
-						<br>
-						<br>
-						<br>
-						</article>
-					</div>
+					
 				</div>
-				<div class="row justify-content-end">
+				
+				<div class="row justify-content-center">
 					<a href="#" class="btn btn-secondary btn-sm active"
 					role="button" aria-pressed="true">작성</a>
 						

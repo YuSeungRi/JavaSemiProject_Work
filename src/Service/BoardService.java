@@ -20,4 +20,9 @@ public class BoardService {
 
 		return dao.getPagingList(paging, categoryName);
 	}
+	
+	public BoardDto getBoard(int boardNo) {
+		
+		return dao.getBoard(boardNo);
+	}
 }

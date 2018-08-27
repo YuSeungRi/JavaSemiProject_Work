@@ -17,5 +17,5 @@ public class MainController extends HttpServlet {
 		
 		request.getRequestDispatcher("/main/Mainview.jsp").forward(request, response);
 	}
-
+	
 }
