@@ -3,7 +3,7 @@ package dao;
 import java.util.ArrayList;
 
 import dto.BoardDto;
-import util.Paging;
+import board.util.Paging;
 
 /*
  * 작성일 : 2018.08.19

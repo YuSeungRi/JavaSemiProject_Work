@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import dbutil.DBConn;
 import dto.BoardDto;
-import util.Paging;
+import board.util.Paging;
 
 /*
  * 작성일 : 2018.08.19
