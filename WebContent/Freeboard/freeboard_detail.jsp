@@ -57,7 +57,7 @@
 					
 				</div>
 				
-				<div class="row fluid">
+				<div class="row justify-content-center">
 					<a href="#" class="btn btn-secondary btn-sm active"
 					role="button" aria-pressed="true">작성</a>
 						
