@@ -26,6 +26,11 @@ public class BoardService {
 		return dao.getBoard(boardNo);
 	}
 	
+	// 게시글 작성
+	public boolean createBoard(BoardDto dto) {
+		return dao.createBoard(dto);
+	}
+	
 	public void update(BoardDto dto) {
 		dao.updateBoard(dto);
 	}
