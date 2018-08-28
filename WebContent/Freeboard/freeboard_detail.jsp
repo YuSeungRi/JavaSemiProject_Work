@@ -80,8 +80,9 @@ $(document).ready(function() {
 	//Ajax 통해서 reply.do 호출하고자 함 
 	var url ="/reply/reply.do";
 	var bNo = getUrlParameter("boardno");
+	var data = {boardNo : bNo};
 	// 쿼리스트링
-	$("#replyDisplay").load(url+"?boardNo="+bNo);
+	$("#replyDisplay").load(url, bNo);
 });
 </script>
 <%@include file="../main/footer.jsp"%>
