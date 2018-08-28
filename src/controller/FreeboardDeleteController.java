@@ -19,11 +19,13 @@ public class FreeboardDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//boardno 파라미터 얻어오기 
-		String param = request.getParameter("boardNo");		
+		String param = request.getParameter("boardno");		
 		int boardNo=0;
 		if(!"".equals(param) && param != null) {
 			boardNo = Integer.parseInt(param);
 		}
+		
+		System.out.println(param);
 		
 		//BoardDto 객체 생성
 		BoardDto boarddto = new BoardDto();
