@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class QAController
  */
-@WebServlet("/qestion/Q&A.do")
+@WebServlet("/question/Q&A.do")
 public class QAController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

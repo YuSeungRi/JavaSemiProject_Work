@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
-    <h2>
-		<i class="far fa-object-group"></i> 프로젝트
-	</h2>
+	<h1>
+		<span class="fa fa-project-diagram fa-fw mr-1"></span>프로젝트
+	</h1>
 			 
 	 <br><br>
     
