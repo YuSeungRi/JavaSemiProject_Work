@@ -20,15 +20,15 @@ public class FreeboardUpdateController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-String param = request.getParameter("boardno");
-		
-		int boardno=0;
-		if(!"".equals(param) && param != null) {
+		String param = request.getParameter("boardno");
+
+		int boardno = 0;
+		if (!"".equals(param) && param != null) {
 			boardno = Integer.parseInt(param);
 		}
-		
+
 		BoardDto dto = bsvc.getBoard(boardno);
-		
+
 		request.setAttribute("board", dto);
 
 		request.getRequestDispatcher("/Freeboard/freeboard_update.jsp").forward(request, response);
@@ -36,19 +36,18 @@ String param = request.getParameter("boardno");
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("UTF-8");
-		
+
 		BoardDto boarddto = new BoardDto();
 		boarddto.setBoardNo(Integer.parseInt(request.getParameter("boardno")));
 		boarddto.setBoardTitle(request.getParameter("title"));
 		boarddto.setBoardContent(request.getParameter("content"));
-		boarddto.setBoardUser((String) request.getSession().getAttribute("writer")); 
-		
+
 		System.out.println(boarddto);
-		
+
 		bsvc.update(boarddto);
-		
+
 		response.sendRedirect("/Freeboard/free.do");
 
 	}

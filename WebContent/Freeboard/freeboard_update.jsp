@@ -10,28 +10,25 @@
 <link rel="stylesheet" href="../summernote/summernote-bs4.css" />
 <%@include file="../main/styleloader.jsp"%>
 <div class="container m-3">
-	<input type="hidden" name="boardno" value="${board.boardUser }" />
 	<h2>
 		<i class="fas fa-pencil-alt fa-2x"></i>게시글 수정
 	</h2>
 
 
 	<%-- 제목 --%>
-	<form action="/board/update.do" method="post">
+	<form action="/Freeboard/update.do" method="post">
+	<input type="hidden" name="boardno" value="${board.boardNo }" />
 		<div class="form-group row">
 			<label for="title" class="col-sm-2 col-form-label">제목</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" id="title"
-					name="title" placeholder="${board.boardTitle }">
-			</div>
+			<input type="text" id="title" name="title" 
+			class="form-control col-sm-10" value="${board.boardTitle }"/>
 		</div>
 
 
 
 		<%-- 내용 --%>
 		<%-- summernote_start --%>
-		<div id="summernote">${board.boardContent }</div>
-	
+		<textarea id="summernote" name="content" class="form-control">${board.boardContent }</textarea>
 		<%-- summernote_end --%>
 
 
