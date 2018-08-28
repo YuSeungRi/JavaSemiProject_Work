@@ -9,7 +9,7 @@
 		<span class="fa fa-sign-in-alt fa-fw mr-1"></span>자유게시판
 	</h1>
 	<div class="col mt-1">
-		<div class="col-mt-11 table-responsive">
+		<div class="col-mt-11">
 			<form>
 				<div>
 					<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4">
@@ -57,10 +57,18 @@
 					</tbody>
 				</table>
 			</div>
-			<br> <a href="#" class="btn btn-secondary btn-sm active"
-				role="button" aria-pressed="true">작성</a> <br> <br>
-
-			<jsp:include page="/util/boardPaging.jsp" />
+			<div class="row justify-content-center">
+				<div class="col-3 text-center m-1">
+					<%-- 작성 버튼 --%>
+					<a href="/Freeboard/" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">작성</a>
+				</div>
+			</div>	
+			<div class="row justify-content-center">
+				<div class="col m-4">
+					<%-- 페이지네이션 --%>
+					<jsp:include page="/util/boardPaging.jsp" />
+				</div>
+			</div>
 		</div>
 
 	</div>
