@@ -12,7 +12,7 @@ public interface UserInfoDao {
 	 * @param userPw
 	 * @return 1: login success, 0: login fail
 	 */
-	public boolean login(String userEmail, String userPw);
+	public boolean login(UserInfoDto dto);
 	
 	/**
 	 * Create new user 

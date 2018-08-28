@@ -13,9 +13,9 @@ public class UserInfoService {
 		return dao.createUser(dto);
 	}
 	
-	public boolean login(String userEmail, String userPw) {
+	public boolean login(UserInfoDto dto) {
 		
-		return dao.login(userEmail, userPw);
+		return dao.login(dto);
 		
 	}
 	

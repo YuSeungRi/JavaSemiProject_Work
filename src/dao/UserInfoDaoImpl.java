@@ -17,7 +17,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	private ResultSet rs;
 	
 	@Override
-	public boolean login(String userEmail, String userPw) {
+	public boolean login(UserInfoDto dto) {
 		
 	
 		boolean result = false;
@@ -29,8 +29,8 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		
 		try {
 			ps = conn.prepareStatement(query);
-			ps.setString(1, userEmail);
-			ps.setString(2, userPw);
+			ps.setString(1, dto.getUserEmail());
+			ps.setString(2, dto.getUserPw());
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
