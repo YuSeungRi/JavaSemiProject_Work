@@ -3,13 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- 댓글 입력 -->
-<form action="/reply/reply.do" method="post">
+<form action="/reply/reply.do" method="post" class="form-inline">
   <div class="form-group">
     <label for="userEmail">작성자</label>
     <input type="email" class="form-control" id="userEmail" name="userEmail" value="${sessionScope.userEmail }" readonly />
   </div>
   <div class="form-group">
-    <label for="boardNo">Password</label>
+    <label for="boardNo">글번호</label>
     <input type="text" class="form-control" id="boardNo" name="boardNo" value="${param.boardNo }" readonly>
   </div>
   <div class="form-group form-check">
