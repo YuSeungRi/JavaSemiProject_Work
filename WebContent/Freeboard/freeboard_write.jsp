@@ -8,6 +8,7 @@
 수정일 : 2018.08.28
 수정자 : 권미현
 	[초기화], [목록으로] 기능 완성
+	테스트 작업 지우기
  --%>
 <%@include file="../main/header.jsp" %>
 <%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
@@ -66,7 +67,6 @@
 	// 버튼 이벤트
 	$(document).ready(function(){
 		$("#btnBefore").click(function(){
-			alert("목록으로...!");
 			history.back(); // 이전 화면으로 넘어가기
 		});
 		
@@ -75,8 +75,7 @@
 		});
 
 		$("#btnWrite").click(function(){
-			var sHTML = $("#summernote").summernote("code");
-			alert("테스트 내용 : " + sHTML);
+			$("#summernote").summernote("code");
 			$("form").submit();
 		});
 	});

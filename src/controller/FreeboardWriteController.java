@@ -28,6 +28,9 @@ public class FreeboardWriteController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("user", "테스트 작성자"); // 테스트 세션
+//		String user = (String) request.getSession().getAttribute("login");
+//		
+//		System.out.println("작성자(login) : " + user);
 		
 		request.getRequestDispatcher("/Freeboard/freeboard_write.jsp").forward(request, response);
 	}
@@ -40,7 +43,7 @@ public class FreeboardWriteController extends HttpServlet {
 		
 		dto.setBoardCategory("FreeBoard");
 		dto.setBoardTitle(request.getParameter("title"));
-		dto.setBoardUser((String) request.getSession().getAttribute("user"));
+		dto.setBoardUser((String) request.getSession().getAttribute("login"));
 		dto.setBoardContent(request.getParameter("summernote"));
 		
 		boolean success = service.createBoard(dto);
