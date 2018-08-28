@@ -69,5 +69,6 @@
 				</div>
 			</div>
 </div>
+<%@include file="../reply/reply.jsp" %>
 <%@include file="../main/scriptloader.jsp" %>
 <%@include file="../main/footer.jsp"%>
