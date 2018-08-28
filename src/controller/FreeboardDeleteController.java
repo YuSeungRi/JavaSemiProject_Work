@@ -14,29 +14,28 @@ import dto.BoardDto;
 public class FreeboardDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private BoardService boardService = new BoardService();
+	private BoardService Service = new BoardService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//boardno 파라미터 얻어오기 
-		String param = request.getParameter("boardNo");
 		
-		int boardno=0;
+		//boardno 파라미터 얻어오기 
+		String param = request.getParameter("boardno");		
+		int boardNo=0;
 		if(!"".equals(param) && param != null) {
-			boardno = Integer.parseInt(param);
+			boardNo = Integer.parseInt(param);
 		}
+		
+		System.out.println(param);
 		
 		//BoardDto 객체 생성
 		BoardDto boarddto = new BoardDto();
-		boarddto.setBoardNo(boardno);
+		boarddto.setBoardNo(boardNo);
 		
 		// 서비스에 매개변수로 boardno 전달 
-		
-		
+		Service.deleteBoard(boardNo);		
 		
 		// 리다이렉트 (게시글 리스트 보기화면으로)
-		response.sendRedirect("/Freeboard/free.do");
-		
-		
+		response.sendRedirect("/Freeboard/free.do");		
 	}
 
 }
