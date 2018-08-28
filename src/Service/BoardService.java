@@ -35,4 +35,8 @@ public class BoardService {
 		dao.updateBoard(dto);
 	}
 	
+	public void deleteBoard(int boardNo) {
+		dao.deleteBoard(boardNo);
+	}
+	
 }
