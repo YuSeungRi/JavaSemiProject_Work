@@ -7,7 +7,7 @@
 
 수정일 : 2018.08.28
 수정자 : 권미현
-	초기화, 목록으로 하는 중
+	[초기화], [목록으로] 기능 완성
  --%>
 <%@include file="../main/header.jsp" %>
 <%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
@@ -51,8 +51,8 @@
 
 		<%-- 버튼 --%>
 		<div class="row justify-content-around">
-			<button id="btnReset" class="btn btn-secondary">초기화</button>
-			<button id="btnBefore" class="btn btn-secondary">목록으로</button>
+			<button id="btnReset" type="reset" class="btn btn-secondary">초기화</button>
+			<button id="btnBefore" type="button" class="btn btn-secondary">목록으로</button>
 			<button id="btnWrite" class="btn btn-primary">등록</button>
 		</div>
 	</form>
@@ -71,8 +71,7 @@
 		});
 		
 		$("#btnReset").click(function(){
-// 			$("#title").text("");
-// 			$("#summernote").text("");
+			$("#summernote").summernote("reset");
 		});
 
 		$("#btnWrite").click(function(){
