@@ -35,7 +35,7 @@ public class SignInController extends HttpServlet {
 		if( userservice.login(user)) {
 			request.getSession().setAttribute("login", true);
 			request.getSession().setAttribute("login", user.getUserEmail());
-			System.out.println(userservice.login(user));
+			System.out.println("로그인성공");
 			} 
 //			else {
 //			response.setContentType("text/html; charset=UTF-8");
