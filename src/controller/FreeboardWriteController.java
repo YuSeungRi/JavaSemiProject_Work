@@ -14,15 +14,21 @@ import dto.BoardDto;
 /*
  * 작성일 : 2018.08.27
  * 작성자 : 권미현
+ * 
+ * 수정일 : 2018.08.28
+ * 수정자 : 권미현
+ *  - 테스트 세션
  */
 
-@WebServlet("/Freeboard/free_write.do")
+@WebServlet("/Freeboard/write.do")
 public class FreeboardWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private BoardService service = new BoardService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("user", "테스트 작성자"); // 테스트 세션
+		
 		request.getRequestDispatcher("/Freeboard/freeboard_write.jsp").forward(request, response);
 	}
 
@@ -32,13 +38,14 @@ public class FreeboardWriteController extends HttpServlet {
 		
 		BoardDto dto = new BoardDto();
 		
-		dto.setBoardCategory("자유게시판");
+		dto.setBoardCategory("FreeBoard");
 		dto.setBoardTitle(request.getParameter("title"));
 		dto.setBoardUser((String) request.getSession().getAttribute("user"));
 		dto.setBoardContent(request.getParameter("summernote"));
 		
 		boolean success = service.createBoard(dto);
 		System.out.println(success);
+		System.out.println(dto);
 		
 		// 리다이렉트
 		response.sendRedirect("/Freeboard/free.do");
