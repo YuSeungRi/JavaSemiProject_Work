@@ -8,14 +8,14 @@
 	<div class="row justify-content-center">
 		<div class="col-lg-5 col-11 my-3"> 
 			<h5>일반 로그인</h5>
-			<form>
+			<form action="/main/signin.do" method="post">
 				<div class="form-group">
 					<label for="idInput">Email address</label>
-					<input type="email" class="form-control" id="userId" placeholder="아이디를 입력하세요.">
+					<input type="email" class="form-control" name="userEmail" placeholder="아이디를 입력하세요.">
 				</div>
 				<div class="form-group">
 					<label for="passwordInput">Password</label>
-					<input type="password" class="form-control" id="userPw" placeholder="Password">
+					<input type="password" class="form-control" name="userPw" placeholder="Password">
 				</div>
 				<button type="submit" class="btn btn-primary btn-sm">로그인</button>
 				<button type="button" class="btn btn-primary btn-sm">아이디찾기</button>

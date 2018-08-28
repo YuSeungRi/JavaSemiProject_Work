@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,17 +28,23 @@ public class SignInController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserInfoDto user = new UserInfoDto();
 		
-		user.setUserEmail( request.getParameter("userEmail") );
-		user.setUserPw( request.getParameter("userPw") );
-
-		if( userservice.login(user) ) {
-			request.getSession().setAttribute("login", true);
-			request.getSession().setAttribute("userEmail", user.getUserEmail());
-			request.getSession().setAttribute("userNick", userservice.getUserNick(user) );
-		}
+		String userEmail;
+		String userPw;
 		
+		userEmail = request.getParameter("userEmail");
+		userPw = request.getParameter("userPw");
+
+		if( userservice.login(userEmail, userPw)) {
+			request.getSession().setAttribute("login", true);
+			request.getSession().setAttribute("login", userEmail);
+			
+			} 
+//			else {
+//			response.setContentType("text/html; charset=UTF-8");
+//			PrintWriter sendalert = response.getWriter();
+//			sendalert.println("<script>alert('아이디 또는 비밀번호가 잘못되었습니다.'); </script>");	
+//			}
 		response.sendRedirect("/main/main.do");
 
 	}
-
 }
