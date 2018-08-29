@@ -77,6 +77,7 @@ CREATE SEQUENCE reply_seq START WITH 10000;
 CREATE TABLE login_log (
     user_email      VARCHAR2(50),
     login_time      DATE,
+    login_result	VARCHAR2(20),
     
     CONSTRAINT login_log_PK PRIMARY KEY (user_email)
 );
