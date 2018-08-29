@@ -15,7 +15,6 @@ public class LogoutController extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		// 로그아웃 처리
 		request.getSession().invalidate();
 		// 메인화면으로 리다이렉트
