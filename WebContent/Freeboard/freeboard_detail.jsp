@@ -42,7 +42,7 @@
 						<td colspan="1">작성자</td><td colspan="2">${board.boardUser }</td>
 						<td colspan="1">조회수</td><td colspan="2">${board.boardRead }</td>
 						<td colspan="1">작성일</td><td colspan="2">${board.boardCreate }</td>	
-						<td colspan="2">${board.boardRecommand }</td><td colspan="1"><i class="far fa-thumbs-up fa-sm"></i></td>
+						<td colspan="2">${board.boardRecommend }</td><td colspan="1"><i class="far fa-thumbs-up fa-sm"></i></td>
 					</tr>
 					<tr>
 					
