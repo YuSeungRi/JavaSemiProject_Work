@@ -16,6 +16,13 @@
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 
+<%if(session.getAttribute("login") == null) { %>
+	<script type="text/javascript">
+		alert("로그인 상태여야 사용 가능합니다.")
+		location.href = "/main/signin.do";
+// 		history.back();
+	</script>
+<%} %>
 	<h2><i class="fas fa-pencil-alt fa-2x"></i>게시글 작성</h2>
 	
 	
