@@ -7,6 +7,13 @@ import dao.BoardDao;
 import dao.BoardDaoImpl;
 import dto.BoardDto;
 
+/*
+ * 수정일 : 2018.08.29
+ * 수정자 : 권미현
+ *  - getPagingList 메소드 수정
+ *  	정렬을 위한 매개변수 추가
+ */
+
 public class BoardService {
 
 	private BoardDao dao = new BoardDaoImpl();
@@ -16,9 +23,9 @@ public class BoardService {
 		return dao.getTotal(categoryName);
 	}
 
-	public List<BoardDto> getPagingList(Paging paging, String categoryName) {
+	public List<BoardDto> getPagingList(Paging paging, String categoryName, String order) {
 
-		return dao.getPagingList(paging, categoryName);
+		return dao.getPagingList(paging, categoryName, order);
 	}
 	
 	public BoardDto getBoard(int boardNo) {

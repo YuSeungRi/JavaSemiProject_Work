@@ -14,19 +14,10 @@ import dto.BoardDto;
  * 작성일 : 2018.08.19
  * 작성자 : 권미현
  * 
- * 수정일 : 2018.08.27
+ * 수정일 : 2018.08.28
  * 수정자 : 권미현
- *  - '내가 작성한 게시글 조회' 메소드 삭제
- *  	public ArrayList<BoardDto> getUserBoard(String boardUser){}
- *  - '카테고리별 게시글 수 조회', '카테고리별 페이징 리스트 조회' 메소드 추가
- *  	public int getTotal(String categoryName){}
- *  	public List<BoardDto> getPagingList(Paging paging, String categoryName){}
- *  - '게시글 삭제_관리자' 메소드 삭제
- *  	public boolean deleteBoardManager(int boardNo){}
- *  - '게시글 수정', '게시글 삭제' 메소드 수정
- *  	public boolean updateBoard(BoardDto dto){}
- *  	public boolean deleteBoard(int boardNo){}
- *  - Connection 멤버필드에서 해결
+ *  - '카테고리별 페이징 리스트 조회' 메소드 수정
+ *  	정렬을 위한 매개변수 추가
  */
 
 public class BoardDaoImpl implements BoardDao {
@@ -154,20 +145,51 @@ public class BoardDaoImpl implements BoardDao {
 		return total;
 	}
 	@Override
-	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName) {
+	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName, String order) {
 		ArrayList<BoardDto> list = new ArrayList<>();
 		BoardDto dto = null;
+		String sql = null;
 		
-		String sql = "SELECT * FROM (" + 
+		if (order.equals("create")) {
+			
+			sql = "SELECT * FROM (" + 
 				"    SELECT rownum rnum, B.* FROM (" + 
 				"        SELECT * FROM board" + 
 				"        WHERE board_category=?" +  // 1. category
-				"        ORDER BY board_no DESC" + 
+				"        ORDER BY board_create DESC, board_no DESC" +
 				"    ) B" + 
 				"    ORDER BY rnum" + 
 				")" + 
 				"WHERE rnum BETWEEN ?" // 2. paging.getStartNo()
 				+ " AND ?"; // 3. paging.getEndNo()
+			
+		} else if (order.equals("read")) {
+			
+			sql = "SELECT * FROM (" + 
+					"    SELECT rownum rnum, B.* FROM (" + 
+					"        SELECT * FROM board" + 
+					"        WHERE board_category=?" +  // 1. category
+					"        ORDER BY board_read DESC, board_no DESC" +
+					"    ) B" + 
+					"    ORDER BY rnum" + 
+					")" + 
+					"WHERE rnum BETWEEN ?" // 2. paging.getStartNo()
+					+ " AND ?"; // 3. paging.getEndNo()
+			
+		} else if (order.equals("recommend")) {
+			
+			sql = "SELECT * FROM (" + 
+					"    SELECT rownum rnum, B.* FROM (" + 
+					"        SELECT * FROM board" + 
+					"        WHERE board_category=?" +  // 1. category
+					"        ORDER BY board_recommend DESC, board_no DESC" +
+					"    ) B" + 
+					"    ORDER BY rnum" + 
+					")" + 
+					"WHERE rnum BETWEEN ?" // 2. paging.getStartNo()
+					+ " AND ?"; // 3. paging.getEndNo()
+			
+		}
 		
 		try {
 			ps = conn.prepareStatement(sql);

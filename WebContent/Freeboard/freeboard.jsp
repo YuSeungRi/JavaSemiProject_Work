@@ -20,11 +20,11 @@
 							<button class="btn btn-success" type="button">검색</button>
 						</div>
 					</div>
-					<ul class="nav">
-						<li class="nav-item"><a class="nav-link" href="#">최신순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">조회순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">추천순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">댓글순</a></li>
+					<ul class="nav"> <%-- 수정일 : 2018.08.30 / 수정자 : 권미현 / 정렬 처리(최신순, 조회순, 추천순, 댓글순(미 처리)) --%>
+						<li class="nav-item"><a class="nav-link" href="/Freeboard/free.do?curPage=${paging.curPage }&order=create">최신순</a></li>
+						<li class="nav-item"><a class="nav-link" href="/Freeboard/free.do?curPage=${paging.curPage }&order=read">조회순</a></li>
+						<li class="nav-item"><a class="nav-link" href="/Freeboard/free.do?curPage=${paging.curPage }&order=recommend">추천순</a></li>
+						<li class="nav-item"><a class="nav-link" href="/Freeboard/free.do?curPage=${paging.curPage }&order=">댓글순</a></li>
 					</ul>
 				</div>
 			</form>

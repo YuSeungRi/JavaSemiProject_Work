@@ -13,6 +13,11 @@ import Service.BoardService;
 import board.util.Paging;
 import dto.BoardDto;
 
+/*
+ * 수정일 : 2018.08.30
+ * 수정자 : 권미현
+ *  - 정렬을 위한 처리
+ */
 
 @WebServlet("/Freeboard/free.do")
 public class FreeboardController extends HttpServlet {
@@ -20,6 +25,7 @@ public class FreeboardController extends HttpServlet {
     
 	private BoardService bsvc = new BoardService();
 	private final String categoryName = "FreeBoard";
+	private String order = null; // 정렬
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -41,13 +47,30 @@ public class FreeboardController extends HttpServlet {
 //		System.out.println(paging);
 
 
+		// --- 정렬 방법 ---
+		String orderParam = request.getParameter("order");
+//		System.out.println("FreeboardController_orderParam : " + orderParam);
+		
+		
+		if (orderParam == null || orderParam.isEmpty() || orderParam.equals("create")) {
+			order = "create";
+		} else if (orderParam.equals("read")) {
+			order = orderParam;
+		} else if (orderParam.equals("recommend")) {
+			order = orderParam;
+		}
+//		System.out.println("FreeboardController_order : " + order);
+		// --------------
+		
+		
 		// 게시글 조회 결과
 		List<BoardDto> boardList
-			= bsvc.getPagingList(paging, categoryName);
+			= bsvc.getPagingList(paging, categoryName, order);
 
 		// JSP에 전달할 MODEL 처리
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("paging", paging);
+		request.setAttribute("order", order); // 정렬
 		
 		request.getRequestDispatcher("freeboard.jsp").forward(request, response);
 	}

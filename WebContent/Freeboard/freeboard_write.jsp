@@ -5,11 +5,10 @@
 작성일 : 2018.08.15
 작성자 : 권미현
 
-수정일 : 2018.08.29
+수정일 : 2018.08.30
 수정자 : 권미현
-	로그인 상태가 아닐 시 처리
-		- 팝업창
-		- 로그인 페이지로 이동
+	로그인 속성 키 값 수정
+		session.getAttribute("login") → session.getAttribute("userId")
  --%>
 <%@include file="../main/header.jsp" %>
 <%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
@@ -17,7 +16,7 @@
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 
-<%if(session.getAttribute("login") == null) { %>
+<%if(session.getAttribute("userId") == null) { %>
 	<script type="text/javascript">
 		alert("로그인 상태여야 사용 가능합니다.")
 		location.href = "/main/signin.do";
