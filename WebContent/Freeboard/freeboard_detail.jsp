@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../main/header.jsp" %>
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
@@ -68,21 +69,10 @@
 			role="button" aria-pressed="true">삭제</a>
 		</div>
 		<!-- 댓글 영역  -->
-		<div class="row" id="replyDisplay"> 
-<%-- 			<jsp:include page="/reply/reply.do?boardNo=${param.boardno }" /> 이부분 에러남 --%>
-			<%-- Ajax 를 통해서 해결하면 될듯... 구현중 --%>
+		<div class="row" id="replyDisplay" > 
+			<c:import url="/reply/reply.do?boardNo=${param.boardno }" />
 		</div>
 	</div>
 </div>
 <%@include file="../main/scriptloader.jsp" %>
-<script type="text/javascript">
-$(document).ready(function() {
-	//Ajax 통해서 reply.do 호출하고자 함 
-	var url ="/reply/reply.do";
-	var bNo = getUrlParameter("boardno");
-	var data = {boardNo : bNo};
-	// 쿼리스트링
-	$("#replyDisplay").load(url, bNo);
-});
-</script>
 <%@include file="../main/footer.jsp"%>

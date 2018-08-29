@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <body>
 
-<!-- Bootstrap NavBar -->
 <nav class="navbar navbar-expand-md bg-warning d-md-none">
   <button class="navbar-toggler navbar-toggler-right bg-white" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon fa fa-star text-warning pt-1"></span> 
@@ -14,8 +13,6 @@
   </a>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav navbar-hover ">
-      <!-- This menu is hidden in bigger devices with d-sm-none. 
-           The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
       <li class="nav-item dropdown d-sm-block d-md-none">
 			<a class="dropdown-item" href="/main/main.do">홈</a>
             <a class="dropdown-item" href="/notice/notice.do">공지사항</a>
@@ -37,8 +34,6 @@
   </div>
 </nav><!-- NavBar END -->
 
-
-<!-- Bootstrap row -->
 <div class="row" id="body-row">
     <!-- Sidebar -->
     <div id="sidebar-container" class="sidebar-expanded d-none d-md-block bg-warning"><!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
@@ -65,16 +60,11 @@
 					  <input type="text" class="form-control" placeholder="검색" aria-label="search" aria-describedby="search">
 					</div>
                 </div>
-                <%@include file="./signup.jsp" %>
-<!--                 <div class="d-flex flex-row w-100 justify-content-center "> -->
-<!-- 	                <button class="btn btn-sm bg-success text-light mr-1"><span class="fa fa-sign-in-alt fa-fw mr-1"></span><span class="menu-collapsed">로그인</span></button> -->
-<!-- 	                <button class="btn btn-sm bg-secondary text-light"><span class="fa fa-user-plus fa-fw mr-1"></span><span class="menu-collapsed">회원가입</span></button> -->
-<!--                 </div> -->
+                <c:import url="/main/signup.jsp" />
             </li>
             
             <!-- Separator with title -->
             <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-<!--                 <small>OPTIONS</small> -->
             </li>
             <!-- /END Separator -->
             
