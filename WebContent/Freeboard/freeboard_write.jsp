@@ -5,10 +5,11 @@
 작성일 : 2018.08.15
 작성자 : 권미현
 
-수정일 : 2018.08.28
+수정일 : 2018.08.29
 수정자 : 권미현
-	[초기화], [목록으로] 기능 완성
-	테스트 작업 지우기
+	로그인 상태가 아닐 시 처리
+		- 팝업창
+		- 로그인 페이지로 이동
  --%>
 <%@include file="../main/header.jsp" %>
 <%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
@@ -20,7 +21,6 @@
 	<script type="text/javascript">
 		alert("로그인 상태여야 사용 가능합니다.")
 		location.href = "/main/signin.do";
-// 		history.back();
 	</script>
 <%} %>
 	<h2><i class="fas fa-pencil-alt fa-2x"></i>게시글 작성</h2>
