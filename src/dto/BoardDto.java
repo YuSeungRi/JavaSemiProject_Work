@@ -14,7 +14,7 @@ public class BoardDto {
 	private String boardTitle;
 	private String boardUser;
 	private int boardRead;
-	private int boardrecommend;
+	private int boardRecommend;
 	private Date boardCreate;
 	private Date boardModify;
 	private String boardContent;
@@ -64,12 +64,12 @@ public class BoardDto {
 		this.boardRead = boardRead;
 	}
 
-	public int getBoardrecommend() {
-		return boardrecommend;
+	public int getBoardRecommend() {
+		return boardRecommend;
 	}
 
-	public void setBoardrecommend(int boardrecommend) {
-		this.boardrecommend = boardrecommend;
+	public void setBoardrecommend(int boardRecommend) {
+		this.boardRecommend = boardRecommend;
 	}
 
 	public Date getBoardCreate() {
@@ -108,7 +108,7 @@ public class BoardDto {
 	@Override
 	public String toString() {
 		return "BoardDto [ boardNo : " + boardNo + ", boardCategory : " + boardCategory + ", boardTitle : " + boardTitle
-				+ ", boardUser : " + boardUser + ", boardRead : " + boardRead + ", boardRecomant : " + boardrecommend
+				+ ", boardUser : " + boardUser + ", boardRead : " + boardRead + ", boardRecomant : " + boardRecommend
 				+ ", boardCreate : " + boardCreate + ", boardModify : " + boardModify + ", boardContent : " + boardContent
 				+ ", boardTech : " + boardTech + " ]";
 	}
