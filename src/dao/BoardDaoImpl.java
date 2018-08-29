@@ -58,7 +58,7 @@ public class BoardDaoImpl implements BoardDao {
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
 				dto.setBoardRead(rs.getInt("board_read"));
-				dto.setBoardRecommand(rs.getInt("board_recommand"));
+				dto.setBoardrecommend(rs.getInt("board_recommend"));
 				dto.setBoardCreate(rs.getDate("board_create"));
 				dto.setBoardModify(rs.getDate("board_modify"));
 				dto.setBoardContent(rs.getString("board_content"));
@@ -102,7 +102,7 @@ public class BoardDaoImpl implements BoardDao {
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
 				dto.setBoardRead(rs.getInt("board_read"));
-				dto.setBoardRecommand(rs.getInt("board_recommand"));
+				dto.setBoardrecommend(rs.getInt("board_recommend"));
 				dto.setBoardCreate(rs.getDate("board_create"));
 				dto.setBoardModify(rs.getDate("board_modify"));
 				dto.setBoardContent(rs.getString("board_content"));
@@ -186,7 +186,7 @@ public class BoardDaoImpl implements BoardDao {
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
 				dto.setBoardRead(rs.getInt("board_read"));
-				dto.setBoardRecommand(rs.getInt("board_recommand"));
+				dto.setBoardrecommend(rs.getInt("board_recommend"));
 				dto.setBoardCreate(rs.getDate("board_create"));
 				dto.setBoardModify(rs.getDate("board_modify"));
 				dto.setBoardContent(rs.getString("board_content"));
@@ -217,7 +217,7 @@ public class BoardDaoImpl implements BoardDao {
 				+ " ?," // 2. title
 				+ " ?," // 3. user
 				+ " 0," // read
-				+ " 0," // recommand
+				+ " 0," // recommend
 				+ " TO_CHAR(sysdate, 'YYYY-MM-DD')," // create
 				+ " null," // modify
 				+ " ?," // 4. content
