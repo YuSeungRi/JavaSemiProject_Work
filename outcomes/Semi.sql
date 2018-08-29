@@ -30,7 +30,7 @@ CREATE TABLE board (
     board_title     VARCHAR2(100),
     board_user      VARCHAR2(50),
     board_read      NUMBER,
-    board_recommand NUMBER,
+    board_recommend NUMBER,
     board_create    DATE,
     board_modify    DATE,
     board_content   VARCHAR2(1500),
@@ -173,5 +173,12 @@ CREATE TABLE file_type (
     CONSTRAINT file_type_PK PRIMARY KEY (file_typename)
 );
 
+-- 추천목록 : 보드_유저 테이블 
+CREATE TABLE recommend (
+	user_email 	VARCHAR2(50) 	NOT NULL,
+	board_no	NUMBER 			NOT NULL,
+	
+	CONSTRAINT recommend_PK PRIMARY KEY (user_email, board_no)
+);
 
 -- TODO : Foreign key

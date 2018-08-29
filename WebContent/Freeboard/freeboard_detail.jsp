@@ -68,9 +68,26 @@
 			<a href="/Freeboard/delete.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active"
 			role="button" aria-pressed="true">삭제</a>
 		</div>
-		<!-- 댓글 영역  -->
-		<div class="row" id="replyDisplay" > 
-			<c:import url="/reply/reply.do?boardNo=${param.boardno }" />
+		<!-- 댓글 입력 영역  -->
+		<div class="row mt-3 justify-content-center" id="replyDisplay" > 
+			<form action="/reply/reply.do" method="post" class="form-inline">
+			  <div class="form-group mr-3">
+			    <label for="userEmail">작성자</label>
+			    <input type="email" class="form-control" id="userEmail" name="userEmail" value="${sessionScope.userEmail }" readonly />
+			  </div>
+			  <div class="form-group ">
+			    <input type="text" class="form-control" id="boardNo" name="boardNo" value="${param.boardNo }" readonly hidden="true">
+			  </div>
+			  <div class="form-group mr-3">
+			    <textarea class="form-control" id="replyContent" name="replyContent" placeholder="댓글을 입력해주세요."></textarea>
+			  </div>
+			  <button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+
+		</div>
+		<!-- 댓글 목록 영역 -->
+		<div class="row mt-3 justify-content-center">
+<%-- 			<c:import url="/reply/reply.do?boardNo=${board.boardNo }" />		 --%>
 		</div>
 	</div>
 </div>
