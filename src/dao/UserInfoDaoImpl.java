@@ -62,23 +62,27 @@ public class UserInfoDaoImpl implements UserInfoDao {
 				+ " ?," // 1. user_email
 				+ " ?," // 2. user_nick
 				+ " ?," // 3. user_pw
-				+ " ?," // 4. user_level
-				+ " ?," // 5. user_registDate
-				+ " ?," // 6. user_intro
-				+ " ?," // 7. user_photo
-				+ ");";
+				+ " '1'," // 4. user_level
+				+ " SYSDATE," // 5. user_registDate
+				+ " 'ddd'," // 6. user_intro
+				+ " 'asd'" // 7. user_photo
+				+ " )";
 		
 		try {
 			ps = conn.prepareStatement(query);
+			System.out.println(dto.getUserEmail());
+			System.out.println(dto.getUserNick());
+			System.out.println(dto.getUserPw());
+			
 			ps.setString(1, dto.getUserEmail());
 			ps.setString(2, dto.getUserNick());
 			ps.setString(3, dto.getUserPw());
-			ps.setString(4, dto.getUserLevel());
-			ps.setDate(5, new Date(dto.getUserRegistDate().getTime()));
-			ps.setString(6, dto.getUserIntro());
-			ps.setString(7, dto.getUserPhoto());
-			
+//			ps.setString(4, dto.getUserLevel());
+//			ps.setDate(4, new Date(dto.getUserRegistDate().getTime()));
+//			ps.setString(6, dto.getUserIntro());
+//			ps.setString(7, dto.getUserPhoto());
 			result = ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
