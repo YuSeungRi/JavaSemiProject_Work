@@ -42,4 +42,4 @@ INSERT INTO board VALUES( 69, 'FreeBoard', '제목69', 'User2', 22, 15, TO_CHAR(
 INSERT INTO board VALUES( 70, 'FreeBoard', '제목70', 'User1', 11, 2, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용70', 0 );
 
 -- commit;
--- DELTE FROM board WHERE board_no BETWEEN 31 AND 70;
+-- DELETE FROM board WHERE board_no BETWEEN 31 AND 70;

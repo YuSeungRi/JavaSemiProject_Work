@@ -10,3 +10,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
 <script type="text/javascript" src="../js/sidemenu.js"></script>
+<script type="text/javascript">
+      $(document).ready(function(){
+        $('#passwordChecker').on('change',function(){
+          var isChecked = $(this).prop('checked');
+          if (isChecked) {
+            $('#my-password').attr('type','text');
+          } else {
+            $('#my-password').attr('type','Password');
+          }
+        });
+      });
+  </script>

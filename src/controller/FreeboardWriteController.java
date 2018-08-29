@@ -27,9 +27,11 @@ public class FreeboardWriteController extends HttpServlet {
 	private BoardService service = new BoardService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String user = (String) request.getSession().getAttribute("login");
+		String user = (String) request.getSession().getAttribute("userId"); // UserInfoDao 메소드 구현할 때까지 임시로 쓰기
+//		String user = (String) request.getSession().getAttribute("userNick"); // 아직 UserInfoDao 에 메소드 구현 x
 
-//		System.out.println("FreeboardWriteController_작성자(login) : " + user);
+		System.out.println("FreeboardWriteController_작성자(userId) : " + user); // UserInfoDao 메소드 구현할 때까지 임시로 쓰기
+//		System.out.println("FreeboardWriteController_작성자(userNick) : " + user); // 아직 UserInfoDao 에 메소드 구현 x
 		
 		request.getRequestDispatcher("/Freeboard/freeboard_write.jsp").forward(request, response);
 	}
@@ -42,7 +44,10 @@ public class FreeboardWriteController extends HttpServlet {
 		
 		dto.setBoardCategory("FreeBoard");
 		dto.setBoardTitle(request.getParameter("title"));
-		dto.setBoardUser((String) request.getSession().getAttribute("login"));
+		
+		dto.setBoardUser((String) request.getSession().getAttribute("userId")); // UserInfoDao 메소드 구현할 때까지 임시로 쓰기
+//		dto.setBoardUser((String) request.getSession().getAttribute("userNick")); // 아직 UserInfoDao 에 메소드 구현 x
+		
 		dto.setBoardContent(request.getParameter("summernote"));
 		
 		boolean success = service.createBoard(dto);

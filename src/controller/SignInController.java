@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Service.UserInfoService;
 import dto.UserInfoDto;
@@ -30,18 +31,21 @@ public class SignInController extends HttpServlet {
 		
 		user.setUserEmail(request.getParameter("userEmail"));
 		user.setUserPw(request.getParameter("userPw"));
-
+//		System.out.println(user);
+//		System.out.println(userservice.login(user));
+		HttpSession session = request.getSession();
 		
 		if( userservice.login(user)) {
-			request.getSession().setAttribute("login", true);
-			request.getSession().setAttribute("login", user.getUserEmail());
+			session.setAttribute("login", true);
+			session.setAttribute("userId", user.getUserEmail());
+			session.setAttribute("userNick", user.getUserNick());
 			System.out.println("로그인성공");
-			} 
-//			else {
-//			response.setContentType("text/html; charset=UTF-8");
-//			PrintWriter sendalert = response.getWriter();
-//			sendalert.println("<script>alert('아이디 또는 비밀번호가 잘못되었습니다.'); </script>");	
-//			}
+			
+		} else {
+				session.setAttribute("login", false);
+				System.out.println("로그인 실패");
+		}
+
 
 		response.sendRedirect("/main/main.do");
 	}
