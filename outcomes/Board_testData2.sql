@@ -1,0 +1,45 @@
+-- Board Sample Data2 (조회수, 추천수)
+
+INSERT INTO board VALUES( 31, 'FreeBoard', '제목31', 'User31', 13, 5, TO_CHAR( sysdate-4, 'YYYY-MM-DD' ), null, '내용31', 0 );
+INSERT INTO board VALUES( 32, 'FreeBoard', '제목32', 'User32', 20, 4, TO_CHAR( sysdate-3, 'YYYY-MM-DD' ), null, '내용32', 0 );
+INSERT INTO board VALUES( 33, 'FreeBoard', '제목33', 'User33', 15, 4, TO_CHAR( sysdate-3, 'YYYY-MM-DD' ), null, '내용33', 0 );
+INSERT INTO board VALUES( 34, 'FreeBoard', '제목34', 'User34', 16, 5, TO_CHAR( sysdate-3, 'YYYY-MM-DD' ), null, '내용34', 0 );
+INSERT INTO board VALUES( 35, 'FreeBoard', '제목35', 'User35', 17, 6, TO_CHAR( sysdate-3, 'YYYY-MM-DD' ), null, '내용35', 0 );
+INSERT INTO board VALUES( 36, 'FreeBoard', '제목36', 'User36', 18, 7, TO_CHAR( sysdate-3, 'YYYY-MM-DD' ), null, '내용36', 0 );
+INSERT INTO board VALUES( 37, 'FreeBoard', '제목37', 'User37', 19, 8, TO_CHAR( sysdate-3, 'YYYY-MM-DD' ), null, '내용37', 0 );
+INSERT INTO board VALUES( 38, 'FreeBoard', '제목38', 'User38', 34, 10, TO_CHAR( sysdate-3, 'YYYY-MM-DD' ), null, '내용38', 0 );
+INSERT INTO board VALUES( 39, 'FreeBoard', '제목39', 'User39', 21, 10, TO_CHAR( sysdate-2, 'YYYY-MM-DD' ), null, '내용39', 0 );
+INSERT INTO board VALUES( 40, 'FreeBoard', '제목40', 'User40', 22, 11, TO_CHAR( sysdate-2, 'YYYY-MM-DD' ), null, '내용40', 0 );
+INSERT INTO board VALUES( 41, 'FreeBoard', '제목41', 'User41', 11, 2, TO_CHAR( sysdate-2, 'YYYY-MM-DD' ), null, '내용41', 0 );
+INSERT INTO board VALUES( 42, 'FreeBoard', '제목42', 'User42', 24, 13, TO_CHAR( sysdate-2, 'YYYY-MM-DD' ), null, '내용42', 0 );
+INSERT INTO board VALUES( 43, 'FreeBoard', '제목43', 'User43', 25, 14, TO_CHAR( sysdate-2, 'YYYY-MM-DD' ), null, '내용43', 0 );
+INSERT INTO board VALUES( 44, 'FreeBoard', '제목44', 'User44', 26, 15, TO_CHAR( sysdate-2, 'YYYY-MM-DD' ), null, '내용44', 0 );
+INSERT INTO board VALUES( 45, 'FreeBoard', '제목45', 'User45', 27, 16, TO_CHAR( sysdate-2, 'YYYY-MM-DD' ), null, '내용45', 0 );
+INSERT INTO board VALUES( 46, 'FreeBoard', '제목46', 'User46', 63, 3, TO_CHAR( sysdate-2, 'YYYY-MM-DD' ), null, '내용46', 0 );
+INSERT INTO board VALUES( 47, 'FreeBoard', '제목47', 'User47', 29, 18, TO_CHAR( sysdate-2, 'YYYY-MM-DD' ), null, '내용47', 0 );
+INSERT INTO board VALUES( 48, 'FreeBoard', '제목48', 'User48', 30, 19, TO_CHAR( sysdate-2, 'YYYY-MM-DD' ), null, '내용48', 0 );
+INSERT INTO board VALUES( 49, 'FreeBoard', '제목49', 'User49', 31, 20, TO_CHAR( sysdate-2, 'YYYY-MM-DD' ), null, '내용49', 0 );
+INSERT INTO board VALUES( 50, 'FreeBoard', '제목50', 'User50', 50, 31, TO_CHAR( sysdate-1, 'YYYY-MM-DD' ), null, '내용50', 0 );
+INSERT INTO board VALUES( 51, 'FreeBoard', '제목51', 'User22', 22, 2, TO_CHAR( sysdate-1, 'YYYY-MM-DD' ), null, '내용51', 0 );
+INSERT INTO board VALUES( 52, 'FreeBoard', '제목52', 'User21', 16, 4, TO_CHAR( sysdate-1, 'YYYY-MM-DD' ), null, '내용52', 0 );
+INSERT INTO board VALUES( 53, 'FreeBoard', '제목53', 'User20', 20, 19, TO_CHAR( sysdate-1, 'YYYY-MM-DD' ), null, '내용53', 0 );
+INSERT INTO board VALUES( 54, 'FreeBoard', '제목54', 'User19', 36, 25, TO_CHAR( sysdate-1, 'YYYY-MM-DD' ), null, '내용54', 0 );
+INSERT INTO board VALUES( 55, 'FreeBoard', '제목55', 'User18', 44, 4, TO_CHAR( sysdate-1, 'YYYY-MM-DD' ), null, '내용55', 0 );
+INSERT INTO board VALUES( 56, 'FreeBoard', '제목56', 'User17', 50, 27, TO_CHAR( sysdate-1, 'YYYY-MM-DD' ), null, '내용56', 0 );
+INSERT INTO board VALUES( 57, 'FreeBoard', '제목57', 'User16', 39, 10, TO_CHAR( sysdate-1, 'YYYY-MM-DD' ), null, '내용57', 0 );
+INSERT INTO board VALUES( 58, 'FreeBoard', '제목58', 'User15', 29, 15, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용58', 0 );
+INSERT INTO board VALUES( 59, 'FreeBoard', '제목59', 'User14', 41, 7, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용59', 0 );
+INSERT INTO board VALUES( 60, 'FreeBoard', '제목60', 'User13', 91, 41, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용60', 0 );
+INSERT INTO board VALUES( 61, 'FreeBoard', '제목61', 'User12', 25, 24, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용61', 0 );
+INSERT INTO board VALUES( 62, 'FreeBoard', '제목62', 'User11', 2, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용62', 0 );
+INSERT INTO board VALUES( 63, 'FreeBoard', '제목63', 'User10', 74, 6, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용63', 0 );
+INSERT INTO board VALUES( 64, 'FreeBoard', '제목64', 'User7', 41, 20, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용64', 0 );
+INSERT INTO board VALUES( 65, 'FreeBoard', '제목65', 'User6', 30, 16, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용65', 0 );
+INSERT INTO board VALUES( 66, 'FreeBoard', '제목66', 'User5', 5, 1, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용66', 0 );
+INSERT INTO board VALUES( 67, 'FreeBoard', '제목67', 'User4', 80, 5, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용67', 0 );
+INSERT INTO board VALUES( 68, 'FreeBoard', '제목68', 'User3', 50, 40, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용68', 0 );
+INSERT INTO board VALUES( 69, 'FreeBoard', '제목69', 'User2', 22, 15, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용69', 0 );
+INSERT INTO board VALUES( 70, 'FreeBoard', '제목70', 'User1', 11, 2, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용70', 0 );
+
+-- commit;
+-- DELTE FROM board WHERE board_no BETWEEN 31 AND 70;
