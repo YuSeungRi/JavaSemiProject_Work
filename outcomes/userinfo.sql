@@ -11,5 +11,5 @@ INSERT INTO userinfo (user_email, user_nick, user_pw, user_level, user_intro) VA
 INSERT INTO userinfo (user_email, user_nick, user_pw, user_level, user_intro) VALUES ('user9@naver.com','nick9','1234','1','asdasd');
 INSERT INTO userinfo (user_email, user_nick, user_pw, user_level, user_intro) VALUES ('user10@naver.com','nick10','1234','1','asdasd');
 
-DELETE userinfo;
+--DELETE userinfo;
 
