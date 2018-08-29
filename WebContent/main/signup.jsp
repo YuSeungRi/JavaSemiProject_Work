@@ -11,7 +11,9 @@
 	<a href="/mypage/mypage.do">
 	<button type="button" class="btn btn-sm bg-secondary text-light mr-1"><span class="fa fa-user fa-fw mr-1"></span><span class="menu-collapsed">정보수정</span></button>
 	</a>
-	<button type="button" class="btn btn-sm bg-secondary text-light" ><span class="fa fa-sign-out-alt fa-fw mr-1"></span><span class="menu-collapsed">로그아웃</span></button>
+	<a href="#">
+	<button type="button" class="btn btn-sm bg-secondary text-light"><span class="fa fa-sign-out-alt fa-fw mr-1"></span><span class="menu-collapsed">로그아웃</span></button>
+	</a>
 <% } else {%>
 <!-- Button trigger modal -->
 
