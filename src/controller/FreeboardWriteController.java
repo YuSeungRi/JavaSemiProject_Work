@@ -29,6 +29,7 @@ public class FreeboardWriteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String user = (String) request.getSession().getAttribute("login");
 
+//		System.out.println("FreeboardWriteController_작성자(login) : " + user);
 		
 		request.getRequestDispatcher("/Freeboard/freeboard_write.jsp").forward(request, response);
 	}
