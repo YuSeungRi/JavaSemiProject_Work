@@ -19,7 +19,7 @@
 	<button type="button" class="btn btn-sm bg-success text-light mr-1" ><span class="fa fa-sign-in-alt fa-fw mr-1"></span><span class="menu-collapsed">로그인</span></button>
 	</a>
 	
-	<a href="/main/signup.do">
+	<a href="#">
 	<button type="button" class="btn btn-sm bg-secondary text-light" data-toggle="modal" data-target="#signIn"><span class="fa fa-user-plus fa-fw mr-1"></span><span class="menu-collapsed">회원가입</span></button>
 	</a>
 
