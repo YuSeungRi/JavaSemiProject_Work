@@ -58,8 +58,8 @@
 		</div>
 		
 		<div class="row justify-content-center">
-			<a href="#" class="btn btn-secondary btn-sm active"
-			role="button" aria-pressed="true">작성</a>
+			<a href="/Freeboard/free.do" class="btn btn-secondary btn-sm active"
+			role="button" aria-pressed="true">목록으로</a>
 				
 			<a href="/Freeboard/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active"
 			role="button" aria-pressed="true">수정</a>
