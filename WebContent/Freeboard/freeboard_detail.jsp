@@ -1,3 +1,5 @@
+<%@page import="dto.ReplyDto"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -88,6 +90,18 @@
 		<!-- 댓글 목록 영역 -->
 		<div class="row mt-3 justify-content-center">
 <%-- 			<c:import url="/reply/reply.do?boardNo=${board.boardNo }" />		 --%>
+			<ul class="list-group">
+				<c:forEach items="${replyList}" var="reply">
+					<li class="list-group-item">
+						<div class="d-flex w-100 justify-contents-between">
+							<small>댓글번호:${reply.replyNo }, 작성자:${reply.userEmail }, 작성일:${reply.replyCreate }</small><button type="button" name="${reply.replyNo }" class="btn btn-sm bg-primary">댓글삭제</button>
+						</div>
+						<div>
+							<p class="mb-1">${reply.replyContent }</p>					
+						</div>
+					</li>
+				</c:forEach>
+			</ul>
 		</div>
 	</div>
 </div>
