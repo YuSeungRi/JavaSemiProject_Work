@@ -77,5 +77,5 @@ public interface BoardDao {
 	 * @return true : 게시글 삭제 성공 / false : 게시글 삭제 실패
 	 */
 	public boolean deleteBoard(int boardNo);
-	
+
 }
