@@ -22,6 +22,7 @@ public class BoardService {
 	}
 	
 	public BoardDto getBoard(int boardNo) {
+		dao.boardRead(boardNo);
 		return dao.getBoard(boardNo);
 	}
 	

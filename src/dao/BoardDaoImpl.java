@@ -308,5 +308,30 @@ public class BoardDaoImpl implements BoardDao {
 		
 		return result;
 	}
+	
+	
+	@Override
+	public void boardRead(int boardNo) {
+		String sql = "UPDATE board SET board_read=board_read+1"
+				+ " WHERE board_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, boardNo);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps!=null)	ps.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
 
 }
