@@ -29,7 +29,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		
 		String afterQuery = "INSERT INTO login_log(user_email, login_time, login_result) VALUES ("
 				+ " ?,"	//1. user_email
-				+ " ?," //2. login_time
+				+ " sysdate," //2. login_time
 				+ " ?)";//3. login_result
 		
 		try {
@@ -45,8 +45,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 			//afterQuery : logging
 			ps = conn.prepareStatement(afterQuery);
 			ps.setString(1, dto.getUserEmail());
-			ps.setString(2, "sysdate");
-			ps.setString(3, result?"Success":"Fail");
+			ps.setString(2, result?"Success":"Fail");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
