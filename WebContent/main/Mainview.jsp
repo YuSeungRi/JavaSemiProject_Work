@@ -20,9 +20,12 @@
 	<div class="row"><!-- first row start -->
 	
 	<div class="col-md-6"><!-- board1 start -->
+        
 		<h4>
 			<i class="far fa-comments fa-lg"></i>자유게시판
 		</h4>
+		
+		<a href="/Freeboard/free.do" class="badge badge-warning badge-pill">더보기</a>
 	
 			<table class="table table-hover table-bordered table-sm">
 				<thread>
@@ -37,65 +40,32 @@
 				</thread>
 				
 				<tbody>
-					<tr >
-						<td>1</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
+					<c:forEach items="${FreeList }" var="board">
+						<tr>
+							<td>${board.boardNo }</td>
+							<td>${board.boardCreate }</td>
+							<td>
+								<a href="/Freeboard/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+							</td>
+							<td>${board.boardUser }</td>
+							<td>${board.boardRead }</td>
+							<td>${board.boardRecommend }</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 				
 			</table>
 	
-			<ul class="pagination justify-content-center">
-							<li class="page-item"><a class="page-link" href="#">&laquo</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">&raquo</a></li>
-			</ul>
-	
+		
 	</div><!-- board1 END -->
        
     <div class="col-md-6"><!-- board2 start -->
-    
+    	
     	<h4>
 			<i class="fa fa-bullhorn fa-fw mr-3"></i>공지사항
 		</h4>
+		
+		<a href="/notice/notice.do" class="badge badge-warning badge-pill">더보기</a>
 		
 			<table class="table table-hover table-bordered table-sm">
 				<thread>
@@ -110,58 +80,23 @@
 				</thread>
 				
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
+					<c:forEach items="${NoticeList }" var="board">
+						<tr>
+							<td>${board.boardNo }</td>
+							<td>${board.boardCreate }</td>
+							<td>
+								<a href="/notice/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+							</td>
+							<td>${board.boardUser }</td>
+							<td>${board.boardRead }</td>
+							<td>${board.boardRecommend }</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 				
 			</table>
 	
-			<ul class="pagination justify-content-center">
-							<li class="page-item"><a class="page-link" href="#">&laquo</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">&raquo</a></li>
-			</ul>
-	
+		
 	</div><!-- board2 END -->
 	
 	</div><!-- first row END -->
@@ -173,7 +108,9 @@
 		<h4>
 			<i class="fa fa-users fa-fw mr-3"></i>구인구직
 		</h4>
-	
+		
+		<a href="/recruit/recruit.do" class="badge badge-warning badge-pill">더보기</a>
+		
 			<table class="table table-hover table-bordered table-sm">
 				<thread>
 					<tr class="table-active">
@@ -187,65 +124,32 @@
 				</thread>
 				
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
+					<c:forEach items="${RecruitList }" var="board">
+						<tr>
+							<td>${board.boardNo }</td>
+							<td>${board.boardCreate }</td>
+							<td>
+								<a href="/recruit/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+							</td>
+							<td>${board.boardUser }</td>
+							<td>${board.boardRead }</td>
+							<td>${board.boardRecommend }</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 				
 			</table>
 		
-			<ul class="pagination justify-content-center">
-							<li class="page-item"><a class="page-link" href="#">&laquo</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">&raquo</a></li>
-			</ul>
-			
+
 		</div><!-- board3 END -->
 	
 	<div class="col-md-6"><!-- board4 start -->
-	
+		
 		<h4>
 			<i class="fa fa-question-circle fa-fw mr-3"></i>Q&A
 		</h4>
+		
+		<a href="/question/Q&A.do" class="badge badge-warning badge-pill">더보기</a>
 	
 			<table class="table table-hover table-bordered table-sm">
 				<thread>
@@ -260,57 +164,22 @@
 				</thread>
 				
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>2018-08-11</td>
-						<td>작성중</td>
-						<td>관리자</td>
-						<td>100</td>
-						<td>200</td>
-					</tr>
+					<c:forEach items="${QuestionList }" var="board">
+						<tr>
+							<td>${board.boardNo }</td>
+							<td>${board.boardCreate }</td>
+							<td>
+								<a href="/question/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+							</td>
+							<td>${board.boardUser }</td>
+							<td>${board.boardRead }</td>
+							<td>${board.boardRecommend }</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 				
 			</table>
 	
-			<ul class="pagination justify-content-center">
-							<li class="page-item"><a class="page-link" href="#">&laquo</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">&raquo</a></li>
-			</ul>
 	
 		</div><!-- board4 END -->
 		

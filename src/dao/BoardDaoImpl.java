@@ -144,6 +144,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		return total;
 	}
+	
 	@Override
 	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName, String order) {
 		ArrayList<BoardDto> list = new ArrayList<>();
@@ -229,6 +230,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		return list;
 	}
+	
 	@Override
 	public boolean createBoard(BoardDto dto) {
 		boolean result = false;	// 데이터베이스 저장 성공 여부
@@ -268,9 +270,9 @@ public class BoardDaoImpl implements BoardDao {
 			}
 		}
 		
-		
 		return result;
 	}
+	
 	@Override
 	public boolean updateBoard(BoardDto dto) {
 		boolean result = false;	// 데이터베이스 저장 성공 여부
@@ -354,6 +356,54 @@ public class BoardDaoImpl implements BoardDao {
 			}
 		}
 		
+	}
+	
+	@Override
+	public ArrayList<BoardDto> getboards(String categoryName, int listnum) {
+		ArrayList<BoardDto> list = new ArrayList<>();
+		BoardDto dto = null;
+		
+		String sql = " SELECT * FROM (SELECT * FROM board "
+				+ " WHERE board_category = ? ORDER BY board_no DESC) " // 1. categoryName
+				+ " WHERE rownum <= ? "; // 2. listnum
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, categoryName);
+			ps.setInt(2, listnum);
+			
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				dto = new BoardDto();
+				
+				dto.setBoardNo(rs.getInt("board_no"));
+				dto.setBoardCategory(rs.getString("board_category"));
+				dto.setBoardTitle(rs.getString("board_title"));
+				dto.setBoardUser(rs.getString("board_user"));
+				dto.setBoardRead(rs.getInt("board_read"));
+				dto.setBoardrecommend(rs.getInt("board_recommend"));
+				dto.setBoardCreate(rs.getDate("board_create"));
+				dto.setBoardModify(rs.getDate("board_modify"));
+				dto.setBoardContent(rs.getString("board_content"));
+				dto.setBoardTech(rs.getInt("board_tech"));
+				
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs!= null)  rs.close();
+				if (ps!= null)  ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return list;
 	}
 
 }

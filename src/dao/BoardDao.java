@@ -75,5 +75,14 @@ public interface BoardDao {
 	 * 게시글 조회수 증가
 	 * */
 	public void boardRead(int boardNo);
+	
+	
+	/**
+	 * 메인화면 게시판 출력
+	 * @param categoryName,  page
+	 * @return ArrayList<BoardDto>
+	 */
+	
+	public ArrayList<BoardDto> getboards(String categoryName, int page);
 
 }
