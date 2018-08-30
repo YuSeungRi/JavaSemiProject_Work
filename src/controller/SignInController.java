@@ -33,6 +33,7 @@ public class SignInController extends HttpServlet {
 		user.setUserPw(request.getParameter("userPw"));
 //		System.out.println(user);
 //		System.out.println(userservice.login(user));
+		
 		HttpSession session = request.getSession();
 		
 		if( userservice.login(user)) {
@@ -40,13 +41,12 @@ public class SignInController extends HttpServlet {
 			session.setAttribute("userId", user.getUserEmail());
 			session.setAttribute("userNick", user.getUserNick());
 			System.out.println("로그인성공");
-			
+			response.sendRedirect("/main/main.do?login=success");
 		} else {
-				session.setAttribute("login", false);
-				System.out.println("로그인 실패");
+			session.setAttribute("login", false);
+			System.out.println("로그인 실패");
+
+			response.sendRedirect("/main/main.do?login=fail");
 		}
-
-
-		response.sendRedirect("/main/main.do");
 	}
 }

@@ -10,11 +10,16 @@
 	<div class="col mt-1"><!-- Main Col start -->
 	
 	<div class="container"><!-- Container start -->
+		<div id="loginAlert" class="alert alert-dismissible fade show" role="alert">
+			<span id="loginText"></span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 	
 	<div class="row"><!-- first row start -->
 	
 	<div class="col-md-6"><!-- board1 start -->
-	
 		<h4>
 			<i class="far fa-comments fa-lg"></i>자유게시판
 		</h4>
@@ -319,4 +324,46 @@
 <!-- 탬플릿 부분(하단) -->
 </div>	
 <%@include file="../main/scriptloader.jsp" %>
+<script type="text/javascript">
+$(document).ready(function(){	
+	$("#loginAlert").hide();
+	
+	//쿼리스트링 값을 Array로 가져오는 함수 
+	function getQueryStringObject() {
+	    var a = window.location.search.substr(1).split('&');
+	    if (a == "") return {};
+	    var b = {};
+	    for (var i = 0; i < a.length; ++i) {
+	        var p = a[i].split('=', 2);
+	        if (p.length == 1)
+	            b[p[0]] = "";
+	        else
+	            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+	    }
+	    return b;
+	}
+	
+	//쿼리스트링에서 로그인 값 가져옴
+	var login= getQueryStringObject().login;
+	
+	if(login=="fail") {
+		//로그인 실패 - 경고 창 보여줌
+		$("#loginAlert").show();
+		$("#loginAlert").addClass("alert-danger");
+		$("#loginText").text("로그인 실패! 아이디 또는 패스워드가 일치하지 않습니다.");
+
+	} else if(login=="success") {
+		//로그인 성공 - 환영 메시지 보여줌
+		var userNick = "${sessionScope.userNick}";
+		$("#loginAlert").show();
+		$("#loginAlert").addClass("alert-success");
+		$("#loginText").text("반갑습니다! " + userNick + "님.");
+	}
+	
+	// 경고창 x 버튼 클릭시 경고창 사라짐
+	$("#loginAlert").click(function(){
+        $(this).hide();
+    });
+});
+</script>
 <%@include file="../main/footer.jsp"%>
