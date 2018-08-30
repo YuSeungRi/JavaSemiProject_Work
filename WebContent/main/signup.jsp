@@ -34,10 +34,12 @@
 					</div>
 					<div class="modal-body">
 						<div class="container-fluid">
-							<form action="/main/signup.do" method="post">
+							<form name="userInfoForm" onsubmit="return post_check();" action="/main/signup.do" 
+							method="post" id="content_pwd">
 								<div class="form-group">
 									<label for="nickname">닉네임</label>
-									<input type="text" class="form-control" name="userNick" aria-describedby="nicknameHelp" placeholder="닉네임을 입력해주세요.">
+									<input type="text" class="form-control" name="userNick" aria-describedby="nicknameHelp" 
+									placeholder="닉네임을 입력해주세요." pattern="(?=.*[a-z]).{2,}"  title="닉네임은 2글자 이상 입력해주세요." required>
 									<small id="nicknameHelp" class="form-text text-muted">닉네임은 2~10자 이내로 입력해주세요.</small>
 								</div>
 								<div class="form-group">
@@ -46,7 +48,9 @@
 								</div>
 								<div class="form-group">
 									<label for="password">패스워드</label>
-									<input type="password" class="form-control" name="userPw" id="my-password" placeholder="패스워드를 입력해주세요.">
+									<input type="password" class="form-control" name="userPw" id="my-password"
+									 placeholder="패스워드를 입력해주세요." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" 
+									 title="패스워드는 6자 이상에 영어대소문자, 숫자를 포함해서 입력해주세요." required>
 									<small id="passwordHelp" class="form-text text-muted">패스워드는 6자 이상에 영어대소문자, 숫자를 포함해서 입력해주세요.</small>
 								</div>
 								<div class="form-check">
