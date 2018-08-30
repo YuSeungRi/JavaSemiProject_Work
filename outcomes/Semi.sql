@@ -159,7 +159,8 @@ CREATE TABLE code_tech (
 CREATE TABLE attach_file (
     file_no     NUMBER NOT NULL,
     board_no    NUMBER,
-    fine_name   VARCHAR2(100),
+    file_name   VARCHAR2(250),
+    file_storedname varchar2(300),
     file_type   VARCHAR2(100),
     
     CONSTRAINT attach_file_PK PRIMARY KEY (file_no)
