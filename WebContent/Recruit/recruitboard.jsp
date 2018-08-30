@@ -50,7 +50,7 @@
 							</td>
 							<td>${board.boardUser }</td>
 							<td>${board.boardRead }</td>
-							<td>${board.boardRecommand }</td>
+							<td>${board.recuritStatus }</td>
 						</tr>
 						</c:forEach>
 					</tbody>
@@ -59,7 +59,7 @@
 			<div class="row justify-content-center">
 				<div class="col-3 text-center m-1">
 					<%-- 작성 버튼 --%>
-					<a href="#" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">작성</a>
+					<a href="/recruit/write.do" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">작성</a>
 				</div>
 			</div>	
 			<div class="row justify-content-center">

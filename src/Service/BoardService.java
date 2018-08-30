@@ -7,19 +7,22 @@ import dao.BoardDao;
 import dao.BoardDaoImpl;
 import dao.RecommendDao;
 import dao.RecommendDaoImpl;
+import dao.RecruitDao;
+import dao.RecruitDaoImpl;
 import dto.BoardDto;
+import dto.RecruitDto;
 
 /*
- * 수정일 : 2018.08.29
+ * 수정일 : 2018.08.30
  * 수정자 : 권미현
- *  - getPagingList 메소드 수정
- *  	정렬을 위한 매개변수 추가
+ *  - '게시글 작성_구인구직' 추가
  */
 
 public class BoardService {
 
 	private BoardDao dao = new BoardDaoImpl();
 	private RecommendDao recommendDao = new RecommendDaoImpl();
+	private RecruitDao recruitDao = new RecruitDaoImpl();
 
 	public int getTotal(String categoryName) {
 
@@ -30,6 +33,10 @@ public class BoardService {
 
 		return dao.getPagingList(paging, categoryName, order);
 	}
+	// 구인구직 페이징 리스트 조회
+	public List<RecruitDto> getPagingListRecruit(Paging paging, String order) {
+		return recruitDao.getPagingListRecruit(paging, order);
+	}
 	
 	public BoardDto getBoard(int boardNo) {
 		dao.boardRead(boardNo);
@@ -39,6 +46,10 @@ public class BoardService {
 	// 게시글 작성
 	public boolean createBoard(BoardDto dto) {
 		return dao.createBoard(dto);
+	}
+	// 게시글 작성_구인구직
+	public boolean createBoardRecruit(RecruitDto dto) {
+		return recruitDao.createBoardRecruit(dto);
 	}
 	
 	public void update(BoardDto dto) {
@@ -78,4 +89,5 @@ public class BoardService {
 			
 		return dao.getboards(categoryName, listnum);
 	}
+	
 }

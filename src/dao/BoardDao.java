@@ -42,6 +42,7 @@ public interface BoardDao {
 	 * 카테고리별 페이징 리스트 조회
 	 * @param paging
 	 * @param categoryName
+	 * @param order
 	 * @return ArrayList<BoardDto>
 	 */
 	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName, String order);
@@ -57,7 +58,7 @@ public interface BoardDao {
 	
 	/**
 	 * 게시글 수정
-	 * @param boardUser, boardNo, dto
+	 * @param dto
 	 * @return true : 게시글 수정 성공 / false : 게시글 수정 실패
 	 */
 	public boolean updateBoard(BoardDto dto);

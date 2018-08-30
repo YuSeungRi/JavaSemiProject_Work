@@ -49,7 +49,7 @@ public class BoardDaoImpl implements BoardDao {
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
 				dto.setBoardRead(rs.getInt("board_read"));
-				dto.setBoardrecommend(rs.getInt("board_recommend"));
+				dto.setBoardRecommend(rs.getInt("board_recommend"));
 				dto.setBoardCreate(rs.getDate("board_create"));
 				dto.setBoardModify(rs.getDate("board_modify"));
 				dto.setBoardContent(rs.getString("board_content"));
@@ -70,14 +70,15 @@ public class BoardDaoImpl implements BoardDao {
 
 		return dto;
 	}
+	
 	@Override
 	public ArrayList<BoardDto> getCategoryBoard(String boardCategory) {
 		
 		ArrayList<BoardDto> list = new ArrayList<>();
 		BoardDto dto = null;
-		
 		String sql = "SELECT * FROM board"
 				+ " WHERE board_category=?"; // 1. category
+
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -93,7 +94,7 @@ public class BoardDaoImpl implements BoardDao {
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
 				dto.setBoardRead(rs.getInt("board_read"));
-				dto.setBoardrecommend(rs.getInt("board_recommend"));
+				dto.setBoardRecommend(rs.getInt("board_recommend"));
 				dto.setBoardCreate(rs.getDate("board_create"));
 				dto.setBoardModify(rs.getDate("board_modify"));
 				dto.setBoardContent(rs.getString("board_content"));
@@ -116,6 +117,7 @@ public class BoardDaoImpl implements BoardDao {
 
 		return list;
 	}
+	
 	@Override
 	public int getTotal(String categoryName) {
 		int total = 0;
@@ -151,7 +153,7 @@ public class BoardDaoImpl implements BoardDao {
 		BoardDto dto = null;
 		String sql = null;
 		
-		if (order.equals("create")) {
+		if (order.equals("create")) { // 최신순
 			
 			sql = "SELECT * FROM (" + 
 				"    SELECT rownum rnum, B.* FROM (" + 
@@ -164,7 +166,7 @@ public class BoardDaoImpl implements BoardDao {
 				"WHERE rnum BETWEEN ?" // 2. paging.getStartNo()
 				+ " AND ?"; // 3. paging.getEndNo()
 			
-		} else if (order.equals("read")) {
+		} else if (order.equals("read")) { // 조회순
 			
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
@@ -177,7 +179,7 @@ public class BoardDaoImpl implements BoardDao {
 					"WHERE rnum BETWEEN ?" // 2. paging.getStartNo()
 					+ " AND ?"; // 3. paging.getEndNo()
 			
-		} else if (order.equals("recommend")) {
+		} else if (order.equals("recommend")) { // 추천순
 			
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
@@ -209,7 +211,7 @@ public class BoardDaoImpl implements BoardDao {
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
 				dto.setBoardRead(rs.getInt("board_read"));
-				dto.setBoardrecommend(rs.getInt("board_recommend"));
+				dto.setBoardRecommend(rs.getInt("board_recommend"));
 				dto.setBoardCreate(rs.getDate("board_create"));
 				dto.setBoardModify(rs.getDate("board_modify"));
 				dto.setBoardContent(rs.getString("board_content"));
@@ -272,7 +274,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		return result;
 	}
-	
+
 	@Override
 	public boolean updateBoard(BoardDto dto) {
 		boolean result = false;	// 데이터베이스 저장 성공 여부
@@ -305,6 +307,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		return result;
 	}
+	
 	@Override
 	public boolean deleteBoard(int boardNo) {
 		boolean result = false;	// 데이터베이스 저장 성공 여부
@@ -332,7 +335,6 @@ public class BoardDaoImpl implements BoardDao {
 		
 		return result;
 	}
-	
 	
 	@Override
 	public void boardRead(int boardNo) {
@@ -382,7 +384,7 @@ public class BoardDaoImpl implements BoardDao {
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
 				dto.setBoardRead(rs.getInt("board_read"));
-				dto.setBoardrecommend(rs.getInt("board_recommend"));
+				dto.setBoardRecommend(rs.getInt("board_recommend"));
 				dto.setBoardCreate(rs.getDate("board_create"));
 				dto.setBoardModify(rs.getDate("board_modify"));
 				dto.setBoardContent(rs.getString("board_content"));

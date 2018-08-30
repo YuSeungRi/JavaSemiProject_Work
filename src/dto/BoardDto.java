@@ -68,7 +68,7 @@ public class BoardDto {
 		return boardRecommend;
 	}
 
-	public void setBoardrecommend(int boardRecommend) {
+	public void setBoardRecommend(int boardRecommend) {
 		this.boardRecommend = boardRecommend;
 	}
 

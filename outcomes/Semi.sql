@@ -183,3 +183,7 @@ CREATE TABLE recommend (
 );
 
 -- TODO : Foreign key
+-- 구인구직
+ALTER TABLE recruit
+ADD CONSTRAINT recruit_FK 
+    FOREIGN KEY(board_no) REFERENCES board(board_no);
