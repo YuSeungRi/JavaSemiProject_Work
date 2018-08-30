@@ -42,7 +42,7 @@
 						<td colspan="1">작성자</td><td colspan="2">${board.boardUser }</td>
 						<td colspan="1">조회수</td><td colspan="2">${board.boardRead }</td>
 						<td colspan="1">작성일</td><td colspan="2">${board.boardCreate }</td>	
-						<td colspan="2">${board.boardRecommend }</td><td colspan="1"><i class="far fa-thumbs-up fa-sm"></i></td>
+						<td colspan="2" id="recommend">${board.boardRecommend }</td><td colspan="1"><i class="far fa-thumbs-up fa-sm"></i></td>
 					</tr>
 					<tr>
 					
@@ -61,14 +61,18 @@
 		</div>
 		
 		<div class="row justify-content-center">
-			<a href="/Freeboard/free.do" class="btn btn-secondary btn-sm active"
+			<a href="/Freeboard/free.do" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">목록으로</a>
 				
-			<a href="/Freeboard/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active"
+			<a href="/Freeboard/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">수정</a>
 			
-			<a href="/Freeboard/delete.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active"
+			<a href="/Freeboard/delete.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">삭제</a>
+			
+			<c:if test="${login }">
+			<button id="btnRecommend" type="button" class="btn btn-secondary btn-sm active">추천</button>
+			</c:if>
 		</div>
 		<!-- 댓글 입력 영역  -->
 		<div class="row mt-3 justify-content-center" id="replyDisplay" > 
@@ -105,5 +109,60 @@
 		</div>
 	</div>
 </div>
+
 <%@include file="../main/scriptloader.jsp" %>
+<script type="text/javascript">
+
+	// 추천한 게시글이면 "추천 취소"로 보이도록 설정
+	// 추천하지 않은 게시글이면 "추천"으로 보이도록 설정
+	if(${recommend }) { //추천상태
+		$("#btnRecommend")
+			.addClass("btn-danger")
+			.removeClass("btn-primary")
+			.text("추천 취소");
+	} else {	//추천 안 한상태
+		$("#btnRecommend")
+			.addClass("btn-primary")
+			.removeClass("btn-danger")
+			.text("추천");
+	}
+	
+	// 추천 버튼 클릭 이벤트 처리
+	$("#btnRecommend").click(function() {
+		$.ajax({
+			type: "get"
+			, url: "/recommend/recommend.do"
+			, dataType: "json"
+			, data: {
+				boardno: '${board.boardNo }'
+			}
+			, success: function(data) {
+					console.log("success");
+				console.log(data);
+				
+				//추천 버튼 색상 변경
+				$("#btnRecommend")
+					.toggleClass("btn-primary")
+					.toggleClass("btn-danger");
+	
+				//추천수 갱신
+				$("#recommend").text(data.recommend);
+				
+				//추천 버튼 텍스트 변경
+				if(data.result) {
+					$("#btnRecommend").text("추천 취소");
+				} else {
+					$("#btnRecommend").text("추천");
+				}
+			}
+			, error: function(e) {
+					console.log("fail");
+				
+				console.log(e.responseText);
+			}
+		});
+	});
+
+</script>
+
 <%@include file="../main/footer.jsp"%>

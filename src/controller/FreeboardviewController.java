@@ -32,7 +32,16 @@ public class FreeboardviewController extends HttpServlet {
 		
 		BoardDto dto = boardservice.getBoard(boardno);
 		
-		request.setAttribute("board", dto);
+		request.setAttribute("board", dto);		
+		
+		//추천수
+		BoardDto recommend = new BoardDto();
+		recommend.setBoardNo(boardno);
+		recommend.setBoardUser((String) request.getSession().getAttribute("userId"));
+		
+		//추천 상태 정보 전달
+		request.setAttribute("recommend", boardservice.recommendCheck(recommend));
+		
 		
 		ArrayList<ReplyDto> dtos = rsvc.getReplyList(boardno);
 		
