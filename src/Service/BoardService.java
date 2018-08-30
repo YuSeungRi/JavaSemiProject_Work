@@ -73,4 +73,9 @@ public class BoardService {
 		return recommendDao.selectTotalRecommend(dto);
 	}
 	
+	// 카테고리별 게시글 호출
+	public List<BoardDto> getboards(String categoryName, int listnum) {
+			
+		return dao.getboards(categoryName, listnum);
+	}
 }
