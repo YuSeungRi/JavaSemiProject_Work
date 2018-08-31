@@ -41,6 +41,7 @@ public class TechBoardService {
 	}
 	
 	public void update(BoardDto dto) {
+
 		dao.updateBoard(dto);
 	}
 	
