@@ -64,7 +64,7 @@
 			<div class="row justify-content-center">
 				<div class="col m-4">
 					<%-- 페이지네이션 --%>
-					<jsp:include page="/util/boardPaging.jsp" />
+					<jsp:include page="../util/noticePaging.jsp" />
 				</div>
 			</div>
 		</div>

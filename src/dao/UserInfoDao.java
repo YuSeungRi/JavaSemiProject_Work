@@ -61,7 +61,6 @@ public interface UserInfoDao {
 	 * @param dto
 	 * @return
 	 */
-	// 닉네임 정보만 가져오기
 	public String getUserNick(UserInfoDto dto);
 	
 }
