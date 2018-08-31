@@ -39,12 +39,12 @@ public class TechboardWriteController extends HttpServlet {
 		BoardDto dto = new BoardDto();
 		
 		dto.setBoardCategory("TechBoard");
-		dto.setBoardTitle("title");
 		
 		dto.setBoardUser((String) request.getSession().getAttribute("userId"));
 //		dto.setBoardUser((String) request.getSession().getAttribute("userNick"));
 		
 		dto.setBoardContent(request.getParameter("summernote"));
+		dto.setBoardTitle(request.getParameter("title"));
 		
 		boolean success = service.createBoard(dto);
 		System.out.println("TechboardWriteController_" + success);
