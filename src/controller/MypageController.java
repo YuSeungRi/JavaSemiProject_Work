@@ -1,11 +1,15 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Service.UserInfoService;
 
 /**
  * Servlet implementation class MypageController
@@ -14,9 +18,19 @@ import javax.servlet.http.HttpServletResponse;
 public class MypageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	UserInfoService uisv = new UserInfoService();
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		HttpSession session = request.getSession();
+		String userEmail = (String)session.getAttribute("userId");
+		
+		
+		uisv.getUserInfo(userEmail);
+		
+		request.setAttribute("userinfo", uisv);
+		
+		
 		request.getRequestDispatcher("/mypage/mypage.jsp").forward(request,response);
 	}
 
