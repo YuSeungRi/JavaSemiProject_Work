@@ -39,6 +39,15 @@ public interface BoardDao {
 	public int getTotal(String categoryName);
 	
 	/**
+	 * 작성자 : 안희민 
+	 * 카테고리별 페이징 리스트 조회(정렬없음)
+	 * @param paging
+	 * @param categoryName
+	 * @return
+	 */
+	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName);
+		
+	/**
 	 * 카테고리별 페이징 리스트 조회
 	 * @param paging
 	 * @param categoryName

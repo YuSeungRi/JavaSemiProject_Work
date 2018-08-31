@@ -148,6 +148,60 @@ public class BoardDaoImpl implements BoardDao {
 	}
 	
 	@Override
+	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName) {
+		ArrayList<BoardDto> list = new ArrayList<>();
+		BoardDto dto = null;
+		String sql = "SELECT * FROM (" + 
+				"    SELECT rownum rnum, B.* FROM (" + 
+				"        SELECT * FROM board" + 
+				"        WHERE board_category=?" +  // 1. category
+				"        ORDER BY board_create DESC, board_no DESC" +
+				"    ) B" + 
+				"    ORDER BY rnum" + 
+				")" + 
+				 "WHERE rnum BETWEEN ?" // 2. paging.getStartNo()
+				+ " AND ?"; // 3. paging.getEndNo()
+				
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, categoryName);
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
+			
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				dto = new BoardDto();
+				
+				dto.setBoardNo(rs.getInt("board_no"));
+				dto.setBoardCategory(rs.getString("board_category"));
+				dto.setBoardTitle(rs.getString("board_title"));
+				dto.setBoardUser(rs.getString("board_user"));
+				dto.setBoardRead(rs.getInt("board_read"));
+				dto.setBoardRecommend(rs.getInt("board_recommend"));
+				dto.setBoardCreate(rs.getDate("board_create"));
+				dto.setBoardModify(rs.getDate("board_modify"));
+				dto.setBoardContent(rs.getString("board_content"));
+				dto.setBoardTech(rs.getInt("board_tech"));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
+	@Override
 	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName, String order) {
 		ArrayList<BoardDto> list = new ArrayList<>();
 		BoardDto dto = null;
