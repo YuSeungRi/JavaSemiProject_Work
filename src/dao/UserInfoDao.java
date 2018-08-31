@@ -57,4 +57,11 @@ public interface UserInfoDao {
 	 */
 	public ArrayList<UserInfoDto> getAllUserInfo();
 	
+	/** 
+	 * @param dto
+	 * @return
+	 */
+	// 닉네임 정보만 가져오기
+	public String getUserNick(UserInfoDto dto);
+	
 }

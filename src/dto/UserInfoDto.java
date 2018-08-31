@@ -56,7 +56,7 @@ public class UserInfoDto {
 	
 	@Override
 	public String toString() {
-		return "userEmail:" + userEmail +", userPw:"+ userPw + ",nick:" + userNick + "userLevel:" + userLevel;
+		return "userEmail: " + userEmail +", userPw: "+ userPw + ", nick: " + userNick + ", userLevel: " + userLevel;
 	}
 	
 }

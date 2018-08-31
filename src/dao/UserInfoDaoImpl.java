@@ -48,6 +48,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 			ps.setString(2, result?"Success":"Fail");
 			ps.executeUpdate();
 			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -172,6 +173,41 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	public ArrayList<UserInfoDto> getAllUserInfo() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	// 닉네임 정보만 가져오기
+	@Override
+	public String getUserNick(UserInfoDto dto) {
+
+		String nick=null;
+		
+		String query = "SELECT * FROM userInfo"
+				+ " WHERE user_email=?";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, dto.getUserEmail());
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				nick=rs.getString("user_nick");
+
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return nick;
+
 	}
 
 }

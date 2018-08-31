@@ -226,7 +226,7 @@ $(document).ready(function(){
 		var userNick = "${sessionScope.userNick }";
 		$("#loginAlert").show();
 		$("#loginAlert").addClass("alert-success");
-		$("#loginText").text("반갑습니다! " +userNick+ "님.");
+		$("#loginText").text("반갑습니다! " + userNick + "님.");
 	}
 	
 	// 경고창 x 버튼 클릭시 경고창 사라짐

@@ -23,4 +23,8 @@ public class UserInfoService {
 		return dao.getUserInfo(userEmail);
 	}
 	
+	public String getUserNick(UserInfoDto dto) {
+		return dao.getUserNick(dto);
+	}
+	
 }

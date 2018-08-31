@@ -36,10 +36,14 @@ public class SignInController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
+		
+		
 		if( userservice.login(user)) {
 			session.setAttribute("login", true);
 			session.setAttribute("userId", user.getUserEmail());
-			session.setAttribute("userNick", user.getUserNick());
+			session.setAttribute("userNick", userservice.getUserNick(user));
+			System.out.println("이메일"+user.getUserEmail());
+			System.out.println(userservice.getUserNick(user));
 			System.out.println("로그인성공");
 			response.sendRedirect("/main/main.do?login=success");
 		} else {
