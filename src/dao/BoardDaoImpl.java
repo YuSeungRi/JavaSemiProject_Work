@@ -32,7 +32,18 @@ public class BoardDaoImpl implements BoardDao {
 		
 		BoardDto dto = null;
 		
-		String sql = "SELECT * FROM board"
+		String sql = "SELECT"
+				+ " board_no,"
+				+ " board_category,"
+				+ " board_title,"
+				+ " board_user,"
+				+ " board_read,"
+				+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+				+ " board_create,"
+				+ " board_modify,"
+				+ " board_content,"
+				+ " board_tech"
+				+" FROM board"
 				+ " WHERE board_no=?"; // 1. no
 		
 		try {
@@ -76,8 +87,19 @@ public class BoardDaoImpl implements BoardDao {
 		
 		ArrayList<BoardDto> list = new ArrayList<>();
 		BoardDto dto = null;
-		String sql = "SELECT * FROM board"
-				+ " WHERE board_category=?"; // 1. category
+		String sql = "SELECT"
+				+ " board_no,"
+				+ " board_category,"
+				+ " board_title,"
+				+ " board_user,"
+				+ " board_read,"
+				+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+				+ " board_create,"
+				+ " board_modify,"
+				+ " board_content,"
+				+ " board_tech" + 
+				"FROM board" + 
+				" WHERE board_category=?"; // 1. category
 
 		
 		try {
@@ -210,21 +232,43 @@ public class BoardDaoImpl implements BoardDao {
 		if (order.equals("create")) { // 최신순
 			
 			sql = "SELECT * FROM (" + 
-				"    SELECT rownum rnum, B.* FROM (" + 
-				"        SELECT * FROM board" + 
-				"        WHERE board_category=?" +  // 1. category
-				"        ORDER BY board_create DESC, board_no DESC" +
-				"    ) B" + 
-				"    ORDER BY rnum" + 
-				")" + 
-				"WHERE rnum BETWEEN ?" // 2. paging.getStartNo()
-				+ " AND ?"; // 3. paging.getEndNo()
+					"    SELECT rownum rnum, B.* FROM (" + 
+					"        SELECT"
+					+ " board_no,"
+					+ " board_category,"
+					+ " board_title,"
+					+ " board_user,"
+					+ " board_read,"
+					+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+					+ " board_create,"
+					+ " board_modify,"
+					+ " board_content,"
+					+ " board_tech" +
+					" FROM board" + 
+					"        WHERE board_category=?" +  // 1. category
+					"        ORDER BY board_create DESC, board_no DESC" +
+					"    ) B" + 
+					"    ORDER BY rnum" + 
+					")" + 
+					"WHERE rnum BETWEEN ?" // 2. paging.getStartNo()
+					+ " AND ?"; // 3. paging.getEndNo()
 			
 		} else if (order.equals("read")) { // 조회순
 			
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
-					"        SELECT * FROM board" + 
+					"        SELECT"
+					+ " board_no,"
+					+ " board_category,"
+					+ " board_title,"
+					+ " board_user,"
+					+ " board_read,"
+					+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+					+ " board_create,"
+					+ " board_modify,"
+					+ " board_content,"
+					+ " board_tech" +
+					" FROM board" + 
 					"        WHERE board_category=?" +  // 1. category
 					"        ORDER BY board_read DESC, board_no DESC" +
 					"    ) B" + 
@@ -237,7 +281,18 @@ public class BoardDaoImpl implements BoardDao {
 			
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
-					"        SELECT * FROM board" + 
+					"        SELECT"
+					+ " board_no,"
+					+ " board_category,"
+					+ " board_title,"
+					+ " board_user,"
+					+ " board_read,"
+					+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+					+ " board_create,"
+					+ " board_modify,"
+					+ " board_content,"
+					+ " board_tech" +
+					" FROM board" + 
 					"        WHERE board_category=?" +  // 1. category
 					"        ORDER BY board_recommend DESC, board_no DESC" +
 					"    ) B" + 
@@ -245,7 +300,6 @@ public class BoardDaoImpl implements BoardDao {
 					")" + 
 					"WHERE rnum BETWEEN ?" // 2. paging.getStartNo()
 					+ " AND ?"; // 3. paging.getEndNo()
-			
 		}
 		
 		try {
@@ -419,7 +473,18 @@ public class BoardDaoImpl implements BoardDao {
 		ArrayList<BoardDto> list = new ArrayList<>();
 		BoardDto dto = null;
 		
-		String sql = " SELECT * FROM (SELECT * FROM board "
+		String sql = " SELECT * FROM (SELECT"
+				+ " board_no,"
+				+ " board_category,"
+				+ " board_title,"
+				+ " board_user,"
+				+ " board_read,"
+				+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+				+ " board_create,"
+				+ " board_modify,"
+				+ " board_content,"
+				+ " board_tech" + 
+				" FROM board "
 				+ " WHERE board_category = ? ORDER BY board_no DESC) " // 1. categoryName
 				+ " WHERE rownum <= ? "; // 2. listnum
 		

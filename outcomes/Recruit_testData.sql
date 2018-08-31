@@ -1,0 +1,72 @@
+-- Recruit Sample Data
+INSERT INTO board VALUES( 71, 'Recruit', '제목_구인구직71', 'User40', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직71', 0 );
+INSERT INTO board VALUES( 72, 'Recruit', '제목_구인구직72', 'User10', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직72', 0 );
+INSERT INTO board VALUES( 73, 'Recruit', '제목_구인구직73', 'User11', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직73', 0 );
+INSERT INTO board VALUES( 74, 'Recruit', '제목_구인구직74', 'User12', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직74', 0 );
+INSERT INTO board VALUES( 75, 'Recruit', '제목_구인구직75', 'User13', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직75', 0 );
+INSERT INTO board VALUES( 76, 'Recruit', '제목_구인구직76', 'User14', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직76', 0 );
+INSERT INTO board VALUES( 77, 'Recruit', '제목_구인구직77', 'User15', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직77', 0 );
+INSERT INTO board VALUES( 78, 'Recruit', '제목_구인구직78', 'User16', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직78', 0 );
+INSERT INTO board VALUES( 79, 'Recruit', '제목_구인구직79', 'User17', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직79', 0 );
+INSERT INTO board VALUES( 80, 'Recruit', '제목_구인구직80', 'User18', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직80', 0 );
+INSERT INTO board VALUES( 81, 'Recruit', '제목_구인구직81', 'User19', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직81', 0 );
+INSERT INTO board VALUES( 82, 'Recruit', '제목_구인구직82', 'User20', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직82', 0 );
+INSERT INTO board VALUES( 83, 'Recruit', '제목_구인구직83', 'User21', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직83', 0 );
+INSERT INTO board VALUES( 84, 'Recruit', '제목_구인구직84', 'User22', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직84', 0 );
+INSERT INTO board VALUES( 85, 'Recruit', '제목_구인구직85', 'User23', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직85', 0 );
+INSERT INTO board VALUES( 86, 'Recruit', '제목_구인구직86', 'User24', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직86', 0 );
+INSERT INTO board VALUES( 87, 'Recruit', '제목_구인구직87', 'User25', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직87', 0 );
+INSERT INTO board VALUES( 88, 'Recruit', '제목_구인구직88', 'User26', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직88', 0 );
+INSERT INTO board VALUES( 89, 'Recruit', '제목_구인구직89', 'User27', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직89', 0 );
+INSERT INTO board VALUES( 90, 'Recruit', '제목_구인구직90', 'User28', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직90', 0 );
+INSERT INTO board VALUES( 91, 'Recruit', '제목_구인구직91', 'User29', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직91', 0 );
+INSERT INTO board VALUES( 92, 'Recruit', '제목_구인구직92', 'User30', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직92', 0 );
+INSERT INTO board VALUES( 93, 'Recruit', '제목_구인구직93', 'User31', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직93', 0 );
+INSERT INTO board VALUES( 94, 'Recruit', '제목_구인구직94', 'User32', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직94', 0 );
+INSERT INTO board VALUES( 95, 'Recruit', '제목_구인구직95', 'User33', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직95', 0 );
+INSERT INTO board VALUES( 96, 'Recruit', '제목_구인구직96', 'User34', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직96', 0 );
+INSERT INTO board VALUES( 97, 'Recruit', '제목_구인구직97', 'User35', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직97', 0 );
+INSERT INTO board VALUES( 98, 'Recruit', '제목_구인구직98', 'User36', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직98', 0 );
+INSERT INTO board VALUES( 99, 'Recruit', '제목_구인구직99', 'User37', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직99', 0 );
+INSERT INTO board VALUES( 100, 'Recruit', '제목_구인구직100', 'User38', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직100', 0 );
+INSERT INTO board VALUES( 101, 'Recruit', '제목_구인구직101', 'User39', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직101', 0 );
+
+
+INSERT INTO recruit VALUES( 71, '구인' );
+INSERT INTO recruit VALUES( 72, '구인' );
+INSERT INTO recruit VALUES( 73, '구인' );
+INSERT INTO recruit VALUES( 74, '구인' );
+INSERT INTO recruit VALUES( 75, '구직' );
+INSERT INTO recruit VALUES( 76, '구인' );
+INSERT INTO recruit VALUES( 77, '구인' );
+INSERT INTO recruit VALUES( 78, '구인' );
+INSERT INTO recruit VALUES( 79, '구인' );
+INSERT INTO recruit VALUES( 80, '구인' );
+INSERT INTO recruit VALUES( 81, '구인' );
+INSERT INTO recruit VALUES( 82, '구인' );
+INSERT INTO recruit VALUES( 83, '구직' );
+INSERT INTO recruit VALUES( 84, '구직' );
+INSERT INTO recruit VALUES( 85, '구직' );
+INSERT INTO recruit VALUES( 86, '구인' );
+INSERT INTO recruit VALUES( 87, '구인' );
+INSERT INTO recruit VALUES( 88, '구인' );
+INSERT INTO recruit VALUES( 89, '구직' );
+INSERT INTO recruit VALUES( 90, '구인' );
+INSERT INTO recruit VALUES( 91, '구인' );
+INSERT INTO recruit VALUES( 92, '구인' );
+INSERT INTO recruit VALUES( 93, '구인' );
+INSERT INTO recruit VALUES( 94, '구인' );
+INSERT INTO recruit VALUES( 95, '구인' );
+INSERT INTO recruit VALUES( 96, '구직' );
+INSERT INTO recruit VALUES( 97, '구인' );
+INSERT INTO recruit VALUES( 98, '구직' );
+INSERT INTO recruit VALUES( 99, '구직' );
+INSERT INTO recruit VALUES( 100, '구직' );
+INSERT INTO recruit VALUES( 101, '구인' );
+
+-- INSERT INTO board VALUES( BOARD_SEQ.nextval, 'Recruit', '제목_구인구직', 'User1', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직', 0 );
+-- INSERT INTO recruit VALUES( BOARD_SEQ.currval, '구인' ); -- 시퀀스명.currval : 현재 시퀀스
+
+-- commit;
+-- DELETE recruit;
+-- DELETE FROM board WHERE board_no=(SELECT board_no FROM recruit);

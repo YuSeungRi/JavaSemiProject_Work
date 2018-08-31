@@ -48,6 +48,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 			ps.setString(2, result?"Success":"Fail");
 			ps.executeUpdate();
 			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -129,14 +130,84 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
 	@Override
 	public UserInfoDto getUserInfo(String userEmail) {
-		// TODO Auto-generated method stub
-		return null;
+		UserInfoDto dto= null;
+		
+		String query = "SELECT * FROM userInfo"
+				+ " WHERE user_email=?";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, userEmail);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				dto = new UserInfoDto();
+				dto.setUserEmail(rs.getString("user_email"));
+				dto.setUserNick(rs.getString("user_nick"));
+				dto.setUserPw(rs.getString("user_pw"));
+				dto.setUserLevel(rs.getString("user_level"));
+				dto.setUserRegistDate(rs.getDate("user_registdate"));
+				dto.setUserIntro(rs.getString("user_intro"));
+				dto.setUserPhoto(rs.getString("user_photo"));
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return dto;
+
 	}
 
 	@Override
 	public ArrayList<UserInfoDto> getAllUserInfo() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	// 닉네임 정보만 가져오기
+	@Override
+	public String getUserNick(UserInfoDto dto) {
+
+		String nick=null;
+		
+		String query = "SELECT * FROM userInfo"
+				+ " WHERE user_email=?";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, dto.getUserEmail());
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				nick=rs.getString("user_nick");
+
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return nick;
+
 	}
 
 }

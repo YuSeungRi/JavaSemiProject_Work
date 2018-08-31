@@ -25,8 +25,10 @@
 			<i class="far fa-comments fa-lg"></i>자유게시판
 		</h4>
 		
+		<div class="text-right">
 		<a href="/Freeboard/free.do" class="badge badge-warning badge-pill">더보기</a>
-	
+		</div>
+		
 			<table class="table table-hover table-bordered table-sm">
 				<thread>
 					<tr class="table-active">
@@ -65,8 +67,10 @@
 			<i class="fa fa-bullhorn fa-fw mr-3"></i>공지사항
 		</h4>
 		
+		<div class="text-right">
 		<a href="/notice/notice.do" class="badge badge-warning badge-pill">더보기</a>
-		
+		</div>
+	
 			<table class="table table-hover table-bordered table-sm">
 				<thread>
 					<tr class="table-active">
@@ -109,7 +113,9 @@
 			<i class="fa fa-users fa-fw mr-3"></i>구인구직
 		</h4>
 		
+		<div class="text-right">
 		<a href="/recruit/recruit.do" class="badge badge-warning badge-pill">더보기</a>
+		</div>
 		
 			<table class="table table-hover table-bordered table-sm">
 				<thread>
@@ -149,8 +155,10 @@
 			<i class="fa fa-question-circle fa-fw mr-3"></i>Q&A
 		</h4>
 		
+		<div class="text-right">
 		<a href="/question/Q&A.do" class="badge badge-warning badge-pill">더보기</a>
-	
+		</div>
+		
 			<table class="table table-hover table-bordered table-sm">
 				<thread>
 					<tr class="table-active">
@@ -223,7 +231,7 @@ $(document).ready(function(){
 
 	} else if(login=="success") {
 		//로그인 성공 - 환영 메시지 보여줌
-		var userNick = "${sessionScope.userNick}";
+		var userNick = "${sessionScope.userNick }";
 		$("#loginAlert").show();
 		$("#loginAlert").addClass("alert-success");
 		$("#loginText").text("반갑습니다! " + userNick + "님.");
