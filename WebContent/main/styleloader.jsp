@@ -126,12 +126,14 @@
             <!-- Separator without title -->
             <li class="list-group-item sidebar-separator menu-collapsed"></li>            
             <!-- /END Separator -->
+            <c:if test="${'관리자' eq sessionScope.userNick }" >
              <a href="/admin/admin.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-wrench fa-fw mr-3"></span>
                     <span class="menu-collapsed">관리자페이지</span>
                 </div>
             </a>
+            </c:if>
             
             <a href="#" data-toggle="sidebar-colapse" class="bg-warning list-group-item list-group-item-action d-flex align-items-center">
                 <div class="d-flex w-100 justify-content-start align-items-center">

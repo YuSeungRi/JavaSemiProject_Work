@@ -175,7 +175,6 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		return null;
 	}
 
-	// 닉네임 정보만 가져오기
 	@Override
 	public String getUserNick(UserInfoDto dto) {
 
