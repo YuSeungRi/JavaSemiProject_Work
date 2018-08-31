@@ -33,6 +33,7 @@ public class BoardService {
 
 		return dao.getPagingList(paging, categoryName, order);
 	}
+	
 	// 구인구직 페이징 리스트 조회
 	public List<RecruitDto> getPagingListRecruit(Paging paging, String order) {
 		return recruitDao.getPagingListRecruit(paging, order);

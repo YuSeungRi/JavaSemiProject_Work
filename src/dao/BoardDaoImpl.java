@@ -419,7 +419,18 @@ public class BoardDaoImpl implements BoardDao {
 		ArrayList<BoardDto> list = new ArrayList<>();
 		BoardDto dto = null;
 		
-		String sql = " SELECT * FROM (SELECT * FROM board "
+		String sql = " SELECT * FROM (SELECT"
+				+ " board_no,"
+				+ " board_category,"
+				+ " board_title,"
+				+ " board_user,"
+				+ " board_read,"
+				+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+				+ " board_create,"
+				+ " board_modify,"
+				+ " board_content,"
+				+ " board_tech" + 
+				" FROM board "
 				+ " WHERE board_category = ? ORDER BY board_no DESC) " // 1. categoryName
 				+ " WHERE rownum <= ? "; // 2. listnum
 		
