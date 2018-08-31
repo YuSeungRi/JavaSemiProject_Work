@@ -17,7 +17,7 @@ import dto.BoardDto;
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private BoardService boardserve = new BoardService();
+	private BoardService boardservice = new BoardService();
 	private String categoryName[] = {"FreeBoard", "NoticeBoard", "RecruitBoard", "QuestionBoard"} ;
 	private String category;
 	
@@ -27,7 +27,7 @@ public class MainController extends HttpServlet {
 				category = categoryName[0];
 				
 				List<BoardDto> FreeList
-					= boardserve.getboards(category, 5);
+					= boardservice.getboards(category, 5);
 				
 				// JSP에 전달할 MODEL 처리
 				request.setAttribute("FreeList", FreeList);
@@ -36,7 +36,7 @@ public class MainController extends HttpServlet {
 				category = categoryName[1];
 			
 				List<BoardDto> NoticeList
-					= boardserve.getboards(category, 5);
+					= boardservice.getboards(category, 5);
 				
 				// JSP에 전달할 MODEL 처리
 				request.setAttribute("NoticeList", NoticeList);
@@ -45,7 +45,7 @@ public class MainController extends HttpServlet {
 				category = categoryName[2];
 				
 				List<BoardDto> RecruitList
-					= boardserve.getboards(category, 5);
+					= boardservice.getboards(category, 5);
 				
 				// JSP에 전달할 MODEL 처리
 				request.setAttribute("RecruitList", RecruitList);
@@ -54,7 +54,7 @@ public class MainController extends HttpServlet {
 				category = categoryName[3];
 				
 				List<BoardDto> QuestionList
-					= boardserve.getboards(category, 5);
+					= boardservice.getboards(category, 5);
 				
 				// JSP에 전달할 MODEL 처리
 				request.setAttribute("QuestionList", QuestionList);
