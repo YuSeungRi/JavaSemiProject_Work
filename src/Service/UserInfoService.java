@@ -19,5 +19,8 @@ public class UserInfoService {
 		
 	}
 	
+	public UserInfoDto getUserInfo(String userEmail) {
+		return dao.getUserInfo(userEmail);
+	}
 	
 }
