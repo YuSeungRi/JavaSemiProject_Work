@@ -52,7 +52,9 @@
 	</div>
 	<div>
 		<div class="col-sm-12 text-center">
+			<a href="/information/info.do">
 			<button class="btn btn-primary mt-3" type="submit">회원정보수정</button>
+			</a>
 		</div>
 	</div>
 	<div class="row justify-content-center">
