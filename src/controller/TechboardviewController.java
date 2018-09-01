@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Service.TechBoardService;
+import Service.BoardService;
 import Service.ReplyService;
 import dto.BoardDto;
 import dto.ReplyDto;
@@ -18,13 +19,18 @@ import dto.ReplyDto;
  * 작성일 : 08월 30일
  * 작성자 : 안희민
  * 
+ * 수정일 : 09월 01일
+ * 수정자 : 안희민
+ * 
+ *  - 추천 추가
+ * 
  */
 @WebServlet("/tech/detail.do")
 public class TechboardviewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private TechBoardService techBoardService = new TechBoardService();
-//	private ReplyService rsvc = new ReplyService();
+	private ReplyService rsvc = new ReplyService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String param = request.getParameter("boardno");
@@ -37,6 +43,18 @@ public class TechboardviewController extends HttpServlet {
 		BoardDto dto = techBoardService.getBoard(boardno);
 		
 		request.setAttribute("board", dto);	
+		
+		//추천 추가
+		BoardDto recommend = new BoardDto();
+		recommend.setBoardNo(boardno);
+		recommend.setBoardUser((String) request.getSession().getAttribute("userId"));
+		
+		//추천상태정보 추가
+		request.setAttribute("recommend", techBoardService.recommendCheck(recommend));
+		
+		ArrayList<ReplyDto> dtos = rsvc.getReplyList(boardno);
+		
+		request.setAttribute("replyList", dtos);
 		
 		request.getRequestDispatcher("/tech/techboard_detail.jsp").forward(request, response);
 		

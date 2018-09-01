@@ -14,9 +14,9 @@ import board.util.Paging;
 import dto.BoardDto;
 
 /*
- * 수정일 : 2018.08.30
+ * 수정일 : 2018.09.01
  * 수정자 : 안희민
- *  - 
+ *  - 정렬 추가
  */
 
 @WebServlet("/tech/tech.do")
@@ -66,11 +66,12 @@ public class TechBoardController extends HttpServlet {
 		
 		// 게시글 조회 결과
 		List<BoardDto> boardList
-			= tbsvc.getPagingList(paging, categoryName);
+			= tbsvc.getPagingList(paging, categoryName, order);
 
 		// JSP에 전달할 MODEL 처리
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("paging", paging);
+		request.setAttribute("order", order); // 정렬
 		
 		
 		request.getRequestDispatcher("/tech/techboard.jsp").forward(request,response);

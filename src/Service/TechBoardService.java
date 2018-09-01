@@ -9,25 +9,29 @@ import dao.RecommendDao;
 import dao.RecommendDaoImpl;
 import dto.BoardDto;
 
+
 /*
  * 작성일 : 2018.08.30
  * 작성자 : 안희민
  * 
+ * 수정일 : 2018.09.01
+ * 수정자 : 안희민
+ * - 추천기능 추가
  */
 
 public class TechBoardService {
 	
 	private BoardDao dao = new BoardDaoImpl();
-//	private RecommendDao recommendDao = new RecommendDaoImpl();
+	private RecommendDao recommendDao = new RecommendDaoImpl();
 	
 	public int getTotal(String categoryName) {
 		
 		return dao.getTotal(categoryName);
 	}
 	
-	public List<BoardDto> getPagingList(Paging paging, String categoryName) {
+	public List<BoardDto> getPagingList(Paging paging, String categoryName, String order) {
 	
-		return dao.getPagingList(paging, categoryName);
+		return dao.getPagingList(paging, categoryName,order);
 	}
 	
 	public BoardDto getBoard(int boardNo) {
@@ -49,11 +53,34 @@ public class TechBoardService {
 		dao.deleteBoard(boardNo);
 	}
 	
+	// 추천기능
+	public boolean recommendCheck(BoardDto dto) {
+		if( recommendDao.selectCountRecommend(dto) > 0 ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean recommend(BoardDto dto) {
+		if( recommendCheck(dto) ) {
+			recommendDao.deleteRecommend(dto);
+			return false;
+		} else {
+			recommendDao.insertRecommend(dto);
+			return true;
+		}
+	}
+	
+	public int getRecommend(BoardDto dto) {
+		return recommendDao.selectTotalRecommend(dto);
+	}
+	
 	// 카테고리별 게시글 호출
 	public List<BoardDto> getboard(String categoryName, int listnum) {
 		
 		return dao.getboards(categoryName, listnum);
 	}
 	
-	// 추천은 아직
+	
 }

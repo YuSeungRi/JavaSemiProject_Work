@@ -1,3 +1,5 @@
+<%@page import="dto.ReplyDto" %>
+<%@page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -73,4 +75,99 @@
 			</c:if>
 		</div>
 		
+		<!-- 댓글 입력 추가 -->
+		<div class="row mt-3 justify-content-center" id="replyDisplay" >
+			<form action="/reply/reply.do" method="post" class="form-inline">
+				<div class="for-group mr-3">
+			 	<label for="userEmail">작성자</label>
+			 	<input type="email" class="form-control" id="userEmail" name="userEmail" value="${sessionScope.userEmail }" readonly />
+				</div>
+				<div class="form-group ">
+					<input type="text" class="form-control" id="boardNo" name="boardNo" value="${param.boardNo }" readonly hidden="true">
+				</div>
+				<div class="form-group mr-3">
+					<textarea class="form-control" id="replyContent" name="replyContent" placeholder="댓글을 입력해주세요."></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+		
+		<!-- 댓글 목록 추가 -->
+		<div class="row mt-3 justify-content-center">
+	<%--		<c:import url="/reply/reply.do?boardNo=${board.boardNo }" /> --%>
+			<ul class="list-group">
+				<c:forEach items="${replyList }" var="reply">
+					<li class="list-group-item">
+						<div class="d-flex w-100 justify-contents-between">
+							<small>댓글번호:${reply.replyNo }, 작성자:${reply.userEmail }, 작성일:${reply.replyCreate }</small><button type="button" name="${reply.replyNo}" class="btn btn-sm bg-primary">댓글삭제</button>
+						</div>
+						<div>
+							<p class="mb-1">${reply.replyContent }</p>
+						</div>
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
+	
+	
+	</div>
+
+
+</div>
+
+<%@include file="../main/scriptloader.jsp" %>
+<script type="text/javascript">
+
+	// 추천한 게시글이면 "추천 취소"로 보이도록 설정
+	// 추천하지 않은 게시글이면 "추천"으로 보이도록 설정
+	if(${recommend }) { //추천상태
+		$("#btnRecommend")
+			.addClass("btn-danger")
+			.removeClass("btn-primary")
+			.text("추천 취소");
+	} else {	//추천 안 한상태
+		$("#btnRecommend")
+			.addClass("btn-primary")
+			.removeClass("btn-danger")
+			.text("추천");
+	}
+	
+	// 추천 버튼 클릭 이벤트 처리
+	$("#btnRecommend").click(function() {
+		$.ajax({
+			type: "get"
+			, url: "/recommend/recommend.do"
+			, dataType: "json"
+			, data: {
+				boardno: '${board.boardNo }'
+			}
+			, success: function(data) {
+					console.log("success");
+				console.log(data);
+				
+				//추천 버튼 색상 변경
+				$("#btnRecommend")
+					.toggleClass("btn-primary")
+					.toggleClass("btn-danger");
+	
+				//추천수 갱신
+				$("#recommend").text(data.recommend);
+				
+				//추천 버튼 텍스트 변경
+				if(data.result) {
+					$("#btnRecommend").text("추천 취소");
+				} else {
+					$("#btnRecommend").text("추천");
+				}
+			}
+			, error: function(e) {
+					console.log("fail");
+				
+				console.log(e.responseText);
+			}
+		});
+	});
+
+</script>
+			
 <%@include file="../main/footer.jsp"%>
