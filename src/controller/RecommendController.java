@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Service.BoardService;
+import Service.TechBoardService;
 import dto.BoardDto;
 
 @WebServlet("/recommend/recommend.do")

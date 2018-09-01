@@ -51,7 +51,7 @@
 							</td>
 							<td>${board.boardUser }</td>
 							<td>${board.boardRead }</td>
-					   <%-- <td>${board.boardRecommend }</td> --%>
+					    	<td>${board.boardRecommend }</td>
 						</tr>
 						</c:forEach>
 					</tbody>

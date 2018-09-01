@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Service.TechBoardService;
-import Service.BoardService;
 import Service.ReplyService;
 import dto.BoardDto;
 import dto.ReplyDto;
