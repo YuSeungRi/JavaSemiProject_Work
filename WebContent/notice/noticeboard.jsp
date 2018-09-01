@@ -21,8 +21,10 @@
 						</div>
 					</div>
 					<ul class="nav">
-						<li class="nav-item"><a class="nav-link" href="#">최신순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">조회순</a></li>
+						<li class="nav-item"><a class="nav-link" href="/notice/notice.do?curPage=${paging.curPage }&order=create">최신순</a></li>
+						<li class="nav-item"><a class="nav-link" href="/notice/notice.do?curPage=${paging.curPage }&order=read">조회순</a></li>
+						<li class="nav-item"><a class="nav-link" href="/notice/notice.do?curPage=${paging.curPage }&order=recommend">추천순</a></li>
+						<li class="nav-item"><a class="nav-link" href="/notice/notice.do?curPage=${paging.curPage }&order=">댓글순</a></li>
 					</ul>
 				</div>
 			</form>

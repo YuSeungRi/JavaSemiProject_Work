@@ -50,6 +50,7 @@
 								<a href="/Freeboard/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
 							<td>${board.boardUser }</td>
+							
 							<td>${board.boardRead }</td>
 							<td>${board.boardRecommend }</td>
 						</tr>

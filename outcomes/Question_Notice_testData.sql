@@ -202,14 +202,6 @@ INSERT INTO board VALUES(	 2098,	 'QuestionBoard',	 '제목2000',	 'User2098',	 
 INSERT INTO board VALUES(	 2099,	 'QuestionBoard',	 '제목2000',	 'User2099',	 13,	 5,	 TO_CHAR( sysdate-4,	 'YYYY-MM-DD' ),	 null,	 '내용2099',	 0 );
 
 
-
-
-
-
-
-
-
-
 -- commit;
 -- DELETE FROM board WHERE board_no BETWEEN 1000 AND 1999; Notice
 -- DELETE FROM board WHERE board_no BETWEEN 2000 AND 2999; Question

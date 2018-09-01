@@ -18,7 +18,7 @@ public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private BoardService boardservice = new BoardService();
-	private String categoryName[] = {"FreeBoard", "NoticeBoard", "RecruitBoard", "QuestionBoard"} ;
+	private String categoryName[] = {"FreeBoard", "NoticeBoard", "Recruit", "QuestionBoard"} ;
 	private String category;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,6 +61,7 @@ public class MainController extends HttpServlet {
 				
 				
 				request.getRequestDispatcher("/main/Mainview.jsp").forward(request, response);
+				
 	}
 }
 

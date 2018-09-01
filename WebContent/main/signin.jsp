@@ -28,12 +28,15 @@
 				<button type="button" class="btn btn-warning btn-block">카카오 로그인</button>
 			</div>
 			<div class="m-3">
-				<button type="button" class="btn btn-success btn-block">네이버 로그인</button>
+				<a href="/main/socialLogin.jsp">
+				<button type="button" class="btn btn-primary btn-block">네이버 로그인</button>
+				</a>
 			</div>
 			<div class="m-3">
 				<button type="button" class="btn btn-secondary btn-block">구글 로그인</button>
 			</div>
 		</div>
+		
 	</div>
 </div>
 <%@include file="./scriptloader.jsp" %>
