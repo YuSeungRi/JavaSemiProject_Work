@@ -50,7 +50,6 @@ public interface UserInfoDao {
 	 * @return UserInfoDto
 	 */
 	public UserInfoDto getUserInfo(String userEmail);
-	
 	/** 
 	 * get all user info
 	 * @return UserInfoDto array

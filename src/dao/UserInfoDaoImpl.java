@@ -130,6 +130,9 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
 	@Override
 	public UserInfoDto getUserInfo(String userEmail) {
+		
+		conn = DBConn.getConnection();
+		
 		UserInfoDto dto= null;
 		
 		String query = "SELECT * FROM userInfo"
@@ -139,7 +142,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 			ps = conn.prepareStatement(query);
 			ps.setString(1, userEmail);
 			rs = ps.executeQuery();
-			
+	
 			while(rs.next()) {
 				dto = new UserInfoDto();
 				dto.setUserEmail(rs.getString("user_email"));
@@ -151,6 +154,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 				dto.setUserPhoto(rs.getString("user_photo"));
 				
 				
+				return dto;
 			}
 			
 		} catch (SQLException e) {
@@ -165,7 +169,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 			}
 		}
 		
-		return dto;
+		return null;
 
 	}
 
@@ -178,6 +182,8 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	@Override
 	public String getUserNick(UserInfoDto dto) {
 
+		conn = DBConn.getConnection();
+		
 		String nick=null;
 		
 		String query = "SELECT * FROM userInfo"

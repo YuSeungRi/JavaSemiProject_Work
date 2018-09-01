@@ -12,18 +12,18 @@
 			<form>
 				<div class="form-group form-inline">
 					<label class="col-sm-3 control-label" for="Email">이메일 :</label>
-					<div class="col-sm-3">han92866@naver.com</div>
+					<div class="col-sm-3">${sessionScope.userId }</div>
 				</div>
 
 				<div class="form-group form-inline">
 					<label class="col-sm-3 control-label" for="inputNickname">닉네임
 						:</label>
-					<div class="col-sm-4">홍길동</div>
+					<div class="col-sm-4">${sessionScope.userNick }</div>
 				</div>
 
 				<div class="form-group form-inline">
 					<label class="col-sm-3 control-label" for="Grade">등급 :</label>
-					<div class="col-sm-6">관리자</div>
+					<div class="col-sm-6">${requestScope.request.userLevel }</div>
 				</div>
 
 				<div class="form-group form-inline">
