@@ -91,4 +91,9 @@ public class BoardService {
 		return dao.getboards(categoryName, listnum);
 	}
 	
+	
+	public List<BoardDto> getMyBoard(String userEmail, int listnum) {
+		return dao.getMyBoard(userEmail, listnum);
+	}
+	
 }

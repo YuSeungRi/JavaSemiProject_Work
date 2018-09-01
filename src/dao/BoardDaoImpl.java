@@ -527,4 +527,51 @@ public class BoardDaoImpl implements BoardDao {
 		return list;
 	}
 
+	@Override
+	public ArrayList<BoardDto> getMyBoard(String userEmail, int listnum) {
+		ArrayList<BoardDto> list = new ArrayList<>();
+		BoardDto dto = null;
+		String sql = "SELECT * FROM (SELECT"
+				+ " board_no,"
+				+ " board_category,"
+				+ " board_title,"
+				+ " board_create" 
+				+ " FROM board" 
+				+ " WHERE board_user=?)"
+				+ " WHERE rownum <= ? "; 
+
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userEmail);
+			ps.setInt(2, listnum);
+			
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				dto = new BoardDto();
+				
+				dto.setBoardNo(rs.getInt("board_no"));
+				dto.setBoardCategory(rs.getString("board_category"));
+				dto.setBoardTitle(rs.getString("board_title"));
+				dto.setBoardCreate(rs.getDate("board_create"));
+
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+
+		return list;
+	}
+
 }

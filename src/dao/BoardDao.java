@@ -94,5 +94,9 @@ public interface BoardDao {
 	 */
 	
 	public ArrayList<BoardDto> getboards(String categoryName, int page);
+	
+	
+	
+	public ArrayList<BoardDto> getMyBoard(String userEmail, int listnum);
 
 }

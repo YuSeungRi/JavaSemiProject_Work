@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../main/header.jsp"%>
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
@@ -23,12 +24,12 @@
 
 				<div class="form-group form-inline">
 					<label class="col-sm-3 control-label" for="Grade">등급 :</label>
-					<div class="col-sm-6">${requestScope.request.userLevel }</div>
+					<div class="col-sm-6">${requestScope.userinfo.userLevel }</div>
 				</div>
 
 				<div class="form-group form-inline">
 					<label class="col-sm-3 control-label" for="Joindate">가입일 :</label>
-					<div class="col-sm-3">2018-08-01</div>
+					<div class="col-sm-3">${requestScope.userinfo.userRegistDate }</div>
 				</div>
 
 				<div class="form-group form-inline">
@@ -66,31 +67,15 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach items="${boardList }" var="board">
 					<tr>
-						<td>자유게시판</td>
-						<td>덥다더워</td>
-						<td>2018-08-02</td>
+						<td>${board.boardCategory }</td>
+						<td>
+							<a href="/Freeboard/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+						</td>
+						<td>${board.boardCreate }</td>
 					</tr>
-					<tr>
-						<td>자유게시판</td>
-						<td>덥다더워</td>
-						<td>2018-08-02</td>
-					</tr>
-					<tr>
-						<td>자유게시판</td>
-						<td>덥다더워</td>
-						<td>2018-08-02</td>
-					</tr>
-					<tr>
-						<td>자유게시판</td>
-						<td>덥다더워</td>
-						<td>2018-08-02</td>
-					</tr>
-					<tr>
-						<td>자유게시판</td>
-						<td>덥다더워</td>
-						<td>2018-08-02</td>
-					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
