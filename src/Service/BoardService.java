@@ -116,4 +116,7 @@ public class BoardService {
 		return dao.getMyBoard(userNick, listnum);
 	}
 	
+	public int getNewBoardNo() {
+		return dao.newBoardNo();
+	}
 }

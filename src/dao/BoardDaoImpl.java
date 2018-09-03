@@ -574,4 +574,30 @@ public class BoardDaoImpl implements BoardDao {
 		return list;
 	}
 
+	@Override
+	public int newBoardNo() {
+		int result = 0;	
+		
+		String sql = "SELECT board_seq.nextval FROM dual"; 
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+				if(rs != null) rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
 }

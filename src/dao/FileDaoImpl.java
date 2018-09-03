@@ -19,7 +19,7 @@ public class FileDaoImpl implements FileDao {
 	public void uploadFile(FileDto dto) {
 		
 		String sql = "INSERT INTO attach_file(file_no, board_no,uploader_email, file_name, file_storedname, file_type) VALUES ("
-				+ " atach_file_seq.nextval,"
+				+ " attach_file_seq.nextval,"
 				+ " ?," // 1. boardNo.
 				+ " ?," // 2. uploader_email
 				+ " ?," // 3. file_name

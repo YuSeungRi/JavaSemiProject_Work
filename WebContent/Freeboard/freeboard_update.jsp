@@ -66,6 +66,13 @@
 		$("#btnCancel").click(function() {
 			history.go(-1);
 		});
+		
+		//file upload 파일 이름 업데이트
+		$('.custom-file-input').on('change', function() { 
+			   var fileName = $(this).val().split('\\').pop(); 
+			   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+		});
+		
 	});
 </script>
 <%@include file="../main/footer.jsp"%>

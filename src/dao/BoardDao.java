@@ -92,11 +92,16 @@ public interface BoardDao {
 	 * @param categoryName,  page
 	 * @return ArrayList<BoardDto>
 	 */
-	
 	public ArrayList<BoardDto> getboards(String categoryName, int page);
 	
 	
 	
 	public ArrayList<BoardDto> getMyBoard(String userNick, int listnum);
 
+	/**
+	 * 새글 작성 시 사용할 board_no 할당.
+	 * @return 새로 작성할 게시물의 boardNo
+	 */
+	public int newBoardNo();
+	
 }
