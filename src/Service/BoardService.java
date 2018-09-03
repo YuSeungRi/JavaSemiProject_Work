@@ -92,8 +92,8 @@ public class BoardService {
 	}
 	
 	
-	public List<BoardDto> getMyBoard(String userEmail, int listnum) {
-		return dao.getMyBoard(userEmail, listnum);
+	public List<BoardDto> getMyBoard(String userNick, int listnum) {
+		return dao.getMyBoard(userNick, listnum);
 	}
 	
 }

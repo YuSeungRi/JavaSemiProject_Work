@@ -28,12 +28,12 @@ public class MypageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String userEmail = (String)session.getAttribute("userId");
+		String userNick = (String)session.getAttribute("userNick");
 		
 		
-		UserInfoDto userinfo = uisv.getUserInfo(userEmail);
+		UserInfoDto userinfo = uisv.getUserInfo(userNick);
 
-		List<BoardDto> boardList = bsvc.getMyBoard(userEmail, 5);
+		List<BoardDto> boardList = bsvc.getMyBoard(userNick, 5);
 		
 		
 		request.setAttribute("userinfo", userinfo);
