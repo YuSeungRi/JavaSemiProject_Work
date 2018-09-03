@@ -4,6 +4,8 @@
 <%@include file="../main/header.jsp" %>
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
+
+<%-- 수정일 : 2018.09.03 / 수정자 : 권미현 / 정렬(아직 하는 중) --%>
 <div class="container m-3">
 	<h1>
 		<span class="fa fa-users fa-fw mr-1"></span>구인구직
@@ -21,9 +23,18 @@
 						</div>
 					</div>
 					<ul class="nav">
-						<li class="nav-item"><a class="nav-link" href="#">최신순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">조회순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">상태</a></li>
+						<li class="nav-item"><a class="nav-link" href="/recruit/recruit.do?curPage=${paging.curPage }&order=create">최신순</a></li>
+						<li class="nav-item"><a class="nav-link" href="/recruit/recruit.do?curPage=${paging.curPage }&order=read">조회순</a></li>
+						<li class="nav-item">
+						${requestScope.order } <%-- 테스트 --%>
+							<select  onchange="select(this.value)"  name="status" class="custom-select">
+								<option hidden="">상태 선택</option>
+								<option value="jobOffer" <c:if test="${order eq 'read'}">selected="selected"</c:if>>구인</option>
+								<option value="jobOfferComplete">구인완료</option>
+								<option value="jobHunt">구직</option>
+								<option value="jobHuntComplete">구직완료</option>
+							</select>
+						</li>
 					</ul>
 				</div>
 			</form>
@@ -65,7 +76,7 @@
 			<div class="row justify-content-center">
 				<div class="col m-4">
 					<%-- 페이지네이션 --%>
-					<jsp:include page="/util/boardPaging.jsp" />
+					<jsp:include page="/util/recruitPaging.jsp" />
 				</div>
 			</div>
 		</div>
@@ -73,4 +84,9 @@
 	</div>
 </div>
 <%@include file="../main/scriptloader.jsp" %>
+<script type="text/javascript">
+	function select(val) {
+		location.href="/recruit/recruit.do?curPage=${paging.curPage }&order=" + val;
+	}
+</script>
 <%@include file="../main/footer.jsp"%>
