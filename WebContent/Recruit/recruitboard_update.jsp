@@ -24,11 +24,11 @@
 			<!-- 구인구직 선택 -->
 			
 			<div class="col-sm-3">
-				<select name="status" class="custom-select" onfocus="${board.recuritStatus}">
-					<option value="jobOffer" <c:if test="${board.recuritStatus eq '구인'}">selected="selected"</c:if>>구인</option>
-					<option value="jobOfferComplete" <c:if test="${board.recuritStatus eq '구인완료'}">selected="selected"</c:if>>구인완료</option>
-					<option value="jobHunt" <c:if test="${board.recuritStatus eq '구직'}">selected="selected"</c:if>>구직</option>
-					<option value="jobHuntComplete" <c:if test="${board.recuritStatus eq '구직완료'}">selected="selected"</c:if>>구직완료</option>
+				<select name="status" class="custom-select">
+					<option value="jobOffer" <c:if test="${board.recruitStatus eq '구인'}">selected="selected"</c:if>>구인</option>
+					<option value="jobOfferComplete" <c:if test="${board.recruitStatus eq '구인완료'}">selected="selected"</c:if>>구인완료</option>
+					<option value="jobHunt" <c:if test="${board.recruitStatus eq '구직'}">selected="selected"</c:if>>구직</option>
+					<option value="jobHuntComplete" <c:if test="${board.recruitStatus eq '구직완료'}">selected="selected"</c:if>>구직완료</option>
 				</select>
 			</div>
 		</div>

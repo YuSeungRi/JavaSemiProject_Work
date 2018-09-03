@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
 
-<%-- 수정일 : 2018.09.03 / 수정자 : 권미현 / 정렬(아직 하는 중), 상세(내용) 조회 페이지 연결--%>
+<%-- 수정일 : 2018.09.03 / 수정자 : 권미현 / 정렬, 상세(내용) 조회 페이지 연결--%>
 <div class="container m-3">
 	<h1>
 		<span class="fa fa-users fa-fw mr-1"></span>구인구직
@@ -26,13 +26,12 @@
 						<li class="nav-item"><a class="nav-link" href="/recruit/recruit.do?curPage=${paging.curPage }&order=create">최신순</a></li>
 						<li class="nav-item"><a class="nav-link" href="/recruit/recruit.do?curPage=${paging.curPage }&order=read">조회순</a></li>
 						<li class="nav-item">
-						${requestScope.order } <%-- 테스트 --%>
 							<select  onchange="select(this.value)"  name="status" class="custom-select">
 								<option hidden="">상태 선택</option>
-								<option value="jobOffer" <c:if test="${order eq 'read'}">selected="selected"</c:if>>구인</option>
-								<option value="jobOfferComplete">구인완료</option>
-								<option value="jobHunt">구직</option>
-								<option value="jobHuntComplete">구직완료</option>
+								<option value="jobOffer" <c:if test="${order eq 'jobOffer'}">selected="selected"</c:if>>구인</option>
+								<option value="jobOfferComplete" <c:if test="${order eq 'jobOfferComplete'}">selected="selected"</c:if>>구인완료</option>
+								<option value="jobHunt" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>구직</option>
+								<option value="jobHuntComplete" <c:if test="${order eq 'jobHuntComplete'}">selected="selected"</c:if>>구직완료</option>
 							</select>
 						</li>
 					</ul>
@@ -61,7 +60,7 @@
 							</td>
 							<td>${board.boardUser }</td>
 							<td>${board.boardRead }</td>
-							<td>${board.recuritStatus }</td>
+							<td>${board.recruitStatus }</td>
 						</tr>
 						</c:forEach>
 					</tbody>

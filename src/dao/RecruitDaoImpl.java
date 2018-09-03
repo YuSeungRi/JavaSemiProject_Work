@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import board.util.Paging;
 import dbutil.DBConn;
-import dto.BoardDto;
 import dto.RecruitDto;
 
 /*
@@ -22,6 +21,7 @@ import dto.RecruitDto;
  *  - '게시글 상제 조회(내용)_구인구직' 추가
  *  - 메소드명 수정
  *  - '게시글 수정_구인구직', '게시글 삭제_구인구직' 추가
+ *  - '구인구직_상태 조회후, 총 개수' 추가
  */
 
 public class RecruitDaoImpl implements RecruitDao {
@@ -58,7 +58,7 @@ public class RecruitDaoImpl implements RecruitDao {
 				dto.setBoardModify(rs.getDate("board_modify"));
 				dto.setBoardContent(rs.getString("board_content"));
 				dto.setBoardTech(rs.getInt("board_tech"));
-				dto.setRecuritStatus(rs.getString("recurit_status"));
+				dto.setRecruitStatus(rs.getString("recruit_status"));
 			}
 			
 		} catch (SQLException e) {
@@ -74,6 +74,29 @@ public class RecruitDaoImpl implements RecruitDao {
 		}
 
 		return dto;
+	}
+	
+	@Override
+	public int getTotalStatus(String status) {
+		int total = 0;
+		
+		String sql = "SELECT COUNT(*) FROM recruit"
+				+ " WHERE recruit_status=?"; // 1. status
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, status);
+			
+			rs = ps.executeQuery();
+			
+			rs.next();
+			total = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		
+		return total;
 	}
 	
 	@Override
@@ -124,6 +147,66 @@ public class RecruitDaoImpl implements RecruitDao {
 					"WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
 					+ " AND ?"; // 2. paging.getEndNo()
 			
+		} else if (order.equals("jobOffer")) { 
+			// 상태(구인)
+			sql = "SELECT * FROM (" + 
+					"    SELECT rownum rnum, B.* FROM (" + 
+					"        SELECT * FROM board" + 
+					"        JOIN recruit" +  
+					"		 USING (board_no)"+
+					"		 WHERE recruit_status='구인'" +
+					"        ORDER BY board_create DESC, board_no DESC" +
+					"    ) B" + 
+					"    ORDER BY rnum" + 
+					")" + 
+					"WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
+					+ " AND ?"; // 2. paging.getEndNo()
+			
+		} else if (order.equals("jobOfferComplete")) {
+			// 상태(구인완료)
+			sql = "SELECT * FROM (" + 
+					"    SELECT rownum rnum, B.* FROM (" + 
+					"        SELECT * FROM board" + 
+					"        JOIN recruit" +  
+					"		 USING (board_no)"+
+					"		 WHERE recruit_status='구인완료'" +
+					"        ORDER BY board_create DESC, board_no DESC" +
+					"    ) B" + 
+					"    ORDER BY rnum" + 
+					")" + 
+					"WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
+					+ " AND ?"; // 2. paging.getEndNo()
+			
+		} else if (order.equals("jobHunt")) {
+			// 상태(구직)
+			sql = "SELECT * FROM (" + 
+					"    SELECT rownum rnum, B.* FROM (" + 
+					"        SELECT * FROM board" + 
+					"        JOIN recruit" +  
+					"		 USING (board_no)"+
+					"		 WHERE recruit_status='구직'" +
+					"        ORDER BY board_create DESC, board_no DESC" +
+					"    ) B" + 
+					"    ORDER BY rnum" + 
+					")" + 
+					"WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
+					+ " AND ?"; // 2. paging.getEndNo()
+			
+		} else if (order.equals("jobHuntComplete")) {
+			// 상태(구직완료)
+			sql = "SELECT * FROM (" + 
+					"    SELECT rownum rnum, B.* FROM (" + 
+					"        SELECT * FROM board" + 
+					"        JOIN recruit" +  
+					"		 USING (board_no)"+
+					"		 WHERE recruit_status='구직완료'" +
+					"        ORDER BY board_create DESC, board_no DESC" +
+					"    ) B" + 
+					"    ORDER BY rnum" + 
+					")" + 
+					"WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
+					+ " AND ?"; // 2. paging.getEndNo()
+			
 		}
 		
 		try {
@@ -146,7 +229,7 @@ public class RecruitDaoImpl implements RecruitDao {
 				dto.setBoardModify(rs.getDate("board_modify"));
 				dto.setBoardContent(rs.getString("board_content"));
 				dto.setBoardTech(rs.getInt("board_tech"));
-				dto.setRecuritStatus(rs.getString("recurit_status"));
+				dto.setRecruitStatus(rs.getString("recruit_status"));
 				
 				list.add(dto);
 			}
@@ -202,7 +285,7 @@ public class RecruitDaoImpl implements RecruitDao {
 			// 두번째 쿼리 (구인구직_상태)
 			ps = conn.prepareStatement(sql2);
 			
-			ps.setString(1, dto.getRecuritStatus());
+			ps.setString(1, dto.getRecruitStatus());
 			
 			ps.executeQuery();
 			
@@ -233,7 +316,7 @@ public class RecruitDaoImpl implements RecruitDao {
 		
 		// Recruit
 		String sql2 = "UPDATE recruit SET"
-				+ " recurit_status=?" // 1. status
+				+ " recruit_status=?" // 1. status
 				+ " WHERE board_no=?"; // 2. no
 		
 		try {
@@ -248,7 +331,7 @@ public class RecruitDaoImpl implements RecruitDao {
 			// 두번째 쿼리 (구인구직_상태)
 			ps = conn.prepareStatement(sql2);
 			
-			ps.setString(1, dto.getRecuritStatus());
+			ps.setString(1, dto.getRecruitStatus());
 			ps.setInt(2, dto.getBoardNo());
 			
 			ps.executeUpdate();

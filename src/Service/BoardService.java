@@ -15,9 +15,10 @@ import dto.RecruitDto;
 /*
  * 수정일 : 2018.09.03
  * 수정자 : 권미현
- *  - '게시글 상세 조회(내용)_구인구직' 추가(46행)
- *  - '게시글 수정_구인구직' 추가(65행)
- *  - '게시글 삭제_구인구직' 추가(73행)
+ *  - '게시글 상세 조회(내용)_구인구직' 추가(53행)
+ *  - '게시글 수정_구인구직' 추가(71행)
+ *  - '게시글 삭제_구인구직' 추가(79행)
+ *  - '구인구직_상태 조회 후, 총 개수' 추가(34행)
  */
 
 public class BoardService {
@@ -29,6 +30,11 @@ public class BoardService {
 	public int getTotal(String categoryName) {
 
 		return dao.getTotal(categoryName);
+	}
+	// 구인구직_상태 조회 후, 총 개수
+	public int getTotalStatus(String status) {
+		
+		return recruitDao.getTotalStatus(status);
 	}
 
 	public List<BoardDto> getPagingList(Paging paging, String categoryName, String order) {

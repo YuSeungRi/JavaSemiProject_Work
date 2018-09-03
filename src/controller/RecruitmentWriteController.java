@@ -53,12 +53,11 @@ public class RecruitmentWriteController extends HttpServlet {
 		// --- 구인구직_상태 ---
 		String statusParam = request.getParameter("status");
 		if (statusParam.equals("jobOffer")) {
-			dto.setRecuritStatus("구인");
+			dto.setRecruitStatus("구인");
 		} else if (statusParam.equals("jobHunt")) {
-			dto.setRecuritStatus("구직");
+			dto.setRecruitStatus("구직");
 		}
 		// -----------------
-//		System.out.println(dto);
 		
 		boolean success = service.createBoardRecruit(dto);
 //		System.out.println("RecruitmentWriteController_success" + success);

@@ -54,13 +54,13 @@ public class RecruitmentUpdateController extends HttpServlet {
 		// --- 구인구직_상태 ---
 		String statusParam = request.getParameter("status");
 		if (statusParam.equals("jobOffer")) {
-			recruitDto.setRecuritStatus(request.getParameter("구인"));
+			recruitDto.setRecruitStatus("구인");
 		} else if (statusParam.equals("jobHunt")) {
-			recruitDto.setRecuritStatus("구직");
+			recruitDto.setRecruitStatus("구직");
 		} else if (statusParam.equals("jobOfferComplete")) {
-			recruitDto.setRecuritStatus("구인완료");
+			recruitDto.setRecruitStatus("구인완료");
 		} else if (statusParam.equals("jobHuntComplete")) {
-			recruitDto.setRecuritStatus("구직완료");
+			recruitDto.setRecruitStatus("구직완료");
 		}
 		// -----------------
 

@@ -10,6 +10,7 @@ import java.sql.Date;
  * 수정일 : 2018.09.03
  * 수정자 : 권미현
  *  - Recommend 삭제
+ *  - 'recuritStatus' → 'recruitStatus' 오탈자 수정 및 관련 메소드 오탈자 수정
  */
 
 public class RecruitDto {
@@ -23,7 +24,7 @@ public class RecruitDto {
 	private Date boardModify;
 	private String boardContent;
 	private int boardTech;
-	private String recuritStatus;
+	private String recruitStatus;
 	
 	
 	public int getBoardNo() {
@@ -80,11 +81,11 @@ public class RecruitDto {
 	public void setBoardTech(int boardTech) {
 		this.boardTech = boardTech;
 	}
-	public String getRecuritStatus() {
-		return recuritStatus;
+	public String getRecruitStatus() {
+		return recruitStatus;
 	}
-	public void setRecuritStatus(String recuritStatus) {
-		this.recuritStatus = recuritStatus;
+	public void setRecruitStatus(String recruitStatus) {
+		this.recruitStatus = recruitStatus;
 	}
 	
 	
@@ -93,6 +94,6 @@ public class RecruitDto {
 		return "RecruitDto [boardNo=" + boardNo + ", boardCategory=" + boardCategory + ", boardTitle=" + boardTitle
 				+ ", boardUser=" + boardUser + ", boardRead=" + boardRead + ", boardCreate=" + boardCreate 
 				+ ", boardModify=" + boardModify + ", boardContent=" + boardContent
-				+ ", boardTech=" + boardTech + ", recuritStatus=" + recuritStatus + "]";
+				+ ", boardTech=" + boardTech + ", recruitStatus=" + recruitStatus + "]";
 	}
 }

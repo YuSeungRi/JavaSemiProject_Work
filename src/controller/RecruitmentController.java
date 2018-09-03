@@ -13,6 +13,12 @@ import Service.BoardService;
 import board.util.Paging;
 import dto.RecruitDto;
 
+/*
+ * 수정일 : 2018.09.03
+ * 수정자 : 권미현
+ *  - 정렬 추가
+ *  - 상태 정렬에 따른 페이징 새로 추가
+ */
 
 @WebServlet("/recruit/recruit.do")
 public class RecruitmentController extends HttpServlet {
@@ -21,6 +27,8 @@ public class RecruitmentController extends HttpServlet {
 	private BoardService service = new BoardService();
 	private final String categoryName = "Recruit";
 	private String order = null; // 정렬
+	private int totalCount = 0;
+	private Paging paging = null;
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -34,27 +42,63 @@ public class RecruitmentController extends HttpServlet {
 		}	// 페이지가 비어있거나 [""], null값일 때 curPage를 요청한다
 		
 		// 총 게시글 수
-		int totalCount = service.getTotal(categoryName); // DB에서 카테고리게시물의 숫자를 가져옴
+		totalCount = service.getTotal(categoryName); // DB에서 카테고리게시물의 숫자를 가져옴
 
 		// Paging Class 계산하기
-		Paging paging = new Paging(totalCount, curPage);	// 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴
+		paging = new Paging(totalCount, curPage);	// 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴
 		
 //		System.out.println(paging);
 
 
 		// --- 정렬 방법 ---
 		String orderParam = request.getParameter("order");
-//		System.out.println("FreeboardController_orderParam : " + orderParam);
+//		System.out.println("RecruitmentController_orderParam : " + orderParam);
 		
 		
 		if (orderParam == null || orderParam.isEmpty() || orderParam.equals("create")) {
+			// 최신순(기본)
 			order = "create";
 		} else if (orderParam.equals("read")) {
+			// 조회순
 			order = orderParam;
-		} else if (orderParam.equals("recommend")) {
+		} else if (orderParam.equals("jobOffer")) {
+			// 상태(구인)
 			order = orderParam;
+			
+			// 상태 조회 후, 총 게시글 수
+			totalCount = service.getTotalStatus("구인"); // DB에서 상태에 따른 게시글 숫자를 가져옴
+			// Paging Class 계산하기
+			paging = new Paging(totalCount, curPage);	// 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴
+		
+		} else if (orderParam.equals("jobOfferComplete")) {
+			// 상태(구인완료)
+			order = orderParam;
+			
+			// 상태 조회 후, 총 게시글 수
+			totalCount = service.getTotalStatus("구인완료"); // DB에서 상태에 따른 게시글 숫자를 가져옴
+			// Paging Class 계산하기
+			paging = new Paging(totalCount, curPage);	// 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴
+
+		} else if (orderParam.equals("jobHunt")) {
+			// 상태(구직)
+			order = orderParam;
+			
+			// 상태 조회 후, 총 게시글 수
+			totalCount = service.getTotalStatus("구직"); // DB에서 상태에 따른 게시글 숫자를 가져옴
+			// Paging Class 계산하기
+			paging = new Paging(totalCount, curPage);	// 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴
+
+		} else if (orderParam.equals("jobHuntComplete")) {
+			// 상태(구직완료)
+			order = orderParam;
+			
+			// 상태 조회 후, 총 게시글 수
+			totalCount = service.getTotalStatus("구직완료"); // DB에서 상태에 따른 게시글 숫자를 가져옴
+			// Paging Class 계산하기
+			paging = new Paging(totalCount, curPage);	// 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴
+
 		}
-//		System.out.println("FreeboardController_order : " + order);
+//		System.out.println("RecruitmentController_order : " + order);
 		// --------------
 		
 		

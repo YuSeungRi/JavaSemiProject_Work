@@ -43,7 +43,7 @@
 						<td colspan="1">작성자</td><td colspan="2">${board.boardUser }</td>
 						<td colspan="1">조회수</td><td colspan="2">${board.boardRead }</td>
 						<td colspan="1">작성일</td><td colspan="2">${board.boardCreate }</td>	
-						<td colspan="1">상태</td><td colspan="2">${board.recuritStatus }</td>	
+						<td colspan="1">상태</td><td colspan="2">${board.recruitStatus }</td>	
 					</tr>
 					<tr>
 					

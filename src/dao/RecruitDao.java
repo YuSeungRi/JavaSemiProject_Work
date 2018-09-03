@@ -16,6 +16,7 @@ import dto.RecruitDto;
  *  - '게시글 상제 조회(내용)_구인구직' 추가
  *  - 메소드명 수정
  *  - '게시글 수정_구인구직', '게시글 삭제_구인구직' 추가
+ *  - '구인구직_상태 조회후, 총 개수' 추가
  */
 
 public interface RecruitDao {
@@ -27,6 +28,13 @@ public interface RecruitDao {
 	 */
 	public RecruitDto getBoardRecruit(int boardNo);
 
+	/**
+	 * 구인구직_상태 조회후, 총 개수
+	 * @param status
+	 * @return int
+	 */
+	public int getTotalStatus(String status);
+	
 	/**
 	 * 구인구직 페이징 리스트 조회
 	 * @param paging
