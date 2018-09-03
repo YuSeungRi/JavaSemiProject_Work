@@ -39,6 +39,7 @@ public class QuestionViewController extends HttpServlet {
 			BoardDto recommend = new BoardDto();
 			recommend.setBoardNo(boardno);
 			recommend.setBoardUser((String) request.getSession().getAttribute("userId"));
+			recommend.setBoardUser((String) request.getSession().getAttribute("userNick"));
 			
 			//추천 상태 정보 전달
 			request.setAttribute("recommend", boardservice.recommendCheck(recommend));

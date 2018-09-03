@@ -46,7 +46,7 @@ public class FreeboardWriteController extends HttpServlet {
 		dto.setBoardTitle(request.getParameter("title"));
 		
 		dto.setBoardUser((String) request.getSession().getAttribute("userId")); // UserInfoDao 메소드 구현할 때까지 임시로 쓰기
-//		dto.setBoardUser((String) request.getSession().getAttribute("userNick")); // 아직 UserInfoDao 에 메소드 구현 x
+		dto.setBoardUser((String) request.getSession().getAttribute("userNick")); // 아직 UserInfoDao 에 메소드 구현 x
 		
 		dto.setBoardContent(request.getParameter("summernote"));
 		

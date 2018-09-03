@@ -16,7 +16,7 @@
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 
-<%if(session.getAttribute("userId") == null) { %>
+<%if(session.getAttribute("userNick") == null) { %>
 	<script type="text/javascript">
 		alert("로그인 상태여야 사용 가능합니다.")
 		location.href = "/main/signin.do";
