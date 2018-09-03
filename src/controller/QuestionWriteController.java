@@ -35,7 +35,7 @@ public class QuestionWriteController extends HttpServlet {
 		
 		BoardDto dto = new BoardDto();
 		
-		dto.setBoardCategory("FreeBoard");
+		dto.setBoardCategory("QuestionBoard");
 		dto.setBoardTitle(request.getParameter("title"));
 		
 		dto.setBoardUser((String) request.getSession().getAttribute("userId")); // UserInfoDao 메소드 구현할 때까지 임시로 쓰기
