@@ -18,8 +18,18 @@ public interface FileDao {
 	 * @return ArrayList
 	 */
 	public ArrayList<FileDto> getFileList(int boardNo);
+
+	/**
+	 * delete a file
+	 * @param fileNo
+	 */
+	public void deleteFile(int fileNo);
 	
-	
-	
+	/**
+	 * get a file info
+	 * @param fileNo
+	 * @return
+	 */
+	public FileDto getFileData(int fileNo);
 	
 }

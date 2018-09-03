@@ -30,14 +30,17 @@ public class FileUploadController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		String param = request.getParameter("boardNo");
 		
-		ArrayList<FileDto> dtos = fsvc.getFileList(boardNo);
-		
-		if(dtos.size()>0) {
-			request.setAttribute("fileList", dtos);			
+		if(param != null && param != "" ) {
+			int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+			
+			ArrayList<FileDto> dtos = fsvc.getFileList(boardNo);
+			
+			if(dtos.size()>0) {
+				request.setAttribute("fileList", dtos);			
+			}
 		}
-		
 		request.getRequestDispatcher("/fileupload/fileuploader.jsp").forward(request, response);		
 	}
 

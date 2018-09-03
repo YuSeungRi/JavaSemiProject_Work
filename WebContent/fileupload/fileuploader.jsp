@@ -19,13 +19,19 @@
 	<div class="col">
 		<div class="form-group">
 			<label for="uplodedFile">업로드된 파일 </label>
-			<select multiple class="form-control" id="uploadedFile">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
+			<select class="form-control" id="uploadedFile" >
+				<c:forEach items="${fileList }" var="file">
+					<option value="${file.fileNo }" ondblclick="download(${file.storedFileName })">${file.fileName }</option>
+				</c:forEach>
 			</select>
+			
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+var download = function(storeFileName) {
+	var downloadPath = "<%=getServletContext().getRealPath("upload")%>" + storeFileName;
+	document.open(downloadPath);	
+};
+</script>
