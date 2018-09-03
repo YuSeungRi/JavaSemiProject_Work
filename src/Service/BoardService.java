@@ -13,9 +13,9 @@ import dto.BoardDto;
 import dto.RecruitDto;
 
 /*
- * 수정일 : 2018.08.30
+ * 수정일 : 2018.09.03
  * 수정자 : 권미현
- *  - '게시글 작성_구인구직' 추가
+ *  - '게시글 상세 조회(내용)_구인구직' 추가(46행)
  */
 
 public class BoardService {
@@ -42,6 +42,11 @@ public class BoardService {
 	public BoardDto getBoard(int boardNo) {
 		dao.boardRead(boardNo);
 		return dao.getBoard(boardNo);
+	}
+	// 게시글 상세 조회(내용)_구인구직
+	public RecruitDto getBoardRecruit(int boardNo) {
+		dao.boardRead(boardNo);
+		return recruitDao.getBoard(boardNo);
 	}
 	
 	// 게시글 작성

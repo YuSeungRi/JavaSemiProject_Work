@@ -69,11 +69,5 @@ public class RecruitmentController extends HttpServlet {
 		
 		request.getRequestDispatcher("/Recruit/recruitboard.jsp").forward(request,response);
 	}
-
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-	}
-
 }

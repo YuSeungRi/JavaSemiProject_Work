@@ -10,9 +10,20 @@ import dto.RecruitDto;
  * 작성자 : 권미현
  * 
  *  구인구직 DAO
+ * 
+ * 수정일 : 2018.09.03
+ * 수정자 : 권미현
+ *  '게시글 상제 조회(내용)_구인구직' 추가
  */
 
 public interface RecruitDao {
+	
+	/**
+	 * 게시글 상세 조회(내용)_구인구직
+	 * @param boardNo
+	 * @return BoardDto
+	 */
+	public RecruitDto getBoard(int boardNo);
 
 	/**
 	 * 구인구직 페이징 리스트 조회

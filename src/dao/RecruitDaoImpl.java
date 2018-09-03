@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import board.util.Paging;
 import dbutil.DBConn;
+import dto.BoardDto;
 import dto.RecruitDto;
 
 /*
@@ -15,6 +16,10 @@ import dto.RecruitDto;
  * 작성자 : 권미현
  * 
  *  구인구직 DAO_구현
+ * 
+ * 수정일 : 2018.09.03
+ * 수정자 : 권미현
+ *  '게시글 상제 조회(내용)_구인구직' 추가
  */
 
 public class RecruitDaoImpl implements RecruitDao {
@@ -22,6 +27,52 @@ public class RecruitDaoImpl implements RecruitDao {
 	private Connection conn = DBConn.getConnection();
 	private PreparedStatement ps;
 	private ResultSet rs;
+	
+	
+	@Override
+	public RecruitDto getBoard(int boardNo) {
+		RecruitDto dto = null;
+		
+		String sql = "SELECT * FROM board" + 
+				" JOIN recruit" + 
+				" USING (board_no)" + 
+				" WHERE board_no=?"; // 1. no
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, boardNo);
+			
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				dto = new RecruitDto();
+				
+				dto.setBoardNo(rs.getInt("board_no"));
+				dto.setBoardCategory(rs.getString("board_category"));
+				dto.setBoardTitle(rs.getString("board_title"));
+				dto.setBoardUser(rs.getString("board_user"));
+				dto.setBoardRead(rs.getInt("board_read"));
+				dto.setBoardCreate(rs.getDate("board_create"));
+				dto.setBoardModify(rs.getDate("board_modify"));
+				dto.setBoardContent(rs.getString("board_content"));
+				dto.setBoardTech(rs.getInt("board_tech"));
+				dto.setRecuritStatus(rs.getString("recurit_status"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+
+		return dto;
+	}
 	
 	@Override
 	public ArrayList<RecruitDto> getPagingListRecruit(Paging paging, String order) {
@@ -89,7 +140,6 @@ public class RecruitDaoImpl implements RecruitDao {
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
 				dto.setBoardRead(rs.getInt("board_read"));
-				dto.setBoardRecommend(rs.getInt("board_recommend"));
 				dto.setBoardCreate(rs.getDate("board_create"));
 				dto.setBoardModify(rs.getDate("board_modify"));
 				dto.setBoardContent(rs.getString("board_content"));

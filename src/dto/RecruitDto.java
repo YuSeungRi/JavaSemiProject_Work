@@ -6,6 +6,10 @@ import java.sql.Date;
  * 작성일 : 2018.08.30
  * 작성자 : 권미현
  *  구인구직 DTO
+ *  
+ * 수정일 : 2018.09.03
+ * 수정자 : 권미현
+ *  - Recommend 삭제
  */
 
 public class RecruitDto {
@@ -15,7 +19,6 @@ public class RecruitDto {
 	private String boardTitle;
 	private String boardUser;
 	private int boardRead;
-	private int boardRecommend;
 	private Date boardCreate;
 	private Date boardModify;
 	private String boardContent;
@@ -53,12 +56,6 @@ public class RecruitDto {
 	public void setBoardRead(int boardRead) {
 		this.boardRead = boardRead;
 	}
-	public int getBoardRecommend() {
-		return boardRecommend;
-	}
-	public void setBoardRecommend(int boardRecommend) {
-		this.boardRecommend = boardRecommend;
-	}
 	public Date getBoardCreate() {
 		return boardCreate;
 	}
@@ -94,8 +91,8 @@ public class RecruitDto {
 	@Override
 	public String toString() {
 		return "RecruitDto [boardNo=" + boardNo + ", boardCategory=" + boardCategory + ", boardTitle=" + boardTitle
-				+ ", boardUser=" + boardUser + ", boardRead=" + boardRead + ", boardRecommend=" + boardRecommend
-				+ ", boardCreate=" + boardCreate + ", boardModify=" + boardModify + ", boardContent=" + boardContent
+				+ ", boardUser=" + boardUser + ", boardRead=" + boardRead + ", boardCreate=" + boardCreate 
+				+ ", boardModify=" + boardModify + ", boardContent=" + boardContent
 				+ ", boardTech=" + boardTech + ", recuritStatus=" + recuritStatus + "]";
 	}
 }

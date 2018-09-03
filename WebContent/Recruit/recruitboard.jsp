@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
 
-<%-- 수정일 : 2018.09.03 / 수정자 : 권미현 / 정렬(아직 하는 중) --%>
+<%-- 수정일 : 2018.09.03 / 수정자 : 권미현 / 정렬(아직 하는 중), 상세(내용) 조회 페이지 연결--%>
 <div class="container m-3">
 	<h1>
 		<span class="fa fa-users fa-fw mr-1"></span>구인구직
@@ -57,7 +57,7 @@
 							<td>${board.boardNo }</td>
 							<td>${board.boardCreate }</td>
 							<td>
-								<a href="#">${board.boardTitle }</a>
+								<a href="/recruit/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
 							<td>${board.boardUser }</td>
 							<td>${board.boardRead }</td>
