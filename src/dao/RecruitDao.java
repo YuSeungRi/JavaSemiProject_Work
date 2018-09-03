@@ -13,7 +13,9 @@ import dto.RecruitDto;
  * 
  * 수정일 : 2018.09.03
  * 수정자 : 권미현
- *  '게시글 상제 조회(내용)_구인구직' 추가
+ *  - '게시글 상제 조회(내용)_구인구직' 추가
+ *  - 메소드명 수정
+ *  - '게시글 수정_구인구직', '게시글 삭제_구인구직' 추가
  */
 
 public interface RecruitDao {
@@ -23,7 +25,7 @@ public interface RecruitDao {
 	 * @param boardNo
 	 * @return BoardDto
 	 */
-	public RecruitDto getBoard(int boardNo);
+	public RecruitDto getBoardRecruit(int boardNo);
 
 	/**
 	 * 구인구직 페이징 리스트 조회
@@ -47,5 +49,12 @@ public interface RecruitDao {
 	 * @param dto
 	 * @return true : 게시글 수정 성공 / false : 게시글 수정 실패
 	 */
-	public boolean updateBoard(RecruitDto dto);
+	public boolean updateBoardRecruit(RecruitDto dto);
+	
+	/**
+	 * 게시글 삭제_구인구직
+	 * @param boardNo
+	 * @return true : 게시글 삭제 성공 / false : 게시글 삭제 실패
+	 */
+	public boolean deleteBoardRecruit(int boardNo);
 }

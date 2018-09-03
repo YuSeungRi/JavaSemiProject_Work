@@ -19,7 +19,9 @@ import dto.RecruitDto;
  * 
  * 수정일 : 2018.09.03
  * 수정자 : 권미현
- *  '게시글 상제 조회(내용)_구인구직' 추가
+ *  - '게시글 상제 조회(내용)_구인구직' 추가
+ *  - 메소드명 수정
+ *  - '게시글 수정_구인구직', '게시글 삭제_구인구직' 추가
  */
 
 public class RecruitDaoImpl implements RecruitDao {
@@ -30,7 +32,7 @@ public class RecruitDaoImpl implements RecruitDao {
 	
 	
 	@Override
-	public RecruitDto getBoard(int boardNo) {
+	public RecruitDto getBoardRecruit(int boardNo) {
 		RecruitDto dto = null;
 		
 		String sql = "SELECT * FROM board" + 
@@ -219,7 +221,7 @@ public class RecruitDaoImpl implements RecruitDao {
 	}
 
 	@Override
-	public boolean updateBoard(RecruitDto dto) {
+	public boolean updateBoardRecruit(RecruitDto dto) {
 		boolean result = false;	// 데이터베이스 저장 성공 여부
 		
 		// Board
@@ -232,8 +234,7 @@ public class RecruitDaoImpl implements RecruitDao {
 		// Recruit
 		String sql2 = "UPDATE recruit SET"
 				+ " recurit_status=?" // 1. status
-				+ " WHERE board_no=?" // 2. no
-				+ ")";
+				+ " WHERE board_no=?"; // 2. no
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -250,6 +251,41 @@ public class RecruitDaoImpl implements RecruitDao {
 			ps.setString(1, dto.getRecuritStatus());
 			ps.setInt(2, dto.getBoardNo());
 			
+			ps.executeUpdate();
+			
+			result = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
+	@Override
+	public boolean deleteBoardRecruit(int boardNo) {
+		boolean result = false;	// 데이터베이스 저장 성공 여부
+		
+		String sql = "DELETE FROM recruit"
+				+ " WHERE board_no=?"; // 1. no
+		
+		String sql2 = "DELETE FROM board"
+				+ " WHERE board_no=?"; // 1. no
+		
+		try {
+			// recruit
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, boardNo);
+			ps.executeUpdate();
+			
+			// board
+			ps = conn.prepareStatement(sql2);
+			ps.setInt(1, boardNo);
 			ps.executeUpdate();
 			
 			result = true;

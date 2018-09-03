@@ -16,6 +16,8 @@ import dto.RecruitDto;
  * 수정일 : 2018.09.03
  * 수정자 : 권미현
  *  - '게시글 상세 조회(내용)_구인구직' 추가(46행)
+ *  - '게시글 수정_구인구직' 추가(65행)
+ *  - '게시글 삭제_구인구직' 추가(73행)
  */
 
 public class BoardService {
@@ -33,7 +35,6 @@ public class BoardService {
 
 		return dao.getPagingList(paging, categoryName, order);
 	}
-	
 	// 구인구직 페이징 리스트 조회
 	public List<RecruitDto> getPagingListRecruit(Paging paging, String order) {
 		return recruitDao.getPagingListRecruit(paging, order);
@@ -46,7 +47,7 @@ public class BoardService {
 	// 게시글 상세 조회(내용)_구인구직
 	public RecruitDto getBoardRecruit(int boardNo) {
 		dao.boardRead(boardNo);
-		return recruitDao.getBoard(boardNo);
+		return recruitDao.getBoardRecruit(boardNo);
 	}
 	
 	// 게시글 작성
@@ -61,9 +62,17 @@ public class BoardService {
 	public void update(BoardDto dto) {
 		dao.updateBoard(dto);
 	}
+	// 게시글 수정_구인구직
+	public boolean updateBoardRecruit(RecruitDto dto) {
+		return recruitDao.updateBoardRecruit(dto);
+	}
 	
 	public void deleteBoard(int boardNo) {
 		dao.deleteBoard(boardNo);
+	}
+	// 게시글 삭제_구인구직
+	public boolean deleteBoardRecruit(int boardNo) {
+		return recruitDao.deleteBoardRecruit(boardNo);
 	}
 	
 	// 추천
