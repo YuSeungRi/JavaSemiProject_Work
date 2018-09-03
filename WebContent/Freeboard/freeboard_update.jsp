@@ -16,7 +16,7 @@
 
 
 	<%-- 제목 --%>
-	<form action="/Freeboard/update.do" method="post">
+	<form action="/Freeboard/update.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="boardno" value="${board.boardNo }" />
 		<div class="form-group row">
 			<label for="title" class="col-sm-2 col-form-label">제목</label>
