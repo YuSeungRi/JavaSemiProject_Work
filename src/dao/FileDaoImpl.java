@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dbutil.DBConn;
-import dto.BoardDto;
 import dto.FileDto;
 
 public class FileDaoImpl implements FileDao {
@@ -85,6 +84,64 @@ public class FileDaoImpl implements FileDao {
 			}	
 		}
 		return dtos;
+	}
+
+	@Override
+	public void deleteFile(int fileNo) {
+		String sql = "DELETE attach_file WHERE file_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, fileNo);
+			
+			ps.executeUpdate();
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+	}
+
+	@Override
+	public FileDto getFileData(int fileNo) {
+		FileDto dto = null;
+		String sql = "SELECT * FROM attach_file WHERE file_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, fileNo);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				dto = new FileDto();
+				dto.setFileNo(rs.getInt("file_no"));
+				dto.setBoardNo(rs.getInt("board_no"));
+				dto.setUploaderEmail(rs.getString("uploader_email"));
+				dto.setFileName(rs.getString("file_name"));
+				dto.setFileStoredName(rs.getString("file_storedname"));
+				dto.setFileType(rs.getString("file_type"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}	
+		return dto;
 	}
 
 }

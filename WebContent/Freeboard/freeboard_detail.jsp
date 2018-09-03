@@ -60,6 +60,10 @@
 			
 		</div>
 		
+		<!-- 파일 업로드 영역  -->
+<%-- 		<c:import url="/file/upload.do"></c:import> --%>
+		
+		
 		<div class="row justify-content-center">
 			<a href="/Freeboard/free.do" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">목록으로</a>

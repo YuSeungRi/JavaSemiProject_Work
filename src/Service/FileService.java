@@ -17,4 +17,9 @@ public class FileService {
 		
 		return dao.getFileList(boardNo);
 	}
+	
+	public void deleteFile(int fileNo) {
+		if(dao.getFileData(fileNo)!=null)
+			dao.deleteFile(fileNo);
+	}
 }
