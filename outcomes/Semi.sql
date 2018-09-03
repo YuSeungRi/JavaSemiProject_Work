@@ -56,7 +56,7 @@ CREATE TABLE userInfo (
 --구인구직
 CREATE TABLE recruit (
     board_no    NUMBER NOT NULL,
-    recurit_status  VARCHAR2(50),
+    recruit_status  VARCHAR2(50),
     
     CONSTRAINT recruit_PK   PRIMARY KEY (board_no)
 );
