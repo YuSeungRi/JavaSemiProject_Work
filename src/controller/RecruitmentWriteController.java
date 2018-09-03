@@ -31,7 +31,7 @@ public class RecruitmentWriteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String user = (String) request.getSession().getAttribute("userNick"); // 아직 UserInfoDao 에 메소드 구현 x
 
-		System.out.println("FreeboardWriteController_작성자(userNick) : " + user); // 아직 UserInfoDao 에 메소드 구현 x
+//		System.out.println("RecruitmentWriteController_작성자(userNick) : " + user); // 아직 UserInfoDao 에 메소드 구현 x
 		
 		request.getRequestDispatcher("/Recruit/recruitboard_write.jsp").forward(request,response);
 	}
@@ -58,7 +58,7 @@ public class RecruitmentWriteController extends HttpServlet {
 			dto.setRecuritStatus("구직");
 		}
 		// -----------------
-		System.out.println(dto);
+//		System.out.println(dto);
 		
 		boolean success = service.createBoardRecruit(dto);
 //		System.out.println("RecruitmentWriteController_success" + success);
