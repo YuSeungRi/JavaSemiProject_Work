@@ -17,6 +17,7 @@ import dto.BoardDto;
  * 수정일 : 2018.09.04
  * 수정자 : 권미현
  *  - getBoard, getCategoryBoard, getPagingList(정렬 있는거), getboards 쿼리문 수정 및 set 문 추가
+ *  - createBoard : INSERT 문 수정
  */
 
 public class BoardDaoImpl implements BoardDao {
@@ -353,26 +354,28 @@ public class BoardDaoImpl implements BoardDao {
 		boolean result = false;	// 데이터베이스 저장 성공 여부
 		
 		String sql = "INSERT INTO board"
-				+ " VALUES (BOARD_SEQ.nextval,"
-				+ " ?," // 1. category
-				+ " ?," // 2. title
-				+ " ?," // 3. user
+				+ " VALUES ("
+				+ " ?," // 1. no
+				+ " ?," // 2. category
+				+ " ?," // 3. title
+				+ " ?," // 4. user
 				+ " 0," // read
 				+ " 0," // recommend
 				+ " TO_CHAR(sysdate, 'YYYY-MM-DD')," // create
 				+ " null," // modify
-				+ " ?," // 4. content
-				+ " ?" // 5.tech
+				+ " ?," // 5. content
+				+ " ?" // 6.tech
 				+ ")";
 		
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, dto.getBoardCategory());
-			ps.setString(2, dto.getBoardTitle());
-			ps.setString(3, dto.getBoardUser());
-			ps.setString(4, dto.getBoardContent());
-			ps.setInt(5, dto.getBoardTech());
+			ps.setInt(1, dto.getBoardNo());
+			ps.setString(2, dto.getBoardCategory());
+			ps.setString(3, dto.getBoardTitle());
+			ps.setString(4, dto.getBoardUser());
+			ps.setString(5, dto.getBoardContent());
+			ps.setInt(6, dto.getBoardTech());
 			
 			ps.executeUpdate();
 			
