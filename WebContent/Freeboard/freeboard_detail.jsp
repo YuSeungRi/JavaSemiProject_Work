@@ -39,7 +39,8 @@
 					</tr>
 					<tr>
 						<td colspan="1">no.</td><td colspan="3">${board.boardNo }</td>
-						<td colspan="1">작성자</td><td colspan="2">${board.boardUser }</td>
+						<%-- 수정일 : 2018.09.04 / 수정자 : 권미현 / ${board.boardUser } → ${board.boardNick } 변경 --%>
+						<td colspan="1">작성자</td><td colspan="2">${board.boardNick }</td>
 						<td colspan="1">조회수</td><td colspan="2">${board.boardRead }</td>
 						<td colspan="1">작성일</td><td colspan="2">${board.boardCreate }</td>	
 						<td colspan="2" id="recommend">${board.boardRecommend }</td><td colspan="1"><i class="far fa-thumbs-up fa-sm"></i></td>
@@ -68,7 +69,8 @@
 			<a href="/Freeboard/free.do" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">목록으로</a>
 			
-			<c:if test="${userNick eq board.boardUser }">
+			<%-- 수정일 : 2018.09.04 / 수정자 : 권미현 / ${userNick eq board.boardUser } → ${userId eq board.boardUser } 변경 --%>
+			<c:if test="${userId eq board.boardUser }">
 				<a href="/Freeboard/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
 				role="button" aria-pressed="true">수정</a>
 			

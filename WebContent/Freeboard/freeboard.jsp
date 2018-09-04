@@ -49,7 +49,8 @@
 							<td>
 								<a href="/Freeboard/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardUser }</td>
+							<%-- 수정일 : 2018.09.04 / 수정자 : 권미현 / ${board.boardUser } → ${board.boardNick } 변경 --%>
+							<td>${board.boardNick }</td>
 							<td>${board.boardRead }</td>
 							<td>${board.boardRecommend }</td>
 						</tr>
