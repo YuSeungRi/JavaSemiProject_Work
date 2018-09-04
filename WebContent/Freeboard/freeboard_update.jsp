@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- 
 게시글 수정
 작성일 : 2018.08.27
@@ -9,6 +10,13 @@
 <%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
 <link rel="stylesheet" href="../summernote/summernote-bs4.css" />
 <%@include file="../main/styleloader.jsp"%>
+<c:if test="${sessionScope.userEmail ne board.boardUser }">
+	<script type="text/javascript">
+		alert("본인만 수정 가능합니다.")
+		location.href = "/Freeboard/free.do";
+	</script>
+</c:if>
+
 <div class="container m-3">
 	<h2>
 		<i class="fas fa-pencil-alt fa-2x"></i>게시글 수정
@@ -31,7 +39,19 @@
 		<textarea id="summernote" name="content" class="form-control">${board.boardContent }</textarea>
 		<%-- summernote_end --%>
 
-
+		<%-- 업로드된 파일 --%>
+		<div class="form-group row mt-4">
+			<label for="uploadedFile" class="col-sm-3 col-form-label">저장된 파일</label>
+			<div class="card col-sm-7">
+				<div class="card-body">
+					<c:forEach items="fileList" var="file" >
+						<a href="/upload/${file.storedFile }" >${file.fileName }</a>
+						<button type="button" id="${file.fileNo }">삭제</button>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+		
 		<%-- 파일 첨부 --%>
 		<div class="form-group row mt-4">
 			<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>
@@ -72,6 +92,12 @@
 			   var fileName = $(this).val().split('\\').pop(); 
 			   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
 		});
+		
+		<c:forEach items="fileList" var="file">
+			$('${file.fileNo}').click(function(){
+				$(location).attr('href', '/file/delete.do?fileNo=${file.fileNo}');
+			});
+		</c:forEach>
 		
 	});
 </script>

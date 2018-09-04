@@ -26,7 +26,7 @@
 	
 	
 	<%-- 제목 --%>
-	<form action="/Freeboard/write.do" method="post">
+	<form action="/Freeboard/write.do" method="post" enctype="multipart/form-data">
 		<div class="form-group row">
 			<label for="title" class="col-sm-2 col-form-label">제목</label>
 			<div class="col-sm-10">
@@ -99,6 +99,11 @@
 // 					'<input type="file" class="custom-file-input"> <labelclass="custom-file-label" for="file"></label>',
 // 					'</div></div>');
 // 		});
+
+		$('.custom-file-input').on('change', function() { 
+			   var fileName = $(this).val().split('\\').pop(); 
+			   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+		});
 	});
 </script>
 <script type="text/javascript">
