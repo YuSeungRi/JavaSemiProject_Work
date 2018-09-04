@@ -185,7 +185,7 @@
 						    		</c:if>
 						    	</c:forEach>		   				
 							    
-							    <div class="text-right"><a href="#" class="btn-sm btn-primary">자세히보기</a></div>
+							    <div class="text-right"><a href="/project/projectview.do?projectno=${project.projectNo }" class="btn-sm btn-primary">자세히보기</a></div>
 							  </div>
 							</div>
 							

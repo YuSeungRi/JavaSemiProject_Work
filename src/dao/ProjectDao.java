@@ -17,4 +17,7 @@ public interface ProjectDao {
 	// 기술 리스트 가져오기
 	public List<ProjectTechDto> techList();
 	
+	// 프로젝트 상세보기
+	public ProjectDto getProjectBoard(int projectNo);
+	
 }

@@ -24,4 +24,7 @@ public class ProjectService {
 		return projectDao.techList();
 	}
 
+	public ProjectDto getProjectBoard(int projectNo) {		
+		return projectDao.getProjectBoard(projectNo);
+	}
 }
