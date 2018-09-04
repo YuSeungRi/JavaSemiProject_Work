@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@include file="../main/header.jsp" %>
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
@@ -7,18 +8,16 @@
 	<h1>
 		<span class="fa fa-project-diagram fa-fw mr-1"></span>프로젝트
 	</h1>
-			 
-	 <br><br>
     
-    <div class="col-md-12">
+    <div class="col-md-12 mt-4">
 	<div class="card">
 	  <div class="card-header">
 	    프로젝트 검색하기
 	  </div>
 	  
 	<div class="card-body">
-    <form>
-    
+	
+    <form action = "/Project/search.do" method="post">    
 	  <div class="form-group row">
 	    <label for="projectName" class="col-sm-2 col-form-label">프로젝트 명</label>
 	    <div class="col-sm-10">
@@ -58,7 +57,7 @@
 			</div>
 			<div class="form-check form-check-inline">
 			  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-			  <label class="form-check-label" for="inlineCheckbox2">c++</label>
+			  <label class="form-check-label" for="inlineCheckbox2">C++</label>
 			</div>
 				      	<div class="form-check form-check-inline">
 			  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
@@ -102,7 +101,19 @@
 			</div>
 			<div class="form-check form-check-inline">
 			  <input class="form-check-input" type="checkbox" id="inlineCheckbox13" value="option13">
-			  <label class="form-check-label" for="inlineCheckbox13">기타</label>
+			  <label class="form-check-label" for="inlineCheckbox13">Ruby</label>
+			</div>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox14" value="option14">
+			  <label class="form-check-label" for="inlineCheckbox14">Angular.js</label>
+			</div>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox15" value="option15">
+			  <label class="form-check-label" for="inlineCheckbox15">react</label>
+			</div>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="checkbox" id="inlineCheckbox16" value="option16">
+			  <label class="form-check-label" for="inlineCheckbox16">vue.js</label>
 			</div>
 			
 			
@@ -110,7 +121,7 @@
 	  </div>
 		
 	  <div class="form-group row">
-	    <div class="col-sm-2">사용기술</div>
+	    <div class="col-sm-2">기간</div>
 		  
 			<div class="form-group col-md-5">
 			 <label >시작일</label>
@@ -124,142 +135,77 @@
 			        max="3000-12-31" class="form-control">
 			</div>
 
-	  </div>		
+	  </div>	
+	  
 			  
 	  <div class="form-group row justify-content-end">
 
 	      <button type="submit" class="btn btn-primary btn-sm mx-2">검색하기</button>
 	      <button type="reset" class="btn btn-default btn-sm mx-2">초기화</button>
 	      
-	  </div>
-	  
+	  </div>	  
 	</form>
+	
     </div>
     </div>
     </div>	
     
     <!-- 프로젝트 검색하기 작성완료 -->
-    
+      
     			<div class="col-md-12">
 
-				<br>
-
 				<form>
-					<div>
-
+					<div class="mt-4  form-inline" >
 						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="#">가나다</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">시작일</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">최신순</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">지역</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">모집상태</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">시작일</a></li>						 
 						</ul>
 					</div>
-				</form>
 
-				<div style="overflow: auto;" class="">
-					<table class="table table-hover table-sm">
-						<thead class="thead-light">
-							<tr>
-								<th>글번호</th>
-								<th>작성일</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>모집상태</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>2018-08-02</td>
-								<td>놀러갑시다</td>
-								<td>관리자</td>
-								<td>모집중</td>
+				</form>					
 
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>2018-08-02</td>
-								<td>놀러갑시다</td>
-								<td>관리자</td>
-								<td>모집완료</td>
+					<c:forEach items="${projectList }" var="project">
+					<ul class="list-group list-group-flush">
+					  <li class="list-group-item">
 
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>2018-08-02</td>
-								<td>놀러갑시다</td>
-								<td>관리자</td>
-								<td>모집완료</td>
+							
+  							<div class="card">
+							  <div class="card-body">
+							    <h5 class="card-title">${project.projectTitle }</h5>
+							    <span class="card-text mr-5">시작일 : ${project.projectStart }</span>
+							    <span class="card-text mr-5">종료일 : ${project.projectEnd }</span>
+							    <span class="card-text mr-5">작성자 : ${project.projectLead }</span>
+							    <span class="card-text mr-5">지역 : ${project.locationName }</span>
+							    <p class="card-text mt-3">${project.projectContent }</p>	
 
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>2018-08-02</td>
-								<td>놀러갑시다</td>
-								<td>관리자</td>
-								<td>모집중</td>
-
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>2018-08-02</td>
-								<td>놀러갑시다</td>
-								<td>관리자</td>
-								<td>모집완료</td>
-
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>2018-08-02</td>
-								<td>놀러갑시다</td>
-								<td>관리자</td>
-								<td>모집중</td>
-
-							</tr>
-							<tr>
-								<td>7</td>
-								<td>2018-08-02</td>
-								<td>놀러갑시다</td>
-								<td>관리자</td>
-								<td>모집중</td>
-	
-							</tr>
-							<tr>
-								<td>8</td>
-								<td>2018-08-02</td>
-								<td>놀러갑시다</td>
-								<td>관리자</td>
-								<td>모집중</td>
+						    	<c:forEach items="${techList}" var="tech">
+						    		<c:if test="${tech.projectNo  eq project.projectNo}">
+						    			<span class="badge badge-info mb-2">${tech.techName }</span>
+						    		</c:if>
+						    	</c:forEach>		   				
+							    
+							    <div class="text-right"><a href="#" class="btn-sm btn-primary">자세히보기</a></div>
+							  </div>
+							</div>
+							
+							
+					  </li>
+					</ul>
+					</c:forEach>	
 					
-							</tr>
-						</tbody>
-					</table>
+			<a href="#" class="btn btn-secondary btn-sm active mt-2 mx-10" role="button" aria-pressed="true">프로젝트 등록하기</a>					
+
+			<div class="row justify-content-center">
+				<div class="col m-4">
+				<!-- 페이지네이션 -->
+				<jsp:include page="/util/projectPaging.jsp" />
 				</div>
-				<br> <a href="#" class="btn btn-secondary btn-sm active"
-					role="button" aria-pressed="true">프로젝트 등록하기</a> <br> <br>
-
-				<ul class="pagination justify-content-center">
-					<li class="page-item"><a class="page-link" href="#">&laquo</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">4</a></li>
-					<li class="page-item"><a class="page-link" href="#">5</a></li>
-					<li class="page-item"><a class="page-link" href="#">6</a></li>
-					<li class="page-item"><a class="page-link" href="#">7</a></li>
-					<li class="page-item"><a class="page-link" href="#">8</a></li>
-					<li class="page-item"><a class="page-link" href="#">9</a></li>
-					<li class="page-item"><a class="page-link" href="#">10</a></li>
-					<li class="page-item"><a class="page-link" href="#">&raquo</a></li>
-				</ul>
-
-			</div>
-    
-    
-    
-	
+			</div>				
+		
 	<!-- 작성완료 -->	
 	
+</div>
 </div>
 <%@include file="../main/scriptloader.jsp" %>
 <%@include file="../main/footer.jsp"%>
