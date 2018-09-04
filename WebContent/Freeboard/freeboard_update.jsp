@@ -10,13 +10,6 @@
 <%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
 <link rel="stylesheet" href="../summernote/summernote-bs4.css" />
 <%@include file="../main/styleloader.jsp"%>
-<%-- <c:if test="${sessionScope.userEmail ne board.boardUser }"> --%>
-<!-- 	<script type="text/javascript"> -->
-// 		alert("본인만 수정 가능합니다.")
-// 		location.href = "/Freeboard/free.do";
-<!-- 	</script> -->
-<%-- </c:if> --%>
-
 <div class="container m-3">
 	<h2>
 		<i class="fas fa-pencil-alt fa-2x"></i>게시글 수정
