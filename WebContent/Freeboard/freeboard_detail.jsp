@@ -67,12 +67,14 @@
 		<div class="row justify-content-center">
 			<a href="/Freeboard/free.do" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">목록으로</a>
-				
-			<a href="/Freeboard/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
-			role="button" aria-pressed="true">수정</a>
 			
-			<a href="/Freeboard/delete.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
-			role="button" aria-pressed="true">삭제</a>
+			<c:if test="${userNick eq board.boardUser">
+				<a href="/Freeboard/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
+				role="button" aria-pressed="true">수정</a>
+			
+				<a href="/Freeboard/delete.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
+				role="button" aria-pressed="true">삭제</a>
+			 </c:if>
 			
 			<c:if test="${login }">
 			<button id="btnRecommend" type="button" class="btn btn-secondary btn-sm active">추천</button>
