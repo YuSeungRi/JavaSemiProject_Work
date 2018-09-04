@@ -68,7 +68,7 @@
 			<a href="/Freeboard/free.do" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">목록으로</a>
 			
-			<c:if test="${userNick eq board.boardUser">
+			<c:if test="${userNick eq board.boardUser }">
 				<a href="/Freeboard/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
 				role="button" aria-pressed="true">수정</a>
 			
