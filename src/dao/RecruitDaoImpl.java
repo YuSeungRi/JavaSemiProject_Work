@@ -16,12 +16,10 @@ import dto.RecruitDto;
  * 
  *  구인구직 DAO_구현
  * 
- * 수정일 : 2018.09.03
+ * 수정일 : 2018.09.04
  * 수정자 : 권미현
- *  - '게시글 상제 조회(내용)_구인구직' 추가
- *  - 메소드명 수정
- *  - '게시글 수정_구인구직', '게시글 삭제_구인구직' 추가
- *  - '구인구직_상태 조회후, 총 개수' 추가
+ *  - SELECT 문 모두 수정 (userinfo 랑 조인되게끔)
+ *  - createBoardRecruit : INSERT 문 모두 수정
  */
 
 public class RecruitDaoImpl implements RecruitDao {
@@ -35,9 +33,22 @@ public class RecruitDaoImpl implements RecruitDao {
 	public RecruitDto getBoardRecruit(int boardNo) {
 		RecruitDto dto = null;
 		
-		String sql = "SELECT * FROM board" + 
-				" JOIN recruit" + 
-				" USING (board_no)" + 
+		String sql = "SELECT" + 
+				"    board_no," + 
+				"    B.board_category," + 
+				"    B.board_title," + 
+				"    B.board_user," + 
+				"    U.user_nick," + 
+				"    B.board_read," + 
+				"    B.board_create," + 
+				"    B.board_modify," + 
+				"    B.board_content," + 
+				"    r.recruit_status" + 
+				" FROM board B" + 
+				"  JOIN recruit R" + 
+				"    USING (board_no)" + 
+				"  JOIN userInfo U" + 
+				"    ON B.board_user = U.user_email" + 
 				" WHERE board_no=?"; // 1. no
 		
 		try {
@@ -53,11 +64,11 @@ public class RecruitDaoImpl implements RecruitDao {
 				dto.setBoardCategory(rs.getString("board_category"));
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
+				dto.setBoardNick(rs.getString("user_nick"));
 				dto.setBoardRead(rs.getInt("board_read"));
 				dto.setBoardCreate(rs.getDate("board_create"));
 				dto.setBoardModify(rs.getDate("board_modify"));
 				dto.setBoardContent(rs.getString("board_content"));
-				dto.setBoardTech(rs.getInt("board_tech"));
 				dto.setRecruitStatus(rs.getString("recruit_status"));
 			}
 			
@@ -109,102 +120,193 @@ public class RecruitDaoImpl implements RecruitDao {
 			
 			sql = "SELECT * FROM (" + 
 				"    SELECT rownum rnum, B.* FROM (" + 
-				"        SELECT * FROM board" + 
-				"        JOIN recruit" +  
-				"		 USING (board_no)"+
+				"        SELECT" + 
+				"            board_no," + 
+				"            B.board_category," + 
+				"            B.board_title," + 
+				"            B.board_user," + 
+				"            U.user_nick," + 
+				"            B.board_read," + 
+				"            B.board_create," + 
+				"            B.board_modify," + 
+				"            B.board_content," + 
+				"            r.recruit_status" + 
+				"        FROM board B" + 
+				"         JOIN recruit R" + 
+				"            USING (board_no)" + 
+				"         JOIN userInfo U" + 
+				"            ON B.board_user = U.user_email" +
 				"        ORDER BY board_create DESC, board_no DESC" +
 				"    ) B" + 
 				"    ORDER BY rnum" + 
 				")" + 
-				"WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
+				" WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
 				+ " AND ?"; // 2. paging.getEndNo()
 			
 		} else if (order.equals("read")) { // 조회순
 			
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
-					"        SELECT * FROM board" + 
-					"        JOIN recruit" +  
-					"		 USING (board_no)"+
+					"        SELECT" + 
+					"            board_no," + 
+					"            B.board_category," + 
+					"            B.board_title," + 
+					"            B.board_user," + 
+					"            U.user_nick," + 
+					"            B.board_read," + 
+					"            B.board_create," + 
+					"            B.board_modify," + 
+					"            B.board_content," + 
+					"            r.recruit_status" + 
+					"        FROM board B" + 
+					"         JOIN recruit R" + 
+					"            USING (board_no)" + 
+					"         JOIN userInfo U" + 
+					"            ON B.board_user = U.user_email" +
 					"        ORDER BY board_read DESC, board_no DESC" +
 					"    ) B" + 
 					"    ORDER BY rnum" + 
 					")" + 
-					"WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
+					" WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
 					+ " AND ?"; // 2. paging.getEndNo()
 			
 		} else if (order.equals("recommend")) { // 추천순
 			
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
-					"        SELECT * FROM board" + 
-					"        JOIN recruit" +  
-					"		 USING (board_no)"+
+					"        SELECT" + 
+					"            board_no," + 
+					"            B.board_category," + 
+					"            B.board_title," + 
+					"            B.board_user," + 
+					"            U.user_nick," + 
+					"            B.board_read," + 
+					"            B.board_create," + 
+					"            B.board_modify," + 
+					"            B.board_content," + 
+					"            r.recruit_status" + 
+					"        FROM board B" + 
+					"         JOIN recruit R" + 
+					"            USING (board_no)" + 
+					"         JOIN userInfo U" + 
+					"            ON B.board_user = U.user_email" +
 					"        ORDER BY board_recommend DESC, board_no DESC" +
 					"    ) B" + 
 					"    ORDER BY rnum" + 
 					")" + 
-					"WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
+					" WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
 					+ " AND ?"; // 2. paging.getEndNo()
 			
 		} else if (order.equals("jobOffer")) { 
 			// 상태(구인)
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
-					"        SELECT * FROM board" + 
-					"        JOIN recruit" +  
-					"		 USING (board_no)"+
+					"        SELECT" + 
+					"            board_no," + 
+					"            B.board_category," + 
+					"            B.board_title," + 
+					"            B.board_user," + 
+					"            U.user_nick," + 
+					"            B.board_read," + 
+					"            B.board_create," + 
+					"            B.board_modify," + 
+					"            B.board_content," + 
+					"            r.recruit_status" + 
+					"        FROM board B" + 
+					"         JOIN recruit R" + 
+					"            USING (board_no)" + 
+					"         JOIN userInfo U" + 
+					"            ON B.board_user = U.user_email" +
 					"		 WHERE recruit_status='구인'" +
 					"        ORDER BY board_create DESC, board_no DESC" +
 					"    ) B" + 
 					"    ORDER BY rnum" + 
 					")" + 
-					"WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
+					" WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
 					+ " AND ?"; // 2. paging.getEndNo()
 			
 		} else if (order.equals("jobOfferComplete")) {
 			// 상태(구인완료)
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
-					"        SELECT * FROM board" + 
-					"        JOIN recruit" +  
-					"		 USING (board_no)"+
+					"        SELECT" + 
+					"            board_no," + 
+					"            B.board_category," + 
+					"            B.board_title," + 
+					"            B.board_user," + 
+					"            U.user_nick," + 
+					"            B.board_read," + 
+					"            B.board_create," + 
+					"            B.board_modify," + 
+					"            B.board_content," + 
+					"            r.recruit_status" + 
+					"        FROM board B" + 
+					"         JOIN recruit R" + 
+					"            USING (board_no)" + 
+					"         JOIN userInfo U" + 
+					"            ON B.board_user = U.user_email" +
 					"		 WHERE recruit_status='구인완료'" +
 					"        ORDER BY board_create DESC, board_no DESC" +
 					"    ) B" + 
 					"    ORDER BY rnum" + 
 					")" + 
-					"WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
+					" WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
 					+ " AND ?"; // 2. paging.getEndNo()
 			
 		} else if (order.equals("jobHunt")) {
 			// 상태(구직)
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
-					"        SELECT * FROM board" + 
-					"        JOIN recruit" +  
-					"		 USING (board_no)"+
+					"        SELECT" + 
+					"            board_no," + 
+					"            B.board_category," + 
+					"            B.board_title," + 
+					"            B.board_user," + 
+					"            U.user_nick," + 
+					"            B.board_read," + 
+					"            B.board_create," + 
+					"            B.board_modify," + 
+					"            B.board_content," + 
+					"            r.recruit_status" + 
+					"        FROM board B" + 
+					"         JOIN recruit R" + 
+					"            USING (board_no)" + 
+					"         JOIN userInfo U" + 
+					"            ON B.board_user = U.user_email" +
 					"		 WHERE recruit_status='구직'" +
 					"        ORDER BY board_create DESC, board_no DESC" +
 					"    ) B" + 
 					"    ORDER BY rnum" + 
 					")" + 
-					"WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
+					" WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
 					+ " AND ?"; // 2. paging.getEndNo()
 			
 		} else if (order.equals("jobHuntComplete")) {
 			// 상태(구직완료)
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
-					"        SELECT * FROM board" + 
-					"        JOIN recruit" +  
-					"		 USING (board_no)"+
+					"        SELECT" + 
+					"            board_no," + 
+					"            B.board_category," + 
+					"            B.board_title," + 
+					"            B.board_user," + 
+					"            U.user_nick," + 
+					"            B.board_read," + 
+					"            B.board_create," + 
+					"            B.board_modify," + 
+					"            B.board_content," + 
+					"            r.recruit_status" + 
+					"        FROM board B" + 
+					"         JOIN recruit R" + 
+					"            USING (board_no)" + 
+					"         JOIN userInfo U" + 
+					"            ON B.board_user = U.user_email" +
 					"		 WHERE recruit_status='구직완료'" +
 					"        ORDER BY board_create DESC, board_no DESC" +
 					"    ) B" + 
 					"    ORDER BY rnum" + 
 					")" + 
-					"WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
+					" WHERE rnum BETWEEN ?" // 1. paging.getStartNo()
 					+ " AND ?"; // 2. paging.getEndNo()
 			
 		}
@@ -224,11 +326,11 @@ public class RecruitDaoImpl implements RecruitDao {
 				dto.setBoardCategory(rs.getString("board_category"));
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
+				dto.setBoardNick(rs.getString("user_nick"));
 				dto.setBoardRead(rs.getInt("board_read"));
 				dto.setBoardCreate(rs.getDate("board_create"));
 				dto.setBoardModify(rs.getDate("board_modify"));
 				dto.setBoardContent(rs.getString("board_content"));
-				dto.setBoardTech(rs.getInt("board_tech"));
 				dto.setRecruitStatus(rs.getString("recruit_status"));
 				
 				list.add(dto);
@@ -252,40 +354,41 @@ public class RecruitDaoImpl implements RecruitDao {
 		boolean result = false;
 		
 		// Board
-		String sql = "INSERT INTO board"
-				+ " VALUES (BOARD_SEQ.nextval,"
-				+ " ?," // 1. category
-				+ " ?," // 2. title
-				+ " ?," // 3. user
+		String sql = "INSERT INTO board (board_no, board_category, board_title, board_user,"
+				+ " board_read, board_create, board_content)"
+				+ " VALUES ("
+				+ " ?," // 1. no
+				+ " ?," // 2. category
+				+ " ?," // 3. title
+				+ " ?," // 4. user
 				+ " 0," // read
-				+ " 0," // recommend
 				+ " TO_CHAR(sysdate, 'YYYY-MM-DD')," // create
-				+ " null," // modify
-				+ " ?," // 4. content
-				+ " ?" // 5.tech
+				+ " ?" // 5. content
 				+ ")";
 		
 		// Recruit
 		String sql2 = "INSERT INTO recruit"
-				+ " VALUES (BOARD_SEQ.currval,"
-				+ " ?" // 1. status
+				+ " VALUES ("
+				+ " ?," // 1. no
+				+ " ?" // 2. status
 				+ ")";
 		
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, dto.getBoardCategory());
-			ps.setString(2, dto.getBoardTitle());
-			ps.setString(3, dto.getBoardUser());
-			ps.setString(4, dto.getBoardContent());
-			ps.setInt(5, dto.getBoardTech());
+			ps.setInt(1, dto.getBoardNo());
+			ps.setString(2, dto.getBoardCategory());
+			ps.setString(3, dto.getBoardTitle());
+			ps.setString(4, dto.getBoardUser());
+			ps.setString(5, dto.getBoardContent());
 			
 			ps.executeUpdate();
 			
 			// 두번째 쿼리 (구인구직_상태)
 			ps = conn.prepareStatement(sql2);
 			
-			ps.setString(1, dto.getRecruitStatus());
+			ps.setInt(1, dto.getBoardNo());
+			ps.setString(2, dto.getRecruitStatus());
 			
 			ps.executeQuery();
 			

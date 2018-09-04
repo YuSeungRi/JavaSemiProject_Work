@@ -22,7 +22,7 @@
 	<h2><i class="fas fa-pencil-alt fa-2x"></i>구인구직 작성</h2>
 	
 	
-	<form action="/recruit/write.do" method="post">
+	<form action="/recruit/write.do" method="post" enctype="multipart/form-data">
 		<div class="form-group row">
 			<%-- 제목 라벨 --%>
 			<label for="title" class="col-sm-2 col-form-label">제목</label>
@@ -57,8 +57,8 @@
 			<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>
 			<div class="col-sm-7">
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="file"> <label
-						class="custom-file-label" for="file"></label>
+					<input type="file" class="custom-file-input" id="file">
+					<label class="custom-file-label" for="file"></label>
 				</div>
 			</div>
 		</div>
@@ -78,8 +78,8 @@
 <script type="text/javascript" src="../summernote/summernote-bs4.js" ></script>
 
 <script type="text/javascript">
-	// 버튼 이벤트
 	$(document).ready(function(){
+		// 버튼 이벤트
 		$("#btnBefore").click(function(){
 			history.back(); // 이전 화면으로 넘어가기
 		});
@@ -91,6 +91,12 @@
 		$("#btnWrite").click(function(){
 			$("#summernote").summernote("code");
 			$("form").submit();
+		});
+		
+		// 파일첨부 기능 추가 (수정일 : 2018.09.04 / 수정자 : 권미현)
+		$('.custom-file-input').on('change', function() { 
+			   var fileName = $(this).val().split('\\').pop(); 
+			   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
 		});
 	});
 </script>

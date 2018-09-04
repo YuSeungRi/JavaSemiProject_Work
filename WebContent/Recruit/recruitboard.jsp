@@ -58,7 +58,8 @@
 							<td>
 								<a href="/recruit/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardUser }</td>
+							<%-- 수정일 : 2018.09.04 / 수정자 : 권미현 / ${board.boardUser } → ${board.boardNick } --%>
+							<td>${board.boardNick }</td>
 							<td>${board.boardRead }</td>
 							<td>${board.recruitStatus }</td>
 						</tr>

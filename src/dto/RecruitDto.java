@@ -7,24 +7,23 @@ import java.sql.Date;
  * 작성자 : 권미현
  *  구인구직 DTO
  *  
- * 수정일 : 2018.09.03
+ * 수정일 : 2018.09.04
  * 수정자 : 권미현
- *  - Recommend 삭제
- *  - 'recuritStatus' → 'recruitStatus' 오탈자 수정 및 관련 메소드 오탈자 수정
+ *  - boardNick 변수 및 관련 메소드 추가
  */
 
 public class RecruitDto {
 
-	private int boardNo;
-	private String boardCategory;
-	private String boardTitle;
-	private String boardUser;
-	private int boardRead;
-	private Date boardCreate;
-	private Date boardModify;
-	private String boardContent;
-	private int boardTech;
-	private String recruitStatus;
+	private int boardNo; // 번호
+	private String boardCategory; // 카테고리
+	private String boardTitle; // 제목
+	private String boardUser; // email
+	private String boardNick; // 닉네임
+	private int boardRead; // 조회수
+	private Date boardCreate; // 작성일
+	private Date boardModify; // 수정일
+	private String boardContent; // 내용
+	private String recruitStatus; // 상태
 	
 	
 	public int getBoardNo() {
@@ -51,6 +50,12 @@ public class RecruitDto {
 	public void setBoardUser(String boardUser) {
 		this.boardUser = boardUser;
 	}
+	public String getBoardNick() {
+		return boardNick;
+	}
+	public void setBoardNick(String boardNick) {
+		this.boardNick = boardNick;
+	}
 	public int getBoardRead() {
 		return boardRead;
 	}
@@ -75,12 +80,6 @@ public class RecruitDto {
 	public void setBoardContent(String boardContent) {
 		this.boardContent = boardContent;
 	}
-	public int getBoardTech() {
-		return boardTech;
-	}
-	public void setBoardTech(int boardTech) {
-		this.boardTech = boardTech;
-	}
 	public String getRecruitStatus() {
 		return recruitStatus;
 	}
@@ -92,8 +91,9 @@ public class RecruitDto {
 	@Override
 	public String toString() {
 		return "RecruitDto [boardNo=" + boardNo + ", boardCategory=" + boardCategory + ", boardTitle=" + boardTitle
-				+ ", boardUser=" + boardUser + ", boardRead=" + boardRead + ", boardCreate=" + boardCreate 
-				+ ", boardModify=" + boardModify + ", boardContent=" + boardContent
-				+ ", boardTech=" + boardTech + ", recruitStatus=" + recruitStatus + "]";
+				+ ", boardUser=" + boardUser + ", boardNick=" + boardNick + ", boardRead=" + boardRead
+				+ ", boardCreate=" + boardCreate + ", boardModify=" + boardModify + ", boardContent=" + boardContent
+				+ ", recruitStatus=" + recruitStatus + "]";
 	}
+
 }

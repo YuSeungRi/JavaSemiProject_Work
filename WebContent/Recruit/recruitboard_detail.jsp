@@ -40,7 +40,8 @@
 					</tr>
 					<tr>
 						<td colspan="1">no.</td><td colspan="3">${board.boardNo }</td>
-						<td colspan="1">작성자</td><td colspan="2">${board.boardUser }</td>
+						<%-- 수정일 : 2018.09.04 / 수정자 : 권미현 / ${board.boardUser } → ${board.boardNick } 변경 --%>
+						<td colspan="1">작성자</td><td colspan="2">${board.boardNick }</td>
 						<td colspan="1">조회수</td><td colspan="2">${board.boardRead }</td>
 						<td colspan="1">작성일</td><td colspan="2">${board.boardCreate }</td>	
 						<td colspan="1">상태</td><td colspan="2">${board.recruitStatus }</td>	
@@ -69,13 +70,14 @@
 			<a href="/recruit/recruit.do" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">목록으로</a>
 		
-		<c:if test="${userNick eq board.boardUser }">		
-			<a href="/recruit/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
-			role="button" aria-pressed="true">수정</a>
+			<%-- 수정일 : 2018.09.04 / 수정자 : 권미현 / ${userNick eq board.boardUser } → ${userId eq board.boardUser } 변경 --%>
+			<c:if test="${userId eq board.boardUser }">	
+				<a href="/recruit/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
+				role="button" aria-pressed="true">수정</a>
 			
-			<a href="/recruit/delete.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
-			role="button" aria-pressed="true">삭제</a>
-		</c:if>
+				<a href="/recruit/delete.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
+				role="button" aria-pressed="true">삭제</a>
+			</c:if>
 		</div>
 		<!-- 댓글 입력 영역  -->
 		<div class="row mt-3 justify-content-center" id="replyDisplay" > 
