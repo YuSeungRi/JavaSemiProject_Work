@@ -5,20 +5,25 @@ import java.sql.Date;
 /*
  * 작성일 : 2018.08.19
  * 작성자 : 권미현
+ * 
+ * 수정일 : 2018.09.04
+ * 수정자 : 권미현
+ *  - boardNick 변수, getter/setter 메소드 추가
  */
 
 public class BoardDto {
 
-	private int boardNo;
-	private String boardCategory;
-	private String boardTitle;
-	private String boardUser;
-	private int boardRead;
-	private int boardRecommend;
-	private Date boardCreate;
-	private Date boardModify;
-	private String boardContent;
-	private int boardTech;
+	private int boardNo; // no
+	private String boardCategory; // 카테고리
+	private String boardTitle; // 제목
+	private String boardUser; // email
+	private String boardNick; // 닉네임
+	private int boardRead; // 조회수
+	private int boardRecommend; // 추천
+	private Date boardCreate; // 작성일
+	private Date boardModify; // 수정일
+	private String boardContent; // 내용
+	private int boardTech; // 기술
 	
 	public BoardDto() {
 		
@@ -54,6 +59,14 @@ public class BoardDto {
 
 	public void setBoardUser(String boardUser) {
 		this.boardUser = boardUser;
+	}
+
+	public String getBoardNick() {
+		return boardNick;
+	}
+
+	public void setBoardNick(String boardNick) {
+		this.boardNick = boardNick;
 	}
 
 	public int getBoardRead() {
@@ -107,10 +120,10 @@ public class BoardDto {
 	// TEST
 	@Override
 	public String toString() {
-		return "BoardDto [ boardNo : " + boardNo + ", boardCategory : " + boardCategory + ", boardTitle : " + boardTitle
-				+ ", boardUser : " + boardUser + ", boardRead : " + boardRead + ", boardRecomant : " + boardRecommend
-				+ ", boardCreate : " + boardCreate + ", boardModify : " + boardModify + ", boardContent : " + boardContent
-				+ ", boardTech : " + boardTech + " ]";
+		return "BoardDto [boardNo=" + boardNo + ", boardCategory=" + boardCategory + ", boardTitle=" + boardTitle
+				+ ", boardUser=" + boardUser + ", boardNick=" + boardNick + ", boardRead=" + boardRead
+				+ ", boardRecommend=" + boardRecommend + ", boardCreate=" + boardCreate + ", boardModify=" + boardModify
+				+ ", boardContent=" + boardContent + ", boardTech=" + boardTech + "]";
 	}
-	
+
 }

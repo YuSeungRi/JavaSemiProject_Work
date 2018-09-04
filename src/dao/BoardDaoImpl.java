@@ -14,10 +14,9 @@ import dto.BoardDto;
  * 작성일 : 2018.08.19
  * 작성자 : 권미현
  * 
- * 수정일 : 2018.08.28
+ * 수정일 : 2018.09.04
  * 수정자 : 권미현
- *  - '카테고리별 페이징 리스트 조회' 메소드 수정
- *  	정렬을 위한 매개변수 추가
+ *  - getBoard, getCategoryBoard, getPagingList(정렬 있는거), getboards 쿼리문 수정 및 set 문 추가
  */
 
 public class BoardDaoImpl implements BoardDao {
@@ -33,18 +32,18 @@ public class BoardDaoImpl implements BoardDao {
 		BoardDto dto = null;
 		
 		String sql = "SELECT"
-				+ " board_no,"
-				+ " board_category,"
-				+ " board_title,"
-				+ " board_user,"
-				+ " board_read,"
-				+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
-				+ " board_create,"
-				+ " board_modify,"
-				+ " board_content,"
-				+ " board_tech"
-				+" FROM board"
-				+ " WHERE board_no=?"; // 1. no
+				+ " 	B.board_no,"
+				+ " 	B.board_category,"
+				+ " 	B.board_title,"
+				+ " 	B.board_user,"
+				+ " 	B.board_read,"
+				+ " 	(SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+				+ " 	B.board_create,"
+				+ " 	B.board_modify,"
+				+ " 	B.board_content,"
+				+ " 	B.board_tech"
+				+ " FROM board B, userInfo U"
+				+ " WHERE B.board_user = U.user_email AND board_no=?"; // 1. no
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -59,6 +58,7 @@ public class BoardDaoImpl implements BoardDao {
 				dto.setBoardCategory(rs.getString("board_category"));
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
+				dto.setBoardNick(rs.getString("user_nick"));
 				dto.setBoardRead(rs.getInt("board_read"));
 				dto.setBoardRecommend(rs.getInt("board_recommend"));
 				dto.setBoardCreate(rs.getDate("board_create"));
@@ -88,18 +88,18 @@ public class BoardDaoImpl implements BoardDao {
 		ArrayList<BoardDto> list = new ArrayList<>();
 		BoardDto dto = null;
 		String sql = "SELECT"
-				+ " board_no,"
-				+ " board_category,"
-				+ " board_title,"
-				+ " board_user,"
-				+ " board_read,"
-				+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
-				+ " board_create,"
-				+ " board_modify,"
-				+ " board_content,"
-				+ " board_tech" + 
-				"FROM board" + 
-				" WHERE board_category=?"; // 1. category
+				+ " 	B.board_no,"
+				+ " 	B.board_category,"
+				+ " 	B.board_title,"
+				+ " 	B.board_user,"
+				+ " 	B.board_read,"
+				+ " 	(SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+				+ " 	B.board_create,"
+				+ " 	B.board_modify,"
+				+ " 	B.board_content,"
+				+ " 	B.board_tech" + 
+				" FROM board B, userInfo U" + 
+				" WHERE B.board_user = U.user_email AND board_category=?"; // 1. category
 
 		
 		try {
@@ -115,6 +115,7 @@ public class BoardDaoImpl implements BoardDao {
 				dto.setBoardCategory(rs.getString("board_category"));
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
+				dto.setBoardNick(rs.getString("user_nick"));
 				dto.setBoardRead(rs.getInt("board_read"));
 				dto.setBoardRecommend(rs.getInt("board_recommend"));
 				dto.setBoardCreate(rs.getDate("board_create"));
@@ -234,18 +235,18 @@ public class BoardDaoImpl implements BoardDao {
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
 					"        SELECT"
-					+ " board_no,"
-					+ " board_category,"
-					+ " board_title,"
-					+ " board_user,"
-					+ " board_read,"
-					+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
-					+ " board_create,"
-					+ " board_modify,"
-					+ " board_content,"
-					+ " board_tech" +
-					" FROM board" + 
-					"        WHERE board_category=?" +  // 1. category
+					+ " 		B.board_no,"
+					+ " 		B.board_category,"
+					+ " 		B.board_title,"
+					+ " 		B.board_user,"
+					+ " 		B.board_read,"
+					+ " 		(SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+					+ " 		B.board_create,"
+					+ " 		B.board_modify,"
+					+ " 		B.board_content,"
+					+ " 		B.board_tech" +
+					"        FROM board B, userInfo U" + 
+					"        WHERE B.board_user = U.user_email AND board_category=?" +  // 1. category
 					"        ORDER BY board_create DESC, board_no DESC" +
 					"    ) B" + 
 					"    ORDER BY rnum" + 
@@ -258,18 +259,18 @@ public class BoardDaoImpl implements BoardDao {
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
 					"        SELECT"
-					+ " board_no,"
-					+ " board_category,"
-					+ " board_title,"
-					+ " board_user,"
-					+ " board_read,"
-					+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
-					+ " board_create,"
-					+ " board_modify,"
-					+ " board_content,"
-					+ " board_tech" +
-					" FROM board" + 
-					"        WHERE board_category=?" +  // 1. category
+					+ " 		B.board_no,"
+					+ " 		B.board_category,"
+					+ " 		B.board_title,"
+					+ " 		B.board_user,"
+					+ " 		B.board_read,"
+					+ " 		(SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+					+ " 		B.board_create,"
+					+ " 		B.board_modify,"
+					+ " 		B.board_content,"
+					+ " 		B.board_tech" +
+					"        FROM board B, userInfo U" + 
+					"        WHERE B.board_user = U.user_email AND board_category=?" +  // 1. category
 					"        ORDER BY board_read DESC, board_no DESC" +
 					"    ) B" + 
 					"    ORDER BY rnum" + 
@@ -282,18 +283,18 @@ public class BoardDaoImpl implements BoardDao {
 			sql = "SELECT * FROM (" + 
 					"    SELECT rownum rnum, B.* FROM (" + 
 					"        SELECT"
-					+ " board_no,"
-					+ " board_category,"
-					+ " board_title,"
-					+ " board_user,"
-					+ " board_read,"
-					+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
-					+ " board_create,"
-					+ " board_modify,"
-					+ " board_content,"
-					+ " board_tech" +
-					" FROM board" + 
-					"        WHERE board_category=?" +  // 1. category
+					+ " 		B.board_no,"
+					+ " 		B.board_category,"
+					+ " 		B.board_title,"
+					+ " 		B.board_user,"
+					+ " 		B.board_read,"
+					+ " 		(SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+					+ " 		B.board_create,"
+					+ " 		B.board_modify,"
+					+ " 		B.board_content,"
+					+ " 		B.board_tech" +
+					"        FROM board B, userInfo U" + 
+					"        WHERE B.board_user = U.user_email AND board_category=?" +  // 1. category
 					"        ORDER BY board_recommend DESC, board_no DESC" +
 					"    ) B" + 
 					"    ORDER BY rnum" + 
@@ -318,6 +319,7 @@ public class BoardDaoImpl implements BoardDao {
 				dto.setBoardCategory(rs.getString("board_category"));
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
+				dto.setBoardNick(rs.getString("user_nick"));
 				dto.setBoardRead(rs.getInt("board_read"));
 				dto.setBoardRecommend(rs.getInt("board_recommend"));
 				dto.setBoardCreate(rs.getDate("board_create"));
@@ -474,18 +476,18 @@ public class BoardDaoImpl implements BoardDao {
 		BoardDto dto = null;
 		
 		String sql = " SELECT * FROM (SELECT"
-				+ " board_no,"
-				+ " board_category,"
-				+ " board_title,"
-				+ " board_user,"
-				+ " board_read,"
-				+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
-				+ " board_create,"
-				+ " board_modify,"
-				+ " board_content,"
-				+ " board_tech" + 
-				" FROM board "
-				+ " WHERE board_category = ? ORDER BY board_no DESC) " // 1. categoryName
+				+ " 		B.board_no,"
+				+ " 		B.board_category,"
+				+ " 		B.board_title,"
+				+ " 		B.board_user,"
+				+ " 		B.board_read,"
+				+ " 		(SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+				+ " 		B.board_create,"
+				+ " 		B.board_modify,"
+				+ " 		B.board_content,"
+				+ " 		B.board_tech" +
+				"        FROM board B, userInfo U" + 
+				"        WHERE B.board_user = U.user_email AND board_category = ? ORDER BY board_no DESC) " // 1. categoryName
 				+ " WHERE rownum <= ? "; // 2. listnum
 		
 		try {
@@ -502,6 +504,7 @@ public class BoardDaoImpl implements BoardDao {
 				dto.setBoardCategory(rs.getString("board_category"));
 				dto.setBoardTitle(rs.getString("board_title"));
 				dto.setBoardUser(rs.getString("board_user"));
+				dto.setBoardNick(rs.getString("user_nick"));
 				dto.setBoardRead(rs.getInt("board_read"));
 				dto.setBoardRecommend(rs.getInt("board_recommend"));
 				dto.setBoardCreate(rs.getDate("board_create"));
