@@ -18,19 +18,18 @@
 					<input type="password" class="form-control" name="userPw" placeholder="Password">
 				</div>
 				<button type="submit" class="btn btn-primary btn-sm">로그인</button>
+				<button type="button" class="btn btn-primary btn-sm">아이디찾기</button>
 				<button type="button" class="btn btn-primary btn-sm">패스워드찾기</button>
 			</form>
 		</div>
 		<div class="col-lg-6 col-12">
 			<h5> 소셜 로그인 </h5>
-			<div class="m-3">
-				<button type="button" class="btn btn-warning btn-block">카카오 로그인</button>
-			</div>
+			
 			<div class="m-3">
 				<%@ include file="./naverlogin.jsp" %>
 			</div>
 			<div class="m-3">
-				<button type="button" class="btn btn-secondary btn-block">구글 로그인</button>
+				<%@ include file="./googlelogin.jsp" %>
 			</div>
 		</div>
 		
