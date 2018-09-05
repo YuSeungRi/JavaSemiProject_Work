@@ -142,6 +142,7 @@ CREATE SEQUENCE code_seq START WITH 10000;
 CREATE TABLE code_category (
     category_no     NUMBER,
     category_name   VARCHAR(50),
+    user_email		VARCHAR(50),
     
     CONSTRAINT code_category_PK PRIMARY KEY (category_no)
 );

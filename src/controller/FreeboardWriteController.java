@@ -144,7 +144,7 @@ public class FreeboardWriteController extends HttpServlet {
 			}
 		}
 		
-		System.out.println("FreeboardWriteController_" + dto);
+//		System.out.println("FreeboardWriteController_" + dto);
 		
 		service.createBoard(dto);
 		
