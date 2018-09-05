@@ -34,8 +34,9 @@ public class SignInController extends HttpServlet {
 		boolean isLoggedin =  false;
 		String userId = null;
 		String userNick = null;
+		String loginType = request.getParameter("loginType");
 		
-		if( request.getParameter("loginType").equals("social") ) {
+		if( loginType != null && loginType.equals("social")) {
 
 			if(request.getParameter("userEmail") != null && request.getParameter("userEmail") !="") {
 			
