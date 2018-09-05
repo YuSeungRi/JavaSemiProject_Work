@@ -27,4 +27,8 @@ public class ProjectService {
 	public ProjectDto getProjectBoard(int projectNo) {		
 		return projectDao.getProjectBoard(projectNo);
 	}
+
+	public void deleteProject(int projectNo) {
+		projectDao.deleteProject(projectNo);
+	}
 }

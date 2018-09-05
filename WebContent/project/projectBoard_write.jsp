@@ -1,24 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@include file="../main/header.jsp" %>
-<link rel="stylesheet" href="../css/Main.css" />
+<link rel="stylesheet" href="../summernote/summernote-bs4.css" />
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
-	<h1>
-		<span class="fa fa-project-diagram fa-fw mr-1"></span>프로젝트
-	</h1>
-    
-    <div class="col-md-12 mt-4">
-	<div class="card">
-	  <div class="card-header">
-	    프로젝트 검색하기
-	  </div>
-	  
-	<div class="card-body">
+
+	<h2><i class="fa fa-project-diagram fa-fw mr-1"></i>프로젝트 등록하기</h2>
+
+<form action="/project/projectWrite.do" method="post">
 	
-    <form action = "/Project/search.do" method="post">    
-	  <div class="form-group row">
+	  <div class="form-group row mt-5">
 	    <label for="projectName" class="col-sm-2 col-form-label">프로젝트 명</label>
 	    <div class="col-sm-10">
 	      <input type="text" class="form-control" id="projectName" placeholder="프로젝트명을 입력하세요">
@@ -135,77 +126,55 @@
 			        max="3000-12-31" class="form-control">
 			</div>
 
-	  </div>	
+	  </div>
 	  
-			  
-	  <div class="form-group row justify-content-end">
-
-	      <button type="submit" class="btn btn-primary btn-sm mx-2">검색하기</button>
-	      <button type="reset" class="btn btn-default btn-sm mx-2">초기화</button>
-	      
-	  </div>	  
-	</form>
-	
-    </div>
-    </div>
-    </div>	
-    
-    <!-- 프로젝트 검색하기 작성완료 -->
-      
-    			<div class="col-md-12">
-
-				<form>
-					<div class="mt-4  form-inline" >
-						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="#">최신순</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">지역</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">시작일</a></li>						 
-						</ul>
-					</div>
-
-				</form>					
-
-					<c:forEach items="${projectList }" var="project">
-					<ul class="list-group list-group-flush">
-					  <li class="list-group-item">
-
-							
-  							<div class="card">
-							  <div class="card-body">
-							    <h5 class="card-title">${project.projectTitle }</h5>
-							    <span class="card-text mr-5">시작일 : ${project.projectStart }</span>
-							    <span class="card-text mr-5">종료일 : ${project.projectEnd }</span>
-							    <span class="card-text mr-5">작성자 : ${project.projectLead }</span>
-							    <span class="card-text mr-5">지역 : ${project.locationName }</span>
-							    <p class="card-text mt-3">${project.projectContent }</p>	
-
-						    	<c:forEach items="${techList}" var="tech">
-						    		<c:if test="${tech.projectNo  eq project.projectNo}">
-						    			<span class="badge badge-info mb-2">${tech.techName }</span>
-						    		</c:if>
-						    	</c:forEach>		   				
-							    
-							    <div class="text-right"><a href="/project/projectView.do?projectno=${project.projectNo }" class="btn-sm btn-primary">자세히보기</a></div>
-							  </div>
-							</div>
-							
-							
-					  </li>
-					</ul>
-					</c:forEach>	
-					
-			<a href="/project/projectWrite.do" class="btn btn-secondary btn-sm active mt-2 mx-10" role="button" aria-pressed="true">프로젝트 등록하기</a>					
-
-			<div class="row justify-content-center">
-				<div class="col m-4">
-				<!-- 페이지네이션 -->
-				<jsp:include page="/util/projectPaging.jsp" />
-				</div>
-			</div>				
+		<%-- 내용 --%>
+		<%-- summernote_start --%>
+		<textarea id="summernote" name="summernote"></textarea>
 		
-	<!-- 작성완료 -->	
-	
+		<br>
+		<%-- summernote_end --%>	  	
+
+		<%-- 버튼 --%>
+		<div class="row justify-content-around">
+			<button id="btnReset" type="reset" class="btn btn-secondary">초기화</button>
+			<button id="btnBefore" type="button" class="btn btn-secondary">목록으로</button>
+			<button id="btnWrite" class="btn btn-primary">등록</button>
+		</div>
+
+</form>
+
 </div>
-</div>
+
 <%@include file="../main/scriptloader.jsp" %>
-<%@include file="../main/footer.jsp"%>
+<%-- 여기에 페이지에 사용할 js를 삽입하세요. --%>
+<script type="text/javascript" src="../summernote/summernote-bs4.js" ></script>
+<script type="text/javascript">
+	// 버튼 이벤트
+	$(document).ready(function(){
+		$("#btnBefore").click(function(){
+			history.back(); // 이전 화면으로 넘어가기
+		});
+		
+		$("#btnReset").click(function(){
+			$("#summernote").summernote("reset");
+		});
+
+		$("#btnWrite").click(function(){
+			$("#summernote").summernote("code");
+			$("form").submit();
+		});
+
+	});
+</script>
+
+
+<script type="text/javascript">
+    	$(document).ready(function() {
+      		$('#summernote').summernote({
+      			height : 300 // 높이 300 지정
+      		});
+    	});
+</script>
+
+<%@include file="../main/footer.jsp" %>
