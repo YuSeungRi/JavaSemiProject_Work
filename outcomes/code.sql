@@ -55,13 +55,41 @@ INSERT INTO code(code_no, category_no, code_title, code_content, code_source, us
 INSERT INTO code(code_no, category_no, code_title, code_content, code_source, user_email) VALUES (54,7,'title54','console log54','console.log("hi")//54','user1@naver.com');
 
 -- code_category 
-INSERT INTO code_category(category_no, category_name) VALUES (1,'Java');
-INSERT INTO code_category(category_no, category_name) VALUES (2,'C#');
-INSERT INTO code_category(category_no, category_name) VALUES (3,'Javascript');
-INSERT INTO code_category(category_no, category_name) VALUES (4,'jQuery');
-INSERT INTO code_category(category_no, category_name) VALUES (5,'PHP');
-INSERT INTO code_category(category_no, category_name) VALUES (6,'C/C++');
-INSERT INTO code_category(category_no, category_name) VALUES (7,'Oracle');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (1,'Java', 'user1@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (2,'C#', 'user1@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (3,'Javascript', 'user1@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (4,'jQuery', 'user1@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (5,'PHP', 'user1@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (6,'C/C++', 'user1@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (7,'Oracle', 'user1@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (8,'Java', 'user2@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (9,'C#', 'user2@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (10,'Javascript', 'user2@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (11,'jQuery', 'user2@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (12,'PHP', 'user2@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (13,'C/C++', 'user2@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (14,'Oracle', 'user2@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (15,'Java', 'user3@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (16,'C#', 'user3@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (17,'Javascript', 'user3@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (18,'jQuery', 'user3@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (19,'PHP', 'user3@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (20,'C/C++', 'user3@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (21,'Oracle', 'user3@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (22,'Java', 'user4@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (23,'C#', 'user4@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (24,'Javascript', 'user4@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (25,'jQuery', 'user4@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (26,'PHP', 'user4@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (27,'C/C++', 'user4@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (28,'Oracle', 'user4@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (29,'Java', 'user5@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (30,'C#', 'user5@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (31,'Javascript', 'user5@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (32,'jQuery', 'user5@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (33,'PHP', 'user5@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (34,'C/C++', 'user5@naver.com');
+INSERT INTO code_category(category_no, category_name, user_email) VALUES (35,'Oracle', 'user5@naver.com');
 
 -- code_tech
 INSERT INTO code_tech (code_no, tech_no) VALUES (1,1);

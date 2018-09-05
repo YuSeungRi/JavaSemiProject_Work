@@ -107,7 +107,7 @@ public class FreeboardWriteController extends HttpServlet {
 				// key, value 쌍으로 저장된 데이터일 경우 
 //				out.println("폼 필드 : " + item.getFieldName() + ", 값 : " + item.getString());
 				if(item.getFieldName().equals("title")) {
-					dto.setBoardTitle(item.getString());
+					dto.setBoardTitle(item.getString(""));
 				}
 				if(item.getFieldName().equals("summernote")) {
 					dto.setBoardContent(item.getString());

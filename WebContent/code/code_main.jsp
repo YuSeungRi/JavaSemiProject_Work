@@ -1,5 +1,7 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- 
 code게시판 Main 
  --%>
@@ -9,7 +11,7 @@ code게시판 Main
 <style type="text/css">
 .wrapper-scroll-y {
   display: block;
-  max-height: 300px;
+  max-height: 350px;
   overflow-y: auto;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
@@ -26,87 +28,46 @@ code게시판 Main
 				</div>
 				<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
 					All
-					<span class="badge badge-primary badge-pill">100</span>
+					<span class="badge badge-primary badge-pill">${allCount }</span>
 				</a>
-				<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-					<div>Java <span class="badge badge-primary badge-pill">14</span></div>
-					<button name="Java" class="btn btn-sm btn-transparent"><span>&times;</span></button>
-				</a>
-				<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-					<div>Oracle <span class="badge badge-primary badge-pill">14</span></div>
-					<button name="Java" class="btn btn-sm btn-transparent"><span>&times;</span></button>
-				</a>
-				<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-					<div>C# <span class="badge badge-primary badge-pill">14</span></div>
-					<button name="Java" class="btn btn-sm btn-transparent"><span>&times;</span></button>
-				</a>
-				<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-					<div>C# <span class="badge badge-primary badge-pill">14</span></div>
-					<button name="Java" class="btn btn-sm btn-transparent"><span>&times;</span></button>
-				</a>
-				<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-					<div>C# <span class="badge badge-primary badge-pill">14</span></div>
-					<button name="Java" class="btn btn-sm btn-transparent"><span>&times;</span></button>
-				</a>
+				<c:forEach items="${allCategory}" var="category">
+					<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+						<div>${category.categoryName }<span class="badge badge-primary badge-pill ml-2">${category.categoryCount }</span></div>
+						<button name="${category.categoryNo }" class="btn btn-sm btn-transparent"><span>&times;</span></button>
+					</a>
+				</c:forEach>
 				
 			</div><!-- end of list-group -->
 		</div><!-- end of codeCategory -->
 		<!-- 코드 목록 -->
-		<div id="codeList" class="col-sm-7 mt-3 wrapper-scroll-y">
-			<table class="table table-hover table-bordered table-sm ">	
-          	<thead class="fixedHeader">
-					<tr>
+		<div id="codeList" class="col-sm-8 mt-3 wrapper-scroll-y">
+			<table class="table table-hover table-bordered table-sm table-striped ">	
+          		<thead class="fixedHeader">
+					<tr >
 						<th>#</th>
-						<th>내용</th>
-						<th>..?</th>
+						<th hidden="true">
+						<th>Title</th>
+						<th>Tech</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>TB - Monthly</td>
-						<td>01/04/2012</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>TB - Monthly</td>
-						<td>02/04/2012</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>TB - Monthly</td>
-						<td>03/04/2012</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>TB - Monthly</td>
-						<td>04/04/2012</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>TB - Monthly</td>
-						<td>04/04/2012</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>TB - Monthly</td>
-						<td>04/04/2012</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>TB - Monthly</td>
-						<td>04/04/2012</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>TB - Monthly</td>
-						<td>04/04/2012</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>TB - Monthly</td>
-						<td>04/04/2012</td>
-					</tr>
+					<% int idx=0; %>
+					<c:forEach items="${codeList }" var="code">
+						<tr onclick="viewDetail(${code.codeNo});">
+							<td><%=++idx %></td>
+							<td hidden="true">${code.codeNo }</td>
+							<td>${code.codeTitle }</td>
+							<td>
+								<c:set var="items" value="${code.tech }" />
+								<%if(pageContext.getAttribute("items") instanceof ArrayList<?>){
+									ArrayList<?> arrStr = (ArrayList<?>)pageContext.getAttribute("items"); 
+									for(Object tech: arrStr) {%>
+										<span class="badge badge-primary"><%=tech %></span>
+								<%	} 
+								}%>
+							</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div><!-- end of code list -->
@@ -116,10 +77,10 @@ code게시판 Main
 			<div class="card">
 				<div class="card-header d-flex justify-content-between align-items-center">
 					<h5>DBConn 코드</h5>
-					<button class="btn btn-warning btn-sm">복사 </button>
+					<button class="btn btn-warning btn-sm" onclick="copyToClipboard();">복사 </button>
 				</div>
 				<div class="card-body">
-					<pre><code class="java">   
+					<pre><code id="codeContent" class="java">   
 	public static Connection getConnection() {
 		if( conn == null ) { // DB연결이 안 되어있을 때만 동작
 			try {
@@ -178,4 +139,43 @@ code게시판 Main
 <%-- highlight.js --%>
 <script src="../highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+//Ajax for Code List Table
+$.ajax({
+	type:"post"
+	, url: "/code/codeList.do"
+	, data: {"userEmail":${sessionScope.userId} , "categoryNo":${} }
+	, dataType: "json"
+	, success: function(data){
+		console.log("----success----");
+		console.log(data);
+		$("#resultLayout").html(data.result);
+	}
+	, error : function(e){
+		console.log("----error----");
+		console.log(e.responseText);
+	}
+	, complete: function(){
+
+	}
+});
+
+
+
+
+//copy to clipboard
+var copyToClipboard = function() {
+	const el = document.createElement('textarea');
+	el.value = document.getElementById("codeContent").textContent;
+	el.setAttribute('readonly', '');
+	el.style.position = 'absolute';
+	el.style.left = '-9999px';
+	document.body.appendChild(el);
+	el.select();
+	document.execCommand('copy');
+	document.body.removeChild(el);
+	alert("클립보드에 복사 되었습니다.");
+};
+
+</script>
 <%@include file="../main/footer.jsp" %>
