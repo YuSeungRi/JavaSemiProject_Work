@@ -18,7 +18,6 @@
 					<input type="password" class="form-control" name="userPw" placeholder="Password">
 				</div>
 				<button type="submit" class="btn btn-primary btn-sm">로그인</button>
-				<button type="button" class="btn btn-primary btn-sm">아이디찾기</button>
 				<button type="button" class="btn btn-primary btn-sm">패스워드찾기</button>
 			</form>
 		</div>

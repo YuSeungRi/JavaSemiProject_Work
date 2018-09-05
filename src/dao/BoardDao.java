@@ -111,7 +111,7 @@ public interface BoardDao {
 	
 	
 	
-	public ArrayList<BoardDto> getMyBoard(String userNick, int listnum);
+	public ArrayList<BoardDto> getMyBoard(String Email, int listnum);
 
 	/**
 	 * 새글 작성 시 사용할 board_no 할당.

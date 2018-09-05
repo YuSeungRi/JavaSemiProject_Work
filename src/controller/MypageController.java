@@ -22,19 +22,18 @@ import dto.UserInfoDto;
 public class MypageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	UserInfoService uisv = new UserInfoService();
+	private UserInfoService uisv = new UserInfoService();
 	private BoardService bsvc = new BoardService();
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
 		String userEmail = (String)session.getAttribute("userId");
-		String userNick = (String)session.getAttribute("userNick");
 		
 		
 		UserInfoDto userinfo = uisv.getUserInfo(userEmail);
 
-		List<BoardDto> boardList = bsvc.getMyBoard(userNick, 5);
+		List<BoardDto> boardList = bsvc.getMyBoard(userEmail, 5);
 		
 		
 		request.setAttribute("userinfo", userinfo);
@@ -46,6 +45,21 @@ public class MypageController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
+		
+		UserInfoDto dto = new UserInfoDto();
+		
+		
+		dto.setUserEmail((String)request.getSession().getAttribute("userId"));
+		dto.setUserPw(request.getParameter("userConfirmPwd"));
+		if(uisv.login(dto)) {
+			System.out.println("비밀번호 확인");
+			response.sendRedirect("/information/info.do");
+		} else {
+			System.out.println("비밀번호 틀림");
+			response.sendRedirect("/mypage/mypage.do");
+			
+		}
 
 	}
 

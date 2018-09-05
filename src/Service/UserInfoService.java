@@ -27,4 +27,8 @@ public class UserInfoService {
 		return dao.getUserNick(dto);
 	}
 	
+	public boolean updateUserIn(UserInfoDto dto) {
+		return dao.updateUserInfo(dto);
+	}
+	
 }

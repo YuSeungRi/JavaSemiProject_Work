@@ -124,9 +124,45 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
 	@Override
 	public boolean updateUserInfo(UserInfoDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean result = false;
+		
+		conn = DBConn.getConnection();
+		
+		String query = "UPDATE userinfo SET"
+				+ " user_nick=?,"
+				+ " user_pw=?,"
+				+ " user_intro=?"
+				+ " WHERE user_email=?";
+		
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, dto.getUserNick());
+			ps.setString(2, dto.getUserPw());
+			ps.setString(3, dto.getUserIntro());
+			ps.setString(4, dto.getUserEmail());
+			
+			System.out.println(dto.getUserNick());
+			System.out.println(dto.getUserPw());
+			System.out.println(dto.getUserIntro());
+			System.out.println(dto.getUserEmail());
+			ps.executeUpdate();
+			
+			result = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 	}
+	
 
 	@Override
 	public UserInfoDto getUserInfo(String userEmail) {

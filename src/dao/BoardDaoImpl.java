@@ -667,7 +667,7 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public ArrayList<BoardDto> getMyBoard(String userNick, int listnum) {
+	public ArrayList<BoardDto> getMyBoard(String userEmail, int listnum) {
 		ArrayList<BoardDto> list = new ArrayList<>();
 		BoardDto dto = null;
 		String sql = "SELECT * FROM (SELECT"
@@ -682,7 +682,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, userNick);
+			ps.setString(1, userEmail);
 			ps.setInt(2, listnum);
 			
 			rs = ps.executeQuery();
