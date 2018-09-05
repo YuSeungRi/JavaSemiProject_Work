@@ -28,9 +28,9 @@ import dto.RecruitDto;
  * 
  * 	구인구직_작성
  * 
- * 수정일 : 2018.09.04
+ * 수정일 : 2018.09.05
  * 수정자 : 권미현
- *  - 파일 업로드 처리(파일이 안 넣어짐)
+ *  - 한글 깨짐 처리
  */
 
 @WebServlet("/recruit/write.do")
@@ -50,7 +50,6 @@ public class RecruitmentWriteController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8"); 
 		
 		RecruitDto dto = new RecruitDto();
@@ -117,12 +116,12 @@ public class RecruitmentWriteController extends HttpServlet {
 			if(item.isFormField()) {
 				// form-data 일 경우
 				// key, value 쌍으로 저장된 데이터일 경우
-				System.out.println("RecruitmentWriteController_폼 필드 : " + item.getFieldName() + ", 값 : " + item.getString());
+				System.out.println("RecruitmentWriteController_폼 필드 : " + item.getFieldName() + ", 값 : " + item.getString("UTF-8"));
 				if(item.getFieldName().equals("title")) {
-					dto.setBoardTitle(item.getString());
+					dto.setBoardTitle(item.getString("UTF-8")); // FileItem 한글 깨짐 처리
 				}
 				if(item.getFieldName().equals("summernote")) {
-					dto.setBoardContent(item.getString());
+					dto.setBoardContent(item.getString("UTF-8")); // FileItem 한글 깨짐 처리
 				}
 				if(item.getFieldName().equals("status")) {
 					// --- 구인구직_상태 ---

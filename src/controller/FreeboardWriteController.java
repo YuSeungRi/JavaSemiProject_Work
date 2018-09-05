@@ -26,9 +26,10 @@ import dto.FileDto;
  * 작성일 : 2018.08.27
  * 작성자 : 권미현
  * 
- * 수정일 : 2018.08.28
+ * 수정일 : 2018.09.05
  * 수정자 : 권미현
- *  - 테스트 세션
+ *  - 쓸모 없는 주석 지우기
+ *  - 한글 깨짐 처리
  */
 
 @WebServlet("/Freeboard/write.do")
@@ -39,19 +40,16 @@ public class FreeboardWriteController extends HttpServlet {
 	private FileService fsvc = new FileService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String user = (String) request.getSession().getAttribute("userId"); // UserInfoDao 메소드 구현할 때까지 임시로 쓰기
-//		String user = (String) request.getSession().getAttribute("userNick"); // 아직 UserInfoDao 에 메소드 구현 x
+		String user = (String) request.getSession().getAttribute("userId");
 
-		System.out.println("FreeboardWriteController_작성자(userId) : " + user); // UserInfoDao 메소드 구현할 때까지 임시로 쓰기
-//		System.out.println("FreeboardWriteController_작성자(userNick) : " + user); // 아직 UserInfoDao 에 메소드 구현 x
+//		System.out.println("FreeboardWriteController_작성자(userId) : " + user);
 		
 		request.getRequestDispatcher("/Freeboard/freeboard_write.jsp").forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8"); 
+		response.setContentType("text/html;charset=UTF-8");
 		BoardDto dto = new BoardDto();
 		
 		dto.setBoardNo(service.getNewBoardNo());
@@ -107,10 +105,10 @@ public class FreeboardWriteController extends HttpServlet {
 				// key, value 쌍으로 저장된 데이터일 경우 
 //				out.println("폼 필드 : " + item.getFieldName() + ", 값 : " + item.getString());
 				if(item.getFieldName().equals("title")) {
-					dto.setBoardTitle(item.getString(""));
+					dto.setBoardTitle(item.getString("UTF-8")); // FileItem 한글 깨짐 처리
 				}
 				if(item.getFieldName().equals("summernote")) {
-					dto.setBoardContent(item.getString());
+					dto.setBoardContent(item.getString("UTF-8")); // FileItem 한글 깨짐 처리
 				}
 			} else {
 				// java.util.UUID
@@ -145,6 +143,8 @@ public class FreeboardWriteController extends HttpServlet {
 				}
 			}
 		}
+		
+//		System.out.println("FreeboardWriteController_" + dto);
 		
 		service.createBoard(dto);
 		
