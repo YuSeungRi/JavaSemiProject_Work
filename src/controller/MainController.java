@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Service.BoardService;
 import dto.BoardDto;
@@ -34,7 +35,7 @@ public class MainController extends HttpServlet {
 				
 				// 공지사항
 				category = categoryName[1];
-			
+				
 				List<BoardDto> NoticeList
 					= boardservice.getboards(category, 5);
 				
@@ -63,5 +64,6 @@ public class MainController extends HttpServlet {
 				request.getRequestDispatcher("/main/Mainview.jsp").forward(request, response);
 				
 	}
+
 }
 

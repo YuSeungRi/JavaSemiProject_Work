@@ -28,20 +28,46 @@ public class SignInController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserInfoDto user = new UserInfoDto();
-		
-		user.setUserEmail(request.getParameter("userEmail"));
-		user.setUserPw(request.getParameter("userPw"));
-//		System.out.println(user);
-//		System.out.println(userservice.login(user));
-		
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
+		
+		boolean isLoggedin =  false;
+		String userId = null;
+		String userNick = null;
+		
+		if( request.getParameter("loginType").equals("social") ) {
+
+			if(request.getParameter("userEmail") != null && request.getParameter("userEmail") !="") {
+			
+				isLoggedin = true;
+				userId = request.getParameter("userEmail");
+				userNick = request.getParameter("userNick");
+			}
+			
+		} else {
+
+			user.setUserEmail(request.getParameter("userEmail"));
+			user.setUserPw(request.getParameter("userPw"));
+			isLoggedin = userservice.login(user);
+			
+			if(isLoggedin) {
+			
+				userId = user.getUserEmail();
+				userNick = userservice.getUserNick(user);
+			}
+		}
+		
+		System.out.println(request.getParameter("loginType"));
 		
 		
-		
-		if( userservice.login(user)) {
+		if( isLoggedin) {
 			session.setAttribute("login", true);
-			session.setAttribute("userId", user.getUserEmail());
-			session.setAttribute("userNick", userservice.getUserNick(user));
+			session.setAttribute("userId", userId);
+			session.setAttribute("userNick", userNick);
+			if(request.getParameter("userPhoto") != null && request.getParameter("userPhoto") !="") {
+				session.setAttribute("userPhoto", request.getParameter("userPhoto"));
+			}
+			
 			System.out.println("로그인성공");
 			response.sendRedirect("/main/main.do?login=success");
 		} else {
@@ -50,5 +76,7 @@ public class SignInController extends HttpServlet {
 
 			response.sendRedirect("/main/main.do?login=fail");
 		}
+	
 	}
 }
+
