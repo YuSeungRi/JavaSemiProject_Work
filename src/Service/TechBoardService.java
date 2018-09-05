@@ -17,6 +17,10 @@ import dto.BoardDto;
  * 수정일 : 2018.09.01
  * 수정자 : 안희민
  * - 추천기능 추가
+ * 
+ * 수정일 : 2018.09.04
+ * 수정자 : 안희민
+ *  - getSearchList 추가
  */
 
 public class TechBoardService {
@@ -31,8 +35,14 @@ public class TechBoardService {
 	
 	public List<BoardDto> getPagingList(Paging paging, String categoryName, String order) {
 	
-		return dao.getPagingList(paging, categoryName,order);
+		return dao.getPagingList(paging, categoryName, order);
 	}
+	
+//	public List<BoardDto> getSearchList(Paging paging, String categoryName, String order, String searchString) {
+	
+//		return dao.getSearchList(paging, categoryName, order, searchString);
+		
+//	}
 	
 	public BoardDto getBoard(int boardNo) {
 		dao.boardRead(boardNo);

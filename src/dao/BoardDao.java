@@ -13,6 +13,10 @@ import dto.BoardDto;
  * 수정자 : 권미현
  *  - '카테고리별 페이징 리스트 조회' 메소드 수정
  *  	정렬을 위한 매개변수 추가
+ *  
+ * 수정일 : 2018.09.04
+ * 수정자 : 안희민
+ *  - getSearchList 추가
  */
 
 public interface BoardDao {
@@ -53,8 +57,19 @@ public interface BoardDao {
 	 * @param categoryName
 	 * @param order
 	 * @return ArrayList<BoardDto>
+	 * -- 추가 : searchString [안희민]
 	 */
 	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName, String order);
+	
+	/**
+	 * 카테고리별 검색 페이징 리스트 조회
+	 * @param paging
+	 * @param categoryName
+	 * @param order
+	 * @return ArrayList<BoardDto>
+	 * -- 추가 : searchString [안희민]
+	 */
+	public ArrayList<BoardDto> getSearchList(Paging paging, String categoryName, String order, String searchString);
 	
 	
 	/**

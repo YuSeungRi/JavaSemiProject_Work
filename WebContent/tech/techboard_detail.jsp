@@ -60,15 +60,21 @@
 			
 		</div>
 		
+		<!-- 파일 업로드 영역  -->
+<%-- 		<c:import url="/file/upload.do"></c:import> --%>
+		
+		
 		<div class="row justify-content-center">
 			<a href="/tech/tech.do" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">목록으로</a>
-				
+			
+		<c:if test="${userNick eq board.boardUser }">		
 			<a href="/tech/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">수정</a>
 			
 			<a href="/tech/delete.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">삭제</a>
+		</c:if>
 			
 			<c:if test="${login }">
 			<button id="btnRecommend" type="button" class="btn btn-secondary btn-sm active">추천</button>

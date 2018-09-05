@@ -6,7 +6,7 @@
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 	<h1>
-		<span class="fa fa-laptop fa-fw mr-1"></span>기술동향
+		<span class="fa fa-laptop fa-fw mr-1"></span>기술동향 게시판 검색결과
 	</h1>
 	<div class="col mt-1">
 		<div class="col-mt-11">
@@ -24,12 +24,6 @@
 							<button class="btn btn-success" type="submit">검색</button>
 						</div>
 					</div>
-					<ul class="nav">
-						<li class="nav-item"><a class="nav-link" href="#">최신순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">조회순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">추천순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">댓글순</a></li>
-					</ul>
 				</div>
 			</form>
 
@@ -63,8 +57,8 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-3 text-center m-1">
-					<%-- 작성 버튼 --%>
-					<a href="/tech/write.do" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">작성</a>
+					<%-- 게시판으로 돌아가기 버튼 --%>
+					<a href="/tech/tech.do" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">돌아가기</a>
 				</div>
 			</div>	
 			<div class="row justify-content-center">
