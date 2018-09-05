@@ -116,7 +116,7 @@ public class RecruitmentWriteController extends HttpServlet {
 			if(item.isFormField()) {
 				// form-data 일 경우
 				// key, value 쌍으로 저장된 데이터일 경우
-				System.out.println("RecruitmentWriteController_폼 필드 : " + item.getFieldName() + ", 값 : " + item.getString("UTF-8"));
+//				System.out.println("RecruitmentWriteController_폼 필드 : " + item.getFieldName() + ", 값 : " + item.getString("UTF-8"));
 				if(item.getFieldName().equals("title")) {
 					dto.setBoardTitle(item.getString("UTF-8")); // FileItem 한글 깨짐 처리
 				}

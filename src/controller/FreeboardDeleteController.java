@@ -29,7 +29,7 @@ public class FreeboardDeleteController extends HttpServlet {
 		
 		//BoardDto 객체 생성
 		BoardDto boarddto = new BoardDto();
-		boarddto.setBoardNo(boardNo);
+//		boarddto.setBoardNo(boardNo);
 		
 		// 서비스에 매개변수로 boardno 전달 
 		Service.deleteBoard(boardNo);		
