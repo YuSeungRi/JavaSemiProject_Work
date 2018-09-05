@@ -28,7 +28,7 @@
 				<button type="button" class="btn btn-warning btn-block">카카오 로그인</button>
 			</div>
 			<div class="m-3">
-				<%@ include file="./naverlogin.html" %>
+				<%@ include file="./naverlogin.jsp" %>
 			</div>
 			<div class="m-3">
 				<button type="button" class="btn btn-secondary btn-block">구글 로그인</button>
