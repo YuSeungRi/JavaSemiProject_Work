@@ -164,5 +164,31 @@ public class ProjectDaoImpl implements ProjectDao {
 		}
 		return projectDto;
 	}
+
+	@Override
+	public void deleteProject(int projectNo) {
+
+		String sql = "DELETE FROM \"project\""
+				+ " WHERE project_no=?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, projectNo);
+			
+			ps.executeQuery();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
 	
 }

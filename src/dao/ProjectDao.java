@@ -19,5 +19,8 @@ public interface ProjectDao {
 	
 	// 프로젝트 상세보기
 	public ProjectDto getProjectBoard(int projectNo);
+
+	// 삭제하기
+	public void deleteProject(int projectNo);
 	
 }
