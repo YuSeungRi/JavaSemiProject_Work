@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 <%@include file="../main/header.jsp" %>
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
@@ -172,9 +173,15 @@
 							
   							<div class="card">
 							  <div class="card-body">
+							  
 							    <h5 class="card-title">${project.projectTitle }</h5>
-							    <span class="card-text mr-5">시작일 : ${project.projectStart }</span>
-							    <span class="card-text mr-5">종료일 : ${project.projectEnd }</span>
+							    
+							    <fmt:parseDate var="parsedDate" value="${project.projectStart }" pattern="yyyy-MM-dd"/>
+							    <fmt:formatDate var="startDay" value="${parsedDate}" pattern="yyyy-MM-dd"/>​
+							    <span class="card-text mr-5">시작일 : ${startDay }</span>
+  							    <fmt:parseDate var="parsedDate" value="${project.projectEnd }" pattern="yyyy-MM-dd"/>
+							    <fmt:formatDate var="endday" value="${parsedDate}" pattern="yyyy-MM-dd"/>​
+							    <span class="card-text mr-5">종료일 : ${endday }</span>
 							    <span class="card-text mr-5">작성자 : ${project.projectLead }</span>
 							    <span class="card-text mr-5">지역 : ${project.locationName }</span>
 							    <p class="card-text mt-3">${project.projectContent }</p>	

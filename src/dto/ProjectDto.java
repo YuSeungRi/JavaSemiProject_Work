@@ -11,13 +11,12 @@ public class ProjectDto {
 	private int projectNo;
 	private int locationNo;
 	private String projectTitle;
-	private Date projectStart;
-	private Date projectEnd; 
+	private String projectStart;
+	private String projectEnd; 
 	private String projectContent;
 	private int projectParticpant;
 	private String projectLead;
 	private String locationName;
-		
 	public int getProjectNo() {
 		return projectNo;
 	}
@@ -36,16 +35,16 @@ public class ProjectDto {
 	public void setProjectTitle(String projectTitle) {
 		this.projectTitle = projectTitle;
 	}
-	public Date getProjectStart() {
+	public String getProjectStart() {
 		return projectStart;
 	}
-	public void setProjectStart(Date projectStart) {
+	public void setProjectStart(String projectStart) {
 		this.projectStart = projectStart;
 	}
-	public Date getProjectEnd() {
+	public String getProjectEnd() {
 		return projectEnd;
 	}
-	public void setProjectEnd(Date projectEnd) {
+	public void setProjectEnd(String projectEnd) {
 		this.projectEnd = projectEnd;
 	}
 	public String getProjectContent() {
@@ -79,6 +78,8 @@ public class ProjectDto {
 				+ ", projectStart=" + projectStart + ", projectEnd=" + projectEnd + ", projectContent=" + projectContent
 				+ ", projectParticpant=" + projectParticpant + ", projectLead=" + projectLead + ", locationName="
 				+ locationName + "]";
-	}	
-		
+	}
+
+	
+
 }
