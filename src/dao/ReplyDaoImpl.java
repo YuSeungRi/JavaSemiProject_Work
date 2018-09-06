@@ -7,8 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dbutil.DBConn;
-import dto.BoardDto;
 import dto.ReplyDto;
+
+/*
+ * 수정일 : 2018.09.06
+ * 수정자 : 권미현
+ *  - addNewReply, deleteReply : 반환 타입 수정
+ *  - getReplyList, getMyReply : 쿼리 문 수정(정렬)
+ */
 
 public class ReplyDaoImpl implements ReplyDao {
 
@@ -23,8 +29,18 @@ public class ReplyDaoImpl implements ReplyDao {
 	public ArrayList<ReplyDto> getReplyList(int boardNo) {
 		dtos = new ArrayList<>();
 		
-		String sql = "SELECT * FROM reply"
-				+ " WHERE board_no=?"; // 1. no
+		String sql = "SELECT" + 
+				"    R.reply_no," + 
+				"    R.board_no," + 
+				"    user_email," + 
+				"    TO_CHAR(R.reply_create, 'YYYY-MM-DD HH24:MI:SS') reply_create," + 
+				"    R.reply_content," + 
+				"    U.user_nick" + 
+				" FROM reply R" + 
+				"  JOIN userInfo U" + 
+				"    USING(user_email)" + 
+				" WHERE R.board_no=?" +
+				" ORDER BY R.reply_no DESC"; // 1. no
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -38,7 +54,8 @@ public class ReplyDaoImpl implements ReplyDao {
 				dto.setReplyNo(rs.getInt("reply_no"));
 				dto.setBoardNo(rs.getInt("board_no"));
 				dto.setUserEmail(rs.getString("user_email"));
-				dto.setReplyCreate(rs.getDate("reply_create"));
+				dto.setUserNick(rs.getString("user_nick"));
+				dto.setReplyCreate(rs.getString("reply_create"));
 				dto.setReplyContent(rs.getString("reply_content"));
 				
 				dtos.add(dto);
@@ -61,7 +78,8 @@ public class ReplyDaoImpl implements ReplyDao {
 		dtos = new ArrayList<>();
 		
 		String sql = "SELECT * FROM reply"
-				+ " WHERE userEmail=?"; // 1. userEmail
+				+ " WHERE userEmail=?" // 1. userEmail
+				+ " ORDER BY R.reply_no DESC";
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -75,7 +93,7 @@ public class ReplyDaoImpl implements ReplyDao {
 				dto.setReplyNo(rs.getInt("reply_no"));
 				dto.setBoardNo(rs.getInt("board_no"));
 				dto.setUserEmail(rs.getString("user_email"));
-				dto.setReplyCreate(rs.getDate("reply_create"));
+				dto.setReplyCreate(rs.getString("reply_create"));
 				dto.setReplyContent(rs.getString("reply_content"));
 				
 				dtos.add(dto);
@@ -94,15 +112,16 @@ public class ReplyDaoImpl implements ReplyDao {
 	}
 
 	@Override
-	public int addNewReply(ReplyDto dto) {
-		int result = 0;
+	public boolean addNewReply(ReplyDto dto) {
+		boolean result = false;
 		
 		String sql = "INSERT INTO reply (reply_no, board_no, user_email, reply_create, reply_content) VALUES ("
 				+ " reply_seq.nextval, "
 				+ " ?," // 1. board_no
 				+ " ?," // 2. user_email
 				+ " sysdate,"
-				+ " ?"; // 3. reply_content
+				+ " ?" // 3. reply_content
+				+ ")";
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -110,7 +129,9 @@ public class ReplyDaoImpl implements ReplyDao {
 			ps.setString(2, dto.getUserEmail());
 			ps.setString(3, dto.getReplyContent());
 			
-			result = ps.executeUpdate();
+			ps.executeUpdate();
+			
+			result = true;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,8 +147,8 @@ public class ReplyDaoImpl implements ReplyDao {
 	}
 
 	@Override
-	public int deleteReply(int replyNo) {
-		int result = 0;
+	public boolean deleteReply(int replyNo) {
+		boolean result = false;
 		
 		String sql = "DELETE reply WHERE "
 				+ " replyNo = ?"; // 3. reply_content
@@ -136,7 +157,9 @@ public class ReplyDaoImpl implements ReplyDao {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, replyNo);
 			
-			result = ps.executeUpdate();
+			ps.executeUpdate();
+			
+			result = true;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

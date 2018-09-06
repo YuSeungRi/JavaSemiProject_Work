@@ -87,15 +87,24 @@
 			<form action="/reply/reply.do" method="post" class="form-inline">
 			  <div class="form-group mr-3">
 			    <label for="userEmail">작성자</label>
-			    <input type="email" class="form-control" id="userEmail" name="userEmail" value="${sessionScope.userEmail }" readonly />
+			    <input type="email" class="form-control" id="userEmail" name="userEmail" value="${userNick }" readonly />
 			  </div>
 			  <div class="form-group ">
-			    <input type="text" class="form-control" id="boardNo" name="boardNo" value="${param.boardNo }" readonly hidden="true">
+			    <input type="text" class="form-control" id="boardNo" name="boardNo" value="${board.boardNo }" readonly hidden="true">
 			  </div>
 			  <div class="form-group mr-3">
-			    <textarea class="form-control" id="replyContent" name="replyContent" placeholder="댓글을 입력해주세요."></textarea>
+			  <%-- 수정일 : 2018.09.06 / 수정자 : 권미현 / login 체크하여 댓글 입력창 활성화 및 비활성화 --%>
+			    <c:choose>
+			    	<c:when test="${login }">
+			    		<textarea class="form-control" id="replyContent" name="replyContent" placeholder="댓글을 입력해주세요." ></textarea>
+			    	</c:when>
+			    	<c:when test="${!login }">
+			    		<textarea class="form-control" id="replyContent" name="replyContent" placeholder="로그인 상태여야 입력 가능합니다." readonly="readonly" ></textarea>
+			    	</c:when>
+			    </c:choose>
 			  </div>
-			  <button type="submit" class="btn btn-primary">Submit</button>
+			  <%-- 수정일 : 2018.09.06 / 수정자 : 권미현 / 버튼 설정(id, type) --%>
+			  <button id="btnReply" type="button" class="btn btn-primary">댓글 입력</button>
 			</form>
 
 		</div>
@@ -106,7 +115,11 @@
 				<c:forEach items="${replyList}" var="reply">
 					<li class="list-group-item">
 						<div class="d-flex w-100 justify-contents-between">
-							<small>댓글번호:${reply.replyNo }, 작성자:${reply.userEmail }, 작성일:${reply.replyCreate }</small><button type="button" name="${reply.replyNo }" class="btn btn-sm bg-primary">댓글삭제</button>
+							<%-- 수정일 : 2018.09.05 / 수정자 : 권미현 / 작성자:${reply.userEmail } → 작성자:${reply.userNick }  --%>
+							<small>댓글번호:${reply.replyNo }, 작성자:${reply.userNick }, 작성일:${reply.replyCreate }</small>
+							<c:if test="${userId eq reply.userEmail }">
+								<button type="button" name="${reply.replyNo }" class="btn btn-sm bg-primary">댓글삭제</button>
+							</c:if>
 						</div>
 						<div>
 							<p class="mb-1">${reply.replyContent }</p>					
@@ -169,6 +182,18 @@
 				console.log(e.responseText);
 			}
 		});
+	});
+	
+	// 수정일 : 2018.09.06 / 수정자 : 권미현 / 버튼 기능 추가
+	// 댓글 입력 클릭시 로그인 상태가 아닐 경우
+	$("#btnReply").click(function(){
+// 		alert("버튼 눌림");
+		if(<%=session.getAttribute("userId") == null %>) {
+			alert("로그인 상태여야 사용 가능합니다.");
+			location.href = "/main/signin.do";
+		} else if(<%=session.getAttribute("userId") != null %>) {
+			$("form").submit();
+		}
 	});
 
 </script>

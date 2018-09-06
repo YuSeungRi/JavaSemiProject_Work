@@ -1,19 +1,20 @@
 package dto;
 
-import java.util.Date;
+/*
+ * 수정일 : 2018.09.05
+ * 수정자 : 권미현
+ *  - userNick 추가
+ *  - replyCreate 타입을 String 으로 변경
+ */
 
 public class ReplyDto {
-	int replyNo;
-	int boardNo;
-	String userEmail;
-	Date replyCreate;
-	String replyContent;
+	private int replyNo; // 댓글 번호
+	private int boardNo; // 게시판 번호
+	private String userEmail; // email
+	private String userNick; // 닉네임
+	private String replyCreate; // 작성일
+	private String replyContent; // 내용
 	
-	@Override
-	public String toString() {
-		return "ReplyDto [replyNo=" + replyNo + ", boardNo=" + boardNo + ", userEmail=" + userEmail + ", replyCreate="
-				+ replyCreate + ", replyContent=" + replyContent + "]";
-	}
 	
 	public int getReplyNo() {
 		return replyNo;
@@ -33,10 +34,16 @@ public class ReplyDto {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public Date getReplyCreate() {
+	public String getUserNick() {
+		return userNick;
+	}
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
+	}
+	public String getReplyCreate() {
 		return replyCreate;
 	}
-	public void setReplyCreate(Date replyCreate) {
+	public void setReplyCreate(String replyCreate) {
 		this.replyCreate = replyCreate;
 	}
 	public String getReplyContent() {
@@ -44,7 +51,13 @@ public class ReplyDto {
 	}
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
-	}
+	}	
 	
+	
+	@Override
+	public String toString() {
+		return "ReplyDto [replyNo=" + replyNo + ", boardNo=" + boardNo + ", userEmail=" + userEmail + ", userNick="
+				+ userNick + ", replyCreate=" + replyCreate + ", replyContent=" + replyContent + "]";
+	}
 	
 }
