@@ -17,7 +17,7 @@
 			clientId: "Tv6l_wHgo3oV3Xfm7PE8",
 			callbackUrl: "http://localhost:8088/main/callbackpage.jsp",
 			isPopup: false, /* 팝업을 통한 연동처리 여부 */
-			loginButton: {color: "green", type: 3, height: 35} /* 로그인 버튼의 타입을 지정 */
+			loginButton: {color: "green", type: 3, height: 40} /* 로그인 버튼의 타입을 지정 */
 		}
 	);
 	

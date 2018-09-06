@@ -28,21 +28,36 @@ public class SignInController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserInfoDto user = new UserInfoDto();
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(true);
 		request.setCharacterEncoding("UTF-8");
 		
 		boolean isLoggedin =  false;
 		String userId = null;
 		String userNick = null;
+		String Type = null;
 		String loginType = request.getParameter("loginType");
 		
-		if( loginType != null && loginType.equals("social")) {
-
-			if(request.getParameter("userEmail") != null && request.getParameter("userEmail") !="") {
+		if( loginType != null) {
 			
-				isLoggedin = true;
-				userId = request.getParameter("userEmail");
-				userNick = request.getParameter("userNick");
+			if (loginType.equals("google") || loginType.equals("naver")) {
+			
+				if(request.getParameter("userEmail") != null && request.getParameter("userEmail") !="") {
+				
+					if( loginType.equals("google") ) {
+						Type = "google";
+						session.setAttribute("logType", Type);
+						
+					} else if( loginType.equals("naver") ) {
+						Type = "naver";
+						session.setAttribute("logType", Type);
+						
+					}
+					
+					isLoggedin = true;
+					userId = request.getParameter("userEmail");
+					userNick = request.getParameter("userNick");
+				}
+			
 			}
 			
 		} else {
@@ -58,13 +73,13 @@ public class SignInController extends HttpServlet {
 			}
 		}
 		
-		System.out.println(request.getParameter("loginType"));
-		
 		
 		if( isLoggedin) {
+			
 			session.setAttribute("login", true);
 			session.setAttribute("userId", userId);
 			session.setAttribute("userNick", userNick);
+			
 			if(request.getParameter("userPhoto") != null && request.getParameter("userPhoto") !="") {
 				session.setAttribute("userPhoto", request.getParameter("userPhoto"));
 			}

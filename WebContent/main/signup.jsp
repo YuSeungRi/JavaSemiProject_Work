@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="d-flex flex-row w-100 justify-content-center ">
+
 	<%--login success --%>
 	<c:if test="${sessionScope.login eq true }" >
 		<a href="/mypage/mypage.do">

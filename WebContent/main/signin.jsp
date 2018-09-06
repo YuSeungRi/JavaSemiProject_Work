@@ -1,5 +1,3 @@
-<%@include file="./scriptloader.jsp" %>
-<%-- 여기에 페이지에 사용할 js를 삽입하세요. --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="./header.jsp" %>
