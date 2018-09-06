@@ -5,7 +5,7 @@
 	<%--login success --%>
 	<c:if test="${sessionScope.login eq true }" >
 		<a href="/mypage/mypage.do">
-		<button type="button" class="btn btn-sm bg-secondary text-light mr-1"><span class="fa fa-user fa-fw mr-1"></span><span class="menu-collapsed">정보수정</span></button>
+		<button type="button" class="btn btn-sm bg-secondary text-light mr-1"><span class="fa fa-user fa-fw mr-1"></span><span class="menu-collapsed">마이페이지</span></button>
 		</a>
 		<a href="/user/logout.do">
 		<button type="button" class="btn btn-sm bg-secondary text-light"><span class="fa fa-sign-out-alt fa-fw mr-1"></span><span class="menu-collapsed">로그아웃</span></button>

@@ -31,4 +31,10 @@ public class UserInfoService {
 		return dao.updateUserInfo(dto);
 	}
 	
+	public String searchpwd(UserInfoDto dto) {
+		
+		return dao.searchpwd(dto);
+		
+	}
+	
 }

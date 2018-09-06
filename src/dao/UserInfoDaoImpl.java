@@ -251,4 +251,39 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
 	}
 
+	@Override
+	public String searchpwd(UserInfoDto dto) {
+		
+		conn = DBConn.getConnection();
+		
+		String pwd = null;
+		
+		String query = "SELECT user_pw FROM userInfo"
+				+ " WHERE user_email=?";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, dto.getUserEmail());
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				pwd=rs.getString("user_pw");
+
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return pwd;
+	}
+
 }
