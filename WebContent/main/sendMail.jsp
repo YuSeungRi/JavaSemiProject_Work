@@ -52,11 +52,11 @@ try{
     Transport.send(msg); // 전송
 } catch(Exception e){
     e.printStackTrace();
-    out.println("<script>alert('Send Mail Failed..');history.back();</script>");
+    out.println("<script>alert('메일 보내기 실패');history.back();</script>");
     // 오류 발생시 뒤로 돌아가도록
     return;
 }
  
-out.println("<script>alert('Send Mail Success!!');location.href='mailForm.html';</script>");
+out.println("<script>alert('메일로 보냈습니다.');location.href='/main/signin.do';</script>");
 // 성공 시
 %>
