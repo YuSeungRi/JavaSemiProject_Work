@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Service.CodeService;
+import dto.CodeDto;
 
 
 @WebServlet("/code/code.do")
@@ -20,9 +21,9 @@ public class CodeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if(session.isNew()) {
+		if( session.getAttribute("login").equals(false) || session.getAttribute("userId") == null ) {
 			//TODO: 에러 페이지로 리다이렉트, if문 수정 
-			return; 
+			response.sendRedirect("/main/main.do?login=fail"); 
 		}
 		String userEmail = session.getAttribute("userId").toString();
 		
@@ -36,7 +37,12 @@ public class CodeController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		int codeNo = Integer.parseInt(request.getParameter("codeNo"));
+		CodeDto dto = csvc.getCode(codeNo);
+		
+		request.setAttribute("code", dto);
+		
+		request.getRequestDispatcher("/code/codeDetail.jsp").forward(request, response);
 
 	}
 
