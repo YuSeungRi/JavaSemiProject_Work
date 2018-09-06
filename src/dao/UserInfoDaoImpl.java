@@ -252,22 +252,28 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	}
 
 	@Override
-	public String searchpwd(UserInfoDto dto) {
+	public UserInfoDto searchpwd(UserInfoDto dto) {
 		
 		conn = DBConn.getConnection();
 		
-		String pwd = null;
+		UserInfoDto userdto= null;
 		
-		String query = "SELECT user_pw FROM userInfo"
+		String query = "SELECT user_email, user_pw FROM userInfo"
 				+ " WHERE user_email=?";
 		
 		try {
 			ps = conn.prepareStatement(query);
 			ps.setString(1, dto.getUserEmail());
+
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				pwd=rs.getString("user_pw");
+				userdto = new UserInfoDto();
+				userdto.setUserEmail(rs.getString("user_email"));
+				userdto.setUserPw(rs.getString("user_pw"));
+				
+
+				return userdto;
 
 			}
 			
@@ -283,7 +289,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 			}
 		}
 		
-		return pwd;
+		return null;
 	}
 
 }

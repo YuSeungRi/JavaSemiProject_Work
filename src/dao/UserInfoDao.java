@@ -63,6 +63,6 @@ public interface UserInfoDao {
 	public String getUserNick(UserInfoDto dto);
 	
 	
-	public String searchpwd(UserInfoDto dto);
+	public UserInfoDto searchpwd(UserInfoDto dto);
 	
 }

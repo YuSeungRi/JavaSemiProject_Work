@@ -42,7 +42,7 @@
 						</div>
 						<div class="modal-body">
 							<div class="container-fluid">
-								<form action="/main/signsearch.do" method="post">
+								<form action="/main/sendMail.jsp" method="post">
 									<div class="form-group">
 										<label for="email">이메일</label> 
 										<input type="email" class="form-control" name="to" placeholder="이메일을 입력해주세요.">
