@@ -37,6 +37,7 @@ public class MypageController extends HttpServlet {
 		
 		
 		request.setAttribute("userinfo", userinfo);
+		System.out.println("userinfo = " + userinfo);
 		request.setAttribute("boardList", boardList);
 		
 		request.getRequestDispatcher("/mypage/mypage.jsp").forward(request,response);

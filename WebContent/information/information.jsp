@@ -43,7 +43,7 @@
 	<h1>
 		<span class="fas fa-address-card fa-fw mr-1"></span>회원정보수정
 	</h1>
-	<form action="/information/info.do" method="post" >
+	<form action="/information/info.do" method="post" enctype="multipart/form-data" >
 		<div class="row justify-content-center">
 			<div class="col-lg-6 col-11 my-3">
 				<div class="form-group">
@@ -55,7 +55,7 @@
 					<label class="col-sm-3 control-label" for="inputNickname">닉네임</label>
 					<div class="col-sm-4">
 						<input class="form-control" name="changeUserNick" type="text"
-							value="${sessionScope.userNick }" pattern="(?=.*[a-z]).{2,}"  title="닉네임은 2글자 이상 입력해주세요." required>
+							value="${requestScope.userinfo.userNick }" pattern="(?=.*[a-z]).{2,}"  title="닉네임은 2글자 이상 입력해주세요." required>
 						<small id="inputNickname" class="text-muted">닉네임은 2~10자 이내</small>
 					</div>
 				</div>
@@ -90,9 +90,12 @@
 			</div>
 
 			<div class="col-md-4 col-8 text-center">
-				<img class ="img-thumbnail img-fluid rounded float-left mb-3" name="changeimg" id='img-upload'/>
+				<img class ="img-thumbnail img-fluid rounded float-left mb-3"
+ 						src="/upload/${requestScope.userinfo.userPhoto }" id='img-upload' 
+ 						style="width:350px; height:450px;"/>
 				<div class="filebox bs3-primary">
-					<label for="file">파일선택</label> <input type="file" id="file" name="file">
+					<label for="file">파일선택</label> 
+					<input type="file" id="file" value="${requestScope.userinfo.userPhoto }" name="file">
 				</div>
 			</div>
 		</div>

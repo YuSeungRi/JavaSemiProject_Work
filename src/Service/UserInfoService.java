@@ -31,6 +31,10 @@ public class UserInfoService {
 		return dao.updateUserInfo(dto);
 	}
 	
+	public boolean updateUserIn2(UserInfoDto dto) {
+		return dao.updateUserInfo2(dto);
+	}
+	
 	public UserInfoDto searchpwd(UserInfoDto dto) {
 		
 		return dao.searchpwd(dto);

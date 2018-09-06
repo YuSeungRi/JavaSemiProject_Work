@@ -20,7 +20,7 @@
 
 				<tr>
 					<td>닉네임</td>
-					<td>${sessionScope.userNick }</td>
+					<td>${requestScope.userinfo.userNick }</td>
 				</tr>
 
 				<tr>
@@ -45,8 +45,8 @@
 
 		</div>
 		<div class="col-md-3 col-8 ">
-			<img class="img-thumbnail img-fluid rounded float-left mb-3"
-				src="../img/m2.jpg">
+			<img class ="img-thumbnail img-fluid rounded float-left mb-3"
+ 						src="/upload/${requestScope.userinfo.userPhoto }" id='img-upload' style="width:250px; height:300px;" />
 		</div>
 	</div>
 	<div>

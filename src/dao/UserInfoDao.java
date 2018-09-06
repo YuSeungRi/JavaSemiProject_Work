@@ -43,6 +43,11 @@ public interface UserInfoDao {
 	 * @return 1: update success, 0: update fail
 	 */
 	public boolean updateUserInfo(UserInfoDto dto);
+	
+	
+	
+	
+	public boolean updateUserInfo2(UserInfoDto dto);
 
 	/**
 	 * get single user info
