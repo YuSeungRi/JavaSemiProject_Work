@@ -1,9 +1,11 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,14 +71,13 @@ public class ProjectDaoImpl implements ProjectDao {
 				projectDto.setProjectNo( rs.getInt("project_no") );
 				projectDto.setLocationNo( rs.getInt("location_no"));
 				projectDto.setProjectTitle( rs.getString("project_title"));
-				projectDto.setProjectStart( rs.getDate("project_start"));
-				projectDto.setProjectEnd( rs.getDate("project_end"));
+				projectDto.setProjectStart(rs.getString("project_start"));
+				projectDto.setProjectEnd(rs.getString("project_end"));
 				projectDto.setProjectContent( rs.getString("project_content"));
 				projectDto.setProjectParticpant( rs.getInt("project_participant"));
 				projectDto.setProjectLead( rs.getString("project_lead"));
 				projectDto.setLocationName( rs.getString("location_name"));				
 				
-//				System.out.println(projectDto);
 				projectList.add(projectDto);
 			}
 		} catch (SQLException e) {
@@ -112,8 +113,8 @@ public class ProjectDaoImpl implements ProjectDao {
 				techDto.setTechNo( rs.getInt("tech_no"));
 				techDto.setTechName( rs.getString("tech_name"));
 				
-//				System.out.println(techDto);
-				techList.add(techDto);			
+				techList.add(techDto);		
+//				System.out.println("리스트 띄우기 techDto : " + techDto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -144,8 +145,8 @@ public class ProjectDaoImpl implements ProjectDao {
 				projectDto.setProjectNo(rs.getInt("project_no"));
 				projectDto.setLocationNo(rs.getInt("location_no"));
 				projectDto.setProjectTitle( rs.getString("project_title"));
-				projectDto.setProjectStart( rs.getDate("project_start"));
-				projectDto.setProjectEnd( rs.getDate("project_end"));
+				projectDto.setProjectStart( rs.getString("project_start"));
+				projectDto.setProjectEnd( rs.getString("project_end"));
 				projectDto.setProjectContent( rs.getString("project_content"));
 				projectDto.setProjectParticpant( rs.getInt("project_participant"));
 				projectDto.setProjectLead( rs.getString("project_lead"));
@@ -190,5 +191,129 @@ public class ProjectDaoImpl implements ProjectDao {
 		}
 		
 	}
+	
+	@Override
+	public void deleteTech(int projectNo) {
+		
+		String sql = "DELETE FROM project_tech WHERE project_no=?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, projectNo);
+			
+			System.out.println(projectNo);
+			
+			ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	@Override
+	public int newProjectNo() {
+		int result = 0;
+		
+		String sql = "SELECT project_seq.nextval FROM dual";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+				if(rs != null) rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public void createProject(ProjectDto projectDto) {
+		String sql = "INSERT INTO \"project\""
+				+ " ( project_no, location_no, project_title, project_start, project_end, project_content, project_lead )"
+				+ " VALUES ("
+				+ " ?, " //1.project_no
+				+ " ?, " //2.location_no
+				+ " ?, " //3.project_title
+				+ " TO_DATE(?, 'yyyy-MM-dd'), " //4.project_start
+				+ " TO_DATE(?, 'yyyy-MM-dd'), " //5.project_end
+				+ " ?, " //6.project_content
+				+ " ? )"; //7.project_lead
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, projectDto.getProjectNo());
+			ps.setInt(2, projectDto.getLocationNo());
+			ps.setString(3, projectDto.getProjectTitle());
+			ps.setString(4, projectDto.getProjectStart());
+			ps.setString(5, projectDto.getProjectEnd());
+			ps.setString(6, projectDto.getProjectContent());
+			ps.setString(7, projectDto.getProjectLead());
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+				if(rs != null) rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	@Override
+	public void createProjectTech(ProjectTechDto techDto) {
+
+		String sql = "INSERT INTO project_tech "
+				+ " VALUES ("
+				+ " ?," //1.project_no
+				+ " ?" //2.tech_no
+				+ " )";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, techDto.getProjectNo());
+			ps.setInt(2, techDto.getTechNo());;
+			
+			ps.executeUpdate();
+			
+//			System.out.println("게시글 작성 techDTO : " + techDto);			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+				if(rs != null) rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+
 	
 }

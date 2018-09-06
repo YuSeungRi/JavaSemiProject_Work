@@ -28,6 +28,7 @@ public class ProjectDeleteController extends HttpServlet {
 		projectDto.setProjectNo(projectNo);
 		
 		projectService.deleteProject(projectNo);
+		projectService.deleteTech(projectNo);
 		
 		response.sendRedirect("/project/project.do");
 		

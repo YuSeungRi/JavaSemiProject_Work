@@ -31,4 +31,20 @@ public class ProjectService {
 	public void deleteProject(int projectNo) {
 		projectDao.deleteProject(projectNo);
 	}
+
+	public int getNewProjectNo() {
+		return projectDao.newProjectNo();
+	}
+
+	public void write(ProjectDto projectDto) {
+		projectDao.createProject(projectDto);
+	}
+
+	public void techWrite(ProjectTechDto techDto) {
+		projectDao.createProjectTech(techDto);
+	}
+
+	public void deleteTech(int projectNo) {
+		projectDao.deleteTech(projectNo);
+	}
 }

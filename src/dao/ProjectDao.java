@@ -22,5 +22,17 @@ public interface ProjectDao {
 
 	// 삭제하기
 	public void deleteProject(int projectNo);
+
+	// 새글 작성시 사용할 project_no 할당
+	public int newProjectNo();
+
+	// 프로젝트 게시글 작성
+	public void createProject(ProjectDto projectDto);
+
+	// 프로젝트 게시글 작성시 기술추가 
+	public void createProjectTech(ProjectTechDto techDto);
+
+	// 글이 삭제될때 tech도 삭제
+	public void deleteTech(int projectNo);
 	
 }
