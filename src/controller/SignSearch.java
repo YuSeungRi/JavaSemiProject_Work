@@ -19,9 +19,7 @@ public class SignSearch extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setAttribute("user", user);
 		
-		request.getRequestDispatcher("/main/sendMail.jsp").forward(request,response);
 
 	}
 
@@ -31,12 +29,12 @@ public class SignSearch extends HttpServlet {
 
 		
 		
-		user.setUserEmail(request.getParameter("userEmail"));
-		user.setUserNick(request.getParameter("userNick"));
+		user.setUserEmail(request.getParameter("to"));
 		
 		uisv.searchpwd(user);
 
-		response.sendRedirect("/main/signin.do");
+		request.setAttribute("user", user);
+		response.sendRedirect("/main/sendMail.jsp");
 		
 	}
 

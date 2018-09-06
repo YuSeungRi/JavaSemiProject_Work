@@ -15,7 +15,7 @@ request.setCharacterEncoding("utf-8");
 // String from = request.getParameter("from");
 String to = request.getParameter("to");
 String subject = "비밀번호 찾기";
-String content = "sadasdsa";
+String content = "rewre";
 // 입력값 받음
  
 Properties p = new Properties(); // 정보를 담을 객체
