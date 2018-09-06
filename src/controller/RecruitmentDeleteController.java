@@ -30,10 +30,10 @@ public class RecruitmentDeleteController extends HttpServlet {
 			boardNo = Integer.parseInt(param);
 		}
 		
-		System.out.println("RecruitmentDeleteController_boardNo : " + boardNo);
+//		System.out.println("RecruitmentDeleteController_boardNo : " + boardNo);
 		
 		/*boolean success = */service.deleteBoardRecruit(boardNo);
-//		System.out.println(success);
+//		System.out.println("RecruitmentDeleteController_success" + success);
 		
 		response.sendRedirect("/recruit/recruit.do");
 	}
