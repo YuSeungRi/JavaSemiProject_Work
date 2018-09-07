@@ -39,6 +39,34 @@
     width: 100%;
 }
 </style>
+<script type="text/javascript">
+      $(document).ready(function(){
+        $('#passwordChecker').on('change',function(){
+          var isChecked = $(this).prop('checked');
+          if (isChecked) {
+            $('#my-password').attr('type','text');
+          } else {
+            $('#my-password').attr('type','Password');
+          }
+        });
+      });
+      
+  </script>
+
+<script>
+var myInput = document.getElementById("my-password");
+
+// When the user clicks on the password field, show the message box
+myInput.onfocus = function() {
+    document.getElementById("message").style.display = "block";
+}
+
+// When the user clicks outside of the password field, hide the message box
+myInput.onblur = function() {
+    document.getElementById("message").style.display = "none";
+}
+
+</script>
 <div class="container m-3">
 	<h1>
 		<span class="fas fa-address-card fa-fw mr-1"></span>회원정보수정
