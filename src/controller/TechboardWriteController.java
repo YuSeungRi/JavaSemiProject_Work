@@ -1,12 +1,14 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Service.BoardService;
 import Service.TechBoardService;
 import dto.BoardDto;
 
@@ -26,6 +28,7 @@ public class TechboardWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	private TechBoardService service = new TechBoardService();
+	private BoardService boardServid = new BoardService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String user = (String) request.getSession().getAttribute("userId");
@@ -42,10 +45,11 @@ public class TechboardWriteController extends HttpServlet {
 		
 		BoardDto dto = new BoardDto();
 		
+		dto.setBoardNo(boardServid.getNewBoardNo());
 		dto.setBoardCategory("TechBoard");
 		
 		dto.setBoardUser((String) request.getSession().getAttribute("userId"));
-		dto.setBoardUser((String) request.getSession().getAttribute("userNick"));
+//		dto.setBoardNick((String) request.getSession().getAttribute("userNick"));
 		
 		dto.setBoardContent(request.getParameter("summernote"));
 		dto.setBoardTitle(request.getParameter("title"));

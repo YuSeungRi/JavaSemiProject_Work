@@ -8,18 +8,21 @@
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 	<h2>
-		<i class="far fa-comments fa-lg"></i>게시글 상세조회
+		<i class="far fa-comments fa-lg"></i>자유게시판 게시글 상세조회
 	</h2>
 	<div class="col-md-11">
-		<form>
+		<form action="/Freeboard/search.do" name="search" method="get">
 			<div>
-				<div
-					class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
+				<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
+					<select name="keyFiled" size="1">
+					<option value="title" <c:if test="${'title'==keyFiled }"> selected</c:if>> 제목 </option>
+					<option value="content" <c:if test="${'content'==ketFiled }"> selected</c:if>> 내용 </option>
+					</select>
 					<input type="text" class="text-sm form-control"
 						placeholder="검색어를 입력하세요" aria-label=""
-						aria-describedby="basic-addon1">
+						aria-describedby="basic-addon1" name="searchString">
 					<div class="input-group-append">
-						<button class="btn btn-success" type="button">검색</button>
+						<button class="btn btn-success" type="submit">검색</button>
 					</div>
 				</div>
 				<ul class="nav">
@@ -110,15 +113,15 @@
 		</div>
 		<!-- 댓글 목록 영역 -->
 		<div class="row mt-3 justify-content-center">
-<%-- 			<c:import url="/reply/reply.do?boardNo=${board.boardNo }" />		 --%>
 			<ul class="list-group">
 				<c:forEach items="${replyList}" var="reply">
 					<li class="list-group-item">
 						<div class="d-flex w-100 justify-contents-between">
 							<%-- 수정일 : 2018.09.05 / 수정자 : 권미현 / 작성자:${reply.userEmail } → 작성자:${reply.userNick }  --%>
-							<small>댓글번호:${reply.replyNo }, 작성자:${reply.userNick }, 작성일:${reply.replyCreate }</small>
+							<small>댓글번호:${reply.replyNo }, 작성자:${reply.userNick }, 작성일:${reply.replyCreate } &nbsp</small>
 							<c:if test="${userId eq reply.userEmail }">
-								<button type="button" name="${reply.replyNo }" class="btn btn-sm bg-primary">댓글삭제</button>
+								<%-- 수정일 : 2018.09.07 / 수정자 : 권미현 / <button> → <a> 로 변경, 링크 연결 --%>
+								<small><a href="/reply/delete.do?replyno=${reply.replyNo }&boardno=${board.boardNo }" style="color: red;">삭제</a></small>
 							</c:if>
 						</div>
 						<div>
@@ -187,7 +190,6 @@
 	// 수정일 : 2018.09.06 / 수정자 : 권미현 / 버튼 기능 추가
 	// 댓글 입력 클릭시 로그인 상태가 아닐 경우
 	$("#btnReply").click(function(){
-// 		alert("버튼 눌림");
 		if(<%=session.getAttribute("userId") == null %>) {
 			alert("로그인 상태여야 사용 가능합니다.");
 			location.href = "/main/signin.do";

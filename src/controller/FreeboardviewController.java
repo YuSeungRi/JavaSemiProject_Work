@@ -16,7 +16,7 @@ import dto.ReplyDto;
 
 
 @WebServlet("/Freeboard/detail.do")
-public class FreeboardViewController extends HttpServlet {
+public class FreeboardviewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private BoardService boardservice = new BoardService();
