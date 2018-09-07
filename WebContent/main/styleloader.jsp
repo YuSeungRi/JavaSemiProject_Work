@@ -53,12 +53,14 @@
             
             <li class="list-group-item list-group-item-action menu-collapsed bg-warning">
                 <div class="d-flex flex-row w-100 justify-content-center ">
+                <form action="/Main/search.do" name="search" method="get">
 	                <div class="input-group input-group-sm mb-3">
 					  <div class="input-group-prepend">
-					    <span class="input-group-text fa fa-search" id="basic-addon1"></span>
+					    <button class="btn btn-outline-secondary" type="submit" id="button-addon1"><span class="fa fa-search" id="basic-addon1"></span></button>
 					  </div>
-					  <input type="text" class="form-control" placeholder="검색" aria-label="search" aria-describedby="search">
+					  <input type="text" class="form-control" placeholder="검색" aria-label="search" aria-describedby="search" name="searchString">
 					</div>
+				</form>
                 </div>
                 <c:import url="/main/signup.jsp" />
             </li>

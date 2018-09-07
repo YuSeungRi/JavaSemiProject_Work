@@ -71,6 +71,16 @@ public interface BoardDao {
 	 */
 	public ArrayList<BoardDto> getSearchList(Paging paging, String categoryName, String order, String searchString);
 	
+	/**
+	 * 
+	 * @param paging
+	 * @param order
+	 * @param searchString
+	 * @return
+	 *  -- 추가 : 전체게시판 검색용
+	 */
+	public ArrayList<BoardDto> getSearchList(Paging paging, String order, String searchString);
+	
 	
 	/**
 	 * 게시글 작성

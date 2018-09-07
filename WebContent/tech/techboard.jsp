@@ -28,6 +28,24 @@
   						 		<input type="text" class="form-control" placeholder="검색어를 입력하세요" 
   						 		aria-label="Text input with dropdown button">
 						</div>
+						
+						
+						<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon1">Button</button>
+  </div>
+  <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+</div>
+	
+		<div class="input-group input-group-sm mb-3">
+					  <div class="input-group-prepend">
+					    <button class="btn btn-outline-secondary" type="button" id="button-addon1"><span class="fa fa-search" id="basic-addon1"></span></button>
+					  </div> <!--이부분 메인 검색 부분  -->
+					  <input type="text" class="form-control" placeholder="검색" 
+					  aria-label="search" aria-describedby="search" name="searchString">					
+					</div>   <!-- 추가부분 전부 삭제 원위치시킴  -->				
+						
+						
 						<select name="keyFiled" size="1">
 						<option value="title" <c:if test="${'title'==keyFiled }"> selected</c:if>> 제목 </option>
 						<option value="content" <c:if test="${'content'==keyFiled }"> selected</c:if>> 내용 </option>
