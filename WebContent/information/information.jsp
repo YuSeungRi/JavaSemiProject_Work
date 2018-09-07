@@ -55,7 +55,7 @@
 					<label class="col-sm-3 control-label" for="inputNickname">닉네임</label>
 					<div class="col-sm-4">
 						<input class="form-control" name="changeUserNick" type="text"
-							value="${requestScope.userinfo.userNick }" pattern="(?=.*[a-z]).{2,}"  title="닉네임은 2글자 이상 입력해주세요." required>
+							value="${requestScope.userinfo.userNick }" pattern="(?=.*[가-힣a-zA-Z]).{2,}"  title="닉네임은 2글자 이상 입력해주세요." required>
 						<small id="inputNickname" class="text-muted">닉네임은 2~10자 이내</small>
 					</div>
 				</div>

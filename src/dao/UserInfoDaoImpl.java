@@ -77,7 +77,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 				+ " '1'," // 4. user_level
 				+ " SYSDATE," // 5. user_registDate
 				+ " 'ddd'," // 6. user_intro
-				+ " 'asd'" // 7. user_photo
+				+ " 'mm1.jpg'" // 7. user_photo
 				+ " )";
 		
 		try {

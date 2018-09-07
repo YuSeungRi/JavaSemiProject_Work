@@ -73,9 +73,7 @@
 									<div class="form-group text-left">
 										<label for="password">패스워드</label> <input type="password"
 											class="form-control" name="userConfirmPwd"
-											placeholder="패스워드를 입력해주세요."
-											pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-											title="패스워드는 6자 이상에 영어대소문자, 숫자를 포함해서 입력해주세요." required>
+											placeholder="패스워드를 입력해주세요.">
 										<small id="passwordHelp" class="form-text text-muted">패스워드는
 											6자 이상에 영어대소문자, 숫자를 포함해서 입력해주세요.</small>
 									</div>
