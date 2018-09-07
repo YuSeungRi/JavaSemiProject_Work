@@ -18,7 +18,7 @@
 	  
 	<div class="card-body">
 	
-    <form action = "/Project/search.do" method="post">    
+    <form action = "/Project/search.do" method="post" id="form">    
 	  <div class="form-group row">
 	    <label for="projectName" class="col-sm-2 col-form-label">프로젝트 명</label>
 	    <div class="col-sm-10">
@@ -57,13 +57,13 @@
 		  
 			<div class="form-group col-md-5">
 			 <label >시작일</label>
-			 <input type="date" name="startday" max="3000-12-31" 
+			 <input type="date" name="startday" id="startday" max="3000-12-31" 
 			        min="1000-01-01" class="form-control">
 			</div>
 			
 			<div class="form-group col-md-5">
 			 <label >종료일</label>
-			 <input type="date" name="endday" min="1000-01-01"
+			 <input type="date" name="endday" id="endday" min="1000-01-01"
 			        max="3000-12-31" class="form-control">
 			</div>
 
@@ -113,7 +113,7 @@
   							    <fmt:parseDate var="parsedDateEnd" value="${project.projectEnd }" pattern="yyyy-MM-dd"/>
 							    <fmt:formatDate var="endday" value="${parsedDateEnd}" pattern="yyyy-MM-dd"/>​
 							    <span class="card-text mr-5">종료일 : ${endday }</span>
-							    <span class="card-text mr-5">작성자 : ${project.projectLead }</span>
+							    <span class="card-text mr-5">작성자 : ${project.projectNick } (${project.projectLead })</span>
 							    <span class="card-text mr-5">지역 : ${project.locationName }</span>
 							    <p class="card-text mt-3">${project.projectContent }</p>	
 
@@ -146,4 +146,25 @@
 </div>
 </div>
 <%@include file="../main/scriptloader.jsp" %>
+
+<script type="text/javascript">
+	$(function(){
+		$("#form").submit(function(){
+			var startday = $('#startday').val();
+			var endday = $('#endday').val();
+			
+			var startArray = startday.split('-');
+			var endArray = endday.split('-');
+			
+			var start_day = new Date(startArray[0], startArray[1], startArray[2]);
+			var end_day = new Date(endArray[0], endArray[1], endArray[2]);
+			
+			if(start_day.getTime() > end_day.getTime()) {
+				alert("종료 날짜보다 시작 날짜가 빨라야합니다.");
+				return false;
+			}
+		});
+	});
+</script>
+
 <%@include file="../main/footer.jsp"%>

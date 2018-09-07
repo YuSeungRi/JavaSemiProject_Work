@@ -27,6 +27,8 @@ public class ProjectWriteController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		String user = (String) request.getSession().getAttribute("userId");
+		
 		List<ProjectLocationDto> locationList = projectService.getAllLocation();
 		List<ProjectTechDto> techList = projectService.getAlltech();
 		
@@ -43,7 +45,7 @@ public class ProjectWriteController extends HttpServlet {
 		ProjectDto projectDto = new ProjectDto();
 		ProjectTechDto techDto = null;
 		
-		int projectNo = projectService.getNewProjectNo();
+		int projectNo = projectService.getNewProjectNo();		
 		
 		String[] Checkedtech = request.getParameterValues("checkbox");
 		for(String tech : Checkedtech) {
@@ -53,10 +55,10 @@ public class ProjectWriteController extends HttpServlet {
 			techDto.setProjectNo(projectNo);
 			projectService.techWrite(techDto);
 //			System.out.println("기술번호 :" + tech);
-		}	
+		}
 
 		projectDto.setProjectNo(projectNo);
-		
+		projectDto.setProjectLead((String) request.getSession().getAttribute("userId"));
 		projectDto.setProjectTitle(request.getParameter("title"));
 		projectDto.setLocationNo(Integer.parseInt(request.getParameter("location")));		
 		projectDto.setProjectStart(request.getParameter("startday"));

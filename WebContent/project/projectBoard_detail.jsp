@@ -19,7 +19,7 @@
 						<td colspan="1">프로젝트명</td><td colspan="15">${project.projectTitle }</td>
 					</tr>
 					<tr>
-						<td colspan="1">작성자</td><td colspan="2">${project.projectLead }</td>
+						<td colspan="1">작성자</td><td colspan="2">${project.projectNick } (${project.projectLead })</td>
 					    <fmt:parseDate var="parsedDateStart" value="${project.projectStart }" pattern="yyyy-MM-dd"/>
 						<fmt:formatDate var="startDay" value="${parsedDateStart}" pattern="yyyy-MM-dd"/>​
 						<td colspan="1">시작일</td><td colspan="2">${startDay }</td>

@@ -16,7 +16,9 @@ public class ProjectDto {
 	private String projectContent;
 	private int projectParticpant;
 	private String projectLead;
+	private String projectNick;
 	private String locationName;
+		
 	public int getProjectNo() {
 		return projectNo;
 	}
@@ -65,6 +67,12 @@ public class ProjectDto {
 	public void setProjectLead(String projectLead) {
 		this.projectLead = projectLead;
 	}
+	public String getProjectNick() {
+		return projectNick;
+	}
+	public void setProjectNick(String projectNick) {
+		this.projectNick = projectNick;
+	}
 	public String getLocationName() {
 		return locationName;
 	}
@@ -76,10 +84,8 @@ public class ProjectDto {
 	public String toString() {
 		return "ProjectDto [projectNo=" + projectNo + ", locationNo=" + locationNo + ", projectTitle=" + projectTitle
 				+ ", projectStart=" + projectStart + ", projectEnd=" + projectEnd + ", projectContent=" + projectContent
-				+ ", projectParticpant=" + projectParticpant + ", projectLead=" + projectLead + ", locationName="
-				+ locationName + "]";
+				+ ", projectParticpant=" + projectParticpant + ", projectLead=" + projectLead + ", projectNick="
+				+ projectNick + ", locationName=" + locationName + "]";
 	}
-
-	
 
 }

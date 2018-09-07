@@ -30,6 +30,8 @@ public class ProjectUpdateController extends HttpServlet {
 			projectno = Integer.parseInt(param);
 		}
 		
+		String user = (String) request.getSession().getAttribute("userId");
+		
 		ProjectDto projectDto = projectService.getProjectBoard(projectno);
 		List<ProjectLocationDto> locationList = projectService.getAllLocation();
 		List<ProjectTechDto> techList = projectService.getAlltech();
@@ -61,7 +63,7 @@ public class ProjectUpdateController extends HttpServlet {
 		}	
 
 		projectDto.setProjectNo(projectNo);
-		
+		projectDto.setProjectLead((String) request.getSession().getAttribute("userId"));
 		projectDto.setProjectTitle(request.getParameter("title"));
 		projectDto.setLocationNo(Integer.parseInt(request.getParameter("location")));		
 		projectDto.setProjectStart(request.getParameter("startday"));

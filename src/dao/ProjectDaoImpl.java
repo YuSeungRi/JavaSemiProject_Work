@@ -45,10 +45,12 @@ public class ProjectDaoImpl implements ProjectDao {
 		
 		String sql = "SELECT * FROM ("
 				+ " SELECT rownum rnum, B.* FROM("
-				+ " SELECT l.location_name, p.*"
+				+ " SELECT l.location_name, p.*, U.user_nick"
 				+ " FROM \"project\"p"
 				+ " LEFT JOIN \"location\" l"
 				+ " ON l.location_no = p.location_no"
+				+ " JOIN userInfo u"
+				+ " ON p.project_lead = u.user_email"
 				+ " ORDER BY p.project_no DESC"						
 						+ " ) B"
 						+ " ORDER BY rnum"
@@ -77,6 +79,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				projectDto.setProjectContent( rs.getString("project_content"));
 				projectDto.setProjectParticpant( rs.getInt("project_participant"));
 				projectDto.setProjectLead( rs.getString("project_lead"));
+				projectDto.setProjectNick( rs.getString("user_nick"));
 				projectDto.setLocationName( rs.getString("location_name"));				
 				
 				projectList.add(projectDto);
@@ -129,10 +132,27 @@ public class ProjectDaoImpl implements ProjectDao {
 
 		ProjectDto projectDto = null;
 		
-		String sql = "SELECT l.location_name, p.* FROM \"project\"p "
+		String sql = "SELECT l.location_name, p.*, u.user_nick FROM \"project\"p "
 				+ " LEFT JOIN \"location\" l"
 				+ " ON l.location_no = p.location_no"
+				+ " JOIN userinfo u"
+				+ " ON p.project_lead = u.user_email"
 				+ " WHERE p.project_no=?";
+		
+		
+//		String sql = "SELECT l.location_name, p.*, u.user_nick FROM \"project\"p ";
+//		sql += " LEFT JOIN \"location\" l";
+//		sql +=" ON l.location_no = p.location_no";
+//		sql +=" JOIN userinfo u";
+//		sql +=" ON p.project_lead = u.user_email";
+//		sql +=" WHERE 1=1";
+//		if( projectNo != -1 ) {
+//			sql +=" AND p.project_no=?";
+//		}
+////		if( projectName != null && !"".equals(projectName) ) {
+////			sql += " AND projectNo = ?"
+////		}
+		
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -151,6 +171,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				projectDto.setProjectContent( rs.getString("project_content"));
 				projectDto.setProjectParticpant( rs.getInt("project_participant"));
 				projectDto.setProjectLead( rs.getString("project_lead"));
+				projectDto.setProjectNick( rs.getString("user_nick"));
 				projectDto.setLocationName( rs.getString("location_name"));					
 			}
 			

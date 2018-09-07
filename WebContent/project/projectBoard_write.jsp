@@ -14,7 +14,7 @@
 
 	<h2><i class="fa fa-project-diagram fa-fw mr-1"></i>프로젝트 등록하기</h2>
 
-<form action="/project/projectWrite.do" method="post">	
+<form action="/project/projectWrite.do" method="post" id="form">	
 	  <div class="form-group row mt-5">
 	    <label for="title" class="col-sm-2 col-form-label">프로젝트 명</label>
 	    <div class="col-sm-10">
@@ -25,7 +25,7 @@
 	  <div class="form-group row">
 	    <div class="col-sm-2">지역</div>
 	    <div class="col-sm-10">
-	 	<select class="custom-select" name="location">	 	
+	 	<select class="custom-select" name="location" id="location">	 	
 			<option selected>지역을 선택하세요</option>	 		
 	 		<c:forEach items="${location }" var="location">
  				<option value="${location.locationNo }">${location.locationName }</option>
@@ -53,13 +53,13 @@
 		  
 			<div class="form-group col-md-5">
 			 <label >시작일</label>
-			 <input type="date" name="startday" max="3000-12-31" 
+			 <input type="date" name="startday" id="startday" max="3000-12-31" 
 			        min="1000-01-01" class="form-control">
 			</div>
 			
 			<div class="form-group col-md-5">
 			 <label >종료일</label>
-			 <input type="date" name="endday" min="1000-01-01"
+			 <input type="date" name="endday" id="endday" min="1000-01-01"
 			        max="3000-12-31" class="form-control">
 			</div>
 
@@ -74,9 +74,9 @@
 
 		<%-- 버튼 --%>
 		<div class="row justify-content-around">
-			<button id="btnReset" type="reset" class="btn btn-secondary">초기화</button>
-			<button id="btnBefore" type="button" class="btn btn-secondary">목록으로</button>
-			<button id="btnWrite" class="btn btn-primary">등록</button>
+			<input id="btnReset" type="button" class="btn btn-secondary" value="초기화"/>
+			<input id="btnBefore" type="button" class="btn btn-secondary" value="목록으로"/>
+			<input id="btnWrite" type="button" class="btn btn-primary" value="등록"/>
 		</div>
 
 </form>
@@ -112,6 +112,79 @@
       			height : 300 // 높이 300 지정
       		});
     	});
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		$("#form").submit(function(){
+			var startday = $('#startday').val();
+			var endday = $('#endday').val();
+			
+			var startArray = startday.split('-');
+			var endArray = endday.split('-');
+			
+			var start_day = new Date(startArray[0], startArray[1], startArray[2]);
+			var end_day = new Date(endArray[0], endArray[1], endArray[2]);
+			
+			if(start_day.getTime() > end_day.getTime()) {
+				alert("종료 날짜보다 시작 날짜가 빨라야합니다.");
+				return false;
+			}
+		});
+	});
+</script>
+
+<script type="text/javascript">
+
+ $(function(){
+ 	$("#form").submit(function(){
+
+ 		// 제목
+ 		var title = $.trim($('#title').val()); 		
+ 		if (title =='') {
+ 			alert("프로젝트명이 입력되지 않았습니다");
+ 			return false;
+ 		}
+ 		
+ 		// 지역
+ 		var location = $.trim($('#location').val());
+ 		if (location ==''|| location=='지역을 선택하세요') {
+ 			alert("지역이 선택되지 않았습니다");
+ 			return false;
+ 		}
+ 
+ 		// 사용기술
+ 		if ($('input:checkbox[name="checkbox"]:checked').length == 0 ) {
+ 			alert("사용기술이 선택되지 않았습니다");
+ 			return false;
+ 		}
+ 		
+ 		// 시작일
+ 		var startday = $.trim($('#startday').val());
+ 		if (startday =='') {
+ 			alert("시작일이 입력되지 않았습니다");
+ 			return false;
+ 		}
+
+ 		// 종료일
+ 		var startday = $.trim($('#endday').val());
+ 		if (endday =='') {
+ 			alert("종료일이 입력되지 않았습니다");
+ 			return false;
+ 		}
+ 		
+ 		
+ 		// 내용
+ 		var summernote = $.trim($('#summernote').val());
+ 		if (summernote =='') {
+ 			alert("본문이 입력되지 않았습니다");
+ 			return false;
+ 		}
+
+ 		
+ 	});
+ });
+
 </script>
 
 <%@include file="../main/footer.jsp" %>
