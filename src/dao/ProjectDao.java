@@ -4,6 +4,7 @@ import java.util.List;
 
 import board.util.Paging;
 import dto.ProjectDto;
+import dto.ProjectLocationDto;
 import dto.ProjectTechDto;
 
 public interface ProjectDao {	
@@ -34,5 +35,11 @@ public interface ProjectDao {
 
 	// 글이 삭제될때 tech도 삭제
 	public void deleteTech(int projectNo);
+
+	// 지역 가져오기
+	public List<ProjectLocationDto> getAllLocation();
+
+	// 기술 가져오기
+	public List<ProjectTechDto> getAlltech();
 	
 }

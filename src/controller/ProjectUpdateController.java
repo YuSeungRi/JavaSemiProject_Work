@@ -1,11 +1,7 @@
 package controller;
 
 import java.io.IOException;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,25 +15,34 @@ import dto.ProjectDto;
 import dto.ProjectLocationDto;
 import dto.ProjectTechDto;
 
-@WebServlet("/project/projectWrite.do")
-public class ProjectWriteController extends HttpServlet {
+@WebServlet("/project/projectUpdate.do")
+public class ProjectUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	private ProjectService projectService = new ProjectService();
+       
+		private ProjectService projectService = new ProjectService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
+		String param = request.getParameter("projectno");
+		
+		int projectno = 0;
+		if (!"".equals(param) && param != null) {
+			projectno = Integer.parseInt(param);
+		}
+		
+		ProjectDto projectDto = projectService.getProjectBoard(projectno);
 		List<ProjectLocationDto> locationList = projectService.getAllLocation();
 		List<ProjectTechDto> techList = projectService.getAlltech();
 		
+		request.setAttribute("project", projectDto);		
 		request.setAttribute("location", locationList);
 		request.setAttribute("tech", techList);
 		
-		request.getRequestDispatcher("/project/projectBoard_write.jsp").forward(request, response);
+		request.getRequestDispatcher("/project/projectBoard_update.jsp").forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("UTF-8");
 		
 		ProjectDto projectDto = new ProjectDto();

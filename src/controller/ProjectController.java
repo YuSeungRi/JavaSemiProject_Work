@@ -15,6 +15,7 @@ import Service.ProjectService;
 import board.util.Paging;
 import dto.BoardDto;
 import dto.ProjectDto;
+import dto.ProjectLocationDto;
 import dto.ProjectTechDto;
 
 @WebServlet("/project/project.do")
@@ -34,6 +35,9 @@ public class ProjectController extends HttpServlet {
 				request.getParameter("curPage") );
 		}
 
+		
+
+		
 		// 총 게시글 수
 		int totalCount = projectService.getTotal();
 				
@@ -43,11 +47,15 @@ public class ProjectController extends HttpServlet {
 		// 게시글 조회 결과
 		List<ProjectDto> projectList = projectService.getPagingList(paging);
 		List<ProjectTechDto> techList = projectService.techList();
+		List<ProjectLocationDto> locationList = projectService.getAllLocation();
+		List<ProjectTechDto> techListAll = projectService.getAlltech();	
 
 		// JSP에 전달할 MODEL 처리
 		request.setAttribute("projectList", projectList);
 		request.setAttribute("techList", techList);		
 		request.setAttribute("paging", paging);
+		request.setAttribute("location", locationList);
+		request.setAttribute("tech", techListAll);
 		
 		// 포워딩
 		request.getRequestDispatcher("/project/projectBoard.jsp").forward(request,response);

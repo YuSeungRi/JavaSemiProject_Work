@@ -14,27 +14,24 @@ INSERT INTO "location" VALUES( 13 ,'경상');
 INSERT INTO "location" VALUES( 14 ,'제주');
 
 
-INSERT INTO "project" VALUES( 1 , 1 ,'프로젝트명1', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용1', 10 ,'User1');
-INSERT INTO "project" VALUES( 2 , 2 ,'프로젝트명2', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용2', 10 ,'User2');
-INSERT INTO "project" VALUES( 3 , 3 ,'프로젝트명3', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용3', 10 ,'User3');
-INSERT INTO "project" VALUES( 4 , 4 ,'프로젝트명4', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용4', 10 ,'User4');
-INSERT INTO "project" VALUES( 5 , 5 ,'프로젝트명5', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용5', 10 ,'User5');
-INSERT INTO "project" VALUES( 6 , 6 ,'프로젝트명6', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용6', 10 ,'User6');
-INSERT INTO "project" VALUES( 7 , 7 ,'프로젝트명7', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용7', 10 ,'User7');
-INSERT INTO "project" VALUES( 8 , 8 ,'프로젝트명8', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용8', 10 ,'User8');
-INSERT INTO "project" VALUES( 9 , 9 ,'프로젝트명9', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용9', 10 ,'User9');
-INSERT INTO "project" VALUES( 10 , 10 ,'프로젝트명10', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용10', 10 ,'User10');
-INSERT INTO "project" VALUES( 11 , 11 ,'프로젝트명11', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용11', 10 ,'User11');
-INSERT INTO "project" VALUES( 12 , 12 ,'프로젝트명12', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용12', 10 ,'User12');
-INSERT INTO "project" VALUES( 13 , 13 ,'프로젝트명13', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용13', 10 ,'User13');
-INSERT INTO "project" VALUES( 14 , 14 ,'프로젝트명14', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용14', 10 ,'User14');
-INSERT INTO "project" VALUES( 15 , 1 ,'프로젝트명15', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용15', 10 ,'User15');
-INSERT INTO "project" VALUES( 16 , 2 ,'프로젝트명16', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용16', 10 ,'User16');
-INSERT INTO "project" VALUES( 17 , 3 ,'프로젝트명17', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용17', 10 ,'User17');
-INSERT INTO "project" VALUES( 18 , 4 ,'프로젝트명18', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용18', 10 ,'User18');
-INSERT INTO "project" VALUES( 19 , 5 ,'프로젝트명19', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용19', 10 ,'User19');
-INSERT INTO "project" VALUES( 20 , 6 ,'프로젝트명20', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용20', 10 ,'User20');
-INSERT INTO "project" VALUES( 21 , 7 ,'프로젝트명21', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용21', 10 ,'User21');
+INSERT INTO "project" VALUES( 1 , 1 ,'프로젝트명1', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용1', 10 ,'User1@naver.com');
+INSERT INTO "project" VALUES( 2 , 2 ,'프로젝트명2', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용2', 10 ,'User2@naver.com');
+INSERT INTO "project" VALUES( 3 , 3 ,'프로젝트명3', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용3', 10 ,'User3@naver.com');
+INSERT INTO "project" VALUES( 4 , 4 ,'프로젝트명4', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용4', 10 ,'User4@naver.com');
+INSERT INTO "project" VALUES( 5 , 5 ,'프로젝트명5', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용5', 10 ,'User5@naver.com');
+INSERT INTO "project" VALUES( 6 , 6 ,'프로젝트명6', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용6', 10 ,'User6@naver.com');
+INSERT INTO "project" VALUES( 7 , 7 ,'프로젝트명7', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용7', 10 ,'User7@naver.com');
+INSERT INTO "project" VALUES( 8 , 8 ,'프로젝트명8', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용8', 10 ,'User8@naver.com');
+INSERT INTO "project" VALUES( 9 , 9 ,'프로젝트명9', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용9', 10 ,'User9@naver.com');
+INSERT INTO "project" VALUES( 10 , 10 ,'프로젝트명10', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용10', 10 ,'User10@naver.com');
+INSERT INTO "project" VALUES( 11 , 11 ,'프로젝트명11', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용11', 10 ,'User11@naver.com');
+INSERT INTO "project" VALUES( 12 , 12 ,'프로젝트명12', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용12', 10 ,'User12@naver.com');
+INSERT INTO "project" VALUES( 13 , 13 ,'프로젝트명13', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용13', 10 ,'User13@naver.com');
+INSERT INTO "project" VALUES( 14 , 14 ,'프로젝트명14', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용14', 10 ,'User14@naver.com');
+INSERT INTO "project" VALUES( 15 , 1 ,'프로젝트명15', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용15', 10 ,'User15@naver.com');
+INSERT INTO "project" VALUES( 16 , 2 ,'프로젝트명16', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용16', 10 ,'User16@naver.com');
+INSERT INTO "project" VALUES( 17 , 3 ,'프로젝트명17', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용17', 10 ,'User17@naver.com');
+INSERT INTO "project" VALUES( 18 , 4 ,'프로젝트명18', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용18', 10 ,'User18@naver.com');
 
 
 INSERT INTO tech VALUES( 1 ,'JAVA');
