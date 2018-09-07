@@ -7,9 +7,9 @@ import dao.ReplyDaoImpl;
 import dto.ReplyDto;
 
 /*
- * 수정일 : 2018.09.06
+ * 수정일 : 2018.09.07
  * 수정자 : 권미현
- *  - addNewReply(댓글입력) 추가
+ *  - deleteReply(댓글삭제) 추가
  */
 
 public class ReplyService {
@@ -25,6 +25,11 @@ public class ReplyService {
 	// 댓글 입력
 	public boolean addNewReply(ReplyDto dto) {
 		return dao.addNewReply(dto);
+	}
+	
+	// 댓글 삭제
+	public boolean deleteReply(int replyNo) {
+		return dao.deleteReply(replyNo);
 	}
 	
 }

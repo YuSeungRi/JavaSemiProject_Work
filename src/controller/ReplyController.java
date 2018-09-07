@@ -32,7 +32,7 @@ public class ReplyController extends HttpServlet {
 		
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		
-		System.out.println("ReplyController_boardNo : " + boardNo);
+//		System.out.println("ReplyController_boardNo : " + boardNo);
 		
 		ReplyDto dto = new ReplyDto();
 		
@@ -40,22 +40,26 @@ public class ReplyController extends HttpServlet {
 		dto.setUserEmail((String) request.getSession().getAttribute("userId"));
 		dto.setReplyContent(request.getParameter("replyContent"));
 		
-		System.out.println("ReplyController_" + dto);
+//		System.out.println("ReplyController_" + dto);
 		replyService.addNewReply(dto);
 		
 		
-		// 리다이렉트 설정
+		// --- 리다이렉트 설정 ----
 		BoardDto boardDto = boardService.getBoard(boardNo);
 		String category = boardDto.getBoardCategory();
 		String reController = null;
 		if (category.equals("FreeBoard")) {
 			reController = "Freeboard";
-		}
+		} else if (category.equals("Recruit")) {
+			reController = "recruit";
+		} // TODO 나머지 게시판들도 리다이렉트 설정해주세요!
 		
-		System.out.println("ReplyController_category : " + category);
-		System.out.println("ReplyController_reController : " + reController);
+//		System.out.println("ReplyController_category : " + category);
+//		System.out.println("ReplyController_reController : " + reController);
+//		System.out.println("ReplyController_redirect : /" + reController + "/detail.do?boardno=" + boardNo);
 		
 		response.sendRedirect("/" + reController + "/detail.do?boardno=" + boardNo);
+		// -------------------
 		
 	}
 

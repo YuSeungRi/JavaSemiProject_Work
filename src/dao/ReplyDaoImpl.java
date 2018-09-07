@@ -10,10 +10,9 @@ import dbutil.DBConn;
 import dto.ReplyDto;
 
 /*
- * 수정일 : 2018.09.06
+ * 수정일 : 2018.09.07
  * 수정자 : 권미현
- *  - addNewReply, deleteReply : 반환 타입 수정
- *  - getReplyList, getMyReply : 쿼리 문 수정(정렬)
+ *  - deleteReply : 쿼리문 수정(잘못된 컬럼명)
  */
 
 public class ReplyDaoImpl implements ReplyDao {
@@ -150,8 +149,8 @@ public class ReplyDaoImpl implements ReplyDao {
 	public boolean deleteReply(int replyNo) {
 		boolean result = false;
 		
-		String sql = "DELETE reply WHERE "
-				+ " replyNo = ?"; // 3. reply_content
+		String sql = "DELETE reply WHERE"
+				+ " reply_no = ?"; // 1. reply_content
 		
 		try {
 			ps = conn.prepareStatement(sql);

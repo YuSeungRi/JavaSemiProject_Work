@@ -113,15 +113,15 @@
 		</div>
 		<!-- 댓글 목록 영역 -->
 		<div class="row mt-3 justify-content-center">
-<%-- 			<c:import url="/reply/reply.do?boardNo=${board.boardNo }" />		 --%>
 			<ul class="list-group">
 				<c:forEach items="${replyList}" var="reply">
 					<li class="list-group-item">
 						<div class="d-flex w-100 justify-contents-between">
 							<%-- 수정일 : 2018.09.05 / 수정자 : 권미현 / 작성자:${reply.userEmail } → 작성자:${reply.userNick }  --%>
-							<small>댓글번호:${reply.replyNo }, 작성자:${reply.userNick }, 작성일:${reply.replyCreate }</small>
+							<small>댓글번호:${reply.replyNo }, 작성자:${reply.userNick }, 작성일:${reply.replyCreate } &nbsp</small>
 							<c:if test="${userId eq reply.userEmail }">
-								<button type="button" name="${reply.replyNo }" class="btn btn-sm bg-primary">댓글삭제</button>
+								<%-- 수정일 : 2018.09.07 / 수정자 : 권미현 / <button> → <a> 로 변경, 링크 연결 --%>
+								<small><a href="/reply/delete.do?replyno=${reply.replyNo }&boardno=${board.boardNo }" style="color: red;">삭제</a></small>
 							</c:if>
 						</div>
 						<div>
@@ -190,7 +190,6 @@
 	// 수정일 : 2018.09.06 / 수정자 : 권미현 / 버튼 기능 추가
 	// 댓글 입력 클릭시 로그인 상태가 아닐 경우
 	$("#btnReply").click(function(){
-// 		alert("버튼 눌림");
 		if(<%=session.getAttribute("userId") == null %>) {
 			alert("로그인 상태여야 사용 가능합니다.");
 			location.href = "/main/signin.do";
