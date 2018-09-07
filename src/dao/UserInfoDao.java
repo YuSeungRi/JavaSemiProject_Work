@@ -1,7 +1,9 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import board.util.Paging;
 import dto.UserInfoDto;
 
 public interface UserInfoDao {
@@ -44,9 +46,11 @@ public interface UserInfoDao {
 	 */
 	public boolean updateUserInfo(UserInfoDto dto);
 	
-	
-	
-	
+	/**
+	 * 
+	 * @param dto
+	 * @return
+	 */
 	public boolean updateUserInfo2(UserInfoDto dto);
 
 	/**
@@ -67,7 +71,23 @@ public interface UserInfoDao {
 	 */
 	public String getUserNick(UserInfoDto dto);
 	
-	
+	/**
+	 * 
+	 * @param dto
+	 * @return
+	 */	
 	public UserInfoDto searchpwd(UserInfoDto dto);
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public int getAllUserInfoCnt();
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List getPagingList(Paging paging);	
 }

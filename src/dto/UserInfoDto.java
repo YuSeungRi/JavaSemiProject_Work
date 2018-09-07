@@ -10,7 +10,28 @@ public class UserInfoDto {
 	private Date	userRegistDate; 
 	private String	userIntro;
 	private String 	userPhoto; //photopath(?)
+	private int cntboard;
+	private int cntreply;
+	private Date logintime;
 	
+	public Date getLogintime() {
+		return logintime;
+	}
+	public void setLogintime(Date logintime) {
+		this.logintime = logintime;
+	}
+	public int getCntboard() {
+		return cntboard;
+	}
+	public void setCntboard(int cntboard) {
+		this.cntboard = cntboard;
+	}
+	public int getCntreply() {
+		return cntreply;
+	}
+	public void setCntreply(int cntreply) {
+		this.cntreply = cntreply;
+	}
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -56,7 +77,11 @@ public class UserInfoDto {
 	
 	@Override
 	public String toString() {
-		return "userEmail: " + userEmail +", userPw: "+ userPw + ", nick: " + userNick + ", userLevel: " + userLevel + ", userPhoto: " + userPhoto;
+		return "UserInfoDto [userEmail=" + userEmail + ", userNick=" + userNick + ", userPw=" + userPw + ", userLevel="
+				+ userLevel + ", userRegistDate=" + userRegistDate + ", userIntro=" + userIntro + ", userPhoto="
+				+ userPhoto + ", cntboard=" + cntboard + ", cntreply=" + cntreply + ", logintime=" + logintime + "]";
 	}
+	
+	
 	
 }

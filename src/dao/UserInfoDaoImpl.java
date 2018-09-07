@@ -1,12 +1,13 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
+import board.util.Paging;
 import dbutil.DBConn;
 import dto.UserInfoDto;
 
@@ -337,6 +338,95 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		return null;
 	}
 
+	@Override
+	public int getAllUserInfoCnt() {
+		
+		conn = DBConn.getConnection();
+		
+		String sql = "SELECT count(*) FROM userinfo";
+		
+		int cnt = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			rs.next();
+			cnt = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return cnt;
 
+	}
+
+	
+	@Override
+	public List getPagingList(Paging paging) {
+		
+		conn = DBConn.getConnection();
+		
+		String sql
+		= "SELECT * FROM (" + 
+		"	SELECT rownum rnum, B.* FROM (" + 
+		"		SELECT " + 
+		"		u.user_email," + 
+		"		u.user_nick," + 
+		"		u.user_level," + 
+		"		(SELECT count(*) FROM board b WHERE u.user_email = b.board_user) cntboard," + 
+		"		(SELECT count(*) FROM reply r WHERE u.user_email = r.user_email) cntreply," + 
+		"		u.user_registdate," + 
+		"		(SELECT MAX(login_time) FROM login_log g WHERE u.user_email = g.user_email) login_time " + 
+		"		FROM userinfo u) B" + 
+		"		ORDER BY rnum)" + 
+		" WHERE rnum BETWEEN ? AND ?";
+	
+	List UserList = new ArrayList();
+	try {
+		ps = conn.prepareStatement(sql);
+		
+		ps.setInt(1, paging.getStartNo() );
+		ps.setInt(2, paging.getEndNo() );
+		System.out.println("asdasda"+paging.getStartNo());
+		System.out.println("asdasdasd"+paging.getEndNo());
+
+		// ResultSet 반환
+		rs = ps.executeQuery();
+		
+		while( rs.next() ) {
+			UserInfoDto dto = new UserInfoDto();
+			
+			dto.setUserEmail(rs.getString("user_email"));
+			dto.setUserNick(rs.getString("user_nick"));
+			dto.setUserLevel(rs.getString("user_level"));
+			dto.setCntboard(rs.getInt("cntboard"));
+			dto.setCntreply(rs.getInt("cntreply"));
+			dto.setUserRegistDate(rs.getDate("user_registdate"));
+			dto.setLogintime(rs.getDate("login_time"));
+			
+			UserList.add(dto);
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if(rs!=null)	rs.close();
+			if(ps!=null)	ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	return UserList;
+	}
 
 }
