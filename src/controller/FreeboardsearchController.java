@@ -9,28 +9,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Service.BoardService;
+import Service.BoardsearchService;
 import board.util.Paging;
 import dto.BoardDto;
 
 /*
- * 수정일 : 2018.08.30
- * 수정자 : 권미현
- *  - 정렬을 위한 처리
+ * 작정일 : 2018.09.06
+ * 작정자 : 안희민
+ *  
  */
 
-@WebServlet("/Freeboard/free.do")
-public class FreeboardController extends HttpServlet {
+@WebServlet("/Freeboard/search.do")
+public class FreeboardsearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	private BoardService bsvc = new BoardService();
+	
+	private BoardsearchService bssvc = new BoardsearchService();
 	private final String categoryName = "FreeBoard";
 	private String order = null; // 정렬
-	
+       
+   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 현재 페이지 
 		String param = request.getParameter("curPage");
+		String searchString = request.getParameter("searchString");
 		
 		int curPage = 0;
 		if( !"".equals(param) && param != null ) {
@@ -39,7 +41,7 @@ public class FreeboardController extends HttpServlet {
 		}	// 페이지가 비어있거나 [""], null값일 때 curPage를 요청한다
 		
 		// 총 게시글 수
-		int totalCount = bsvc.getTotal(categoryName); // DB에서 카테고리게시물의 숫자를 가져옴
+		int totalCount = bssvc.getTotal(categoryName); // DB에서 카테고리게시물의 숫자를 가져옴
 
 		// Paging Class 계산하기
 		Paging paging = new Paging(totalCount, curPage);	// 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴
@@ -59,19 +61,20 @@ public class FreeboardController extends HttpServlet {
 		} else if (orderParam.equals("recommend")) {
 			order = orderParam;
 		}
-//		System.out.println("FreeboardController_order : " + order);
+//		System.out.println("TechBoardController_order : " + order);
 		// --------------
 		
 		
 		// 게시글 조회 결과
-		List<BoardDto> boardList
-			= bsvc.getPagingList(paging, categoryName, order);
-
+		//List<BoardDto> boardList = tbsvc.getPagingList(paging, categoryName, order);
+		List<BoardDto> boardList = bssvc.getSearchList(paging, categoryName, order, searchString);
 		// JSP에 전달할 MODEL 처리
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("paging", paging);
 		request.setAttribute("order", order); // 정렬
+		request.setAttribute("searchString", searchString);
 		
-		request.getRequestDispatcher("/Freeboard/freeboard.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("/Freeboard/freeboard_search.jsp").forward(request,response);
 	}
 }

@@ -8,18 +8,21 @@
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 	<h2>
-		<i class="far fa-comments fa-lg"></i>게시글 상세조회
+		<i class="far fa-comments fa-lg"></i>자유게시판 게시글 상세조회
 	</h2>
 	<div class="col-md-11">
-		<form>
+		<form action="/Freeboard/search.do" name="search" method="get">
 			<div>
-				<div
-					class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
+				<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
+					<select name="keyFiled" size="1">
+					<option value="title" <c:if test="${'title'==keyFiled }"> selected</c:if>> 제목 </option>
+					<option value="content" <c:if test="${'content'==ketFiled }"> selected</c:if>> 내용 </option>
+					</select>
 					<input type="text" class="text-sm form-control"
 						placeholder="검색어를 입력하세요" aria-label=""
-						aria-describedby="basic-addon1">
+						aria-describedby="basic-addon1" name="searchString">
 					<div class="input-group-append">
-						<button class="btn btn-success" type="button">검색</button>
+						<button class="btn btn-success" type="submit">검색</button>
 					</div>
 				</div>
 				<ul class="nav">

@@ -8,18 +8,21 @@
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">   
 	<h2>
-		<i class="far fa-comments fa-lg"></i>게시글 상세조회
+		<i class="far fa-comments fa-lg"></i>기술동향 게시글 상세조회
 	</h2>
 	<div class="col-md-11">
-		<form>
+		<form action="/tech/search.do" name="search" method="get">
 			<div>
-				<div
-					class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
+				<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
+					<select name="keyFiled" size="1">
+					<option value="tilte" <c:if test="${'title'==keyFiled }"> selected</c:if>> 제목 </option>
+					<option value="content" <c:if test="${'content'==keyFiled }"> selected</c:if>> 내용 </option>
+					</select>
 					<input type="text" class="text-sm form-control"
 						placeholder="검색어를 입력하세요" aria-label=""
-						aria-describedby="basic-addon1">
+						aria-describedby="basic-addon1" name="searchStirng">
 					<div class="input-group-append">
-						<button class="btn btn-success" type="button">검색</button>
+						<button class="btn btn-success" type="submit">검색</button>
 					</div>
 				</div>
 				<ul class="nav">
@@ -39,7 +42,8 @@
 					</tr>
 					<tr>
 						<td colspan="1">no.</td><td colspan="3">${board.boardNo }</td>
-						<td colspan="1">작성자</td><td colspan="2">${board.boardUser }</td>
+						<%-- 수정일 : 2018.09.04 / 수정자 : 권미현 / ${board.boardUser } → ${board.boardNick } 변경 --%>
+						<td colspan="1">작성자</td><td colspan="2">${board.boardNick }</td>
 						<td colspan="1">조회수</td><td colspan="2">${board.boardRead }</td>
 						<td colspan="1">작성일</td><td colspan="2">${board.boardCreate }</td>	
 						<td colspan="2" id="recommend">${board.boardRecommend }</td><td colspan="1"><i class="far fa-thumbs-up fa-sm"></i></td>
@@ -68,7 +72,7 @@
 			<a href="/tech/tech.do" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">목록으로</a>
 			
-		<c:if test="${userNick eq board.boardUser }">		
+		<c:if test="${userId eq board.boardUser }">		
 			<a href="/tech/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">수정</a>
 			

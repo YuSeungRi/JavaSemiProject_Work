@@ -6,28 +6,13 @@
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 	<h1>
-		<span class="fa fa-laptop fa-fw mr-1"></span>기술동향
+		<span class="fa fa-laptop fa-fw mr-1"></span>자유게시판 검색결과
 	</h1>
 	<div class="col mt-1">
 		<div class="col-mt-11">
-			<form action="/tech/search.do" name="search" method="get">	
+			<form action="/Freeboard/search.do" name="search" method="get">	
 				<div>
 					<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4">
-						<div class="input-group mb-3">
-  							<div class="input-group-prepend">
-    						<button class="btn btn-outline-secondary dropdown-toggle" type="button" 
-    						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
-    						 <div class="dropdown-menu">
-      						 <a class="dropdown-item" href="#">제목</a> <!--제이쿼리로 해야함  -->
-      						 <a class="dropdown-item" href="#">내용</a>
-      						 <a class="dropdown-item" href="#">Something else here</a>
-      							<div role="separator" class="dropdown-divider"></div>
-      							<a class="dropdown-item" href="#">Separated link</a>
-    						 </div>
-  								</div>
-  						 		<input type="text" class="form-control" placeholder="검색어를 입력하세요" 
-  						 		aria-label="Text input with dropdown button">
-						</div>
 						<select name="keyFiled" size="1">
 						<option value="title" <c:if test="${'title'==keyFiled }"> selected</c:if>> 제목 </option>
 						<option value="content" <c:if test="${'content'==keyFiled }"> selected</c:if>> 내용 </option>
@@ -39,12 +24,6 @@
 							<button class="btn btn-success" type="submit">검색</button>
 						</div>
 					</div>
-					<ul class="nav">
-						<li class="nav-item"><a class="nav-link" href="#">최신순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">조회순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">추천순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">댓글순</a></li>
-					</ul>
 				</div>
 			</form>
 
@@ -66,9 +45,9 @@
 							<td>${board.boardNo }</td>
 							<td>${board.boardCreate }</td>
 							<td>
-								<a href="/tech/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+								<a href="/Freeboard/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardNick }</td>
+							<td>${board.boardUser }</td>
 							<td>${board.boardRead }</td>
 					    	<td>${board.boardRecommend }</td>
 						</tr>
@@ -78,8 +57,8 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-3 text-center m-1">
-					<%-- 작성 버튼 --%>
-					<a href="/tech/write.do" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">작성</a>
+					<%-- 게시판으로 돌아가기 버튼 --%>
+					<a href="/Freeboard/free.do" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">돌아가기</a>
 				</div>
 			</div>	
 			<div class="row justify-content-center">
