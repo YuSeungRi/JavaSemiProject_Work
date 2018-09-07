@@ -14,9 +14,9 @@ import dto.BoardDto;
 import dto.ReplyDto;
 
 /*
- * 수정일 : 2018.09.06
+ * 수정일 : 2018.09.07
  * 수정자 : 권미현
- *  - 댓글 입력 기능 추가
+ *  - 댓글 개행(줄바꿈) 처리
  */
 
 @WebServlet("/reply/reply.do")
@@ -38,9 +38,9 @@ public class ReplyController extends HttpServlet {
 		
 		dto.setBoardNo(boardNo);
 		dto.setUserEmail((String) request.getSession().getAttribute("userId"));
-		dto.setReplyContent(request.getParameter("replyContent"));
+		dto.setReplyContent(request.getParameter("replyContent").replace("\r\n", "<br>")); // .replace("\r\n", "<br>") : 개행(줄바꿈) 처리
 		
-//		System.out.println("ReplyController_" + dto);
+		System.out.println("ReplyController_" + dto);
 		replyService.addNewReply(dto);
 		
 		
