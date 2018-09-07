@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="d-flex flex-row w-100 justify-content-center ">
+
 	<%--login success --%>
 	<c:if test="${sessionScope.login eq true }" >
 		<a href="/mypage/mypage.do">
@@ -39,7 +40,7 @@
 								<div class="form-group">
 									<label for="nickname">닉네임</label>
 									<input type="text" class="form-control" name="userNick" aria-describedby="nicknameHelp" 
-									placeholder="닉네임을 입력해주세요." pattern="(?=.*[a-z]).{2,}"  title="닉네임은 2글자 이상 입력해주세요." required>
+									placeholder="닉네임을 입력해주세요." pattern="(?=.*[가-힣a-zA-Z]).{2,}"  title="닉네임은 2글자 이상 입력해주세요." required>
 									<small id="nicknameHelp" class="form-text text-muted">닉네임은 2~10자 이내로 입력해주세요.</small>
 								</div>
 								<div class="form-group">

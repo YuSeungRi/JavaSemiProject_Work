@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +9,13 @@
 </head>
 
 <body>
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <div class="g-signin2" data-width="185" data-height="40" data-longtitle="true" data-onsuccess="onSignIn" data-theme="dark"></div>
     
     <form id="google" action="/main/signin.do" method="post">
 		<input id="userEmailG" name="userEmail" type="text" hidden="true" />
 		<input id="userNickG" name="userNick" type="text" hidden="true" />
 		<input id="userPhotoG" name="userPhoto" type="text" hidden="true" />
-		<input id="loginTypeG" name="loginType" type="text" hidden="true" value="social" />
+		<input id="loginTypeG" name="loginType" type="text" hidden="true" value="google" />
 		<button type="submit" hidden="true">submit</button>
 	</form>
 	
@@ -32,12 +31,12 @@
 	    document.getElementById("userEmailG").value = email;
 	    document.getElementById("userNickG").value = nick;
 	    document.getElementById("userPhotoG").value = photoPath;
-	    document.getElementById("loginTypeG").value = "social";
 	    
 	    document.getElementById("google").submit();
        
       };
-    </script>
+      
+      </script>
 </body>
   
 </html>

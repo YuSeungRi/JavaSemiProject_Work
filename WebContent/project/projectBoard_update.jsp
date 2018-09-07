@@ -1,38 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@include file="../main/header.jsp" %>
 <link rel="stylesheet" href="../summernote/summernote-bs4.css" />
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 
-<%if(session.getAttribute("userNick") == null) { %>
-	<script type="text/javascript">
-		alert("로그인 상태여야 사용 가능합니다.")
-		location.href = "/main/signin.do";
-	</script>
-<%} %>
-
-	<h2><i class="fa fa-project-diagram fa-fw mr-1"></i>프로젝트 등록하기</h2>
+	<h2><i class="fa fa-project-diagram fa-fw mr-1"></i>프로젝트 수정하기</h2>
 
 <form action="/project/projectWrite.do" method="post">	
 	  <div class="form-group row mt-5">
 	    <label for="title" class="col-sm-2 col-form-label">프로젝트 명</label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="title" name="title" placeholder="프로젝트명을 입력하세요">
+	      <input type="text" class="form-control" id="title" name="title" value="${project.projectTitle }">
 	    </div>
 	  </div>	  
 	  	  
 	  <div class="form-group row">
 	    <div class="col-sm-2">지역</div>
 	    <div class="col-sm-10">
-	 	<select class="custom-select" name="location">	 	
-			<option selected>지역을 선택하세요</option>	 		
+	 	<select class="custom-select" name="location">
+	 	
 	 		<c:forEach items="${location }" var="location">
- 				<option value="${location.locationNo }">${location.locationName }</option>
-	 		</c:forEach>	 		
+	 			<c:if test="${location.locationNo eq project.locationNo }">
+	 				<option selected value="${location.locationNo }">${location.locationName }</option>
+	 			</c:if>
+	 			<c:if test="${location.locationNo ne project.locationNo }">
+	 				<option value="${location.locationNo }">${location.locationName }</option>
+	 			</c:if>
+	 		</c:forEach>
+	 		
 		</select>
 	    </div>
-	  </div>  
+	  </div>	  
 
 	  <div class="form-group row">
 	    <div class="col-sm-2">사용기술</div>
@@ -51,15 +52,22 @@
 	  <div class="form-group row">
 	    <div class="col-sm-2">기간</div>
 		  
+		  
+			<fmt:parseDate var="parsedDateStart" value="${project.projectStart }" pattern="yyyy-MM-dd"/>	 
+			<fmt:formatDate var="startDay" value="${parsedDateStart}" pattern="yyyy-MM-dd"/> 
+			
 			<div class="form-group col-md-5">
 			 <label >시작일</label>
-			 <input type="date" name="startday" max="3000-12-31" 
-			        min="1000-01-01" class="form-control">
+			 <input type="date" name="startday" value="${startDay }" max="3000-12-31" 
+			        min="1000-01-01" class="form-control" >
 			</div>
+			
+			<fmt:parseDate var="parsedDateEnd" value="${project.projectEnd }" pattern="yyyy-MM-dd"/>	 
+			<fmt:formatDate var="endDay" value="${parsedDateEnd}" pattern="yyyy-MM-dd"/> 
 			
 			<div class="form-group col-md-5">
 			 <label >종료일</label>
-			 <input type="date" name="endday" min="1000-01-01"
+			 <input type="date" name="endday" value=${endDay } min="1000-01-01"
 			        max="3000-12-31" class="form-control">
 			</div>
 
@@ -67,7 +75,7 @@
 	  
 		<%-- 내용 --%>
 		<%-- summernote_start --%>
-		<textarea id="summernote" name="summernote"></textarea>
+		<textarea id="summernote" name="summernote">${project.projectContent }</textarea>
 		
 		<br>
 		<%-- summernote_end --%>	  	

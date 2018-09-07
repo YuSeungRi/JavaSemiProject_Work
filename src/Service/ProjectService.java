@@ -6,6 +6,7 @@ import board.util.Paging;
 import dao.ProjectDao;
 import dao.ProjectDaoImpl;
 import dto.ProjectDto;
+import dto.ProjectLocationDto;
 import dto.ProjectTechDto;
 
 public class ProjectService {
@@ -46,5 +47,13 @@ public class ProjectService {
 
 	public void deleteTech(int projectNo) {
 		projectDao.deleteTech(projectNo);
+	}
+
+	public List<ProjectLocationDto> getAllLocation() {
+		return projectDao.getAllLocation();
+	}
+
+	public List<ProjectTechDto> getAlltech() {
+		return projectDao.getAlltech();
 	}
 }

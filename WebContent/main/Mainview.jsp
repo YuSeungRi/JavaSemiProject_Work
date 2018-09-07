@@ -1,8 +1,10 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="./header.jsp" %>
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="./styleloader.jsp" %>
+
 
 <div class="container m-3">	
 <!-- 탬플릿 부분(상단) -->
@@ -30,7 +32,7 @@
 		</div>
 		
 			<table class="table table-hover table-bordered table-sm">
-				<thread>
+				<thead>
 					<tr class="table-active">
 						<th>글번호</th>
 						<th>작성일</th>
@@ -39,7 +41,7 @@
 						<th>조회수</th>
 						<th><i class="far fa-thumbs-up fa-sm"></i></th>
 					</tr>
-				</thread>
+				</thead>
 				
 				<tbody>
 					<c:forEach items="${FreeList }" var="board">
@@ -242,6 +244,8 @@ $(document).ready(function(){
 	$("#loginAlert").click(function(){
         $(this).hide();
     });
+	
 });
+
 </script>
 <%@include file="../main/footer.jsp"%>

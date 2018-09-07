@@ -6,6 +6,7 @@ import dao.CodeDao;
 import dao.CodeDaoImpl;
 import dto.CodeCategoryDto;
 import dto.CodeDto;
+import dto.TechDto;
 
 public class CodeService {
 	
@@ -25,5 +26,21 @@ public class CodeService {
 	
 	public ArrayList<CodeDto> getCodeList(int categoryNo, String userEmail){
 		return dao.getCodeList(categoryNo, userEmail);
+	}
+
+	public void createCategory(String categoryName, String userEmail) {
+		dao.createCategory(categoryName, userEmail);
+	}
+	
+	public void deleteCategory(int categoryNo) {
+		dao.deleteCategory(categoryNo);
+	}
+
+	public CodeDto getCode(int codeNo) {
+		return dao.getCode(codeNo);
+	}
+
+	public ArrayList<TechDto> getAllTechList() {
+		return dao.getAllTechList();
 	}
 }

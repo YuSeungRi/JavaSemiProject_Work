@@ -7,15 +7,28 @@
 <%@page import="mail.SMTPAuthenticator"%>
 <%@page import="javax.mail.Authenticator"%>
 <%@page import="java.util.Properties"%>
+<%@page import="dto.UserInfoDto" %>
+<%@page import="Service.UserInfoService" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%
 request.setCharacterEncoding("utf-8");
  
 // String from = request.getParameter("from");
-String to = request.getParameter("to");
+
+UserInfoService uisv = new UserInfoService();
+UserInfoDto user = new UserInfoDto();
+UserInfoDto userinfo = new UserInfoDto();
+user.setUserEmail(request.getParameter("to"));
+
+userinfo = uisv.searchpwd(user);
+
+String to = userinfo.getUserEmail();
 String subject = "비밀번호 찾기";
-String content = "rewre";
+String content = userinfo.getUserPw();
+
 // 입력값 받음
  
 Properties p = new Properties(); // 정보를 담을 객체

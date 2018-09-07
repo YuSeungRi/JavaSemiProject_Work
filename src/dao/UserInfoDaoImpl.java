@@ -77,7 +77,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 				+ " '1'," // 4. user_level
 				+ " SYSDATE," // 5. user_registDate
 				+ " 'ddd'," // 6. user_intro
-				+ " 'asd'" // 7. user_photo
+				+ " 'mm1.jpg'" // 7. user_photo
 				+ " )";
 		
 		try {
@@ -163,6 +163,51 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		return result;
 	}
 	
+	
+	
+	@Override
+	public boolean updateUserInfo2(UserInfoDto dto) {
+		
+		boolean result = false;
+		
+		conn = DBConn.getConnection();
+		
+		String query = "UPDATE userinfo SET"
+				+ " user_nick=?,"
+				+ " user_pw=?,"
+				+ " user_intro=?,"
+				+ " user_photo=?"
+				+ " WHERE user_email=?";
+		
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, dto.getUserNick());
+			ps.setString(2, dto.getUserPw());
+			ps.setString(3, dto.getUserIntro());
+			ps.setString(4, dto.getUserPhoto());
+			ps.setString(5, dto.getUserEmail());
+			
+			System.out.println(dto.getUserNick());
+			System.out.println(dto.getUserPw());
+			System.out.println(dto.getUserIntro());
+			System.out.println(dto.getUserPhoto());
+			System.out.println(dto.getUserEmail());
+			ps.executeUpdate();
+			
+			result = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
 
 	@Override
 	public UserInfoDto getUserInfo(String userEmail) {
@@ -252,22 +297,28 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	}
 
 	@Override
-	public String searchpwd(UserInfoDto dto) {
+	public UserInfoDto searchpwd(UserInfoDto dto) {
 		
 		conn = DBConn.getConnection();
 		
-		String pwd = null;
+		UserInfoDto userdto= null;
 		
-		String query = "SELECT user_pw FROM userInfo"
+		String query = "SELECT user_email, user_pw FROM userInfo"
 				+ " WHERE user_email=?";
 		
 		try {
 			ps = conn.prepareStatement(query);
 			ps.setString(1, dto.getUserEmail());
+
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				pwd=rs.getString("user_pw");
+				userdto = new UserInfoDto();
+				userdto.setUserEmail(rs.getString("user_email"));
+				userdto.setUserPw(rs.getString("user_pw"));
+				
+
+				return userdto;
 
 			}
 			
@@ -283,7 +334,9 @@ public class UserInfoDaoImpl implements UserInfoDao {
 			}
 		}
 		
-		return pwd;
+		return null;
 	}
+
+
 
 }

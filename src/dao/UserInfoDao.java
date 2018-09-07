@@ -43,6 +43,11 @@ public interface UserInfoDao {
 	 * @return 1: update success, 0: update fail
 	 */
 	public boolean updateUserInfo(UserInfoDto dto);
+	
+	
+	
+	
+	public boolean updateUserInfo2(UserInfoDto dto);
 
 	/**
 	 * get single user info
@@ -63,6 +68,6 @@ public interface UserInfoDao {
 	public String getUserNick(UserInfoDto dto);
 	
 	
-	public String searchpwd(UserInfoDto dto);
+	public UserInfoDto searchpwd(UserInfoDto dto);
 	
 }

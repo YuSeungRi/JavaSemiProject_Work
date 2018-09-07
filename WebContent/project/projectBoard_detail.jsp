@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>      
 <%@include file="../main/header.jsp" %>
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
@@ -19,8 +20,14 @@
 					</tr>
 					<tr>
 						<td colspan="1">작성자</td><td colspan="2">${project.projectLead }</td>
-						<td colspan="1">시작일</td><td colspan="2">${project.projectStart }</td>
-						<td colspan="1">종료일</td><td colspan="2">${project.projectEnd }</td>
+					    <fmt:parseDate var="parsedDateStart" value="${project.projectStart }" pattern="yyyy-MM-dd"/>
+						<fmt:formatDate var="startDay" value="${parsedDateStart}" pattern="yyyy-MM-dd"/>​
+						<td colspan="1">시작일</td><td colspan="2">${startDay }</td>
+  					 	<fmt:parseDate var="parsedDateEnd" value="${project.projectEnd }" pattern="yyyy-MM-dd"/>
+						<fmt:formatDate var="endday" value="${parsedDateEnd}" pattern="yyyy-MM-dd"/>​
+						<td colspan="1">종료일</td><td colspan="2">${endday }</td>
+						
+						
 						<td colspan="1">지역</td><td colspan="2">${project.locationName }</td>
 						
 					</tr>
@@ -51,7 +58,7 @@
 			role="button" aria-pressed="true">목록으로</a>
 			
 			<!-- 글쓴사람만 수정 삭제 버튼 보이게 구현 -->	
-			<a href="#" class="btn btn-secondary btn-sm active mr-1"
+			<a href="/project/projectUpdate.do?projectno=${project.projectNo }" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">수정</a>
 			
 			<a href="/project/projectDelete.do?projectno=${project.projectNo }" class="btn btn-secondary btn-sm active mr-1"

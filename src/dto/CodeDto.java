@@ -10,6 +10,7 @@ public class CodeDto {
 	private String codeSource;
 	private String userEmail;
 	private ArrayList<String> tech;
+	private String language;
 	
 	
 	@Override
@@ -58,6 +59,12 @@ public class CodeDto {
 	}
 	public void setTech(ArrayList<String> tech) {
 		this.tech = tech;
+	}
+	public String getLanguage() {
+		return language;
+	}
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 	
 }

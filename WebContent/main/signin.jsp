@@ -1,5 +1,3 @@
-<%@include file="./scriptloader.jsp" %>
-<%-- 여기에 페이지에 사용할 js를 삽입하세요. --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="./header.jsp" %>
@@ -42,7 +40,7 @@
 						</div>
 						<div class="modal-body">
 							<div class="container-fluid">
-								<form action="/main/signsearch.do" method="post">
+								<form action="/main/sendMail.jsp" method="post">
 									<div class="form-group">
 										<label for="email">이메일</label> 
 										<input type="email" class="form-control" name="to" placeholder="이메일을 입력해주세요.">

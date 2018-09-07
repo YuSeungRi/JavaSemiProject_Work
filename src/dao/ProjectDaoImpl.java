@@ -12,6 +12,7 @@ import java.util.List;
 import board.util.Paging;
 import dbutil.DBConn;
 import dto.ProjectDto;
+import dto.ProjectLocationDto;
 import dto.ProjectTechDto;
 
 public class ProjectDaoImpl implements ProjectDao {
@@ -114,7 +115,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				techDto.setTechName( rs.getString("tech_name"));
 				
 				techList.add(techDto);		
-//				System.out.println("리스트 띄우기 techDto : " + techDto);
+//				System.out.println(techDto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -312,6 +313,77 @@ public class ProjectDaoImpl implements ProjectDao {
 			}
 		}
 		
+	}
+
+	@Override
+	public List<ProjectLocationDto> getAllLocation() {
+
+		String sql = "SELECT * FROM \"location\"";
+		
+		List<ProjectLocationDto> LocationList = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				ProjectLocationDto LocationDto = new ProjectLocationDto();
+				
+				LocationDto.setLocationNo( rs.getInt("location_no"));
+				LocationDto.setLocationName( rs.getString("location_name"));
+				
+				LocationList.add(LocationDto);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+				if(rs != null) rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+		return LocationList;
+	}
+	
+
+	@Override
+	public List<ProjectTechDto> getAlltech() {
+		
+		String sql = "SELECT * FROM tech";
+		
+		List<ProjectTechDto> techList = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				ProjectTechDto techDto = new ProjectTechDto();
+				
+				techDto.setTechNo( rs.getInt("tech_no"));
+				techDto.setTechName( rs.getString("tech_name"));
+				
+				techList.add(techDto);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+				if(rs != null) rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+		return techList;
 	}
 
 

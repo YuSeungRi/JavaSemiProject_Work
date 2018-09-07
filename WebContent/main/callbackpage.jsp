@@ -16,7 +16,7 @@
 		<input id="userEmail" name="userEmail" type="text" hidden="true" />
 		<input id="userNick" name="userNick" type="text" hidden="true" />
 		<input id="userPhoto" name="userPhoto" type="text" hidden="true" />
-		<input id="loginType" name="loginType" type="text" hidden="true" value="social" />
+		<input id="loginType" name="loginType" type="text" hidden="true" value="naver" />
 		<button type="submit" hidden="true">submit</button>
 	</form>
 	
@@ -58,7 +58,6 @@
 					document.getElementById("userEmail").value = email;
 					document.getElementById("userNick").value = nick;
 					document.getElementById("userPhoto").value = photoPath;
-					document.getElementById("loginType").value = "social";
 
 					//window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/main/main.do");
 					
