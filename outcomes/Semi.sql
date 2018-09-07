@@ -190,3 +190,8 @@ CREATE TABLE recommend (
 ALTER TABLE recruit
 ADD CONSTRAINT recruit_FK 
     FOREIGN KEY(board_no) REFERENCES board(board_no);
+    
+-- 댓글
+ALTER TABLE reply
+ADD CONSTRAINT reply_FK
+    FOREIGN KEY(board_no) REFERENCES board(board_no);
