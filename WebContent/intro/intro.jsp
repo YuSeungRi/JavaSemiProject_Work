@@ -71,7 +71,7 @@ body {
 
 	Cookie enter = new Cookie("id", "enter");    // 쿠키를 생성한다. 이름:Cookie, 값 : enter
 
-	enter.setMaxAge(24*60*60);                       // 쿠키의 유효기간을 6시간으로 설정한다.
+	enter.setMaxAge(60*60);                       // 쿠키의 유효기간을 1시간으로 설정한다.
 
 	response.addCookie(enter);                       // 클라이언트 응답에 쿠키를 추가한다.
 	

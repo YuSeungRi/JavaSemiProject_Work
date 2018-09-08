@@ -76,6 +76,8 @@
 			<button id="btnRecommend" type="button" class="btn btn-secondary btn-sm active">추천</button>
 			</c:if>
 		</div>
+		
+		
 		<!-- 댓글 입력 영역  -->
 			<div class="row">
 			<div class="col-md-1"></div>
@@ -108,6 +110,8 @@
 			</div>
 			<div class="col-md-1"></div>
 		</div>
+		
+		
 		<!-- 댓글 목록 영역 -->
 		<div class="row mt-3 justify-content-center">
 			<div class="col-md-1"></div>
