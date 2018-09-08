@@ -6,7 +6,7 @@
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 	<h1>
-		<span class="fa fa-laptop fa-fw mr-1"></span>자유게시판 검색결과
+		<span class="fa fa-laptop fa-fw mr-1"></span>공지사항 게시판 검색결과
 	</h1>
 	<div class="col mt-1">
 		<div class="col-mt-11">
