@@ -22,10 +22,20 @@ public class BoardsearchService {
 		
 		return dao.getTotal(categoryName);
 	}
+	
+	public int searchTotal(String searchString) {
+		
+		return dao.searchTotal(searchString);
+	}
 
 	public List<BoardDto> getSearchList(Paging paging, String categoryName, String order, String searchString) {
 		
 		return dao.getSearchList(paging, categoryName, order, searchString);
+	}
+	
+	public List<BoardDto> getSearchList(Paging paging, String order, String searchString) {
+		
+		return dao.getSearchList(paging, order, searchString);	// 추가
 	}
 
 }

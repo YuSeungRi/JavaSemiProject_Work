@@ -4,6 +4,13 @@
 <%@include file="../main/header.jsp" %>
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
+<c:set var="FreeBoard" value="FreeBoard" />
+<c:set var="TechBoard" value="TechBoard" />
+<c:set var="QuestionBoard" value="QuestionBoard" />
+<c:set var="NoticeBoard" value="NoticeBoard" />
+<c:set var="Recruit" value="Recruit" />
+
+
 <div class="container m-3">
 	<h1>
 		<span class="fa fa-laptop fa-fw mr-1"></span>전체 게시판 검색결과
@@ -31,7 +38,7 @@
 				<table class="table table-hover table-sm">
 					<thead class="thead-light">
 						<tr>
-							<th>카테고리</th>
+							<th>카테고리</th>	<!-- 카테고리 추가 -->
 							<th>글번호</th>
 							<th>작성일</th>
 							<th>제목</th>
@@ -43,12 +50,27 @@
 					<tbody>
 					<c:forEach items="${boardList }" var="board">
 						<tr>
+							<td>${board.boardCategory }</td>  <!-- 카테고리 추가 -->
 							<td>${board.boardNo }</td>
 							<td>${board.boardCreate }</td>
 							<td>
-								<a href="/tech/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+								<c:if test="${board.boardCategory eq FreeBoard }" >
+									<a href="/Freeboard/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+								</c:if>
+								<c:if test="${board.boardCategory eq TechBoard }" >
+									<a href="/tech/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+								</c:if>
+								<c:if test="${board.boardCategory eq NoticeBoard }">
+									<a href="/notice/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+								</c:if>
+								<c:if test="${board.boardCategory eq QuestionBoard }">
+									<a href="/question/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+								</c:if>
+								<c:if test="${board.boardCategory eq Recruit }">
+									<a href="/recruit/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
+								</c:if>
 							</td>
-							<td>${board.boardUser }</td>
+							<td>${board.boardNick }</td>
 							<td>${board.boardRead }</td>
 					    	<td>${board.boardRecommend }</td>
 						</tr>
@@ -65,7 +87,7 @@
 			<div class="row justify-content-center">
 				<div class="col m-4">
 					<%-- 페이지네이션 --%>
-					<jsp:include page="/util/techPaging.jsp" />
+					<jsp:include page="/util/totalsearchPaging.jsp" />
 				</div>
 			</div>
 		</div>

@@ -23,7 +23,7 @@ public class MainsearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     private BoardsearchService bssvc = new BoardsearchService();
-    private final String categoryName ="MainBoard"; // category 삭제염두해 둬야함
+ //   private final String categoryName ="MainBoard"; // category 삭제염두해 둬야함
     private String order = null;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,7 +39,7 @@ public class MainsearchController extends HttpServlet {
 		}	// 페이지가 비어있거나 [""], null값일 때 curPage를 요청한다
 				
 		// 총 게시글 수
-		int totalCount = bssvc.getTotal(categoryName); // DB에서 카테고리게시물의 숫자를 가져옴
+		int totalCount = bssvc.searchTotal(searchString); // DB에서 카테고리게시물의 숫자를 가져옴
 
 		// Paging Class 계산하기
 		Paging paging = new Paging(totalCount, curPage);	// 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴
@@ -65,7 +65,7 @@ public class MainsearchController extends HttpServlet {
 		
 		// 게시글 조회 결과
 		//List<BoardDto> boardList = tbsvc.getPagingList(paging, categoryName, order);
-		List<BoardDto> boardList = bssvc.getSearchList(paging, categoryName, order, searchString);
+		List<BoardDto> boardList = bssvc.getSearchList(paging, order, searchString);
 		// JSP에 전달할 MODEL 처리
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("paging", paging);

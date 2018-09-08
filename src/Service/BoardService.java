@@ -31,6 +31,17 @@ public class BoardService {
 
 		return dao.getTotal(categoryName);
 	}
+	
+	/**
+	 * 전체 게시글 검색
+	 * @return
+	 */
+	public int searchTotal(String searchString) {
+	
+		return dao.searchTotal(searchString);
+		
+	}
+	
 	// 구인구직_상태 조회 후, 총 개수
 	public int getTotalStatus(String status) {
 		

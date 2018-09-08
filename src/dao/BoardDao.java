@@ -43,6 +43,14 @@ public interface BoardDao {
 	public int getTotal(String categoryName);
 	
 	/**
+	 *  전체 게시글수 조회 
+	 * @param searchString
+	 * @return
+	 */
+	
+	public int searchTotal(String searchString); 
+	
+	/**
 	 * 작성자 : 안희민 
 	 * 카테고리별 페이징 리스트 조회(정렬없음)
 	 * @param paging

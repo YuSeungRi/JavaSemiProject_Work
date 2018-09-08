@@ -177,6 +177,39 @@ public class BoardDaoImpl implements BoardDao {
 		return total;
 	}
 	
+	/**
+	 *  searchTotal
+	 */
+	@Override
+	public int searchTotal(String searchString) {
+		int total = 0;
+		
+		String sql = "SELECT count(*) FROM board"
+				+ " WHERE board_title like '%'||?||'%'"; // 1. searchString
+		
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, searchString);
+			
+			rs = ps.executeQuery();
+			
+			rs.next();
+			total = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return total;
+	}
+	
 	@Override
 	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName) {
 		ArrayList<BoardDto> list = new ArrayList<>();
