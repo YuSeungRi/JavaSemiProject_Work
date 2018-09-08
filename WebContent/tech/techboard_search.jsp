@@ -1,3 +1,5 @@
+<%-- 페이지네이션 재 설정 --%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -64,7 +66,7 @@
 			<div class="row justify-content-center">
 				<div class="col m-4">
 					<%-- 페이지네이션 --%>
-					<jsp:include page="/util/techPaging.jsp" />
+					<jsp:include page="/util/techsearchPaging.jsp" />
 				</div>
 			</div>
 		</div>
