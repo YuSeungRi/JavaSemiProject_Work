@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- 
-게시글 수정
-작성일 : 2018.08.27
-작성자 : 한상근
- --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@include file="../main/header.jsp"%>
 <%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
 <link rel="stylesheet" href="../summernote/summernote-bs4.css" />
@@ -30,7 +27,19 @@
 		<%-- summernote_start --%>
 		<textarea id="summernote" name="content" class="form-control">${board.boardContent }</textarea>
 		<%-- summernote_end --%>
-
+		
+		<%-- 업로드된 파일 --%>
+		<div class="form-group row mt-4">
+			<label for="uploadedFile" class="col-sm-3 col-form-label">저장된 파일</label>
+			<div class="card col-sm-7">
+				<div class="card-body">
+					<c:forEach items="fileList" var="file" >
+						<a href="/upload/${file.storedFile }" >${file.fileName }</a>
+						<button type="button" id="${file.fileNo }">삭제</button>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
 
 		<%-- 파일 첨부 --%>
 		<div class="form-group row mt-4">

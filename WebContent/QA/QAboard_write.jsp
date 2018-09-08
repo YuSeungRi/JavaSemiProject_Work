@@ -1,15 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 
-게시글 작성
-작성일 : 2018.08.15
-작성자 : 권미현
 
-수정일 : 2018.08.30
-수정자 : 권미현
-	로그인 속성 키 값 수정
-		session.getAttribute("login") → session.getAttribute("userId")
- --%>
+
 <%@include file="../main/header.jsp" %>
 <%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
 <link rel="stylesheet" href="../summernote/summernote-bs4.css" />
@@ -84,7 +76,24 @@
 			$("#summernote").summernote("code");
 			$("form").submit();
 		});
+		
+		
+		//file upload 관련 기능 처리 -- 보류
+// 		var idCounter = 0;
+// 		$("#btnAddFile").click(function(){
+// 			$("#fileUploadArea").append('<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>',
+// 					'<div class="col-sm-7">',
+// 					'<div class="custom-file">',
+// 					'<input type="file" class="custom-file-input"> <labelclass="custom-file-label" for="file"></label>',
+// 					'</div></div>');
+// 		});
+
+		$('.custom-file-input').on('change', function() { 
+			   var fileName = $(this).val().split('\\').pop(); 
+			   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+		});
 	});
+
 </script>
 <script type="text/javascript">
     	$(document).ready(function() {

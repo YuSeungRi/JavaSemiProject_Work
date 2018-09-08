@@ -26,7 +26,7 @@ public class MainController extends HttpServlet {
 		
 				// 자유게시판
 				category = categoryName[0];
-				
+			
 				List<BoardDto> FreeList
 					= boardservice.getboards(category, 5);
 				
@@ -35,7 +35,7 @@ public class MainController extends HttpServlet {
 				
 				// 공지사항
 				category = categoryName[1];
-				
+			
 				List<BoardDto> NoticeList
 					= boardservice.getboards(category, 5);
 				
@@ -44,7 +44,7 @@ public class MainController extends HttpServlet {
 				
 				// 구인구직 게시판
 				category = categoryName[2];
-				
+			
 				List<BoardDto> RecruitList
 					= boardservice.getboards(category, 5);
 				

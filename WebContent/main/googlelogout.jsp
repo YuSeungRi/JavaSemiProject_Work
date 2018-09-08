@@ -7,7 +7,7 @@
 <iframe src="https://accounts.google.com/logout" height="0" width="0"></iframe>
 
 <script type='text/javascript'>
-	setTimeout("location.href='/main/main.do'", 100);
+	setTimeout("location.href='/main/main.do'", 200);
 </script>
 
 

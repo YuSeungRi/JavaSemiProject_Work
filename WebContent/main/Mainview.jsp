@@ -1,10 +1,8 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="./header.jsp" %>
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="./styleloader.jsp" %>
-
 
 <div class="container m-3">	
 <!-- 탬플릿 부분(상단) -->

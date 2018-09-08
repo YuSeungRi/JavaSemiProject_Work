@@ -24,7 +24,7 @@ public class LogoutController extends HttpServlet {
 			
 			if( logType.equals("google") ) {
 				
-				// 로그아웃 처리
+				// 로그아웃 처리	
 				request.getSession().invalidate();
 				
 				// 메인페이지 리다이렉트

@@ -15,7 +15,6 @@
 		<i class="fas fa-pencil-alt fa-2x"></i>게시글 수정
 	</h2>
 
-
 	<%-- 제목 --%>
 	<form action="/Freeboard/update.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="boardno" value="${board.boardNo }" />
@@ -24,8 +23,6 @@
 			<input type="text" id="title" name="title" 
 			class="form-control col-sm-10" value="${board.boardTitle }"/>
 		</div>
-
-
 
 		<%-- 내용 --%>
 		<%-- summernote_start --%>
