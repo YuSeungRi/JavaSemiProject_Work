@@ -79,41 +79,79 @@
 				role="button" aria-pressed="true">삭제</a>
 			</c:if>
 		</div>
+		<%-- 수정일 : 2018.09.08 / 수정자 : 권미현 / 댓글 기능 추가 --%>
 		<!-- 댓글 입력 영역  -->
-		<div class="row mt-3 justify-content-center" id="replyDisplay" > 
-			<form action="/reply/reply.do" method="post" class="form-inline">
-			  <div class="form-group mr-3">
-			    <label for="userEmail">작성자</label>
-			    <input type="email" class="form-control" id="userEmail" name="userEmail" value="${sessionScope.userEmail }" readonly />
-			  </div>
-			  <div class="form-group ">
-			    <input type="text" class="form-control" id="boardNo" name="boardNo" value="${param.boardNo }" readonly hidden="true">
-			  </div>
-			  <div class="form-group mr-3">
-			    <textarea class="form-control" id="replyContent" name="replyContent" placeholder="댓글을 입력해주세요."></textarea>
-			  </div>
-			  <button type="submit" class="btn btn-primary">Submit</button>
-			</form>
-
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="card mt-5"> 
+					<form action="/reply/reply.do" method="post">
+			 	 	<div class="form-group card-header">
+			    		<label>${userNick }</label>
+			  		</div>
+			  		<div class="form-group ">
+			    		<input type="text" class="form-control" id="boardNo" name="boardNo" value="${board.boardNo }" readonly hidden="true">
+			  		</div>
+			  		<div class="card-body">
+			  		<div class="form-group">
+			  		<%-- 수정일 : 2018.09.06 / 수정자 : 권미현 / login 체크하여 댓글 입력창 활성화 및 비활성화 --%>
+			    		<c:choose>
+			    			<c:when test="${login }">
+			    				<textarea rows="3" class="form-control" id="replyContent" name="replyContent" placeholder="댓글을 입력해주세요." ></textarea>
+			    			</c:when>
+			    			<c:when test="${!login }">
+			    				<textarea rows="3" class="form-control" id="replyContent" name="replyContent" placeholder="로그인 상태여야 입력 가능합니다." readonly ></textarea>
+			    			</c:when>
+			    		</c:choose>
+			  		</div>
+			  		<%-- 수정일 : 2018.09.06 / 수정자 : 권미현 / 버튼 설정(id, type) --%>
+			  		<button id="btnReply" type="button" class="btn btn-primary  btn-sm mr-1">댓글 입력</button>
+			  		</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
 		</div>
 		<!-- 댓글 목록 영역 -->
 		<div class="row mt-3 justify-content-center">
-<%-- 			<c:import url="/reply/reply.do?boardNo=${board.boardNo }" />		 --%>
-			<ul class="list-group">
-				<c:forEach items="${replyList}" var="reply">
-					<li class="list-group-item">
-						<div class="d-flex w-100 justify-contents-between">
-							<small>댓글번호:${reply.replyNo }, 작성자:${reply.userEmail }, 작성일:${reply.replyCreate }</small><button type="button" name="${reply.replyNo }" class="btn btn-sm bg-primary">댓글삭제</button>
-						</div>
-						<div>
-							<p class="mb-1">${reply.replyContent }</p>					
-						</div>
-					</li>
-				</c:forEach>
-			</ul>
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<ul class="list-group">
+					<c:forEach items="${replyList}" var="reply">
+						<li class="list-group-item">
+							<div class="d-flex w-100 justify-contents-between">
+								<small>작성자 : ${reply.userNick }, 작성일 : ${reply.replyCreate } &nbsp</small>
+								<c:if test="${userId eq reply.userEmail }">
+									<small>
+										<a href="/reply/delete.do?replyno=${reply.replyNo }&boardno=${board.boardNo }" style="color: red;">삭제</a>
+									</small>
+								</c:if>
+							</div>
+							<div>
+								<p class="mb-1">${reply.replyContent }</p>
+							</div>
+						</li>
+					</c:forEach>
+				</ul>
+			</div>
+			<div class="col-md-1"></div>
 		</div>
 	</div>
 </div>
 
 <%@include file="../main/scriptloader.jsp" %>
+<script type="text/javascript">
+
+	// 수정일 : 2018.09.08 / 수정자 : 권미현 / 버튼 기능 추가
+	// 댓글 입력 클릭시 로그인 상태가 아닐 경우
+	$("#btnReply").click(function(){
+		if(<%=session.getAttribute("userId") == null %>) {
+			alert("로그인 상태여야 사용 가능합니다.");
+			location.href = "/main/signin.do";
+		} else if(<%=session.getAttribute("userId") != null %>) {
+			$("form").submit();
+		}
+	});
+	
+</script>
 <%@include file="../main/footer.jsp"%>

@@ -40,7 +40,7 @@ public class ReplyController extends HttpServlet {
 		dto.setUserEmail((String) request.getSession().getAttribute("userId"));
 		dto.setReplyContent(request.getParameter("replyContent").replace("\r\n", "<br>")); // .replace("\r\n", "<br>") : 개행(줄바꿈) 처리
 		
-		System.out.println("ReplyController_" + dto);
+//		System.out.println("ReplyController_" + dto);
 		replyService.addNewReply(dto);
 		
 		
