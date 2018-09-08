@@ -269,7 +269,7 @@ public class ProjectDaoImpl implements ProjectDao {
 	@Override
 	public void createProject(ProjectDto projectDto) {
 		String sql = "INSERT INTO \"project\""
-				+ " ( project_no, location_no, project_title, project_start, project_end, project_content, project_lead )"
+				+ " ( project_no, location_no, project_title, project_start, project_end, project_content, project_participant, project_lead )"
 				+ " VALUES ("
 				+ " ?, " //1.project_no
 				+ " ?, " //2.location_no
@@ -277,7 +277,8 @@ public class ProjectDaoImpl implements ProjectDao {
 				+ " TO_DATE(?, 'yyyy-MM-dd'), " //4.project_start
 				+ " TO_DATE(?, 'yyyy-MM-dd'), " //5.project_end
 				+ " ?, " //6.project_content
-				+ " ? )"; //7.project_lead
+				+ " ?, " //7.project_participant
+				+ " ? )"; //8.project_lead
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -288,7 +289,8 @@ public class ProjectDaoImpl implements ProjectDao {
 			ps.setString(4, projectDto.getProjectStart());
 			ps.setString(5, projectDto.getProjectEnd());
 			ps.setString(6, projectDto.getProjectContent());
-			ps.setString(7, projectDto.getProjectLead());
+			ps.setInt(7, projectDto.getProjectParticpant());
+			ps.setString(8, projectDto.getProjectLead());
 
 			ps.executeUpdate();
 		} catch (SQLException e) {

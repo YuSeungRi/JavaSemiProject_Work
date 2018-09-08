@@ -69,6 +69,7 @@ public class ProjectUpdateController extends HttpServlet {
 		projectDto.setProjectStart(request.getParameter("startday"));
 		projectDto.setProjectEnd(request.getParameter("endday"));		
 		projectDto.setProjectContent(request.getParameter("summernote"));
+		projectDto.setProjectParticpant(Integer.parseInt(request.getParameter("participant")));
 		
 		// 서비스 호출
 		projectService.write(projectDto);

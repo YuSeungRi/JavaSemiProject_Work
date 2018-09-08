@@ -19,7 +19,7 @@
 	  	  
 	  <div class="form-group row">
 	    <div class="col-sm-2">지역</div>
-	    <div class="col-sm-10">
+	    <div class="col-sm-4">
 	 	<select class="custom-select" name="location" id="location">
 	 	
 	 		<c:forEach items="${location }" var="location">
@@ -33,6 +33,16 @@
 	 		
 		</select>
 	    </div>
+	    
+   		<div class="col-sm-2">인원수</div>
+	    <span class="col-sm-4">
+	 	<select class="custom-select" name="participant" id="participant">	 	
+			<option selected>${project.projectParticpant }</option>	 		
+	 		<c:forEach begin="2" end="10" step="1" var="participant">
+ 				<option value="${participant }">${participant }</option>
+	 		</c:forEach>	 		
+		</select>
+	    </span>	    	    
 	  </div>	  
 
 	  <div class="form-group row">
@@ -158,6 +168,13 @@
  		var location = $.trim($('#location').val());
  		if (location ==''|| location=='지역을 선택하세요') {
  			alert("지역이 선택되지 않았습니다");
+ 			return false;
+ 		}
+ 		
+ 		// 인원수
+ 		var participant = $.trim($('#participant').val());
+ 		if (participant == 0 ) {
+ 			alert("인원수가 입력되지 않았습니다");
  			return false;
  		}
  
