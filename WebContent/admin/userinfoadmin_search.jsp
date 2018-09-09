@@ -6,13 +6,14 @@
 <%@include file="../main/styleloader.jsp"%>
 <div class="container m-3">
 	<h1>
-		<span class="fa fa-sign-in-alt fa-fw mr-1"></span>회원검색
+		<span class="fa fa-sign-in-alt fa-fw mr-1"></span>회원관리
 	</h1>
 	<div class="col mt-1">
 		<div class="col-mt-11">
 
 	
-				<div class="text-left">
+				<div>
+					<label class="col-form-label col-sm">총 회원수 : ${requestScope.totalCount}</label>
 					<label class="col-form-label col-sm">검색된 회원수 : ${requestScope.totalSearchCount}</label>
 				</div>
 

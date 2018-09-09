@@ -24,12 +24,14 @@ public class UserInfoSearch extends HttpServlet {
 		String param = request.getParameter("curPage");
 		String searchString = request.getParameter("searchString");
 		String keyfiled = request.getParameter("keyFiled");
-		System.out.println("keyfiled = "+keyfiled);
 
 		int curPage = 0;
 		if (!"".equals(param) && param != null) {
 			curPage = Integer.parseInt(request.getParameter("curPage"));
 		} // 페이지가 비어있거나 [""], null값일 때 curPage를 요청한다
+		
+		// 총 회원수
+		int totalCount = uisv.getTotal(); // DB에서 회원들의 숫자를 가져옴
 		
 		
 		if(keyfiled.equals("userEmail")==true) {
@@ -42,7 +44,7 @@ public class UserInfoSearch extends HttpServlet {
 
 			List<UserInfoDto> UserSearchList = uisv.getUserEmailSearchList(paging, searchString);
 
-			System.out.println("UserSearchList = " + UserSearchList);
+			request.setAttribute("totalCount", totalCount);
 			request.setAttribute("totalSearchCount", totalSearchCount);
 			request.setAttribute("UserSearchList", UserSearchList);
 			request.setAttribute("paging", paging);
@@ -57,10 +59,9 @@ public class UserInfoSearch extends HttpServlet {
 			// Paging Class 계산하기
 			Paging paging = new Paging(totalSearchCount, curPage); // 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴
 			
-			System.out.println("searchString = "+searchString);
 			List<UserInfoDto> UserSearchList = uisv.getUserNickSearchList(paging, searchString);
 
-			System.out.println("UserSearchList = " + UserSearchList);
+			request.setAttribute("totalCount", totalCount);
 			request.setAttribute("totalSearchCount", totalSearchCount);
 			request.setAttribute("UserSearchList", UserSearchList);
 			request.setAttribute("paging", paging);

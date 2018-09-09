@@ -43,7 +43,7 @@
 								<form action="/main/sendMail.jsp" method="post">
 									<div class="form-group">
 										<label for="email">이메일</label> 
-										<input type="email" class="form-control" name="to" placeholder="이메일을 입력해주세요.">
+										<input type="email" class="form-control" name="to" placeholder="이메일을 입력해주세요." required>
 									</div>
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-primary">확인</button>

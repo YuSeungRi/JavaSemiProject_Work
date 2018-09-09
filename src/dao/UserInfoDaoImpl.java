@@ -569,9 +569,6 @@ public class UserInfoDaoImpl implements UserInfoDao {
 			ps.setString(1, searchString);
 			ps.setInt(2, paging.getStartNo());
 			ps.setInt(3, paging.getEndNo());
-			System.out.println("1 = "+searchString);
-			System.out.println("2 = "+paging.getStartNo());
-			System.out.println("3 = "+paging.getEndNo());
 
 			// ResultSet 반환
 			rs = ps.executeQuery();
@@ -588,7 +585,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 				dto.setLogintime(rs.getDate("login_time"));
 
 				UserList.add(dto);
-				System.out.println("4 = "+dto);
+
 			}
 
 		} catch (SQLException e) {

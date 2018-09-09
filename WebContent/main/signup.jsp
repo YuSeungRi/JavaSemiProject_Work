@@ -1,36 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <div class="d-flex flex-row w-100 justify-content-center ">
-<script type="text/javascript">
-      $(document).ready(function(){
-        $('#passwordChecker').on('change',function(){
-          var isChecked = $(this).prop('checked');
-          if (isChecked) {
-            $('#my-password').attr('type','text');
-          } else {
-            $('#my-password').attr('type','Password');
-          }
-        });
-      });
-      
-  </script>
-
-<script>
-var myInput = document.getElementById("my-password");
-
-// When the user clicks on the password field, show the message box
-myInput.onfocus = function() {
-    document.getElementById("message").style.display = "block";
-}
-
-// When the user clicks outside of the password field, hide the message box
-myInput.onblur = function() {
-    document.getElementById("message").style.display = "none";
-}
-
-
-</script>
 	<%--login success --%>
 	<c:if test="${sessionScope.login eq true }" >
 		<a href="/mypage/mypage.do">
