@@ -71,9 +71,9 @@
 							<div class="container-fluid">
 								<form action="/mypage/mypage.do" method="post">
 									<div class="form-group text-left">
-										<label for="password">패스워드</label> <input type="password"
-											class="form-control" name="userConfirmPwd"
-											placeholder="패스워드를 입력해주세요.">
+										<label for="password">패스워드</label> 
+										<input type="password" class="form-control" name="userConfirmPwd"
+											placeholder="패스워드를 입력해주세요." required>
 										<small id="passwordHelp" class="form-text text-muted">패스워드는
 											6자 이상에 영어대소문자, 숫자를 포함해서 입력해주세요.</small>
 									</div>

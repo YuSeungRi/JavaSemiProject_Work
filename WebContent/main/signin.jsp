@@ -11,12 +11,12 @@
 			<form action="/main/signin.do" method="post">
 				<div class="form-group">
 					<label for="idInput">Email address</label>
-					<input type="email" class="form-control" name="userEmail" placeholder="아이디를 입력하세요.">
+					<input type="email" class="form-control" name="userEmail" placeholder="아이디를 입력하세요." required>
 				</div>
 				<div class="form-group">
-					<label for="passwordInput">Password</label> <input type="password"
-						class="form-control" name="userPw" id="my-password"
-						placeholder="패스워드를 입력해주세요." >
+					<label for="passwordInput">Password</label> 
+					<input type="password" class="form-control" name="userPw" id="my-password"
+						placeholder="패스워드를 입력해주세요." required>
 
 				</div>
 				<button type="submit" class="btn btn-primary btn-sm">로그인</button>

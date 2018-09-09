@@ -43,8 +43,23 @@ public class UserInfoService {
 		return dao.getAllUserInfoCnt();
 	}
 	
-	public List getPagingList(Paging paging) {
-		return dao.getPagingList(paging);
+	public int getEmailSearchTotal(String searchString) {
+		return dao.getEmailSearchUserInfoCnt(searchString);
 	}
 	
+	public int getNickSearchTotal(String searchString) {
+		return dao.getNickSearchUserInfoCnt(searchString);
+	}
+	
+	public List<UserInfoDto> getAllUserInfoList(Paging paging) {
+		return dao.getAllUserInfoList(paging);
+	}
+	
+	public List<UserInfoDto> getUserEmailSearchList(Paging paging, String searchString) {
+		return dao.getUserEmailSearchList(paging, searchString);
+	}
+	
+	public List<UserInfoDto> getUserNickSearchList(Paging paging, String searchString) {
+		return dao.getUserNickSearchList(paging, searchString);
+	}
 }

@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import board.util.Paging;
 import dbutil.DBConn;
@@ -83,17 +82,11 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		
 		try {
 			ps = conn.prepareStatement(query);
-			System.out.println(dto.getUserEmail());
-			System.out.println(dto.getUserNick());
-			System.out.println(dto.getUserPw());
-			
+
 			ps.setString(1, dto.getUserEmail());
 			ps.setString(2, dto.getUserNick());
 			ps.setString(3, dto.getUserPw());
-//			ps.setString(4, dto.getUserLevel());
-//			ps.setDate(4, new Date(dto.getUserRegistDate().getTime()));
-//			ps.setString(6, dto.getUserIntro());
-//			ps.setString(7, dto.getUserPhoto());
+
 			result = ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -255,11 +248,6 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
 	}
 
-	@Override
-	public ArrayList<UserInfoDto> getAllUserInfo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public String getUserNick(UserInfoDto dto) {
@@ -368,8 +356,68 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	}
 
 	
+	
 	@Override
-	public List getPagingList(Paging paging) {
+	public int getEmailSearchUserInfoCnt(String searchString) {
+	
+		conn = DBConn.getConnection();
+		
+		String sql = "SELECT count(*) FROM userinfo WHERE user_email like '%'||?||'%'";
+		
+		int cnt = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, searchString);
+			rs = ps.executeQuery();
+			rs.next();
+			cnt = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return cnt;
+	}
+	
+	
+	@Override
+	public int getNickSearchUserInfoCnt(String searchString) {
+
+		conn = DBConn.getConnection();
+		
+		String sql = "SELECT count(*) FROM userinfo WHERE user_nick like '%'||?||'%'";
+		
+		int cnt = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, searchString);
+			rs = ps.executeQuery();
+			rs.next();
+			cnt = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return cnt;
+	}
+	
+	@Override
+	public ArrayList<UserInfoDto> getAllUserInfoList(Paging paging) {
 		
 		conn = DBConn.getConnection();
 		
@@ -388,45 +436,181 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		"		ORDER BY rnum)" + 
 		" WHERE rnum BETWEEN ? AND ?";
 	
-	List UserList = new ArrayList();
-	try {
-		ps = conn.prepareStatement(sql);
-		
-		ps.setInt(1, paging.getStartNo() );
-		ps.setInt(2, paging.getEndNo() );
-		System.out.println("asdasda"+paging.getStartNo());
-		System.out.println("asdasdasd"+paging.getEndNo());
-
-		// ResultSet 반환
-		rs = ps.executeQuery();
-		
-		while( rs.next() ) {
-			UserInfoDto dto = new UserInfoDto();
-			
-			dto.setUserEmail(rs.getString("user_email"));
-			dto.setUserNick(rs.getString("user_nick"));
-			dto.setUserLevel(rs.getString("user_level"));
-			dto.setCntboard(rs.getInt("cntboard"));
-			dto.setCntreply(rs.getInt("cntreply"));
-			dto.setUserRegistDate(rs.getDate("user_registdate"));
-			dto.setLogintime(rs.getDate("login_time"));
-			
-			UserList.add(dto);
-		}
-		
-	} catch (SQLException e) {
-		e.printStackTrace();
-	} finally {
+		ArrayList<UserInfoDto> UserList = new ArrayList<>();
 		try {
-			if(rs!=null)	rs.close();
-			if(ps!=null)	ps.close();
+			ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, paging.getStartNo());
+			ps.setInt(2, paging.getEndNo());
+
+			// ResultSet 반환
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				UserInfoDto dto = new UserInfoDto();
+
+				dto.setUserEmail(rs.getString("user_email"));
+				dto.setUserNick(rs.getString("user_nick"));
+				dto.setUserLevel(rs.getString("user_level"));
+				dto.setCntboard(rs.getInt("cntboard"));
+				dto.setCntreply(rs.getInt("cntreply"));
+				dto.setUserRegistDate(rs.getDate("user_registdate"));
+				dto.setLogintime(rs.getDate("login_time"));
+
+				UserList.add(dto);
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
-		
-	}
 	
 	return UserList;
 	}
 
+	@Override
+	public ArrayList<UserInfoDto> getUserEmailSearchList(Paging paging, String searchString) {
+		
+		conn = DBConn.getConnection();
+		
+		String sql
+		= "SELECT * FROM (" + 
+		"	SELECT rownum rnum, B.* FROM (" + 
+		"		SELECT " + 
+		"		u.user_email," + 
+		"		u.user_nick," + 
+		"		u.user_level," + 
+		"		(SELECT count(*) FROM board b WHERE u.user_email = b.board_user) cntboard," + 
+		"		(SELECT count(*) FROM reply r WHERE u.user_email = r.user_email) cntreply," + 
+		"		u.user_registdate," + 
+		"		(SELECT MAX(login_time) FROM login_log g WHERE u.user_email = g.user_email) login_time " + 
+		"		FROM userinfo u" + 
+		"     	WHERE user_email like '%'||?||'%') B" + 
+		"		ORDER BY rnum)" + 
+		" WHERE rnum BETWEEN ? AND ?";
+	
+		ArrayList<UserInfoDto> UserList = new ArrayList<>();
+		try {
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, searchString);
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
+
+			// ResultSet 반환
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				UserInfoDto dto = new UserInfoDto();
+
+				dto.setUserEmail(rs.getString("user_email"));
+				dto.setUserNick(rs.getString("user_nick"));
+				dto.setUserLevel(rs.getString("user_level"));
+				dto.setCntboard(rs.getInt("cntboard"));
+				dto.setCntreply(rs.getInt("cntreply"));
+				dto.setUserRegistDate(rs.getDate("user_registdate"));
+				dto.setLogintime(rs.getDate("login_time"));
+
+				UserList.add(dto);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		return UserList;
+
+	}
+
+	@Override
+	public ArrayList<UserInfoDto> getUserNickSearchList(Paging paging, String searchString) {
+		
+		conn = DBConn.getConnection();
+		
+		String sql
+		= "SELECT * FROM (" + 
+		"	SELECT rownum rnum, B.* FROM (" + 
+		"		SELECT " + 
+		"		u.user_email," + 
+		"		u.user_nick," + 
+		"		u.user_level," + 
+		"		(SELECT count(*) FROM board b WHERE u.user_email = b.board_user) cntboard," + 
+		"		(SELECT count(*) FROM reply r WHERE u.user_email = r.user_email) cntreply," + 
+		"		u.user_registdate," + 
+		"		(SELECT MAX(login_time) FROM login_log g WHERE u.user_email = g.user_email) login_time " + 
+		"		FROM userinfo u" + 
+		"     	WHERE user_nick like '%'||?||'%') B" + 
+		"		ORDER BY rnum)" + 
+		" WHERE rnum BETWEEN ? AND ?";
+	
+		ArrayList<UserInfoDto> UserList = new ArrayList<>();
+		try {
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, searchString);
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
+			System.out.println("1 = "+searchString);
+			System.out.println("2 = "+paging.getStartNo());
+			System.out.println("3 = "+paging.getEndNo());
+
+			// ResultSet 반환
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				UserInfoDto dto = new UserInfoDto();
+
+				dto.setUserEmail(rs.getString("user_email"));
+				dto.setUserNick(rs.getString("user_nick"));
+				dto.setUserLevel(rs.getString("user_level"));
+				dto.setCntboard(rs.getInt("cntboard"));
+				dto.setCntreply(rs.getInt("cntreply"));
+				dto.setUserRegistDate(rs.getDate("user_registdate"));
+				dto.setLogintime(rs.getDate("login_time"));
+
+				UserList.add(dto);
+				System.out.println("4 = "+dto);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		return UserList;
+
+	}
+
 }
+
+
+
+

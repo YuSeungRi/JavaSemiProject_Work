@@ -59,11 +59,6 @@ public interface UserInfoDao {
 	 * @return UserInfoDto
 	 */
 	public UserInfoDto getUserInfo(String userEmail);
-	/** 
-	 * get all user info
-	 * @return UserInfoDto array
-	 */
-	public ArrayList<UserInfoDto> getAllUserInfo();
 	
 	/** 
 	 * @param dto
@@ -79,15 +74,45 @@ public interface UserInfoDao {
 	public UserInfoDto searchpwd(UserInfoDto dto);
 	
 	/**
-	 * 
+	 * AllUserInfoCnt
 	 * @return
 	 */
 	public int getAllUserInfoCnt();
 	
+	/**
+	 * 
+	 * @param searchString
+	 * @return
+	 */
+	public int getEmailSearchUserInfoCnt(String searchString);
 	
 	/**
 	 * 
+	 * @param searchString
 	 * @return
 	 */
-	public List getPagingList(Paging paging);	
+	public int getNickSearchUserInfoCnt(String searchString);
+	
+	/**
+	 * 
+	 * @param paging
+	 * @return
+	 */
+	public ArrayList<UserInfoDto> getAllUserInfoList(Paging paging);	
+	
+	
+	/**
+	 * UserSearchList
+	 * @param paging
+	 * @return
+	 */
+	public ArrayList<UserInfoDto> getUserEmailSearchList(Paging paging, String searchString);
+	
+	/**
+	 * 
+	 * @param paging
+	 * @param searchString
+	 * @return
+	 */
+	public ArrayList<UserInfoDto> getUserNickSearchList(Paging paging, String searchString);
 }

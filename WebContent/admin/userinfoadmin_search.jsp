@@ -6,14 +6,14 @@
 <%@include file="../main/styleloader.jsp"%>
 <div class="container m-3">
 	<h1>
-		<span class="fa fa-sign-in-alt fa-fw mr-1"></span>회원관리
+		<span class="fa fa-sign-in-alt fa-fw mr-1"></span>회원검색
 	</h1>
 	<div class="col mt-1">
 		<div class="col-mt-11">
 
 	
 				<div class="text-left">
-					<label class="col-form-label col-sm">총 회원수 : ${requestScope.totalCount }</label>
+					<label class="col-form-label col-sm">검색된 회원수 : ${requestScope.totalSearchCount}</label>
 				</div>
 
 				<form action="/admin/userinfoadminsearch.do" name="search" method="get">
@@ -22,9 +22,9 @@
 							class="input-group input-group-sm col-12 offset-sm-8 col-sm-4">
 							<select name="keyFiled" size="1">
 								<option value="userEmail"
-									<c:if test="${'useremail'==keyFiled }"> selected</c:if>>이메일</option>
+									<c:if test="${'userEmail'==keyFiled }"> selected</c:if>>이메일</option>
 								<option value="userNick"
-									<c:if test="${'usernick'==keyFiled }"> selected</c:if>>닉네임</option>
+									<c:if test="${'userNick'==keyFiled }"> selected</c:if>>닉네임</option>
 							</select> 
 							<input type="text" class="text-sm form-control" placeholder="내용을입력하세요" aria-label=""
 								aria-describedby="basic-addon1" name="searchString" required>
@@ -51,18 +51,18 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${UserList }" var="User">
+						<c:forEach items="${UserSearchList }" var="UserSearch">
 							<tr>
-								<td>${User.userEmail }</td>
-								<td>${User.userNick }</td>
-								<td>${User.userLevel }</td>
-								<td>${User.cntboard }</td>
-								<td>${User.cntreply }</td>
-								<td>${User.userRegistDate }</td>
-								<td>${User.logintime }</td>
+								<td>${UserSearch.userEmail }</td>
+								<td>${UserSearch.userNick }</td>
+								<td>${UserSearch.userLevel }</td>
+								<td>${UserSearch.cntboard }</td>
+								<td>${UserSearch.cntreply }</td>
+								<td>${UserSearch.userRegistDate }</td>
+								<td>${UserSearch.logintime }</td>
 								<td>
 									<select onchange="select(this.value)" name="status" class="custom-select">
-										<option value="useremail" <c:if test="${order eq 'jobOfferComplete'}">selected="selected"</c:if>>${User.userLevel }</option>
+										<option value="useremail" <c:if test="${order eq 'jobOfferComplete'}">selected="selected"</c:if>>${UserSearch.userLevel }</option>
 										<option value="usernick" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>1</option>
 										<option value="usernick" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>2</option>
 										<option value="usernick" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>3</option>
@@ -82,7 +82,7 @@
 			<div class="row justify-content-center">
 				<div class="col m-4">
 					<%-- 페이지네이션 --%>
-					<jsp:include page="/util/userinfoPaging.jsp" />
+					<jsp:include page="/util/userinfosearchPaging.jsp" />
 				</div>
 			</div>
 		</div>

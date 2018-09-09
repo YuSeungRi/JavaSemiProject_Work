@@ -14,14 +14,14 @@
 			<c:if test="${paging.curPage eq 1 }">
 				<!-- 첫페이지일때 -->
 				<li class="page-item disabled">
-				<a class="page-link" href="/admin/userinfoadmin.do" aria-label="Previous">
+				<a class="page-link" href="/admin/userinfoadminsearch.do" aria-label="Previous">
 					<span aria-hidden="true">&laquo;</span></a>
 				</li>
 			</c:if>
 			<c:if test="${paging.curPage ne 1 }">
 				<!-- 첫페이지가아닐때 -->
 				<li class="page-item">
-				<a class="page-link" href="/admin/userinfoadmin.do?curPage=${paging.curPage-1 }"
+				<a class="page-link" href="/admin/userinfoadminsearch.do?keyFiled=${param.keyFiled }&searchString=${param.searchString }&curPage=${paging.curPage-1 }"
 					aria-label="previous"> 
 				<span aria-hidden="true">&laquo;</span></a>
 				</li>
@@ -35,7 +35,7 @@
 				</c:if>
 				<c:if test="${paging.curPage ne page }">
 				</c:if>
-				<a class="page-link" href="/admin/userinfoadmin.do?curPage=${page }">${page } </a>
+				<a class="page-link" href="/admin/userinfoadminsearch.do?keyFiled=${param.keyFiled }&searchString=${param.searchString }&curPage=${page }">${page } </a>
 	
 			</c:forEach>
 
@@ -44,7 +44,7 @@
 			<c:if test="${paging.curPage eq paging.totalPage }">
 				<!-- 마지막 페이지일때 -->
 				<li class="page-item disabled">
-					<a class="page-link" href="/admin/userinfoadmin.do?curPage=${paging.totalPage }" aria-lable="Next">
+					<a class="page-link" href="/admin/userinfoadminsearch.do?keyFiled=${param.keyFiled }&searchString=${param.searchString }&curPage=${paging.totalPage }" aria-lable="Next">
 					<span aria-hidden="true">&raquo;</span>
 					</a>
 				</li>
@@ -52,7 +52,7 @@
 			<c:if test="${paging.curPage ne paging.totalPage }">
 				<!-- 마지막 페이지가아닐때 -->
 				<li>
-					<a class="page-link" href="/admin/userinfoadmin.do?curPage=${paging.curPage+1 }" aria-lable="Next"> 
+					<a class="page-link" href="/admin/userinfoadminsearch.do?keyFiled=${param.keyFiled }&searchString=${param.searchString }&curPage=${paging.curPage+1 }" aria-lable="Next"> 
 					<span aria-hidden="true">&raquo;</span>
 					</a>
 				</li>

@@ -21,7 +21,8 @@ public class UserInfoAdmin extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-String param = request.getParameter("curPage");
+
+		String param = request.getParameter("curPage");
 		
 		int curPage = 0;
 		if( !"".equals(param) && param != null ) {
@@ -38,8 +39,9 @@ String param = request.getParameter("curPage");
 //		System.out.println(paging);
 
 		List<UserInfoDto> UserList
-		= uisv.getPagingList(paging);
+		= uisv.getAllUserInfoList(paging);
 		
+		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("UserList", UserList);
 		request.setAttribute("paging", paging);
 		
