@@ -28,7 +28,7 @@ public class ProjectViewController extends HttpServlet {
 		}
 		
 		ProjectDto projectDto = projectService.getProjectBoard(projectno);
-		List<ProjectTechDto> techList = projectService.techList();
+		List<ProjectTechDto> techList = projectService.techList(projectno);
 		request.setAttribute("project", projectDto);
 		request.setAttribute("techList", techList);
 		

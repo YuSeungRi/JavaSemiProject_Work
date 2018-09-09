@@ -4,7 +4,6 @@ public class ProjectTechDto {
 	private int projectNo;
 	private int techNo;
 	private String techName;
-		
 	public int getProjectNo() {
 		return projectNo;
 	}
@@ -23,9 +22,11 @@ public class ProjectTechDto {
 	public void setTechName(String techName) {
 		this.techName = techName;
 	}
+	
 	@Override
 	public String toString() {
-		return "TechDto [projectNo=" + projectNo + ", techNo=" + techNo + ", techName=" + techName + "]";
+		return "ProjectTechDto [projectNo=" + projectNo + ", techNo=" + techNo + ", techName=" + techName + "]";
 	}
+	
 	
 }

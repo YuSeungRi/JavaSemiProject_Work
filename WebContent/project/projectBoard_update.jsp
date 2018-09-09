@@ -9,7 +9,8 @@
 
 	<h2><i class="fa fa-project-diagram fa-fw mr-1"></i>프로젝트 수정하기</h2>
 
-<form action="/project/projectWrite.do" method="post" id="form">	
+<form action="/project/projectUpdate.do" method="post" id="form">
+<input type="hidden" name="projectno" value="${project.projectNo }" />	
 	  <div class="form-group row mt-5">
 	    <label for="title" class="col-sm-2 col-form-label">프로젝트 명</label>
 	    <div class="col-sm-10">
@@ -33,7 +34,7 @@
 	 		
 		</select>
 	    </div>
-	    
+    
    		<div class="col-sm-2">인원수</div>
 	    <span class="col-sm-4">
 	 	<select class="custom-select" name="participant" id="participant">	 	
@@ -43,7 +44,7 @@
 	 		</c:forEach>	 		
 		</select>
 	    </span>	    	    
-	  </div>	  
+	  </div>
 
 	  <div class="form-group row">
 	    <div class="col-sm-2">사용기술</div>
@@ -51,11 +52,11 @@
 	    
 	    	<c:forEach items="${tech }" var="tech" varStatus="stat">
 	      	  <div class="form-check form-check-inline">
-			  <input class="form-check-input" type="checkbox" id="inlineCheckbox${stat.index+1}" name="checkbox" value="${tech.techNo }">
-			  <label class="form-check-label" for="inlineCheckbox${stat.index+1}">${tech.techName }</label>
-			</div>
-	    	</c:forEach>		
-			
+				  <input class="form-check-input" type="checkbox" id="inlineCheckbox${tech.techNo}" name="checkbox" value="${tech.techNo }">
+				  <label class="form-check-label" for="inlineCheckbox${tech.techNo}">${tech.techName }</label>
+			  </div>
+	    	</c:forEach>
+
 	    </div>
 	  </div>
 		
@@ -117,7 +118,7 @@
 
 		$("#btnWrite").click(function(){
 			$("#summernote").summernote("code");
-			$("form").submit();
+			$("#form").submit();
 		});
 
 	});
@@ -211,6 +212,15 @@
  });
 
 </script>
+
+<c:forEach items="${selectTech }" var="st">
+	<script>
+		var tech = document.getElementById("inlineCheckbox${st.techNo}");
+		if(tech) {
+			tech.checked="true";
+		}
+	</script>
+</c:forEach>
 
 
 <%@include file="../main/footer.jsp" %>

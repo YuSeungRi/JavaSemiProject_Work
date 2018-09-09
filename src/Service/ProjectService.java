@@ -25,6 +25,10 @@ public class ProjectService {
 		return projectDao.techList();
 	}
 
+	public List<ProjectTechDto> techList(int projectNo) {
+		return projectDao.techList(projectNo);
+	}
+	
 	public ProjectDto getProjectBoard(int projectNo) {		
 		return projectDao.getProjectBoard(projectNo);
 	}
@@ -56,4 +60,12 @@ public class ProjectService {
 	public List<ProjectTechDto> getAlltech() {
 		return projectDao.getAlltech();
 	}
+
+	public void update(ProjectDto projectDto) {
+		projectDao.update(projectDto);
+	}
+
+//	public void techUpdate(ProjectTechDto techDto) {
+//		projectDao.techUpdate(techDto);		
+//	}
 }

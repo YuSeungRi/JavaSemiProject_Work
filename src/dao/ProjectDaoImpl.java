@@ -126,6 +126,43 @@ public class ProjectDaoImpl implements ProjectDao {
 		return techList;
 	}
 	
+	@Override
+	public List<ProjectTechDto> techList(int projectNo) {
+		String sql = "SELECT t.tech_name, p1.* FROM"
+				+ " (SELECT pt.tech_no, p.* FROM \"project\"p"
+				+ " LEFT JOIN project_tech pt"
+				+ " ON pt.project_no = p.project_no) p1"
+				+ " LEFT JOIN tech t"
+				+ " ON p1.tech_no = t.tech_no"
+				+ "	WHERE p1.project_no = ? "
+				+ " ORDER BY p1.project_no DESC";
+		
+		List<ProjectTechDto> techList = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, projectNo);			
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				ProjectTechDto techDto = new ProjectTechDto();
+				
+				techDto.setProjectNo( rs.getInt("project_no"));
+				techDto.setTechNo( rs.getInt("tech_no"));
+				techDto.setTechName( rs.getString("tech_name"));
+				
+				techList.add(techDto);		
+//				System.out.println(techDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return techList;
+	}
+	
 	
 	@Override
 	public ProjectDto getProjectBoard(int projectNo) {
@@ -409,6 +446,65 @@ public class ProjectDaoImpl implements ProjectDao {
 		return techList;
 	}
 
+	@Override
+	public void update(ProjectDto projectDto) {
+		String sql = "UPDATE \"project\""
+				+ " SET location_no = ?," // 1. 지역번호
+				+ " project_title = ?,"	//2. 프로젝트명 	
+				+ " project_start = TO_DATE(?, 'yyyy-MM-dd'), " //3. 시작일
+				+ " project_end = TO_DATE(?, 'yyyy-MM-dd'), " //4. 종료일
+				+ " project_content = ?," // 5. 프로젝트 내용
+				+ " project_participant = ? " // 6. 참가자 수 
+				+ " WHERE project_no = ? " ; // 7. 프로젝트 번호 
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, projectDto.getLocationNo());
+			ps.setString(2, projectDto.getProjectTitle());
+			ps.setString(3, projectDto.getProjectStart());
+			ps.setString(4, projectDto.getProjectEnd());
+			ps.setString(5, projectDto.getProjectContent());
+			ps.setInt(6, projectDto.getProjectParticpant());
+			ps.setInt(7, projectDto.getProjectNo());
+			
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
+//	@Override
+//	public void techUpdate(ProjectTechDto techDto) {
+//		String sql = "UPDATE project_tech"
+//				+ " SET tech_no = ?" //1. 바꿀 테크넘버  
+//				+ " WHERE project_no = ?" //2. 프로젝트 넘버 
+//				+ " AND tech_no = ?" ;//3. 기존 테크 넘버 
+//		
+//		try {
+//			ps = conn.prepareStatement(sql);
+//			
+//			ps.setInt(1, techDto.getTechNo());
+//			ps.setInt(2, techDto.getProjectNo());
+//			
+//			System.out.println(techDto);
+//			
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if(ps != null) ps.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 	
 }

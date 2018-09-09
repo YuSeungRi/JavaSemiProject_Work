@@ -110,7 +110,7 @@
 
 		$("#btnWrite").click(function(){
 			$("#summernote").summernote("code");
-			$("form").submit();
+			$("#form").submit();
 		});
 
 	});
