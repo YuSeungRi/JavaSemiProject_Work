@@ -118,7 +118,6 @@ public class ProjectDaoImpl implements ProjectDao {
 				techDto.setTechName( rs.getString("tech_name"));
 				
 				techList.add(techDto);		
-//				System.out.println(techDto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -155,7 +154,6 @@ public class ProjectDaoImpl implements ProjectDao {
 				techDto.setTechName( rs.getString("tech_name"));
 				
 				techList.add(techDto);		
-//				System.out.println(techDto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -261,8 +259,6 @@ public class ProjectDaoImpl implements ProjectDao {
 			
 			ps.setInt(1, projectNo);
 			
-			System.out.println(projectNo);
-			
 			ps.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -359,8 +355,6 @@ public class ProjectDaoImpl implements ProjectDao {
 			ps.setInt(2, techDto.getTechNo());;
 			
 			ps.executeUpdate();
-			
-//			System.out.println("게시글 작성 techDTO : " + techDto);			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

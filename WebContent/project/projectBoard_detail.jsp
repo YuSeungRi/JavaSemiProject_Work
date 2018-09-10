@@ -61,7 +61,7 @@
 						<td td colspan="16" > (
 						<span id="participate">	${cnt }						
 						</span>	
-						<span id="participate2">
+						<span id="participate2" >
 						/ ${project.projectParticpant } )
 						</span>
 						</td>
@@ -124,14 +124,6 @@
 	
 	// 추천 버튼 클릭 이벤트 처리
 	$("#btnParticipate").click(function() {
-		
-		var num1 = $.trim($('#participate').val());
-		var num2 = $.trim($('#participate2').val());
-		
-		if(num1>=num2) {
- 			alert("참가 가능 인원을 초과하였습니다");
- 			return false;
- 		}
 		
 		$.ajax({
 			type: "get"

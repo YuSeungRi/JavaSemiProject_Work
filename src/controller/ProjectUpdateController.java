@@ -43,8 +43,6 @@ public class ProjectUpdateController extends HttpServlet {
 		request.setAttribute("tech", allTechList);
 		request.setAttribute("selectTech", selectTechList);
 		
-//		System.out.println(selectTechList);
-		
 		request.getRequestDispatcher("/project/projectBoard_update.jsp").forward(request, response);
 		
 	}
