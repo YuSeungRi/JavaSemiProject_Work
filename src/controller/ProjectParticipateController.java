@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Service.ProjectService;
-import dto.BoardDto;
 import dto.ProjectDto;
 
 @WebServlet("/project/participate.do")
@@ -32,14 +32,11 @@ public class ProjectParticipateController extends HttpServlet {
 		boolean result = projectService.participate(projectDto);
 		int participate = projectService.getParticipate(projectDto);
 		
-		System.out.println(participate);
-		
 		response.getWriter().println(
 				"{"
 				+ "\"participate\": "+participate
 				+ ", \"result\": "+result
 				+ "}");
-				
 				
 	}
 

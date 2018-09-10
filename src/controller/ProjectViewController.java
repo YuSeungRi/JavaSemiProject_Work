@@ -33,8 +33,6 @@ public class ProjectViewController extends HttpServlet {
 		request.setAttribute("project", projectDto);
 		request.setAttribute("techList", techList);
 		
-//		System.out.println(projectDto);
-		
 		//참가자 수 
 		ProjectDto participate = new ProjectDto();
 		participate.setProjectNo(projectno);
@@ -44,14 +42,12 @@ public class ProjectViewController extends HttpServlet {
 		request.setAttribute("participate", projectService.participateCheck(participate));
 		
 		//참가자 닉네임 & 이메일 가져오기 
-		
 		List<ProjectUserDto> participateUserList = projectService.participateList(projectno);
 		request.setAttribute("userList", participateUserList);
 		
+		int cnt = projectService.getParticipate(projectDto);
+		request.setAttribute("cnt", cnt);
 		
-//		System.out.println(participateUserList);
-		
-				
 		request.getRequestDispatcher("/project/projectBoard_detail.jsp").forward(request, response);
 	}
 

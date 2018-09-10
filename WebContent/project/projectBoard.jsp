@@ -85,17 +85,20 @@
     <!-- 프로젝트 검색하기 작성완료 -->
       
     			<div class="col-md-12">
+    			
+    			<a href="/project/projectWrite.do" class="btn btn-secondary btn-sm active mt-3 mx-10 mb-2" role="button" aria-pressed="true">프로젝트 등록하기</a>
+	  
 
-				<form>
-					<div class="mt-4  form-inline" >
-						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="#">최신순</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">지역</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">시작일</a></li>						 
-						</ul>
-					</div>
+<!-- 				<form> -->
+<!-- 					<div class="mt-4  form-inline" > -->
+<!-- 						<ul class="nav"> -->
+<!-- 							<li class="nav-item"><a class="nav-link" href="#">최신순</a></li> -->
+<!-- 							<li class="nav-item"><a class="nav-link" href="#">지역</a></li> -->
+<!-- 							<li class="nav-item"><a class="nav-link" href="#">시작일</a></li>						  -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
 
-				</form>					
+<!-- 				</form>					 -->
 
 					<c:forEach items="${projectList }" var="project">
 					<ul class="list-group list-group-flush">
@@ -132,7 +135,7 @@
 					</ul>
 					</c:forEach>	
 					
-			<a href="/project/projectWrite.do" class="btn btn-secondary btn-sm active mt-2 mx-10" role="button" aria-pressed="true">프로젝트 등록하기</a>					
+<!-- 			<a href="/project/projectWrite.do" class="btn btn-secondary btn-sm active mt-2 mx-10" role="button" aria-pressed="true">프로젝트 등록하기</a>					 -->
 
 			<div class="row justify-content-center">
 				<div class="col m-4">

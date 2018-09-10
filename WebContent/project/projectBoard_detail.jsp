@@ -40,6 +40,7 @@
 					</tr>
 					<!-- 사용 기술 -->
 					<tr>
+						<td colspan="1">사용기술</td>
 						<td colspan="16" align="left">
 						    	<c:forEach items="${techList}" var="tech">
 						    		<c:if test="${tech.projectNo  eq project.projectNo}">
@@ -49,19 +50,34 @@
 						</td>
 					</tr>
 					
+					<tr>
+						
+					</tr>
 					
 					<!-- 참가 -->
 
 					<tr>
-						<td colspan="16" align="left" id="participate">
-						
-							
-						    	<c:forEach items="${userList}" var="user">
-										( ${user.participate } / ${project.projectParticpant } )
-						    		<c:if test="${user.projectNo  eq project.projectNo}">
-						    			<span class="badge badge-info mb-2">${user.projectUserNick }</span>
-						    		</c:if>
-						    	</c:forEach>
+						<td colspan="1">참가인원</td>
+						<td td colspan="16" > (
+						<span id="participate">	${cnt }						
+						</span>	
+						<span id="participate2">
+						/ ${project.projectParticpant } )
+						</span>
+						</td>
+					
+					</tr>
+					
+					<tr></tr>
+					
+					<tr>
+						<td colspan="1">참가자</td>
+						<td colspan="16" align="left" id="userinfo">
+					    	<c:forEach items="${userList}" var="user">
+					    		<c:if test="${user.projectNo  eq project.projectNo}">
+					    			<span class="badge badge-warning mb-2">${user.projectUserNick } (${user.projectUserMail })</span>
+					    		</c:if>
+					    	</c:forEach>
 						</td>
 					</tr>										
 			
@@ -108,12 +124,21 @@
 	
 	// 추천 버튼 클릭 이벤트 처리
 	$("#btnParticipate").click(function() {
+		
+		var num1 = $.trim($('#participate').val());
+		var num2 = $.trim($('#participate2').val());
+		
+		if(num1>=num2) {
+ 			alert("참가 가능 인원을 초과하였습니다");
+ 			return false;
+ 		}
+		
 		$.ajax({
 			type: "get"
 			, url: "/project/participate.do"
 			, dataType: "json"
 			, data: {
-				projectno: '${project.projectNo }'
+				projectno: '${project.projectNo }'				
 			}
 			, success: function(data) {
 					console.log("success");
@@ -127,21 +152,28 @@
 				//추천수 갱신
 				$("#participate").text(data.participate);
 				
+				location.reload();
+				
 				//추천 버튼 텍스트 변경
 				if(data.result) {
 					$("#btnParticipate").text("참가 취소");
 				} else {
 					$("#btnParticipate").text("참가하기");
 				}
+			
+				
 			}
 			, error: function(e) {
 					console.log("fail");
 				
 				console.log(e.responseText);
 			}
-		});
+		});		
+		
 	});
 
 </script>	
+
+
 
 <%@include file="../main/footer.jsp"%>
