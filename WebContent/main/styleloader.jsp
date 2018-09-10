@@ -26,8 +26,18 @@
             <hr>
             <a class="dropdown-item" href="/code/code.do">코드</a>
             <hr>
+           <c:if test="${sessionScope.login eq true }" >
+           <a class="dropdown-item" href="/user/logout.do">로그아웃</a>
             <a class="dropdown-item" href="/mypage/mypage.do">마이페이지</a>
-            <a class="dropdown-item" href="/admin/admin.do">관리자게시판</a>
+            </c:if>
+            <c:if test="${sessionScope.login ne true }">
+             <a class="dropdown-item" href="/main/signin.do">로그인</a>
+            </c:if>
+              <hr>
+            <c:if test="${'관리자' eq sessionScope.userNick }" >
+            <a class="dropdown-item" href="/admin/userinfoadmin.do">회원관리</a>
+            <a class="dropdown-item" href="/admin/statistics.do">통계관리</a>
+            </c:if>
       </li><!-- Smaller devices menu END -->
       
     </ul>
