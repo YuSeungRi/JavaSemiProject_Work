@@ -56,7 +56,7 @@ code write page
 						<div id="techSelect" class="form-group form-check clearfix">
 							<c:forEach items="${techList }" var="tech">
 								<div class="float-left m-2">
-									<input type="checkbox" id="${tech.techNo }" name="${tech.techNo }" value="${tech.techNo }" />
+									<input type="checkbox" id="${tech.techNo }" name="${tech.techNo }" value="${tech.techName }" />
 									<label class="form-check-label" for="${tech.techNo }">${tech.techName }</label>
 								</div>
 							</c:forEach>
@@ -80,56 +80,11 @@ code write page
 	</div><!-- end of first row -->
 	<div class="row my-3">
 		<div class="col-11 text-center">
-			<p> 또는...</p>
+			<p> 소스를 까봤습니다...</p>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-11">
-			<!-- parse result && input code -->
-			<div id="parseResult" class="card my-2">
-				<form action="/code/write.do" method="post">
-					<div class="card-header">
-						<h5 class="card-title">내용 확인</h5>
-					</div>
-						<div class="card-body">
-							<p class="card-text">불러온 데이터를 확인하고 필요하면 수정 후 저장 해주세요.</p>
-							<div class="row">
-								<div class="col-md-5 form-group">
-									<label for="inputCategory">Category</label>
-									<input type="text" id="inputCategory" class="form-control" name="inputCategory" value="" readonly="readonly"/>
-								</div>
-								<div class="col-md-5 form-group">
-									<label for="inputLanguage">Language</label>
-									<input type="text" id="inputLanguage" class="form-control" name="inputLanguage" value="" readonly="readonly"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputCode">kit 코드</label>
-								<textarea class="form-control" id="inputCode" rows="5" oninput="preview();" ></textarea>
-							</div>
-							<div class="form-group">
-								<label for="previewCode">미리보기</label>
-								<pre><code id="previewCode"></code></pre>
-							</div>
-						</div><!--  end of card-body -->
-						<div class="card-body">
-							<h6 class="card-text">적용 기술</h6>
-							<div id="techSelect" class="form-group form-check clearfix">
-								<c:forEach items="${techList }" var="tech">
-									<div class="float-left m-2">
-										<input type="checkbox" id="${tech.techNo }" name="${tech.techNo }" value="${tech.techNo }" checked="checked" readonly="readonly"/>
-										<label class="form-check-label" for="${tech.techNo }">${tech.techName }</label>
-									</div>
-								</c:forEach>
-							</div> <!-- end of form-check -->
-						</div><!-- end of card-body -->
-						<div class="card-footer">
-							<button id="btnDelete" type="button" class="btn btn-warning mr-3">삭제</button>
-							<input type="submit" class="btn btn-primary" value="저장"/>
-						</div>
-				</form>
-			</div><!-- end of card -->
-		</div><!-- end of col -->
+	<div class="row" id="parseList">
+		
 	</div><!-- end of row  -->
 </div>
 <%@include file="../main/scriptloader.jsp" %>
@@ -194,10 +149,11 @@ var postFilesData = function(data) {
 		, contentType: false
 		, success: function(data, textStatus, jqXHR){
 			//success
-			
-			$("html body").animate({
-				scrollTop: $("#parseResult").offset().top
-			}, 2000);
+			$("#parseList").empty();
+			$("#parseList").html(data);
+			$('html, body').animate({
+		        scrollTop: parseInt($("#parseList").offset().top)
+		    }, 2000);
 		}
 		, error: function(jqXHR, textStatus, errorThrown) {
 		    console.log('ERRORS: ' + textStatus);

@@ -43,4 +43,8 @@ public class CodeService {
 	public ArrayList<TechDto> getAllTechList() {
 		return dao.getAllTechList();
 	}
+	
+	public String getCategoryName(int categoryNo) {
+		return dao.getCategoryName(categoryNo);
+	}
 }

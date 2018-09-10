@@ -338,4 +338,31 @@ public class CodeDaoImpl implements CodeDao {
 			}
 		}
 	}
+
+	@Override
+	public String getCategoryName(int categoryNo) {
+		String sql = "SELECT category_name FROM code_category WHERE category_no=?";
+		String result = "";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				result = rs.getString("cateogry_name");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
 }

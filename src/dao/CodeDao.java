@@ -57,4 +57,11 @@ public interface CodeDao {
 	 * @param techName
 	 */
 	public void createTech(String techName);
+	
+	/**
+	 * get a category name
+	 * @param categoryNo
+	 * @return
+	 */
+	public String getCategoryName(int categoryNo);
 }

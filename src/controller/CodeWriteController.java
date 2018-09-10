@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +21,9 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import Service.CodeService;
 import dto.CodeCategoryDto;
 import dto.CodeDto;
-import dto.FileDto;
 import dto.TechDto;
+import kit.Kit;
+import kit.KitData;
 
 @WebServlet("/code/write.do")
 public class CodeWriteController extends HttpServlet {
@@ -47,14 +47,19 @@ public class CodeWriteController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		CodeDto dto = new CodeDto();
-				
+		ArrayList<CodeDto> dtos = new ArrayList<>();
+		TechDto tdto = new TechDto();
+		ArrayList<TechDto> selectedTech = new ArrayList<>();
+		ArrayList<TechDto> allTech = csvc.getAllTechList();
+		
+		KitData kitData = new KitData();
+		
 		// 파일 업로드 작업 시작 
 		// 1. 파일 업로드 한거 맞는지 확인 (enctype 이 multipart 인지 확인하는 메서드)
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		// 1-1. multipart/form-data가 아닌 경우.
 		if(!isMultipart) {
 			//TODO : error 페이지로 리다이렉트
-//			out.println("<h1>encType is not multipart!</h1>");
 			return;
 		}
 		// 1-2. multipart/form-data 일 경우 
@@ -65,7 +70,7 @@ public class CodeWriteController extends HttpServlet {
 		factory = new DiskFileItemFactory();
 		
 		// 3. 업로드 아이템이 적당히 작으면 메모리에서 처리
-		int maxMem = 1; // 1byte
+		int maxMem = 30 * 1024 ; // 30 kb
 		factory.setSizeThreshold(maxMem);
 		
 		// 4. 적당히 큰 아이템이면 임시파일을 만들어서 처리(메모리)
@@ -96,6 +101,7 @@ public class CodeWriteController extends HttpServlet {
 				// form-data 일 경우 
 				// key, value 쌍으로 저장된 데이터일 경우 
 //				out.println("폼 필드 : " + item.getFieldName() + ", 값 : " + item.getString());
+				System.out.println(item.getFieldName() + ", " + item.getString());
 				if(item.getFieldName().equals("codeCategory")) {
 					dto.setCategoryNo(Integer.parseInt((item.getString("UTF-8")))); // FileItem 한글 깨짐 처리
 				}
@@ -105,6 +111,15 @@ public class CodeWriteController extends HttpServlet {
 				if(item.getFieldName().equals("selectedTech")) {
 					System.out.println(item.getString("UTF-8"));
 				}
+				for(TechDto tech : allTech) {
+					if(item.getFieldName().equals(new Integer(tech.getTechNo()).toString())) {
+						tdto = new TechDto();
+						tdto.setTechNo(Integer.parseInt(item.getFieldName()));
+						tdto.setTechName(item.getString("UTF-8"));
+						
+						selectedTech.add(tdto);
+					}
+				}
 			} else {
 				String fileName = item.getName();
 				// 파일 데이터일 경우
@@ -112,12 +127,45 @@ public class CodeWriteController extends HttpServlet {
 			
 				try {
 					item.write(up);// real path에 지정한 파일로 기록하기(실제 업로드)
-					
 					item.delete(); //임시파일 삭제하기
+					
+					//File parsing by Kit
+					Kit kit = new Kit(up);
+					kitData = kit.getKitData();
+					//File Delete
+					up.delete();
+					
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}	
 			}
+			
+			dto.setCodeTitle(kitData.getCodeTitle());
+			if(dto.getLanguage()==null || dto.getLanguage()=="") {
+				dto.setLanguage(kitData.getLanguage());
+			}
+			dto.setCodeContent(kitData.getContent());
+			
+			CodeDto cdto;
+			int titleIdx=0;
+			//TODO : fix null point error
+			for(String code : kitData.getPasredCode()) {
+				cdto = new CodeDto();
+				cdto.setCategoryNo(dto.getCategoryNo());
+				cdto.setLanguage(dto.getLanguage());
+				cdto.setCodeTitle(dto.getCodeTitle() + ((titleIdx==0)?"":++titleIdx));
+				cdto.setCodeContent(dto.getCodeContent());
+				cdto.setCodeSource(code);
+				cdto.setTech(dto.getTech());
+				
+				dtos.add(cdto);
+			}
+			
+			request.setAttribute("category", csvc.getCategoryName(dto.getCategoryNo()));
+			request.setAttribute("techList", csvc.getAllTechList());
+			request.setAttribute("parsedCodes", dtos);
+			
+			request.getRequestDispatcher("/code/code_kit.jsp").forward(request, response);
 		}
 	}
 
