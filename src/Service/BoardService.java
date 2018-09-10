@@ -11,6 +11,7 @@ import dao.RecruitDao;
 import dao.RecruitDaoImpl;
 import dto.BoardDto;
 import dto.RecruitDto;
+import dto.ReplyDto;
 
 /*
  * 수정일 : 2018.09.03
@@ -129,5 +130,9 @@ public class BoardService {
 	
 	public int getNewBoardNo() {
 		return dao.newBoardNo();
+	}
+	
+	public List<ReplyDto> getMyReply(String userEmail, int listnum) {
+		return dao.getMyReply(userEmail, listnum);
 	}
 }

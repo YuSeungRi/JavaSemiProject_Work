@@ -4,6 +4,7 @@
 <%@include file="../main/header.jsp"%>
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp"%>
+
 <div class="container m-3">
 	<h1>
 		<span class="fa fa-sign-in-alt fa-fw mr-1"></span>회원관리
@@ -37,7 +38,7 @@
 
 
 			<div style="overflow: auto;" class="mt-3">
-				<table class="table table-hover table-sm" style="margin:auto; text-align:center;">
+				<table class="table table-hover table-sm" style="margin:auto; text-align:center;" >
 					<thead class="thead-light">
 						<tr>
 							<th>이메일</th>
@@ -61,18 +62,21 @@
 								<td>${User.userRegistDate }</td>
 								<td>${User.logintime }</td>
 								<td>
-									<select onchange="select(this.value)" name="status" class="custom-select">
-										<option value="useremail" <c:if test="${order eq 'jobOfferComplete'}">selected="selected"</c:if>>${User.userLevel }</option>
-										<option value="usernick" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>1</option>
-										<option value="usernick" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>2</option>
-										<option value="usernick" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>3</option>
-										<option value="usernick" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>4</option>
-										<option value="usernick" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>5</option>
-										<option value="usernick" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>6</option>
-										<option value="usernick" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>7</option>
-										<option value="usernick" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>8</option>
-										<option value="usernick" <c:if test="${order eq 'jobHunt'}">selected="selected"</c:if>>9</option>
-									</select>
+								<form action="/admin/userinfoadmin.do" method="get">
+										<select onchange="this.form.submit()" name="level" class="custom-select">
+											<option value="1" <c:if test="${'1'==level}">selected</c:if>>${User.userLevel }</option>
+											<option value="1" <c:if test="${'1'==level}">selected</c:if>>1</option>
+											<option value="2" <c:if test="${'2'==level}">selected</c:if>>2</option>
+											<option value="3" <c:if test="${'3'==level}">selected</c:if>>3</option>
+											<option value="4" <c:if test="${'4'==level}">selected</c:if>>4</option>
+											<option value="5" <c:if test="${'5'==level}">selected</c:if>>5</option>
+											<option value="6" <c:if test="${'6'==level}">selected</c:if>>6</option>
+											<option value="7" <c:if test="${'7'==level}">selected</c:if>>7</option>
+											<option value="8" <c:if test="${'8'==level}">selected</c:if>>8</option>
+											<option value="9" <c:if test="${'9'==level}">selected</c:if>>9</option>
+										</select>
+										<input type="hidden" name="email" value="${User.userEmail }">
+									</form>
 								</td>
 							</tr>
 						</c:forEach>

@@ -35,6 +35,10 @@ public class UserInfoService {
 		return dao.updateUserInfo2(dto);
 	}
 	
+	public boolean changeLevel(String userEmail, String newLevel) {
+		return dao.changeLevel(userEmail, newLevel);
+	}
+	
 	public UserInfoDto searchpwd(UserInfoDto dto) {
 		return dao.searchpwd(dto);
 	}
