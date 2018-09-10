@@ -18,7 +18,10 @@ public class ProjectDto {
 	private String projectLead;
 	private String projectNick;
 	private String locationName;
-		
+	
+	
+	private int participant;
+	
 	public int getProjectNo() {
 		return projectNo;
 	}
@@ -79,13 +82,21 @@ public class ProjectDto {
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
 	}
-	
+	public int getParticipant() {
+		return participant;
+	}
+	public void setParticipant(int participant) {
+		this.participant = participant;
+	}
 	@Override
 	public String toString() {
 		return "ProjectDto [projectNo=" + projectNo + ", locationNo=" + locationNo + ", projectTitle=" + projectTitle
 				+ ", projectStart=" + projectStart + ", projectEnd=" + projectEnd + ", projectContent=" + projectContent
 				+ ", projectParticpant=" + projectParticpant + ", projectLead=" + projectLead + ", projectNick="
-				+ projectNick + ", locationName=" + locationName + "]";
+				+ projectNick + ", locationName=" + locationName + ", participant=" + participant + "]";
 	}
+		
+	
+	
 
 }

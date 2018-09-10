@@ -175,7 +175,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				+ " JOIN userinfo u"
 				+ " ON p.project_lead = u.user_email"
 				+ " WHERE p.project_no=?";
-		
+
 		
 //		String sql = "SELECT l.location_name, p.*, u.user_nick FROM \"project\"p ";
 //		sql += " LEFT JOIN \"location\" l";
@@ -480,31 +480,4 @@ public class ProjectDaoImpl implements ProjectDao {
 		}
 	}
 
-//	@Override
-//	public void techUpdate(ProjectTechDto techDto) {
-//		String sql = "UPDATE project_tech"
-//				+ " SET tech_no = ?" //1. 바꿀 테크넘버  
-//				+ " WHERE project_no = ?" //2. 프로젝트 넘버 
-//				+ " AND tech_no = ?" ;//3. 기존 테크 넘버 
-//		
-//		try {
-//			ps = conn.prepareStatement(sql);
-//			
-//			ps.setInt(1, techDto.getTechNo());
-//			ps.setInt(2, techDto.getProjectNo());
-//			
-//			System.out.println(techDto);
-//			
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if(ps != null) ps.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-	
 }

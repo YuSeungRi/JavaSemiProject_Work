@@ -46,8 +46,4 @@ public interface ProjectDao {
 	// 수정
 	public void update(ProjectDto projectDto);
 	
-	// 기술 수정
-//	public void techUpdate(ProjectTechDto techDto);
-
-	
 }

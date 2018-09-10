@@ -18,7 +18,7 @@
 	  
 	<div class="card-body">
 	
-    <form action = "/Project/search.do" method="post" id="form">    
+    <form action = "/project/search.do" method="post" id="form">    
 	  <div class="form-group row">
 	    <label for="projectName" class="col-sm-2 col-form-label">프로젝트 명</label>
 	    <div class="col-sm-10">

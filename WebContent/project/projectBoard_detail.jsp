@@ -48,6 +48,22 @@
 						    	</c:forEach>						
 						</td>
 					</tr>
+					
+					
+					<!-- 참가 -->
+
+					<tr>
+						<td colspan="16" align="left" id="participate">
+						
+							
+						    	<c:forEach items="${userList}" var="user">
+										( ${user.participate } / ${project.projectParticpant } )
+						    		<c:if test="${user.projectNo  eq project.projectNo}">
+						    			<span class="badge badge-info mb-2">${user.projectUserNick }</span>
+						    		</c:if>
+						    	</c:forEach>
+						</td>
+					</tr>										
 			
 			</table>
 			
@@ -63,10 +79,69 @@
 			
 			<a href="/project/projectDelete.do?projectno=${project.projectNo }" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">삭제</a>
+			
+			<c:if test="${login }">
+			<button id="btnParticipate" type="button" class="btn btn-secondary btn-sm active">참가하기</button>
+			</c:if>			
 
 		</div>
 
 	</div>
 </div>
 <%@include file="../main/scriptloader.jsp" %>
+
+<script type="text/javascript">
+
+	// 추천한 게시글이면 "추천 취소"로 보이도록 설정
+	// 추천하지 않은 게시글이면 "추천"으로 보이도록 설정
+	if(${participate }) { //추천상태
+		$("#btnParticipate")
+			.addClass("btn-danger")
+			.removeClass("btn-primary")
+			.text("참가 취소");
+	} else {	//추천 안 한상태
+		$("#btnParticipate")
+			.addClass("btn-primary")
+			.removeClass("btn-danger")
+			.text("참가하기");
+	}
+	
+	// 추천 버튼 클릭 이벤트 처리
+	$("#btnParticipate").click(function() {
+		$.ajax({
+			type: "get"
+			, url: "/project/participate.do"
+			, dataType: "json"
+			, data: {
+				projectno: '${project.projectNo }'
+			}
+			, success: function(data) {
+					console.log("success");
+				console.log(data);
+				
+				//추천 버튼 색상 변경
+				$("#btnParticipate")
+					.toggleClass("btn-primary")
+					.toggleClass("btn-danger");
+	
+				//추천수 갱신
+				$("#participate").text(data.participate);
+				
+				//추천 버튼 텍스트 변경
+				if(data.result) {
+					$("#btnParticipate").text("참가 취소");
+				} else {
+					$("#btnParticipate").text("참가하기");
+				}
+			}
+			, error: function(e) {
+					console.log("fail");
+				
+				console.log(e.responseText);
+			}
+		});
+	});
+
+</script>	
+
 <%@include file="../main/footer.jsp"%>

@@ -57,54 +57,17 @@ public class ProjectUpdateController extends HttpServlet {
 		
 		int projectNo = Integer.parseInt(request.getParameter("projectno"));
 		
-//		List<ProjectTechDto> techList = projectService.techList(projectNo);	
-//		
-//		for(ProjectTechDto tech2 : techList) {			
-//			int techno = tech2.getTechNo();
-//			techDto.setUpdateTechNo(techno);
-//		}
-//		
-//		String[] Checkedtech = request.getParameterValues("checkbox");
-//		for(String tech : Checkedtech) {
-//			techDto = new ProjectTechDto();
-//			techDto.setTechNo(Integer.parseInt(tech));
-//
-//			techDto.setProjectNo(projectNo);
-//			projectService.techUpdate(techDto);
-//		}
+		projectService.deleteTech(projectNo);
 		
-		
-		
-//		System.out.println(techList);
-		
-		
-//		String[] Checkedtech = request.getParameterValues("checkbox");
-//		for(ProjectTechDto dto : techList) {
-//			int ccounter = 0;
-//			int tcounter = 0;
-//			for(String tech : Checkedtech) {
-//				int cTechNo = Integer.parseInt(tech);
-////				if(cTechNo != dto.getTechNo()) 
-//				if(cTechNo == dto.getTechNo()) {
-//					ccounter++;
-//				}
-//				
-//			}	
-//			
-//			if(ccounter==0) {
-//				//delete tech
-//			} 
-//			
-//			ccounter = 0; 
-//			
-//		}
+		String[] Checkedtech = request.getParameterValues("checkbox");
+		for(String tech : Checkedtech) {
+			techDto = new ProjectTechDto();
+			techDto.setTechNo(Integer.parseInt(tech));
 
-//		techDto = new ProjectTechDto();
-//		techDto.setTechNo(Integer.parseInt(tech));
-//		
-//		techDto.setProjectNo(projectNo);
-//	projectService.techUpdate(techDto);
-
+			techDto.setProjectNo(projectNo);
+			
+			projectService.techWrite(techDto);
+		}
 		
 		projectDto.setProjectNo(projectNo);
 		projectDto.setProjectLead((String) request.getSession().getAttribute("userId"));
