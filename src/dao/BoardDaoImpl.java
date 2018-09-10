@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import board.util.Paging;
 import dbutil.DBConn;
 import dto.BoardDto;
+import dto.ReplyDto;
 
 /*
  * 작성일 : 2018.08.19
@@ -837,6 +838,61 @@ public class BoardDaoImpl implements BoardDao {
 			}
 		}
 		System.out.println(list.size());
+		return list;
+	}
+
+	
+	@Override
+	public ArrayList<ReplyDto> getMyReply(String userEmail, int listnum) {
+		
+		ArrayList<ReplyDto> list = new ArrayList<>();
+		
+		ReplyDto dto = null;
+		
+		String sql = "SELECT * FROM ( SELECT"
+				+ " r.board_no,"
+				+ " b.board_title,"
+				+ " r.reply_create,"
+				+ " r.reply_content,"
+				+ " b.board_category"
+				+ " FROM reply r"
+				+ " JOIN board b" 
+				+ " ON b.board_no = r.board_no"
+				+ " WHERE user_email= ?)"
+				+ " WHERE rownum <= ?"; 
+
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userEmail);
+			ps.setInt(2, listnum);
+
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				dto = new ReplyDto();
+				
+				dto.setBoardNo(rs.getInt("board_no"));;
+				dto.setBoardCategory(rs.getString("board_category"));
+				dto.setBoardTitle(rs.getString("board_title"));
+				dto.setReplyCreate(rs.getString("reply_create"));
+				dto.setReplyContent(rs.getString("reply_content"));
+
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+
 		return list;
 	}	
 	

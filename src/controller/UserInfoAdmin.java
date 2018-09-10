@@ -22,6 +22,10 @@ public class UserInfoAdmin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 
+		String newLevel = request.getParameter("level");
+		String userEmail = request.getParameter("email");
+		System.out.println("level ="+newLevel);
+		System.out.println("userEmail ="+userEmail);
 		String param = request.getParameter("curPage");
 		
 		int curPage = 0;
@@ -33,6 +37,9 @@ public class UserInfoAdmin extends HttpServlet {
 		// 총 회원수
 		int totalCount = uisv.getTotal(); // DB에서 회원들의 숫자를 가져옴
 
+		// 회원 등급설정
+		uisv.changeLevel(userEmail ,newLevel);
+		
 		// Paging Class 계산하기
 		Paging paging = new Paging(totalCount, curPage);	// 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴
 		
@@ -51,6 +58,7 @@ public class UserInfoAdmin extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+	
 	}
 
 }

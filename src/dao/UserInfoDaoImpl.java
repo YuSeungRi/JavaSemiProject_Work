@@ -112,10 +112,39 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
 	@Override
 	public boolean changeLevel(String userEmail, String newLevel) {
-		// TODO Auto-generated method stub
-		return false;
+
+		boolean result = false;
+		
+		conn = DBConn.getConnection();
+		
+		String query = "UPDATE userinfo SET"
+				+ " user_level=? "
+				+ " WHERE user_email=?";
+		
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, newLevel);
+			ps.setString(2, userEmail);
+
+			ps.executeUpdate();
+			
+			result = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 	}
 
+	
+	
 	@Override
 	public boolean updateUserInfo(UserInfoDto dto) {
 		
@@ -137,10 +166,6 @@ public class UserInfoDaoImpl implements UserInfoDao {
 			ps.setString(3, dto.getUserIntro());
 			ps.setString(4, dto.getUserEmail());
 			
-			System.out.println(dto.getUserNick());
-			System.out.println(dto.getUserPw());
-			System.out.println(dto.getUserIntro());
-			System.out.println(dto.getUserEmail());
 			ps.executeUpdate();
 			
 			result = true;
@@ -432,9 +457,9 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		"		(SELECT count(*) FROM reply r WHERE u.user_email = r.user_email) cntreply," + 
 		"		u.user_registdate," + 
 		"		(SELECT MAX(login_time) FROM login_log g WHERE u.user_email = g.user_email) login_time " + 
-		"		FROM userinfo u) B" + 
+		"		FROM userinfo u ORDER BY user_registdate DESC) B" + 
 		"		ORDER BY rnum)" + 
-		" WHERE rnum BETWEEN ? AND ?";
+		" WHERE rnum BETWEEN ? AND ? ";
 	
 		ArrayList<UserInfoDto> UserList = new ArrayList<>();
 		try {
@@ -493,8 +518,8 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		"		(SELECT count(*) FROM reply r WHERE u.user_email = r.user_email) cntreply," + 
 		"		u.user_registdate," + 
 		"		(SELECT MAX(login_time) FROM login_log g WHERE u.user_email = g.user_email) login_time " + 
-		"		FROM userinfo u" + 
-		"     	WHERE user_email like '%'||?||'%') B" + 
+		"		FROM userinfo u " + 
+		"     	WHERE user_email like '%'||?||'%' ORDER BY user_registdate DESC) B" + 
 		"		ORDER BY rnum)" + 
 		" WHERE rnum BETWEEN ? AND ?";
 	
@@ -558,7 +583,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		"		u.user_registdate," + 
 		"		(SELECT MAX(login_time) FROM login_log g WHERE u.user_email = g.user_email) login_time " + 
 		"		FROM userinfo u" + 
-		"     	WHERE user_nick like '%'||?||'%') B" + 
+		"     	WHERE user_nick like '%'||?||'%' ORDER BY user_registdate DESC) B" + 
 		"		ORDER BY rnum)" + 
 		" WHERE rnum BETWEEN ? AND ?";
 	

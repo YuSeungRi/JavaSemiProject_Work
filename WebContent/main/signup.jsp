@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <div class="d-flex flex-row w-100 justify-content-center ">
 	<%--login success --%>
 	<c:if test="${sessionScope.login eq true }" >
@@ -25,7 +24,7 @@
 		</a>
 	
 		<!-- Modal -->
-		<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="signInTitle" aria-hidden="true">
+		<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="signInTitle" aria-hidden="true" data-backdrop="static"  data-keyboard="false">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -71,3 +70,4 @@
 		</div>
 	</c:if>
 </div>
+ 

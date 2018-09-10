@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import board.util.Paging;
 import dto.BoardDto;
+import dto.ReplyDto;
 
 /*
  * 작성일 : 2018.08.19
@@ -136,5 +137,14 @@ public interface BoardDao {
 	 * @return 새로 작성할 게시물의 boardNo
 	 */
 	public int newBoardNo();
+	
+	
+	/**
+	 * 
+	 * @param Email
+	 * @param listnum
+	 * @return
+	 */
+	public ArrayList<ReplyDto> getMyReply(String Email, int listnum);
 	
 }
