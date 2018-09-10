@@ -20,16 +20,16 @@
 	
     <form action = "/project/search.do" method="post" id="form">    
 	  <div class="form-group row">
-	    <label for="projectName" class="col-sm-2 col-form-label">프로젝트 명</label>
+	    <label for="title" class="col-sm-2 col-form-label">프로젝트 명</label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="projectName" placeholder="프로젝트명을 입력하세요">
+	      <input type="text" class="form-control" id="title" placeholder="프로젝트명을 입력하세요">
 	    </div>
 	  </div>	  
 	  	  
 	  <div class="form-group row">
 	    <div class="col-sm-2">지역</div>
 	    <div class="col-sm-10">
-	 	<select class="custom-select" name="location">	 	
+	 	<select class="custom-select" name="location" id="location">	 	
 			<option selected>지역을 선택하세요</option>	 		
 	 		<c:forEach items="${location }" var="location">
  				<option value="${location.locationNo }">${location.locationName }</option>
