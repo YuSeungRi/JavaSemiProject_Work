@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+#visitantChart {
+  min-width: 310px;
+  max-width: 800px;
+  height: 400px;
+  margin: 0 auto
+}
+
+#postChart {
+  min-width: 310px;
+  max-width: 800px;
+  height: 400px;
+  margin: 0 auto
+}
