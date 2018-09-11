@@ -16,6 +16,14 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
+		
+		<div id="signupAlert" class="alert alert-dismissible fade show" role="alert">
+			<span id="SignupText"></span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>		
+		
 	
 	<div class="row"><!-- first row start -->
 	
@@ -205,6 +213,7 @@
 <script type="text/javascript">
 $(document).ready(function(){	
 	$("#loginAlert").hide();
+	$("#signupAlert").hide();
 	
 	//쿼리스트링 값을 Array로 가져오는 함수 
 	function getQueryStringObject() {
@@ -240,6 +249,27 @@ $(document).ready(function(){
 	
 	// 경고창 x 버튼 클릭시 경고창 사라짐
 	$("#loginAlert").click(function(){
+        $(this).hide();
+    });
+	
+	//쿼리스트링에서 로그인 값 가져옴
+	var signup= getQueryStringObject().signup;
+	
+	if(signup=="fail") {
+		//로그인 실패 - 경고 창 보여줌
+		$("#signupAlert").show();
+		$("#signupAlert").addClass("alert-danger");
+		$("#SignupText").text("회원가입에 실패했습니다");
+
+	} else if(signup=="success") {
+		//로그인 성공 - 환영 메시지 보여줌
+		$("#signupAlert").show();
+		$("#signupAlert").addClass("alert-success");
+		$("#SignupText").text("회원가입에 성공했습니다. 로그인해주세요.");
+	}
+	
+	// 경고창 x 버튼 클릭시 경고창 사라짐
+	$("#signupAlert").click(function(){
         $(this).hide();
     });
 	
