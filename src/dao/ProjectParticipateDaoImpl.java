@@ -167,7 +167,7 @@ public class ProjectParticipateDaoImpl implements ProjectParticipateDao {
 				
 				projectUserDto.setProjectUserMail( rs.getString("user_email"));
 				projectUserDto.setProjectUserNick( rs.getString("user_nick"));
-				projectUserDto.setParticipate( rs.getInt("participate"));				
+//				projectUserDto.setParticipate( rs.getInt("participate"));				
 				projectUserDto.setProjectNo( rs.getInt("project_no"));
 				
 				pList.add(projectUserDto);

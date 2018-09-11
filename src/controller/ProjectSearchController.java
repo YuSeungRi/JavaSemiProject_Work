@@ -45,10 +45,6 @@ public class ProjectSearchController extends HttpServlet {
 		// Paging Class 계산하기
 		Paging paging = new Paging(totalCount, curPage);
 		
-//		System.out.println(paging);
-		
-		
-		
 		ProjectDto projectDto = new ProjectDto();
 		
 		String[] Checkedtech = request.getParameterValues("checkbox");
@@ -73,6 +69,7 @@ public class ProjectSearchController extends HttpServlet {
 		
 		// 서비스 호출		
 		List<ProjectDto> projectList = projectService.search(paging, projectDto);
+		
 		List<ProjectTechDto> techList = projectService.techList();
 		List<ProjectLocationDto> locationList = projectService.getAllLocation();
 		List<ProjectTechDto> techListAll = projectService.getAlltech();	

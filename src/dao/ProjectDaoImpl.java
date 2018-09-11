@@ -495,14 +495,17 @@ public class ProjectDaoImpl implements ProjectDao {
 		
 		if(projectDto.getLocationNo() != 0 ) {
 			sql+= " AND location_no ="+projectDto.getLocationNo()+"";
-		}		
+		} 
 		
+		if(projectDto.getProjectStart() != null && projectDto.getProjectEnd() != null  	) {
+			sql += " AND project_start BETWEEN TO_DATE('"+ projectDto.getProjectStart()+"','yy-MM-dd') AND TO_DATE('"+projectDto.getProjectEnd()+"','yy-MM-dd')";
+			sql += " AND project_end BETWEEN TO_DATE('"+ projectDto.getProjectStart()+"','yy-MM-dd') AND TO_DATE('"+projectDto.getProjectEnd()+"','yy-MM-dd')";
+		}
+	
 		sql +=  " ) B"
 				+ " ORDER BY rnum"
 				+ " )"
 				+ " WHERE rnum BETWEEN ? AND ? ";
-//		System.out.println("---sql---");
-//		System.out.println(sql);
 		
 		List<ProjectDto> projectList = new ArrayList<>();
 		
