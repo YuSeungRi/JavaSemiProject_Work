@@ -14,6 +14,16 @@ public class Paging {
 	private int startNo;	//게시물리스트 첫 번호
 	private int endNo;	//게시물리스트 마지막 번호
 	
+	private String search; //검색어 
+	
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 	// 총 게시글 수만 입력하는 생성자
 	//	curPage == 1
 	//	pageCount == 10
@@ -37,7 +47,9 @@ public class Paging {
 	// 총 게시글 수와 현재 페이지, 보여지는 게시글 수를 입력하는 생성자
 	//	listCount == 10
 	public Paging(int totalCount, int curPage, int listCount) {
-		this(totalCount, curPage);
+		
+		this.setTotalCount(totalCount);
+		this.setCurPage(curPage);
 		this.setListCount(listCount);
 		
 		makePaging();
@@ -46,7 +58,10 @@ public class Paging {
 	// 총 게시글 수와 현재 페이지, 보여지는 게시글 수, 페이지 수를 입력하는 생성자
 	//	listCount == 10
 	public Paging(int totalCount, int curPage, int listCount, int pageCount) {
-		this(totalCount, curPage, listCount);
+		
+		this.setTotalCount(totalCount);
+		this.setCurPage(curPage);
+		this.setListCount(listCount);
 		this.setPageCount(pageCount);
 		
 		makePaging();
@@ -158,12 +173,8 @@ public class Paging {
 
 	@Override
 	public String toString() {
-		return "curPage="+curPage+
-				", totalCount="+totalCount+
-				", listCount="+listCount+
-				", totalPage="+totalPage+
-				", pageCount="+pageCount+
-				", startPage="+startPage+
-				", endPage="+endPage+"]";
+		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
+				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
+				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + "]";
 	}
 }
