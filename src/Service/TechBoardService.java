@@ -41,9 +41,9 @@ public class TechBoardService {
 	}
 	
 	// 페이지네이션 추가
-	public List<BoardDto> getSearchpagingList(Paging paging, String categorynName, String searchString) {
+	public List<BoardDto> getSearchpagingList(Paging paging, String categorynName, String searchString, String searchTarget) {
 		
-		return dao.getSearchpagingList(paging, categorynName, searchString);
+		return dao.getSearchpagingList(paging, categorynName, searchString, searchTarget);
 	}
 //	public List<BoardDto> getSearchList(Paging paging, String categoryName, String order, String searchString) {
 	
