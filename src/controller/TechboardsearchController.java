@@ -32,13 +32,25 @@ public class TechboardsearchController extends HttpServlet {
 		
 		// 현재 페이지 
 		String param = request.getParameter("curPage");
-		String searchString = request.getParameter("searchString");
-		String searchTarget = request.getParameter("keyField");
+		String param1= request.getParameter("searchString");
+		String param2 = request.getParameter("keyField");
 		int curPage = 0;
 		if( !"".equals(param) && param != null ) {
 			curPage = Integer.parseInt(
 				request.getParameter("curPage") );
 		}	// 페이지가 비어있거나 [""], null값일 때 curPage를 요청한다
+		
+		String searchString = "";
+		if(!"".equals(param1) && param1 != null) {
+			searchString = param1;
+		}
+		
+		String searchTarget = "";
+		if(!"".equals(param2) && param2 != null) {
+			searchTarget = param2;
+		}
+		
+		
 		System.out.println(searchTarget);
 		// 총 게시글 수
 		int totalCount = bssvc.searchTotal(searchString, categoryName, searchTarget); // DB에서 카테고리게시물의 숫자를 가져옴

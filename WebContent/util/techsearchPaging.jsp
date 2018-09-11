@@ -22,7 +22,7 @@
   	</c:if>
   	<c:if test="${paging.curPage ne 1 }"><!-- 첫페이지가아닐때 -->
   	<li class="page-item">
-		<a class="page-link" href="/tech/search.do?searchString=${param.searchString }&curPage=${paging.curPage-1 }" aria-label="previous">
+		<a class="page-link" href="/tech/search.do?keyField=${param.keyField }&searchString=${param.searchString }&curPage=${paging.curPage-1 }" aria-label="previous">
 			<span aria-hidden="true">&laquo;</span>
 		</a>
     </li>
@@ -36,7 +36,7 @@
 	   	<c:if test="${paging.curPage ne page }">
 	   		<li>
 	   	</c:if>
-		   	<a class="page-link" href="/tech/search.do?searchString=${param.searchString }&curPage=${page }">
+		   	<a class="page-link" href="/tech/search.do?keyField=${param.keyField }&searchString=${param.searchString }&curPage=${page }">
 		   		${page }
 		   	</a>
 	   	</li>
@@ -46,7 +46,7 @@
   	<!-- 마지막 페이지라면 금지 표시 -->
   	<c:if test="${paging.curPage eq paging.totalPage }"><!-- 마지막 페이지일때 -->
 	  	<li class="page-item disabled">
-	      <a class="page-link" href="/tech/search.do?searchString=${param.searchString }&curPage=${paging.totalPage }" aria-lable="Next">
+	      <a class="page-link" href="/tech/search.do?keyField=${param.keyField }&searchString=${param.searchString }&curPage=${paging.totalPage }" aria-lable="Next">
 	        <span aria-hidden="true">&raquo;</span>
 	        
 	      </a>
@@ -54,7 +54,7 @@
   	</c:if>
   	<c:if test="${paging.curPage ne paging.totalPage }"><!-- 마지막 페이지가아닐때 -->
   	<li>
-      <a class="page-link" href="/tech/search.do?searchString=${param.searchString }&curPage=${paging.curPage+1 }" aria-lable="Next">
+      <a class="page-link" href="/tech/search.do?keyField=${param.keyField }&searchString=${param.searchString }&curPage=${paging.curPage+1 }" aria-lable="Next">
         <span aria-hidden="true">&raquo;</span>
         
       </a>
