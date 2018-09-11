@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Service.UserInfoService;
 import dto.UserInfoDto;
@@ -25,6 +26,8 @@ public class SignUpController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession(true);
+		
 		request.setCharacterEncoding("UTF-8");
 		
 		UserInfoDto user = new UserInfoDto();
@@ -36,9 +39,20 @@ public class SignUpController extends HttpServlet {
 		user.setUserIntro( request.getParameter("userIntro") );
 		user.setUserPhoto( request.getParameter("userPhoto") );
 		
-		userservice.join(user);
 		
-		response.sendRedirect("/main/main.do");
+		int result = userservice.join(user);
+		
+		if( result == 1 ) { 
+			session.setAttribute("signup", true);
+			response.sendRedirect("/main/main.do?signup=success");
+		} else {
+			session.setAttribute("signup", false);
+			response.sendRedirect("/main/main.do?signup=fail");
+		}
+		
+//		System.out.println("회원가입 성공 " + result);
+		
+//		response.sendRedirect("/main/main.do");
 
 	}
 
