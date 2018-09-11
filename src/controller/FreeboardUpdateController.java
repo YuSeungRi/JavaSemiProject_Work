@@ -44,9 +44,10 @@ public class FreeboardUpdateController extends HttpServlet {
 		
 		request.setAttribute("board", dto);
 
-		ArrayList<FileDto> fdtos = fsvc.getFileList(boardno);
-		
-		request.setAttribute("fileList", fdtos);
+		if(fsvc.getFileCount(boardno)>0) {
+			ArrayList<FileDto> fdtos = fsvc.getFileList(boardno);
+			request.setAttribute("fileList", fdtos);		
+		}
 		
 		request.getRequestDispatcher("/Freeboard/freeboard_update.jsp").forward(request, response);
 	}

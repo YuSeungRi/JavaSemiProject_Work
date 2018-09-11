@@ -144,4 +144,29 @@ public class FileDaoImpl implements FileDao {
 		return dto;
 	}
 
+	@Override
+	public int boardFileCount(int boardNo) {
+		String sql = "SELECT COUNT(*) FROM attach_file WHERE board_no= ?";
+		int result = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, boardNo);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		return result;
+	}
 }

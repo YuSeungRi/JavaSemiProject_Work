@@ -149,6 +149,7 @@ public class CodeWriteController extends HttpServlet {
 			CodeDto cdto;
 			int titleIdx=0;
 			//TODO : fix null point error
+			System.out.println("1: "+ kitData.getPasredCode());
 			for(String code : kitData.getPasredCode()) {
 				cdto = new CodeDto();
 				cdto.setCategoryNo(dto.getCategoryNo());
@@ -157,7 +158,7 @@ public class CodeWriteController extends HttpServlet {
 				cdto.setCodeContent(dto.getCodeContent());
 				cdto.setCodeSource(code);
 				cdto.setTech(dto.getTech());
-				
+				System.out.println(cdto);
 				dtos.add(cdto);
 			}
 			

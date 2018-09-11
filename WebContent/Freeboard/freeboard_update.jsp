@@ -34,7 +34,10 @@
 			<label for="uploadedFile" class="col-sm-3 col-form-label">저장된 파일</label>
 			<div class="card col-sm-7">
 				<div class="card-body">
-					<c:forEach items="fileList" var="file" >
+					<c:if test="${fileList eq null }" >
+						<span class="text-catuion">파일이 없습니다.</span>
+					</c:if>
+					<c:forEach items="${fileList }" var="file" >
 						<a href="/upload/${file.storedFile }" >${file.fileName }</a>
 						<button type="button" id="${file.fileNo }">삭제</button>
 					</c:forEach>
@@ -83,7 +86,7 @@
 			   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
 		});
 		
-		<c:forEach items="fileList" var="file">
+		<c:forEach items="${fileList }" var="file">
 			$('${file.fileNo}').click(function(){
 				$(location).attr('href', '/file/delete.do?fileNo=${file.fileNo}');
 			});
