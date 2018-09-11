@@ -66,7 +66,7 @@ public class QuestionsearchController extends HttpServlet {
 		request.setAttribute("order", order); // 정렬
 		request.setAttribute("searchString", searchString);
 		
-		
 		request.getRequestDispatcher("/QA/QAboard_search.jsp").forward(request,response);
 	}
 }
+
