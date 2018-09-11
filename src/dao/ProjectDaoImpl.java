@@ -493,19 +493,20 @@ public class ProjectDaoImpl implements ProjectDao {
 			sql+= " AND project_title like '%"+projectDto.getProjectTitle()+"%'";
 		}
 		
-		if(projectDto.getLocationNo() != 0 ) {
-			sql+= " AND location_no ="+projectDto.getLocationNo()+"";
-		} 
+//		if(projectDto.getLocationNo() != 0 && !"".equals(projectDto.getLocationNo()) ) {
+//			sql+= " AND location_no ="+projectDto.getLocationNo()+"";
+//		} 
 		
-		if(projectDto.getProjectStart() != null && projectDto.getProjectEnd() != null  	) {
-			sql += " AND project_start BETWEEN TO_DATE('"+ projectDto.getProjectStart()+"','yy-MM-dd') AND TO_DATE('"+projectDto.getProjectEnd()+"','yy-MM-dd')";
-			sql += " AND project_end BETWEEN TO_DATE('"+ projectDto.getProjectStart()+"','yy-MM-dd') AND TO_DATE('"+projectDto.getProjectEnd()+"','yy-MM-dd')";
-		}
+//		if(projectDto.getProjectStart() != null && !"".equals(projectDto.getProjectStart()) && projectDto.getProjectEnd() != null  && !"".equals(projectDto.getProjectEnd())	) {
+//			sql += " AND project_start BETWEEN TO_DATE('"+ projectDto.getProjectStart()+"','yy-MM-dd') AND TO_DATE('"+projectDto.getProjectEnd()+"','yy-MM-dd')";
+//			sql += " AND project_end BETWEEN TO_DATE('"+ projectDto.getProjectStart()+"','yy-MM-dd') AND TO_DATE('"+projectDto.getProjectEnd()+"','yy-MM-dd')";
+//		}
 	
 		sql +=  " ) B"
 				+ " ORDER BY rnum"
 				+ " )"
 				+ " WHERE rnum BETWEEN ? AND ? ";
+		
 		
 		List<ProjectDto> projectList = new ArrayList<>();
 		
@@ -531,6 +532,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				projectDto.setLocationName( rs.getString("location_name"));				
 				
 				projectList.add(projectDto);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

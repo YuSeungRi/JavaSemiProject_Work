@@ -57,6 +57,7 @@ public class ProjectSearchController extends HttpServlet {
 		}
 		
 		projectDto.setProjectTitle(request.getParameter("title"));
+		
 		if(request.getParameter("location").equals("지역을 선택하세요")) {
 			projectDto.setLocationNo(0);
 			
@@ -70,9 +71,11 @@ public class ProjectSearchController extends HttpServlet {
 		// 서비스 호출		
 		List<ProjectDto> projectList = projectService.search(paging, projectDto);
 		
+//		System.out.println(projectDto);
 		List<ProjectTechDto> techList = projectService.techList();
 		List<ProjectLocationDto> locationList = projectService.getAllLocation();
 		List<ProjectTechDto> techListAll = projectService.getAlltech();	
+		
 		
 		// JSP에 전달할 MODEL 처리
 		request.setAttribute("projectList", projectList);
