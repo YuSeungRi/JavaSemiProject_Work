@@ -24,8 +24,12 @@ public class BoardsearchService {
 	}
 	
 	public int searchTotal(String searchString) {
-		
 		return dao.searchTotal(searchString);
+	}
+	
+	public int searchTotal(String searchString, String categoryName, String searchTarget) {
+		
+		return dao.searchTotal(searchString, categoryName, searchTarget);
 	}
 
 	public List<BoardDto> getSearchList(Paging paging, String categoryName, String order, String searchString) {
@@ -36,6 +40,12 @@ public class BoardsearchService {
 	public List<BoardDto> getSearchList(Paging paging, String order, String searchString) {
 		
 		return dao.getSearchList(paging, order, searchString);	// 추가
+	}
+	
+	// 각 게시판별 페이징리스트 검색
+	public List<BoardDto> getSearchpagingList(Paging paging, String categoryName, String searchString, String searchTarget) {
+	
+		return dao.getSearchpagingList(paging, categoryName, searchString, searchTarget);
 	}
 
 }

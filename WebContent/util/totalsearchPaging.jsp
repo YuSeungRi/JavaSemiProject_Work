@@ -39,7 +39,7 @@
     	var="page">
     	
     	<c:if test="${paging.curPage eq page }">
-	   	<li class="page-item">
+	   	<li class="page-item active">
 	   	</c:if>
 	   	<c:if test="${paging.curPage ne page }">
 	   	<li>

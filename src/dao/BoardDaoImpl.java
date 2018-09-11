@@ -195,8 +195,9 @@ public class BoardDaoImpl implements BoardDao {
 			
 			rs = ps.executeQuery();
 			
-			rs.next();
-			total = rs.getInt(1);
+			while(rs.next()) {
+				total = rs.getInt(1);				
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -210,6 +211,50 @@ public class BoardDaoImpl implements BoardDao {
 		
 		return total;
 	}
+	
+	/**
+	 *  searchTotal
+	 */
+	@Override
+	public int searchTotal(String searchString, String categoryName, String searchTarget) {
+		int total = 0;
+		String sql = null;
+		
+		if(searchTarget.equals("title")) {
+			sql = "SELECT count(*) FROM board"
+					+ " WHERE board_title LIKE '%'||?||'%'"// 1. searchString
+					+ " AND board_category = ?"; // 2.categoryName			
+		} else if(searchTarget.equals("content")) {
+			sql = "SELECT count(*) FROM board"
+					+ " WHERE board_content LIKE '%'||?||'%'"// 1. searchString
+					+ " AND board_category = ?"; // 2.categoryName
+		} else {
+			return 0;
+		}
+			
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, searchString);
+			ps.setString(2,  categoryName);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				total = rs.getInt(1);				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+		return total;
+	}
+	
 	
 	@Override
 	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName) {
@@ -773,6 +818,7 @@ public class BoardDaoImpl implements BoardDao {
 		return result;
 	}
 
+	
 	@Override
 	public ArrayList<BoardDto> getSearchList(Paging paging, String order, String searchString) {
 		ArrayList<BoardDto> list = new ArrayList<>();
@@ -841,6 +887,104 @@ public class BoardDaoImpl implements BoardDao {
 		return list;
 	}
 
+	// 재추가
+	@Override
+	public ArrayList<BoardDto> getSearchpagingList(Paging paging, String categoryName, String searchString, String searchTarget) {
+		
+		
+		String sql = null;
+		if(searchTarget.equals("title")) {
+			sql = "SELECT * FROM (" + 
+					"    SELECT rownum rnum, B.* FROM (" + 
+					"        SELECT"
+					+ " board_no,"
+					+ " board_category,"
+					+ " board_title,"
+					+ " board_user,"
+					+ " board_read,"
+					+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+					+ " board_create,"
+					+ " board_modify,"
+					+ " board_content,"
+					+ " board_tech" 
+					+ " FROM board" 
+					+ "        WHERE board_title LIKE '%'||?||'%'" // 1. searchString
+					+ "		   AND board_category =?" // 2. categoryName
+					+ "        ORDER BY board_category, board_create DESC, board_no DESC" 
+					+ "    ) B" 
+					+ "    ORDER BY rnum" 
+					+ " )" 
+					+ " WHERE rnum BETWEEN ?" // 3. paging.getStartNo()
+					+ " AND ?"; // 4. paging.getEndNo()
+		} else if(searchTarget.equals("content")) {
+			sql = "SELECT * FROM (" + 
+					"    SELECT rownum rnum, B.* FROM (" + 
+					"        SELECT"
+					+ " board_no,"
+					+ " board_category,"
+					+ " board_title,"
+					+ " board_user,"
+					+ " board_read,"
+					+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
+					+ " board_create,"
+					+ " board_modify,"
+					+ " board_content,"
+					+ " board_tech" 
+					+ " FROM board" 
+					+ "        WHERE board_content LIKE '%'||?||'%'" // 1. searchString
+					+ "		   AND board_category =?" // 2. categoryName
+					+ "        ORDER BY board_category, board_create DESC, board_no DESC" 
+					+ "    ) B" 
+					+ "    ORDER BY rnum" 
+					+ " )" 
+					+ " WHERE rnum BETWEEN ?" // 3. paging.getStartNo()
+					+ " AND ?"; // 4. paging.getEndNo()
+		} else {
+			return null;
+		}
+	
+		BoardDto dto = null;
+		ArrayList<BoardDto> list = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, searchString);
+			ps.setString(2, categoryName);
+			ps.setInt(3, paging.getStartNo());
+			ps.setInt(4, paging.getEndNo());
+			
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				dto = new BoardDto();
+				
+				dto.setBoardNo(rs.getInt("board_no"));
+				dto.setBoardCategory(rs.getString("board_category"));
+				dto.setBoardTitle(rs.getString("board_title"));
+				dto.setBoardUser(rs.getString("board_user"));
+				dto.setBoardRead(rs.getInt("board_read"));
+				dto.setBoardRecommend(rs.getInt("board_recommend"));
+				dto.setBoardCreate(rs.getDate("board_create"));
+				dto.setBoardModify(rs.getDate("board_modify"));
+				dto.setBoardContent(rs.getString("board_content"));
+				dto.setBoardTech(rs.getInt("board_tech"));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
 	
 	@Override
 	public ArrayList<ReplyDto> getMyReply(String userEmail, int listnum) {

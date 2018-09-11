@@ -14,14 +14,14 @@
 		<div class="col-mt-11">
 			<form action="/tech/search.do" name="search" method="get">	
 				<div>
-					<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4">
-						<select name="keyFiled" size="1">
-						<option value="title" <c:if test="${'title'==keyFiled }"> selected</c:if>> 제목 </option>
-						<option value="content" <c:if test="${'content'==keyFiled }"> selected</c:if>> 내용 </option>
+					<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 my-3">
+						<select id="keyField" name="keyField" size="1">
+						<option value="title" <c:if test='${keyField eq "title" }'> selected</c:if>> 제목 </option>
+						<option value="content" <c:if test='${keyField eq "content" }'> selected</c:if>> 내용 </option>
 						</select>
 						<input type="text" class="text-sm form-control"
 							placeholder="내용을입력하세요" aria-label=""
-							aria-describedby="basic-addon1" name="searchString">
+							aria-describedby="basic-addon1" name="searchString" <c:if test="${searchString ne null}">value="${ searchString}"</c:if> />
 						<div class="input-group-append">
 							<button class="btn btn-success" type="submit">검색</button>
 						</div>
@@ -49,7 +49,7 @@
 							<td>
 								<a href="/tech/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardUser }</td>
+							<td>${board.boardNick }</td>
 							<td>${board.boardRead }</td>
 					    	<td>${board.boardRecommend }</td>
 						</tr>

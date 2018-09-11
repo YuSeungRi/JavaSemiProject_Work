@@ -21,6 +21,8 @@ import dto.BoardDto;
  * 수정일 : 2018.09.04
  * 수정자 : 안희민
  *  - getSearchList 추가
+ *  
+ *  페이지네이션 추가
  */
 
 public class TechBoardService {
@@ -38,6 +40,11 @@ public class TechBoardService {
 		return dao.getPagingList(paging, categoryName, order);
 	}
 	
+	// 페이지네이션 추가
+	public List<BoardDto> getSearchpagingList(Paging paging, String categorynName, String searchString) {
+		
+		return dao.getSearchpagingList(paging, categorynName, searchString);
+	}
 //	public List<BoardDto> getSearchList(Paging paging, String categoryName, String order, String searchString) {
 	
 //		return dao.getSearchList(paging, categoryName, order, searchString);

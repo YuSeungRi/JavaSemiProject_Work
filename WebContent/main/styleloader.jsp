@@ -68,7 +68,7 @@
 					  <div class="input-group-prepend">
 					    <button class="btn btn-outline-secondary" type="submit" id="button-addon1"><span class="fa fa-search" id="basic-addon1"></span></button>
 					  </div>
-					  <input type="text" class="form-control" placeholder="검색" aria-label="search" aria-describedby="search" name="searchString">
+					  <input type="text" class="form-control" placeholder="검색" aria-label="search" aria-describedby="search" required="required" name="searchString">
 					</div>
 				</form>
                 </div>
