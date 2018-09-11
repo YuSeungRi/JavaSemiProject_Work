@@ -13,10 +13,19 @@ CREATE TABLE login_log
     login_time      DATE,
     login_result	VARCHAR2(20),
     
-    CONSTRAINT login_log_PK PRIMARY KEY (user_email)
+    CONSTRAINT login_log_PK PRIMARY KEY (user_email, login_time)
 );
 
---- 여기서 부터 쓰세요 !!!!!!!!!!!!!!!!!!!!
+-- 주석 처리된 ALTER 문을 사용하세요!!! --
+-- [제약조건 삭제]
+-- ALTER TABLE login_log
+-- DROP CONSTRAINT login_log_PK;
+
+-- [제약조건 추가 : 두 컬럼을 기본키로]
+-- ALTER TABLE login_log
+-- ADD CONSTRAINT login_log_PK PRIMARY KEY(user_email, login_time);
+---------------------------------
+
 
 --DELETE userinfo;
 
