@@ -95,6 +95,10 @@ public class ProjectService {
 	public List<ProjectUserDto> participateList(int projectNo) {
 		return participateDao.participateList(projectNo);
 	}
+	
+	public List<ProjectDto> search(Paging paging, ProjectDto projectDto) {
+		return projectDao.search( paging, projectDto);
+	}
 
 
 }

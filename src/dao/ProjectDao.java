@@ -45,5 +45,7 @@ public interface ProjectDao {
 
 	// 수정
 	public void update(ProjectDto projectDto);
+
+	public List<ProjectDto> search(Paging paging, ProjectDto projectDto);
 	
 }

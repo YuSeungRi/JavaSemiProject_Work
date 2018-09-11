@@ -185,7 +185,5 @@ public class ProjectParticipateDaoImpl implements ProjectParticipateDao {
 		
 		return pList;
 	}
-	
-	
 
 }

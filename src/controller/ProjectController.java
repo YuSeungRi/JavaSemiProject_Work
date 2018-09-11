@@ -34,9 +34,6 @@ public class ProjectController extends HttpServlet {
 			curPage = Integer.parseInt(
 				request.getParameter("curPage") );
 		}
-
-		
-
 		
 		// 총 게시글 수
 		int totalCount = projectService.getTotal();

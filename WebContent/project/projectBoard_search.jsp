@@ -29,8 +29,8 @@
 	  <div class="form-group row">
 	    <div class="col-sm-2">지역</div>
 	    <div class="col-sm-10">
-	 	<select class="custom-select" name="location" id="location" >	 	
-			<option selected >지역을 선택하세요</option>	 		
+	 	<select class="custom-select" name="location" id="location">	 	
+			<option selected>지역을 선택하세요</option>	 		
 	 		<c:forEach items="${location }" var="location">
  				<option value="${location.locationNo }">${location.locationName }</option>
 	 		</c:forEach>	 		
@@ -126,7 +126,7 @@
 			<div class="row justify-content-center">
 				<div class="col m-4">
 				<!-- 페이지네이션 -->
-				<jsp:include page="/util/projectPaging.jsp" />
+				<jsp:include page="/util/projectsearchPaging.jsp" />
 				</div>
 			</div>				
 		

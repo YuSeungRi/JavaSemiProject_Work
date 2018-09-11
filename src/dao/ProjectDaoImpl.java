@@ -14,6 +14,7 @@ import dbutil.DBConn;
 import dto.ProjectDto;
 import dto.ProjectLocationDto;
 import dto.ProjectTechDto;
+import dto.ProjectUserDto;
 
 public class ProjectDaoImpl implements ProjectDao {
 	
@@ -473,5 +474,66 @@ public class ProjectDaoImpl implements ProjectDao {
 			}
 		}
 	}
+
+	@Override
+	public List<ProjectDto> search(Paging paging, ProjectDto projectDto) {
+		String sql = "SELECT * FROM ("
+				+ " SELECT rownum rnum, B.* FROM("
+				+ " SELECT * FROM ( "
+				+ " SELECT l.location_name, p.*, U.user_nick"
+				+ " FROM \"project\" p "
+				+ " LEFT JOIN \"location\" l "
+				+ " ON l.location_no = p.location_no "
+				+ " JOIN userInfo u"
+				+ " ON p.project_lead = u.user_email"
+				+ " ORDER BY p.project_no DESC ) A"
+				+ " WHERE 1=1";
+	
+		if(projectDto.getProjectTitle() != null && !"".equals(projectDto.getProjectTitle()) ) {
+			sql+= " AND project_title like '%"+projectDto.getProjectTitle()+"%'";
+		}
+		
+		if(projectDto.getLocationNo() != 0 ) {
+			sql+= " AND location_no ="+projectDto.getLocationNo()+"";
+		}		
+		
+		sql +=  " ) B"
+				+ " ORDER BY rnum"
+				+ " )"
+				+ " WHERE rnum BETWEEN ? AND ? ";
+//		System.out.println("---sql---");
+//		System.out.println(sql);
+		
+		List<ProjectDto> projectList = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, paging.getStartNo());
+			ps.setInt(2, paging.getEndNo());
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				projectDto.setProjectNo( rs.getInt("project_no") );
+				projectDto.setLocationNo( rs.getInt("location_no"));
+				projectDto.setProjectTitle( rs.getString("project_title"));
+				projectDto.setProjectStart(rs.getString("project_start"));
+				projectDto.setProjectEnd(rs.getString("project_end"));
+				projectDto.setProjectContent( rs.getString("project_content"));
+				projectDto.setProjectParticpant( rs.getInt("project_participant"));
+				projectDto.setProjectLead( rs.getString("project_lead"));
+				projectDto.setProjectNick( rs.getString("user_nick"));
+				projectDto.setLocationName( rs.getString("location_name"));				
+				
+				projectList.add(projectDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return projectList;
+	}		
+	
 
 }
