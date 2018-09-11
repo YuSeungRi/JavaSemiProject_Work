@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Service.BoardService;
+import Service.FileService;
 import Service.ReplyService;
 import dto.BoardDto;
+import dto.FileDto;
 import dto.ReplyDto;
 
 
@@ -20,8 +22,8 @@ public class FreeboardviewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private BoardService boardservice = new BoardService();
-	private ReplyService rsvc = new ReplyService();
-	
+	private ReplyService 	rsvc = 		new ReplyService();
+	private FileService 	fsvc = 		new FileService();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String param = request.getParameter("boardno");
 		
@@ -42,10 +44,13 @@ public class FreeboardviewController extends HttpServlet {
 		//추천 상태 정보 전달
 		request.setAttribute("recommend", boardservice.recommendCheck(recommend));
 		
+		//댓글
+		ArrayList<ReplyDto> rdtos = rsvc.getReplyList(boardno);
+		request.setAttribute("replyList", rdtos);
 		
-		ArrayList<ReplyDto> dtos = rsvc.getReplyList(boardno);
-		
-		request.setAttribute("replyList", dtos);
+		//첨부파일 
+		ArrayList<FileDto> fdtos = fsvc.getFileList(boardno);
+		request.setAttribute("fileList", fdtos);
 		
 		request.getRequestDispatcher("/Freeboard/freeboard_detail.jsp").forward(request, response);
 	}

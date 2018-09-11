@@ -38,5 +38,12 @@ public interface FileDao {
 	 * @return
 	 */
 	public FileDto getFileData(int fileNo);
+
+	/**
+	 * get a file owner
+	 * @param fileNo
+	 * @return
+	 */
+	public String getFileOwner(int fileNo);
 	
 }

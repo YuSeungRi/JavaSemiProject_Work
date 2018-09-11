@@ -609,7 +609,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 		String sql = "UPDATE board SET"
 				+ " board_title=?" // 1. title
-				+ ", board_modify=TO_CHAR(sysdate, 'YYYY-MM-DD')" // modify
+				+ ", board_modify = sysdate" // modify
 				+ ", board_content=?" // 2. content
 				+ " WHERE board_no=?"; // 3. no
 		

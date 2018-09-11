@@ -26,4 +26,9 @@ public class FileService {
 	public int getFileCount(int boardNo) {
 		return dao.boardFileCount(boardNo);
 	}
+
+	public String getFileOwner(int fileNo) {
+		return dao.getFileOwner(fileNo);
+	}
+	
 }

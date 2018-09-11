@@ -29,6 +29,7 @@ public class FreeboardUpdateController extends HttpServlet {
 
 	private BoardService bsvc = new BoardService();
 	private FileService fsvc = new FileService();
+	private final String boardCategory = "FreeBoard";
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -47,7 +48,7 @@ public class FreeboardUpdateController extends HttpServlet {
 		if(fsvc.getFileCount(boardno)>0) {
 			ArrayList<FileDto> fdtos = fsvc.getFileList(boardno);
 			request.setAttribute("fileList", fdtos);		
-		}
+		} 
 		
 		request.getRequestDispatcher("/Freeboard/freeboard_update.jsp").forward(request, response);
 	}
@@ -60,8 +61,8 @@ public class FreeboardUpdateController extends HttpServlet {
 		
 		BoardDto dto = new BoardDto();
 		
-		dto.setBoardNo(Integer.parseInt(request.getParameter("boardno")));
-		
+		dto.setBoardUser((String)request.getSession().getAttribute("userId"));
+		dto.setBoardCategory(boardCategory);
 		// 파일 업로드 작업 시작 
 		// 1. 파일 업로드 한거 맞는지 확인 (enctype 이 multipart 인지 확인하는 메서드)
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -110,11 +111,15 @@ public class FreeboardUpdateController extends HttpServlet {
 				// form-data 일 경우 
 				// key, value 쌍으로 저장된 데이터일 경우 
 //						out.println("폼 필드 : " + item.getFieldName() + ", 값 : " + item.getString());
+				if(item.getFieldName().equals("boardno")) {
+					dto.setBoardNo(Integer.parseInt(item.getString("UTF-8")));
+					System.out.println(dto.getBoardNo());
+				}
 				if(item.getFieldName().equals("title")) {
-					dto.setBoardTitle(item.getString());
+					dto.setBoardTitle(item.getString("UTF-8"));
 				}
 				if(item.getFieldName().equals("summernote")) {
-					dto.setBoardContent(item.getString());
+					dto.setBoardContent(item.getString("UTF-8"));
 				}
 			} else {
 				// java.util.UUID
@@ -124,18 +129,19 @@ public class FreeboardUpdateController extends HttpServlet {
 				System.out.println(u);
 				
 				String fileName = item.getName();
-//						System.out.println(fileName);
+				System.out.println(fileName);
 				String storedFileName = fileName+"_"+u;
 				String[] fileSplit = fileName.split("\\.");
-//						System.out.println(fileSplit);
+				System.out.println(fileSplit);
 				
 				FileDto fdto = new FileDto();
 				fdto.setBoardNo(dto.getBoardNo());
 				fdto.setUploaderEmail(dto.getBoardUser());
-				fdto.setFileName(item.getName());
+				fdto.setFileName(fileName);
 				fdto.setFileStoredName(storedFileName);
 				fdto.setFileType(fileSplit[fileSplit.length-1]);
 				
+				System.out.println("ftdo: " +fdto);
 				// 파일 데이터일 경우
 				File up = new File(getServletContext().getRealPath("upload"), storedFileName);
 			
@@ -150,10 +156,7 @@ public class FreeboardUpdateController extends HttpServlet {
 			}
 		}
 
-//		dto.setBoardTitle(request.getParameter("title"));
-//		dto.setBoardContent(request.getParameter("content"));
-//
-//		System.out.println(dto);
+		System.out.println(dto);
 
 		bsvc.update(dto);
 

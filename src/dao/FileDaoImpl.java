@@ -169,4 +169,32 @@ public class FileDaoImpl implements FileDao {
 		}
 		return result;
 	}
+
+	@Override
+	public String getFileOwner(int fileNo) {
+		String sql = "SELECT B.board_user FROM board B, attach_file A" + 
+				" WHERE B.BOARD_NO = A.BOARD_NO" + 
+				" AND A.FILE_NO = ?"; //1.fileNo
+		String result = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, fileNo);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				result = rs.getString(1);
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		return result;
+	}
 }
