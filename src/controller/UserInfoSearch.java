@@ -21,6 +21,11 @@ public class UserInfoSearch extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		String newLevel = request.getParameter("level");
+		String userEmail = request.getParameter("email");
+		System.out.println("level ="+newLevel);
+		System.out.println("userEmail ="+userEmail);
 		String param = request.getParameter("curPage");
 		String searchString = request.getParameter("searchString");
 		String keyfiled = request.getParameter("keyFiled");
@@ -33,11 +38,16 @@ public class UserInfoSearch extends HttpServlet {
 		// 총 회원수
 		int totalCount = uisv.getTotal(); // DB에서 회원들의 숫자를 가져옴
 		
+		// 회원 등급설정
+		System.out.println("searchString = "+searchString);
+		System.out.println("keyfiled = "+keyfiled);
 		
 		if(keyfiled.equals("userEmail")==true) {
 			
 			// 총 검색된 회원수
 			int totalSearchCount = uisv.getEmailSearchTotal(searchString); // DB에서 회원들의 숫자를 가져옴
+			
+			uisv.changeLevel(userEmail ,newLevel); // 회원등급설정
 
 			// Paging Class 계산하기
 			Paging paging = new Paging(totalSearchCount, curPage);	// 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴
@@ -51,10 +61,11 @@ public class UserInfoSearch extends HttpServlet {
 
 			request.getRequestDispatcher("/admin/userinfoadmin_search.jsp").forward(request, response);
 		
-		} else if(keyfiled.equals("userNick")==true) {
+		} else if (keyfiled.equals("userNick") == true) {
 			
 			// 총 검색된 회원수
 			int totalSearchCount = uisv.getNickSearchTotal(searchString); // DB에서 회원들의 숫자를 가져옴
+			uisv.changeLevel(userEmail ,newLevel);
 
 			// Paging Class 계산하기
 			Paging paging = new Paging(totalSearchCount, curPage); // 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴

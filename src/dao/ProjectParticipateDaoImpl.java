@@ -121,7 +121,7 @@ public class ProjectParticipateDaoImpl implements ProjectParticipateDao {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, projectDto.getProjectNo());
 			
-			rs = ps.executeQuery();
+			rs = ps.executeQuery();			
 			
 			while(rs.next()) {
 				cnt = rs.getInt(1);
@@ -139,18 +139,18 @@ public class ProjectParticipateDaoImpl implements ProjectParticipateDao {
 		
 		return cnt;
 	}
+	
 
 	@Override
 	public List<ProjectUserDto> participateList(int projectNo) {
 		
-		String sql = "SELECT p.user_email, "
-				+ " p.project_no,"
-				+ " (SELECT COUNT(*) FROM \"project\" j WHERE j.project_no = p.project_no ) participate, "
+		String sql = "SELECT p.*, "
 				+ " u.user_nick"
 				+ " FROM project_participant p "
 				+ " JOIN userinfo u "
 				+ " ON p.user_email = u.user_email"
-				+ " WHERE p.project_no = ? ";
+				+ " WHERE p.project_no = ? "
+				+ " ORDER BY u.user_nick ASC";
 		
 		List<ProjectUserDto> pList = new ArrayList<>();
 		
@@ -167,7 +167,7 @@ public class ProjectParticipateDaoImpl implements ProjectParticipateDao {
 				
 				projectUserDto.setProjectUserMail( rs.getString("user_email"));
 				projectUserDto.setProjectUserNick( rs.getString("user_nick"));
-				projectUserDto.setParticipate( rs.getInt("participate"));
+				projectUserDto.setParticipate( rs.getInt("participate"));				
 				projectUserDto.setProjectNo( rs.getInt("project_no"));
 				
 				pList.add(projectUserDto);
@@ -185,7 +185,5 @@ public class ProjectParticipateDaoImpl implements ProjectParticipateDao {
 		
 		return pList;
 	}
-	
-	
 
 }

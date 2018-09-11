@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import Service.BoardService;
 import Service.UserInfoService;
 import dto.BoardDto;
+import dto.ReplyDto;
 import dto.UserInfoDto;
 
 /**
@@ -34,11 +35,12 @@ public class MypageController extends HttpServlet {
 		UserInfoDto userinfo = uisv.getUserInfo(userEmail);
 
 		List<BoardDto> boardList = bsvc.getMyBoard(userEmail, 5);
+		List<ReplyDto> replyList = bsvc.getMyReply(userEmail, 5);
 		
 		
 		request.setAttribute("userinfo", userinfo);
-		System.out.println("userinfo = " + userinfo);
 		request.setAttribute("boardList", boardList);
+		request.setAttribute("replyList", replyList);
 		
 		request.getRequestDispatcher("/mypage/mypage.jsp").forward(request,response);
 	}

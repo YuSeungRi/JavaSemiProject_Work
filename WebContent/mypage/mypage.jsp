@@ -122,35 +122,19 @@
 					<tr>
 						<th>게시판 종류</th>
 						<th>제목</th>
+						<th>댓글</th>
 						<th>작성일</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>자유게시판</td>
-						<td>덥다더워</td>
-						<td>2018-08-02</td>
-					</tr>
-					<tr>
-						<td>자유게시판</td>
-						<td>덥다더워</td>
-						<td>2018-08-02</td>
-					</tr>
-					<tr>
-						<td>자유게시판</td>
-						<td>덥다더워</td>
-						<td>2018-08-02</td>
-					</tr>
-					<tr>
-						<td>자유게시판</td>
-						<td>덥다더워</td>
-						<td>2018-08-02</td>
-					</tr>
-					<tr>
-						<td>자유게시판</td>
-						<td>덥다더워</td>
-						<td>2018-08-02</td>
-					</tr>
+					<c:forEach items="${replyList }" var="reply">
+						<tr>
+							<td>${reply.boardCategory }</td>
+							<td><a href="/Freeboard/detail.do?boardno=${reply.boardNo }">${reply.boardTitle }</a>
+							<td>${reply.replyContent }</td>
+							<td>${reply.replyCreate }</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

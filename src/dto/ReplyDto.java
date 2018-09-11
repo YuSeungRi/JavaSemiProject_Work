@@ -10,12 +10,26 @@ package dto;
 public class ReplyDto {
 	private int replyNo; // 댓글 번호
 	private int boardNo; // 게시판 번호
+	private String boardCategory; //게시판 종류
+	private String boardTitle; // 게시판 제목
 	private String userEmail; // email
 	private String userNick; // 닉네임
 	private String replyCreate; // 작성일
 	private String replyContent; // 내용
 	
 	
+	public String getBoardTitle() {
+		return boardTitle;
+	}
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
+	}
+	public String getBoardCategory() {
+		return boardCategory;
+	}
+	public void setBoardCategory(String boardCategory) {
+		this.boardCategory = boardCategory;
+	}
 	public int getReplyNo() {
 		return replyNo;
 	}
@@ -51,13 +65,15 @@ public class ReplyDto {
 	}
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
-	}	
+	}
 	
 	
 	@Override
 	public String toString() {
-		return "ReplyDto [replyNo=" + replyNo + ", boardNo=" + boardNo + ", userEmail=" + userEmail + ", userNick="
-				+ userNick + ", replyCreate=" + replyCreate + ", replyContent=" + replyContent + "]";
+		return "ReplyDto [replyNo=" + replyNo + ", boardNo=" + boardNo + ", boardCategory=" + boardCategory
+				+ ", boardTitle=" + boardTitle + ", userEmail=" + userEmail + ", userNick=" + userNick
+				+ ", replyCreate=" + replyCreate + ", replyContent=" + replyContent + "]";
 	}
+
 	
 }
