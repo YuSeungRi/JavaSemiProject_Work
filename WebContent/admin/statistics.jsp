@@ -1,9 +1,15 @@
+<%@page import="dto.StatisticsVisitantDto"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%--
  작성일 : 2018.09.08
  작성자 : 권미현
   관리자 페이지_통계
+  
+ 수정일 : 2018.09.12
+ 수정자 : 권미현
+  - 관리자 페이지_통계 : 방문자 - 완료
  --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../main/header.jsp"%>
@@ -20,9 +26,10 @@
 			<div class="row">
 				<label class="col-form-label">방문자 수</label>
 				<div class="col-md-6">
-					<select name="visitant" class="custom-select">
-						<option value="day">일별</option>
-						<option value="month">월별</option>
+					<%-- onchange="select(this.value)" : 옵션이 바뀔 때마다 함수 발생 --%>
+					<select onchange="select(this.value)" name="visitant" class="custom-select">
+						<option value="day" <c:if test="${visitant eq 'day' }">selected="selected"</c:if>>일별</option>
+						<option value="month" <c:if test="${visitant eq 'month' }">selected="selected"</c:if>>월별</option>
 					</select>
 				</div>
 			</div>
@@ -31,6 +38,7 @@
 		<div class="col-md-1"></div>
 	</div>
 	<br><br><br>
+	<%-- 
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
@@ -48,6 +56,7 @@
 		</div>
 		<div class="col-md-1"></div>
 	</div>
+	 --%>
 </div>
 <%@include file="../main/scriptloader.jsp"%>
 
@@ -60,101 +69,122 @@
 
 <script type="text/javascript">
 
-Highcharts.chart('visitantChart', {
+	var visitant = new Array();
 
-	  title: {
-	    text: '방문자 통계'
-	  },
+	<%-- jstl : forEach문을 이용한 값(list/방문자 수) 받아오기 --%>
+	<c:forEach items="${vList }" var="v">
+		var data = new Object();
+		data = Number("${v.visitantNum }");
+		visitant.push(data);
+	</c:forEach>
 
-	  yAxis: {
-	    title: {
-	      text: '방문자 수'
-	    }
-	  },
-	  legend: {
-	    layout: 'vertical',
-	    align: 'right',
-	    verticalAlign: 'middle'
-	  },
+	console.log(visitant);
 
-	  plotOptions: {
-	    series: {
-	      label: {
-	        connectorAllowed: false
-	      },
-	      pointStart: 1
-	    }
-	  },
+	Highcharts.chart('visitantChart', {
 
-	  series: [{
-	    name: '방문자',
-	    data: [11, 3, 5, 17, 9, 11, 13, 15, 2, 3, 5, 8] // data 갯수에 따라 포인트가 달라짐
-	  }],
+		title : {
+			text : '방문자 통계'
+		},
 
-	  responsive: {
-	    rules: [{
-	      condition: {
-	        maxWidth: 500
-	      },
-	      chartOptions: {
-	        legend: {
-	          layout: 'horizontal',
-	          align: 'center',
-	          verticalAlign: 'bottom'
-	        }
-	      }
-	    }]
-	  }
+		yAxis : {
+			title : {
+				text : '방문자 수'
+			}
+		},
+		legend : {
+			layout : 'vertical',
+			align : 'right',
+			verticalAlign : 'middle'
+		},
 
-	});
-	
-	
-Highcharts.chart('postChart', {
+		plotOptions : {
+			series : {
+				label : {
+					connectorAllowed : false
+				},
+				pointStart : 1
+			}
+		},
 
-	  title: {
-	    text: '게시물 통계'
-	  },
+		series : [ {
+			name : '방문자',
+			data : visitant
+		// data 갯수에 따라 포인트가 달라짐
+		} ],
 
-	  yAxis: {
-	    title: {
-	      text: '게시물 수'
-	    }
-	  },
-	  legend: {
-	    layout: '게시물',
-	    align: 'right',
-	    verticalAlign: 'middle'
-	  },
-
-	  plotOptions: {
-	    series: {
-	      label: {
-	        connectorAllowed: false
-	      },
-	      pointStart: 1
-	    }
-	  },
-
-	  series: [{
-	    name: '게시물',
-	    data: [5, 20, 23, 18, 13, 3, 30, 41] // data 갯수에 따라 포인트가 달라짐
-	  }],
-
-	  responsive: {
-	    rules: [{
-	      condition: {
-	        maxWidth: 500
-	      },
-	      chartOptions: {
-	        legend: {
-	          layout: 'horizontal',
-	          align: 'center',
-	          verticalAlign: 'bottom'
-	        }
-	      }
-	    }]
-	  }
+		responsive : {
+			rules : [ {
+				condition : {
+					maxWidth : 500
+				},
+				chartOptions : {
+					legend : {
+						layout : 'horizontal',
+						align : 'center',
+						verticalAlign : 'bottom'
+					}
+				}
+			} ]
+		}
 
 	});
+
+/*
+	Highcharts.chart('postChart', {
+
+		title : {
+			text : '게시물 통계'
+		},
+
+		yAxis : {
+			title : {
+				text : '게시물 수'
+			}
+		},
+		legend : {
+			layout : '게시물',
+			align : 'right',
+			verticalAlign : 'middle'
+		},
+
+		plotOptions : {
+			series : {
+				label : {
+					connectorAllowed : false
+				},
+				pointStart : 1
+			}
+		},
+
+		series : [ {
+			name : '게시물',
+			data : [ 5, 20, 23, 18, 13, 3, 30, 41 ]
+		// data 갯수에 따라 포인트가 달라짐
+		} ],
+
+		responsive : {
+			rules : [ {
+				condition : {
+					maxWidth : 500
+				},
+				chartOptions : {
+					legend : {
+						layout : 'horizontal',
+						align : 'center',
+						verticalAlign : 'bottom'
+					}
+				}
+			} ]
+		}
+
+	});
+ */	
+</script>
+
+<script type="text/javascript">
+	function select(val) {
+		// 받아온 val 값 적용하기(select-option value 값)
+		location.href="/admin/statistics.do?visitant=" + val;
+	}
 </script>
 <%@include file="../main/footer.jsp"%>
