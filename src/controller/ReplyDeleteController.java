@@ -52,6 +52,10 @@ public class ReplyDeleteController extends HttpServlet {
 			reController = "Freeboard";
 		} else if (category.equals("Recruit")) {
 			reController = "recruit";
+		} else if (category.equals("NoticeBoard")) {
+			reController = "notice";
+		} else if (category.equals("QuestionBoard")) {
+			reController = "question";
 		} // TODO 나머지 게시판들도 리다이렉트 설정해주세요!
 		
 //		System.out.println("ReplyDeleteController_category : " + category);

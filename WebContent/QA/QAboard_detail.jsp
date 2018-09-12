@@ -11,15 +11,18 @@
 		<i class="far fa-comments fa-lg"></i>게시글 상세조회
 	</h2>
 	<div class="col-md-11">
-		<form>
+		<form action="/question/search.do" name="search" method="get">
 			<div>
-				<div
-					class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
+				<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
+					<select name="keyFiled" size="1">
+					<option value="title" <c:if test="${'title'==keyFiled }"> selected</c:if>> 제목 </option>
+					<option value="content" <c:if test="${'content'==ketFiled }"> selected</c:if>> 내용 </option>
+					</select>
 					<input type="text" class="text-sm form-control"
 						placeholder="검색어를 입력하세요" aria-label=""
-						aria-describedby="basic-addon1">
+						aria-describedby="basic-addon1" name="searchString">
 					<div class="input-group-append">
-						<button class="btn btn-success" type="button">검색</button>
+						<button class="btn btn-success" type="submit">검색</button>
 					</div>
 				</div>
 				<ul class="nav">
@@ -55,10 +58,29 @@
 					<tr>
 						<td colspan="16" align="left">최근 수정 시간 : ${board.boardModify }</td>
 					</tr>
-			
+					<!-- 첨부파일 -->
+						<tr>
+							<td colspan="2">첨부파일</td>
+							<td colspan="14">
+								<c:if test="${fileList eq null }" >
+									업로드한 파일이 없습니다.
+								</c:if>
+								<ul>
+									<c:if test="${fileList ne null }" >
+									<c:forEach items="${fileList }" var="file" >
+										<li><a href="/upload/${file.fileStoredName }" download>${file.fileName }</a></li>
+									</c:forEach>
+									</c:if>
+								</ul>
+							</td>
+						</tr>
 			</table>
 			
 		</div>
+		
+		<!-- 파일 업로드 영역  -->
+<%-- 		<c:import url="/file/upload.do"></c:import> --%>
+		
 		
 		<div class="row justify-content-center">
 			<a href="/question/Q&A.do" class="btn btn-secondary btn-sm active mr-1"

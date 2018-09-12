@@ -11,7 +11,7 @@
 		<i class="far fa-comments fa-lg"></i>자유게시판 게시글 상세조회
 	</h2>
 	<div class="col-md-11">
-		<form action="/Freeboard/search.do" name="search" method="get">
+		<form action="/question/search.do" name="search" method="get">
 			<div>
 				<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
 					<select name="keyFiled" size="1">
