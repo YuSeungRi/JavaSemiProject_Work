@@ -46,6 +46,10 @@ public interface ProjectDao {
 	// 수정
 	public void update(ProjectDto projectDto);
 
-	public List<ProjectDto> search(Paging paging, ProjectDto projectDto);
+	// 검색	
+	public List<ProjectDto> search(String title, String location, String tech, String startday, String endday);
+	
+	// 검색	
+	public List<ProjectDto> search(String title, String location, String startday, String endday);
 	
 }

@@ -42,12 +42,12 @@
 	    <div class="col-sm-2">사용기술</div>
 	    <div class="col-sm-10">
 	    
-	    	<c:forEach items="${tech }" var="tech" varStatus="stat">
-	      	  <div class="form-check form-check-inline">
-			  <input class="form-check-input" type="checkbox" id="inlineCheckbox${stat.index+1}" name="checkbox" value="${tech.techNo }">
-			  <label class="form-check-label" for="inlineCheckbox${stat.index+1}">${tech.techName }</label>
-			</div>
-	    	</c:forEach>		
+		 	<select class="custom-select" name="Searchtech" id="Searchtech" >	 	
+				<option selected >기술을 선택하세요</option>	 		
+		 		<c:forEach items="${tech }" var="tech">
+	 				<option value="${tech.techNo }">${tech.techName }</option>
+		 		</c:forEach>	 		
+			</select>   		
 			
 	    </div>
 	  </div>
@@ -95,7 +95,7 @@
 							
   							<div class="card">
 							  <div class="card-body">
-							  
+							   
 							    <h5 class="card-title">${project.projectTitle }</h5>
 							    
 							    <fmt:parseDate var="parsedDateStart" value="${project.projectStart }" pattern="yyyy-MM-dd"/>
@@ -123,12 +123,12 @@
 					</ul>
 					</c:forEach>	
 					
-			<div class="row justify-content-center">
-				<div class="col m-4">
-				<!-- 페이지네이션 -->
-				<jsp:include page="/util/projectsearchPaging.jsp" />
-				</div>
-			</div>				
+<!-- 			<div class="row justify-content-center"> -->
+<!-- 				<div class="col m-4"> -->
+<!-- 				페이지네이션 -->
+<%-- 				<jsp:include page="/util/projectsearchPaging.jsp" /> --%>
+<!-- 				</div> -->
+<!-- 			</div>				 -->
 		
 	<!-- 작성완료 -->	
 	

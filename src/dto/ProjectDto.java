@@ -1,7 +1,5 @@
 package dto;
 
-import java.util.Date;
-
 /*
  * 작성일 : 2018.08.20
  * 작성자 : 유승리
@@ -18,10 +16,8 @@ public class ProjectDto {
 	private String projectLead;
 	private String projectNick;
 	private String locationName;
-	
-	
+	private String techName;	
 	private int participant;
-	
 	public int getProjectNo() {
 		return projectNo;
 	}
@@ -82,21 +78,26 @@ public class ProjectDto {
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
 	}
+	public String getTechName() {
+		return techName;
+	}
+	public void setTechName(String techName) {
+		this.techName = techName;
+	}
 	public int getParticipant() {
 		return participant;
 	}
 	public void setParticipant(int participant) {
 		this.participant = participant;
 	}
+	
 	@Override
 	public String toString() {
 		return "ProjectDto [projectNo=" + projectNo + ", locationNo=" + locationNo + ", projectTitle=" + projectTitle
 				+ ", projectStart=" + projectStart + ", projectEnd=" + projectEnd + ", projectContent=" + projectContent
 				+ ", projectParticpant=" + projectParticpant + ", projectLead=" + projectLead + ", projectNick="
-				+ projectNick + ", locationName=" + locationName + ", participant=" + participant + "]";
+				+ projectNick + ", locationName=" + locationName + ", techName=" + techName + ", participant="
+				+ participant + "]";
 	}
-		
-	
-	
 
 }
