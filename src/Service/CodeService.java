@@ -56,4 +56,8 @@ public class CodeService {
 		int codeNo = dao.setNewCode(cdto);
 //		dao.setTech(cdto, codeNo);
 	}
+
+	public void deleteCode(int codeNo) {
+		dao.deleteCode(codeNo);	
+	}
 }

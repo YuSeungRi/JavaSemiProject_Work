@@ -86,4 +86,10 @@ public interface CodeDao {
 	 * @param codeNo 
 	 */
 	public void setTech(CodeDto cdto, int codeNo);
+
+	/**
+	 * Delete a code
+	 * @param codeNo
+	 */
+	public void deleteCode(int codeNo);
 }

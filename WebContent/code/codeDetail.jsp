@@ -9,10 +9,11 @@
 	<div class="card-body">
 		<pre><code id="codeSource" class="${code.language }">${code.codeSource }</code></pre>						
 	</div>
-	<div class="card-footer text-muted">
+	<div class="card-footer text-muted justify-content-between" >
 		<p id="code_content" class="card-text">${code.codeContent }</p>
-		<c:forEach items="${code.tech }" var="techName" >
-			<span class="badge badge-primary">${techName }</span>
-		</c:forEach>
+<%-- 		<c:forEach items="${code.tech }" var="techName" > --%>
+<%-- 			<span class="badge badge-primary">${techName }</span> --%>
+<%-- 		</c:forEach> --%>
+		<button type="button" id="codeDelete" class="btn btn-danger btn-sm" onclick="deleteCode(${code.codeNo});">삭제</button>
 	</div>
 </div><!-- end of card -->
