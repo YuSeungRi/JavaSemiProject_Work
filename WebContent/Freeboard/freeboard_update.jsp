@@ -89,7 +89,9 @@ $(document).ready(function() {
 		   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
 	});
 	
+	//file 삭제
 	$("button.file").click(function(){
+		$a = $(this);
 		$.ajax({
 			type: "post"
 			, url: "/file/delete.do"
@@ -99,7 +101,7 @@ $(document).ready(function() {
 			}
 			, success: function(data) {
 				console.log("success");
-				$(this).parent().empty();
+				$a.parent().empty();
 			}
 			, error: function(e) {
 				console.log("fail");

@@ -346,10 +346,12 @@ public class CodeDaoImpl implements CodeDao {
 		
 		try {
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, categoryNo);
+			
 			rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				result = rs.getString("cateogry_name");
+				result = rs.getString("category_name");
 			}
 			
 		} catch (SQLException e) {

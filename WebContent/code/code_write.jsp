@@ -108,59 +108,35 @@ var preview = function(){
 	});
 };
 
-
-$("#btnSubmit").on("click", function() {
-	event.stopPropagation(); 
-    event.preventDefault(); 
-    
-    var data = new FormData(document.getElementById("uploadForm"));
-//     data.append("codeCategory", $("#codeCategory option:selected").val());
-//     data.append("codeLanguage", $("#codeLanguage option:selected").val());
-	
-//     var files = $(this).prop("files"); 
-// 	if(files.length >0) {
-// 		data.append("file", files[0]);
-// 	}
-// 	var file = $("input[name='file']");
-// 	var filename = $.trim(file.val());
-// 	data.append(file)
-	
-// 	var techList = $("input[type='checkbox']");
-// 	var selectedTech = new Array();
-// 	for(var i=0;i<techList.length;i++){
-// 		if(techList[i].checked) {
-// 			selectedTech.push(techList[i].value);
-// 		}
-// 	}
-// 	data.append("selectedTech", selectedTech);
-	
-	postFilesData(data);
-});
-
 //Ajax for file upload 
-var postFilesData = function(data) {
+$("#btnSubmit").on("click", function() {
+// 	event.stopPropagation(); 
+//     event.preventDefault(); 
+    var formData = new FormData(document.getElementById("uploadForm"));
+    
 	$.ajax({
-		url: '/code/write.do'
-		, type: 'POST'
-		, data: data
-		, cache: false
-		, dataType: 'text'
+		type:"post"
+		, url: "/code/write.do"
+		, data: formData
+		, dataType: "text"
 		, processData: false
 		, contentType: false
-		, success: function(data, textStatus, jqXHR){
-			//success
+		, success: function(data){
+			console.log("----success----");
 			$("#parseList").empty();
 			$("#parseList").html(data);
 			$('html, body').animate({
 		        scrollTop: parseInt($("#parseList").offset().top)
 		    }, 2000);
 		}
-		, error: function(jqXHR, textStatus, errorThrown) {
-		    console.log('ERRORS: ' + textStatus);
+		, error : function(e){
+			console.log("----error----");
+			console.log(e.responseText);
 		}
+// 		, complete: function(){
+// 			console.log("----complete----");
+// 		}
 	});
-}
-
+});
 </script>
-
 <%@include file="../main/footer.jsp" %>

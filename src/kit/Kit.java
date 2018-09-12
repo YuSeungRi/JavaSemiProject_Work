@@ -28,7 +28,7 @@ public class Kit {
 	}
 	
 	/**
-	 * Parsing Source file to KitData Ojbect
+	 * Parsing Source file to KitData Object
 	 * @param source
 	 */
 	public Kit(File source) {
@@ -42,6 +42,7 @@ public class Kit {
 	private String fileToString(File source) {
 		
 		String filePath = source.getAbsolutePath();
+		System.out.println(filePath);
 	    StringBuilder contentBuilder = new StringBuilder();
 	    try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8)) {
 	    	
@@ -130,14 +131,6 @@ public class Kit {
 	public KitData getKitData() {
 		return kitData;
 	}
-//	public static void main(String[] args) {
-//		
-//		String filepath = "c:/test.txt";
-//		File file = new File(filepath);
-//		String test = fileToString(file);
-////		System.out.println(test);
-//		kitParser(test);
-//		System.out.println(kitData);
-//	}
+
 	
 }

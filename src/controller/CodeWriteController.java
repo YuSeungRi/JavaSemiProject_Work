@@ -53,7 +53,7 @@ public class CodeWriteController extends HttpServlet {
 		ArrayList<TechDto> allTech = csvc.getAllTechList();
 		
 		KitData kitData = new KitData();
-		
+		File up = null ; 
 		// 파일 업로드 작업 시작 
 		// 1. 파일 업로드 한거 맞는지 확인 (enctype 이 multipart 인지 확인하는 메서드)
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -108,11 +108,11 @@ public class CodeWriteController extends HttpServlet {
 				if(item.getFieldName().equals("codeLanguage")) {
 					dto.setLanguage((item.getString("UTF-8"))); // FileItem 한글 깨짐 처리
 				}
-				if(item.getFieldName().equals("selectedTech")) {
-					System.out.println(item.getString("UTF-8"));
-				}
+//				if(item.getFieldName().equals("selectedTech")) {
+//					System.out.println(item.getString("UTF-8"));
+//				}
 				for(TechDto tech : allTech) {
-					if(item.getFieldName().equals(new Integer(tech.getTechNo()).toString())) {
+					if(item.getFieldName().equals(Integer.toString(tech.getTechNo()))) {
 						tdto = new TechDto();
 						tdto.setTechNo(Integer.parseInt(item.getFieldName()));
 						tdto.setTechName(item.getString("UTF-8"));
@@ -123,22 +123,23 @@ public class CodeWriteController extends HttpServlet {
 			} else {
 				String fileName = item.getName();
 				// 파일 데이터일 경우
-				File up = new File(getServletContext().getRealPath("upload"), fileName);
+				up = new File(getServletContext().getRealPath("upload"), fileName);
 			
 				try {
 					item.write(up);// real path에 지정한 파일로 기록하기(실제 업로드)
 					item.delete(); //임시파일 삭제하기
-					
-					//File parsing by Kit
-					Kit kit = new Kit(up);
-					kitData = kit.getKitData();
-					//File Delete
-					up.delete();
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}	
 			}
+			
+			//File parsing by Kit
+			Kit kit = new Kit(up);
+			kitData = kit.getKitData();
+			System.out.println("kitData:" + kitData);
+			//File Delete
+			up.delete();
+			
 			
 			dto.setCodeTitle(kitData.getCodeTitle());
 			if(dto.getLanguage()==null || dto.getLanguage()=="") {
@@ -148,23 +149,25 @@ public class CodeWriteController extends HttpServlet {
 			
 			CodeDto cdto;
 			int titleIdx=0;
-			//TODO : fix null point error
-			System.out.println("1: "+ kitData.getPasredCode());
-			for(String code : kitData.getPasredCode()) {
-				cdto = new CodeDto();
-				cdto.setCategoryNo(dto.getCategoryNo());
-				cdto.setLanguage(dto.getLanguage());
-				cdto.setCodeTitle(dto.getCodeTitle() + ((titleIdx==0)?"":++titleIdx));
-				cdto.setCodeContent(dto.getCodeContent());
-				cdto.setCodeSource(code);
-				cdto.setTech(dto.getTech());
-				System.out.println(cdto);
-				dtos.add(cdto);
+
+//			System.out.println("1: "+ kitData.getPasredCode());
+			if(kitData.getPasredCode() != null) {
+				for(String code : kitData.getPasredCode()) {
+					cdto = new CodeDto();
+					cdto.setCategoryNo(dto.getCategoryNo());
+					cdto.setLanguage(dto.getLanguage());
+					cdto.setCodeTitle(dto.getCodeTitle() + ((titleIdx==0)?"":++titleIdx));
+					cdto.setCodeContent(dto.getCodeContent());
+					cdto.setCodeSource(code);
+					cdto.setTech(dto.getTech());
+					
+					dtos.add(cdto);
+				}
+				request.setAttribute("parsedCodes", dtos);				
 			}
 			
 			request.setAttribute("category", csvc.getCategoryName(dto.getCategoryNo()));
 			request.setAttribute("techList", csvc.getAllTechList());
-			request.setAttribute("parsedCodes", dtos);
 			
 			request.getRequestDispatcher("/code/code_kit.jsp").forward(request, response);
 		}
