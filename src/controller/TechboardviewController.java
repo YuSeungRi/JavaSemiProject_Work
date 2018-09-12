@@ -60,7 +60,7 @@ public class TechboardviewController extends HttpServlet {
 		
 		// 첨부 파일
 		ArrayList<FileDto> fdtos = fsvc.getFileList(boardno);
-		request.setAttribute("replyList", fdtos);
+		request.setAttribute("fileList", fdtos);
 		
 		request.getRequestDispatcher("/tech/techboard_detail.jsp").forward(request, response);
 		
