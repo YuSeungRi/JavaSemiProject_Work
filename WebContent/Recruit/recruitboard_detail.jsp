@@ -14,7 +14,7 @@
 	<div class="col-md-11">
 		<form>
 			<div>
-				<div
+		<!--  	<div
 					class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
 					<input type="text" class="text-sm form-control"
 						placeholder="검색어를 입력하세요" aria-label=""
@@ -22,7 +22,7 @@
 					<div class="input-group-append">
 						<button class="btn btn-success" type="button">검색</button>
 					</div>
-				</div>
+				</div>  -->
 				<ul class="nav">
 					<!-- <li class="nav-item"><a class="nav-link" href="#">최신순</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">조회순</a></li>
