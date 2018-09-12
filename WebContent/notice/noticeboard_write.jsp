@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
 <%@include file="../main/header.jsp" %>
 <%-- 여기에 페이지에 사용할 css파일을 링크하세요.  --%>
 <link rel="stylesheet" href="../summernote/summernote-bs4.css" />
@@ -18,31 +17,31 @@
 	
 	
 	<%-- 제목 --%>
-	<form action="/notice/write.do" method="post">
+	<form action="/notice/write.do" method="post" enctype="multipart/form-data">
 		<div class="form-group row">
 			<label for="title" class="col-sm-2 col-form-label">제목</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" id="title" name="title"
-					placeholder="제목을 입력해주세요.">
+					placeholder="제목을 입력해주세요." required="required">
 			</div>
 		</div>
 
 
 		<%-- 내용 --%>
 		<%-- summernote_start --%>
-		<textarea id="summernote" name="summernote"></textarea>>
+		<textarea id="summernote" name="summernote" required="required"></textarea>>
 		
 		<br>
 		<%-- summernote_end --%>
 
 
 		<%-- 파일 첨부 --%>
-		<div class="form-group row">
+		<div id="fileUploadArea" class="form-group row">
 			<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>
 			<div class="col-sm-7">
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="file"> <label
-						class="custom-file-label" for="file"></label>
+					<input type="file" class="custom-file-input" id="file"> 
+					<label class="custom-file-label" for="file"></label>
 				</div>
 			</div>
 		</div>
@@ -62,7 +61,7 @@
 <script type="text/javascript" src="../summernote/summernote-bs4.js" ></script>
 
 <script type="text/javascript">
-	// 버튼 이벤트
+	//버튼 이벤트
 	$(document).ready(function(){
 		$("#btnBefore").click(function(){
 			history.back(); // 이전 화면으로 넘어가기
@@ -77,30 +76,16 @@
 			$("form").submit();
 		});
 		
-		
-		//file upload 관련 기능 처리 -- 보류
-// 		var idCounter = 0;
-// 		$("#btnAddFile").click(function(){
-// 			$("#fileUploadArea").append('<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>',
-// 					'<div class="col-sm-7">',
-// 					'<div class="custom-file">',
-// 					'<input type="file" class="custom-file-input"> <labelclass="custom-file-label" for="file"></label>',
-// 					'</div></div>');
-// 		});
-
+		//file upload 파일 이름 업데이트
 		$('.custom-file-input').on('change', function() { 
 			   var fileName = $(this).val().split('\\').pop(); 
 			   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
 		});
-	});
-		
-</script>
-<script type="text/javascript">
-    	$(document).ready(function() {
-      		$('#summernote').summernote({
-      			height : 500 // 높이 500 지정
-      		});
+
+    	$('#summernote').summernote({
+    		height : 500 // 높이 500 지정
     	});
+   	});
 </script>
 
 <%@include file="../main/footer.jsp" %>

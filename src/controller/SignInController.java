@@ -86,6 +86,7 @@ public class SignInController extends HttpServlet {
 			
 			System.out.println("로그인성공");
 			response.sendRedirect("/main/main.do?login=success");
+			
 		} else {
 			session.setAttribute("login", false);
 			System.out.println("로그인 실패");
