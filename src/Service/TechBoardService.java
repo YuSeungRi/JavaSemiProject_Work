@@ -8,6 +8,7 @@ import dao.BoardDaoImpl;
 import dao.RecommendDao;
 import dao.RecommendDaoImpl;
 import dto.BoardDto;
+import dto.ReplyDto;
 
 
 /*
@@ -33,6 +34,11 @@ public class TechBoardService {
 	public int getTotal(String categoryName) {
 		
 		return dao.getTotal(categoryName);
+	}
+	
+	public int searchTotal(String searchString) {
+		
+		return dao.searchTotal(searchString);
 	}
 	
 	public List<BoardDto> getPagingList(Paging paging, String categoryName, String order) {
@@ -99,5 +105,17 @@ public class TechBoardService {
 		return dao.getboards(categoryName, listnum);
 	}
 	
+	// 추가
+	public List<BoardDto> getMyBoard(String userEmail, int listnum) {
+		return dao.getMyBoard(userEmail, listnum);
+	}
+	
+	public int getNewBoardNo() {
+		return dao.newBoardNo();
+	}
+	
+	public List<ReplyDto> getMyReply(String userEmail, int listnum) {
+		return dao.getMyReply(userEmail, listnum);
+	}
 	
 }

@@ -165,6 +165,7 @@ public class TechboardUpdateController extends HttpServlet {
 //		boarddto.setBoardTitle(request.getParameter("title"));
 //		boarddto.setBoardContent(request.getParameter("content"));
 		
+		System.out.println(dto);
 		
 		tbsvc.update(dto);
 		

@@ -14,12 +14,12 @@
 		<form action="/tech/search.do" name="search" method="get">
 			<div>
 				<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
-					<select name="keyFiled" size="1">
-					<option value="tilte" <c:if test="${'title'==keyFiled }"> selected</c:if>> 제목 </option>
-					<option value="content" <c:if test="${'content'==keyFiled }"> selected</c:if>> 내용 </option>
+					<select name="keyField" name="keyField" size="1">
+					<option value="title" <c:if test='${keyField eq "title" }'> selected</c:if>> 제목 </option>
+					<option value="content" <c:if test='${keyField eq "content" }'> selected</c:if>> 내용 </option>
 					</select>
 					<input type="text" class="text-sm form-control"
-						placeholder="검색어를 입력하세요" aria-label=""
+						placeholder="검색어를 입력하세요" required="required" aria-label=""
 						aria-describedby="basic-addon1" name="searchStirng">
 					<div class="input-group-append">
 						<button class="btn btn-success" type="submit">검색</button>
@@ -100,7 +100,6 @@
 			<button id="btnRecommend" type="button" class="btn btn-secondary btn-sm active">추천</button>
 			</c:if>
 		</div>
-		
 		<!-- 댓글 입력 추가 -->
 		<div class="row">
 			<div class="col-md-1"></div>
@@ -111,7 +110,7 @@
 			 			<label>${userNick }</label>
 			 		</div>
 			 		<div class="form-group ">
-			 			<input type="email" class="form-control" id="boardNo" name="boardNo" value="${board.boardNo }" readonly hidden="true">
+			 			<input type="text" class="form-control" id="boardNo" name="boardNo" value="${board.boardNo }" readonly hidden="true">
 					</div>
 					<div class="card-body">
 					<div class="form-group">
