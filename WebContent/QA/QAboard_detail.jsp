@@ -215,6 +215,17 @@
 			}
 		});
 	});
+	
+	// 수정일 : 2018.09.06 / 수정자 : 권미현 / 버튼 기능 추가
+	// 댓글 입력 클릭시 로그인 상태가 아닐 경우
+	$("#btnReply").click(function(){
+		if(<%=session.getAttribute("userId") == null %>) {
+			alert("로그인 상태여야 사용 가능합니다.");
+			location.href = "/main/signin.do";
+		} else if(<%=session.getAttribute("userId") != null %>) {
+			$("form").submit();
+		}
+	});
 
 </script>
 
