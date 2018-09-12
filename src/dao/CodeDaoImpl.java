@@ -367,4 +367,102 @@ public class CodeDaoImpl implements CodeDao {
 
 		return result;
 	}
+
+	@Override
+	public int getCatgoryNo(String inputCategory, String userEmail) {
+		String sql = "SELECT category_no FROM code_category"
+				+ " WHERE category_name = ?" //1.inputCategory
+				+ " AND user_email = ?"; //2.userEmail
+		
+		int result = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, inputCategory);
+			ps.setString(2, userEmail);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt("category_no");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) ps.close();
+				if (rs != null) rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public int setNewCode(CodeDto cdto) {
+		String sql = "INSERT INTO code (code_no, category_no, code_title, code_content, code_source, user_email, language) "
+				+ " VALUES (code_seq.nextval, "
+				+ " ?," // 1.category_no
+				+ " ?," // 2.code_title
+				+ " ?," // 3.code_content
+				+ " ?," // 4.code_source
+				+ " ?," // 5.user_email
+				+ " ?)"; //6.language
+		String afterSql = "SELECT code_seq.currval FROM dual";
+		int result = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, cdto.getCategoryNo());
+			ps.setString(2, cdto.getCodeTitle());
+			ps.setString(3, cdto.getCodeContent());
+			ps.setString(4, cdto.getCodeSource());
+			ps.setString(5, cdto.getUserEmail());
+			ps.setString(6, cdto.getLanguage());
+			
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(afterSql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
+	@Override
+	public void setTech(CodeDto cdto, int codeNo) {
+		String sql = "INSERT code_tech(code_no, tech_no) VALUES (?, ?)"; 
+		
+		ArrayList<String> techs = cdto.getTech();
+		
+		try {
+			for(String str : techs) {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, codeNo);
+				ps.setString(2, str);
+				ps.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import Service.CodeService;
 import dto.CodeCategoryDto;
 import dto.CodeDto;
-import dto.TechDto;
 import kit.Kit;
 import kit.KitData;
 
@@ -28,10 +26,10 @@ public class CodeWriteController extends HttpServlet {
 		String userEmail = session.getAttribute("userId").toString();
 		
 		ArrayList<CodeCategoryDto> categoryList = csvc.getAllCategory(userEmail);
-		ArrayList<TechDto> techList = csvc.getAllTechList();
+//		ArrayList<TechDto> techList = csvc.getAllTechList();
 		
 		request.setAttribute("categoryList", categoryList);
-		request.setAttribute("techList", techList);
+//		request.setAttribute("techList", techList);
 		
 		request.getRequestDispatcher("/code/code_write.jsp").forward(request, response);
 		
@@ -46,7 +44,7 @@ public class CodeWriteController extends HttpServlet {
 		String codeCategory = request.getParameter("codeCategory");
 		String codeLanguage = request.getParameter("codeLanguage");
 		String sourceFile	= request.getParameter("sourceFile");
-		String[] seletedTech= request.getParameterValues("selectedTech");
+//		String[] seletedTech= request.getParameterValues("selectedTech");
 		
 		System.out.println("codeCategory : " + codeCategory );
 		System.out.println("codeLanguage : " + codeLanguage );
@@ -76,7 +74,6 @@ public class CodeWriteController extends HttpServlet {
 				codeDto.setCodeTitle(cdto.getCodeTitle() + ((titleIdx==0)?"":++titleIdx));
 				codeDto.setCodeContent(cdto.getCodeContent());
 				codeDto.setCodeSource(code);
-				System.out.println("!!!!code!!!" +code);
 
 				cdtos.add(codeDto);
 			}

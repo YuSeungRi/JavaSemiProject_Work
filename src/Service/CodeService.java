@@ -47,4 +47,13 @@ public class CodeService {
 	public String getCategoryName(int categoryNo) {
 		return dao.getCategoryName(categoryNo);
 	}
+
+	public int getCategoryNo(String inputCategory, String userEmail) {
+		return dao.getCatgoryNo(inputCategory, userEmail);
+	}
+
+	public void setNewCode(CodeDto cdto) {
+		int codeNo = dao.setNewCode(cdto);
+//		dao.setTech(cdto, codeNo);
+	}
 }

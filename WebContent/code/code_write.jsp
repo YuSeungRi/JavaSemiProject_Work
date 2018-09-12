@@ -46,30 +46,22 @@ code write page
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="sourceFile">소스코드 파일</label>
-							<input type="file" class="form-control-file" id="sourceFile" name="sourceFile" />
-							<button id="btnFileRead" type="button" class="btn btn-warning">업로드</button>
+								<label for="sourceFile">소스코드 파일</label>
+								<input type="file" class="form-control-file" id="sourceFile" name="sourceFile" />
+								<button id="btnFileRead" type="button" class="btn btn-warning">업로드</button>
 						</div>
 					</div><!--  end of card-body -->
-					<div class="card-body">
-						<h6 class="card-text">적용 기술</h6>
-						<button id="techOpen" class="btn btn-warning btn-sm" type="button" >펼치기/접기</button>
-						<div id="techSelect" class="form-group form-check clearfix">
-							<c:forEach items="${techList }" var="tech">
-								<div class="float-left m-2">
-									<input type="checkbox" name="${tech.techNo }" value="${tech.techNo }" />
-									<label class="form-check-label" for="${tech.techNo }">${tech.techName }</label>
-								</div>
-							</c:forEach>
-						
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="적용기술추가" aria-label="적용기술추가" aria-describedby="newTech">
-								<div class="input-group-append">
-									<button class="btn btn-outline-secondary" type="button" id="newTech">Add</button>
-								</div>
-							</div>
-						</div> <!-- end of form-check -->
-					</div><!-- end of card-body -->
+<!-- 					<div class="card-body"> -->
+<!-- 						<h6 class="card-text">적용 기술</h6> -->
+<!-- 						<div id="techSelect" class="form-group form-check clearfix"> -->
+<%-- 							<c:forEach items="${techList }" var="tech"> --%>
+<!-- 								<div class="float-left m-2"> -->
+<%-- 									<input type="checkbox" name="${tech.techNo }" value="${tech.techNo }" /> --%>
+<%-- 									<label class="form-check-label" for="${tech.techNo }">${tech.techName }</label> --%>
+<!-- 								</div> -->
+<%-- 							</c:forEach> --%>
+<!-- 						</div> end of form-check -->
+<!-- 					</div>end of card-body -->
 					<div class="card-footer">
 						<button id="btnHelp" type="button" class="btn btn-warning">kit 사용법?</button>
 						<button id="btnSubmit" class="btn btn-primary" >파싱 시작!</button>
@@ -80,7 +72,7 @@ code write page
 		<div class="col-11" id="uploadResult"></div>
 	</div><!-- end of first row -->
 	<div class="row my-3">
-		<div class="col-11 text-center">
+		<div id="progress" class="col-11 text-center hidden">
 			<p> 소스를 까봤습니다...</p>
 		</div>
 	</div>
@@ -92,11 +84,7 @@ code write page
 <%-- highlight.js --%>
 <script src="../highlight/highlight.pack.js"></script>
 <script type="text/javascript">
-
-$("#techSelect").hide();
-$("#techOpen").click(function() {
-	$("#techSelect").toggle();
-});
+$("#progress").hide();
 
 //preview for parsed code
 var preview = function(){
@@ -109,11 +97,13 @@ var preview = function(){
 	});
 };
 
+var clickToggle = false;
 var sourceFile;
 var reader = new FileReader();
 reader.onload = function(e) {
 	sourceFile = reader.result;	
 	$("#btnFileRead").attr("class", "btn btn-secondary");
+	clickToggle = true;
 }
 
 $("#btnFileRead").on("click", function(){
@@ -123,15 +113,22 @@ $("#btnFileRead").on("click", function(){
 })
 
 
-//Ajax for file upload 
+//Ajax for file parse 
 $("#btnSubmit").on("click", function() {
 	event.stopPropagation(); 
 	event.preventDefault(); 
     
+	if(!clickToggle) {
+		alert("업로드 버튼을 먼저 눌러주세요.");
+		return;
+	}
+	
     var codeCategory = document.getElementById("codeCategory").value;
     var codeLanguage = document.getElementById("codeLanguage").value;
-    var selectedTech = document.querySelectorAll('input[type="checkbox"]:checked').value;
-
+//     var selectedTech = document.querySelectorAll('input[type="checkbox"]:checked').value;
+	
+    $("#progress").show();
+    
 	$.ajax({
 		type:"post"
 		, url: "/code/write.do"
@@ -139,7 +136,8 @@ $("#btnSubmit").on("click", function() {
 			{"codeCategory": codeCategory
 			, "codeLanguage": codeLanguage
 			, "sourceFile" : sourceFile
-			, "selectedTech" : selectedTech }
+// 			, "selectedTech" : selectedTech 
+			}
 		, dataType: "text"
 		, success: function(data){
 			console.log("----success----");
@@ -154,9 +152,6 @@ $("#btnSubmit").on("click", function() {
 			console.log("----error----");
 			console.log(e.responseText);
 		}
-// 		, complete: function(){
-// 			console.log("----complete----");
-// 		}
 	});
 });
 </script>

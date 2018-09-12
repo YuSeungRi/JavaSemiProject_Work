@@ -41,8 +41,8 @@ public class Kit {
 	 */
 	public Kit(File source) {
 
-		String strFile = fileToString(source);
-		kitParser(strFile);
+		String sourceText = fileToString(source);
+		kitParser(sourceText);
 
 	}
 	
@@ -61,12 +61,12 @@ public class Kit {
 	    return contentBuilder.toString();
 	}
 	
-	private void kitParser(String readfile) {
+	private void kitParser(String sourceText) {
 		boolean codeContinue = false;
 		String code = "";
 		pasredCode = new ArrayList<>();
 		
-		String[] splitStr = readfile.split("\n");
+		String[] splitStr = sourceText.split("\n");
 		for(String s : splitStr) {
 			//split kit tags 
 			String[] kitbits = s.split("@kit:");
