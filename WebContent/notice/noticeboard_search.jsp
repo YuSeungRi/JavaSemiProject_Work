@@ -47,7 +47,7 @@
 							<td>
 								<a href="/notice/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardUser }</td>
+							<td>${board.boardNick }</td>
 							<td>${board.boardRead }</td>
 					    	<td>${board.boardRecommend }</td>
 						</tr>
@@ -64,7 +64,7 @@
 			<div class="row justify-content-center">
 				<div class="col m-4">
 					<%-- 페이지네이션 --%>
-					<jsp:include page="/util/techPaging.jsp" />
+					<jsp:include page="/util/noticesearchPaging.jsp" />
 				</div>
 			</div>
 		</div>

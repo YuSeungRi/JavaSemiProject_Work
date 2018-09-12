@@ -59,6 +59,22 @@
 					<tr>
 						<td colspan="16" align="left">최근 수정 시간 : ${board.boardModify }</td>
 					</tr>
+					<!-- 첨부파일 -->
+					<tr>
+						<td colspan="2">첨부파일</td>
+						<td colspan="14">
+							<c:if test="${fileList eq null }" >
+								업로드한 파일이 없습니다.
+							</c:if>
+							<ul>
+								<c:if test="${fileList ne null }" >
+								<c:forEach items="${fileList }" var="file" >
+									<li><a href="/upload/${file.fileStoredName }" download>${file.fileName }</a></li>
+								</c:forEach>
+								</c:if>
+							</ul>
+						</td>
+					</tr>
 			
 			</table>
 			
@@ -86,30 +102,50 @@
 		</div>
 		
 		<!-- 댓글 입력 추가 -->
-		<div class="row mt-3 justify-content-center" id="replyDisplay" >
-			<form action="/reply/reply.do" method="post" class="form-inline">
-				<div class="for-group mr-3">
-			 	<label for="userEmail">작성자</label>
-			 	<input type="email" class="form-control" id="userEmail" name="userEmail" value="${sessionScope.userEmail }" readonly />
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="card mt-5">
+					<form action="/reply/reply.do" method="post">
+					<div class="for-group card-header">
+			 			<label>${userNick }</label>
+			 		</div>
+			 		<div class="form-group ">
+			 			<input type="email" class="form-control" id="boardNo" name="boardNo" value="${board.boardNo }" readonly hidden="true">
+					</div>
+					<div class="card-body">
+					<div class="form-group">
+						<c:choose>
+			    			<c:when test="${login }">
+			    				<textarea rows="3" class="form-control" id="replyContent" name="replyContent" placeholder="댓글을 입력해주세요." ></textarea>
+			    			</c:when>
+			    			<c:when test="${!login }">
+			    				<textarea rows="3" class="form-control" id="replyContent" name="replyContent" placeholder="로그인 상태여야 입력 가능합니다." readonly ></textarea>
+			    			</c:when>
+			    		</c:choose>
+			  		</div>
+			  		<button id="btnReply" type="button" class="btn btn-primary  btn-sm mr-1">댓글 입력</button>
+			  		</div>
+					</form>
 				</div>
-				<div class="form-group ">
-					<input type="text" class="form-control" id="boardNo" name="boardNo" value="${param.boardNo }" readonly hidden="true">
-				</div>
-				<div class="form-group mr-3">
-					<textarea class="form-control" id="replyContent" name="replyContent" placeholder="댓글을 입력해주세요."></textarea>
-				</div>
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</form>
+			</div>
+			<div class="col-md-1"></div>
 		</div>
-		
 		<!-- 댓글 목록 추가 -->
+		<%-- 수정일 : 2018.09.07 / 수정자 : 권미현 / 댓글 입력 폼에 맞춰 사이즈 조절 --%>
 		<div class="row mt-3 justify-content-center">
-	<%--		<c:import url="/reply/reply.do?boardNo=${board.boardNo }" /> --%>
-			<ul class="list-group">
-				<c:forEach items="${replyList }" var="reply">
-					<li class="list-group-item">
-						<div class="d-flex w-100 justify-contents-between">
-							<small>댓글번호:${reply.replyNo }, 작성자:${reply.userEmail }, 작성일:${reply.replyCreate }</small><button type="button" name="${reply.replyNo}" class="btn btn-sm bg-primary">댓글삭제</button>
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<ul class="list-group">
+					<c:forEach items="${replyList }" var="reply">
+						<li class="list-group-item">
+							<div class="d-flex w-100 justify-contents-between">
+							<small>작성자:${reply.userNick }, 작성자:${reply.replyCreate } &nbsp</small>
+							<c:if test="${userId eq reply.userEmail }">
+								<small>
+									<a href="/reply/delete.do?replyno=${reply.replyNo }&boardno=${board.boardNo }" style="color: red;">삭제</a>
+								</small>
+							</c:if>
 						</div>
 						<div>
 							<p class="mb-1">${reply.replyContent }</p>
@@ -118,11 +154,9 @@
 				</c:forEach>
 			</ul>
 		</div>
-	
-	
+		<div class="col-md-1"></div>
 	</div>
-
-
+</div>
 </div>
 
 <%@include file="../main/scriptloader.jsp" %>
@@ -177,7 +211,18 @@
 			}
 		});
 	});
-
+	
+	// 수정일 : 2018.09.06 / 수정자 : 권미현 / 버튼 기능 추가
+	// 댓글 입력 클릭시 로그인 상태가 아닐 경우
+	$("#btnReply").click(function(){
+		if(<%=session.getAttribute("userId") == null %>) {
+			alert("로그인 상태여야 사용 가능합니다.");
+			location.href = "/main/signin.do";
+		} else if(<%=session.getAttribute("userId") != null %>) {
+			$("form").submit();
+		}
+	});
+	
 </script>
 			
 <%@include file="../main/footer.jsp"%>

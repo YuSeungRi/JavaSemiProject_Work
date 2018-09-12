@@ -13,12 +13,12 @@
 			<form action="/question/search.do" name="search" method="get">
 				<div>
 					<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4">
-					<select name="keyFiled" size="1">
-					<option value="title" <c:if test="${'title'==keyFiled }"> selected</c:if>> 제목 </option>
-					<option value="content" <c:if test="${'content'==keyFiled }"> selected</c:if>> 내용 </option>
-					</select>
+						<select name="keyField" size="1">
+						<option value="title" <c:if test='${keyField eq "title" }'> selected</c:if>> 제목 </option>
+						<option value="content" <c:if test='${keyField eq "content" }'> selected</c:if>> 내용 </option>
+						</select>
 						<input type="text" class="text-sm form-control"
-							placeholder="내용을입력하세요" aria-label=""
+							placeholder="내용을입력하세요" required="required" aria-label=""
 							aria-describedby="basic-addon1" name="searchString">
 						<div class="input-group-append">
 							<button class="btn btn-success" type="submit">검색</button>

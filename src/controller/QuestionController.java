@@ -20,7 +20,7 @@ import dto.BoardDto;
 public class QuestionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private BoardService boardservice = new BoardService();
+	private BoardService bsvc = new BoardService();
     private final String categoryName = "QuestionBoard";
     private String order = null; // 정렬	
    
@@ -36,7 +36,7 @@ public class QuestionController extends HttpServlet {
 				}	// 페이지가 비어있거나 [""], null값일 때 curPage를 요청한다
 				
 				// 총 게시글 수
-				int totalCount = boardservice.getTotal(categoryName); // DB에서 카테고리게시물의 숫자를 가져옴
+				int totalCount = bsvc.getTotal(categoryName); // DB에서 카테고리게시물의 숫자를 가져옴
 
 				// Paging Class 계산하기
 				Paging paging = new Paging(totalCount, curPage);	// 페이징 객체에서 현재페이지의 총게시물을 정리해서 게시물의 값을 가져옴
@@ -61,7 +61,7 @@ public class QuestionController extends HttpServlet {
 				
 				// 게시글 조회 결과
 				List<BoardDto> boardList
-					= boardservice.getPagingList(paging, categoryName, order);
+					= bsvc.getPagingList(paging, categoryName, order);
 
 				// JSP에 전달할 MODEL 처리
 				request.setAttribute("boardList", boardList);

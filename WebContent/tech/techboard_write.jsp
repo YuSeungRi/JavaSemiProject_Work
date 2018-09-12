@@ -24,26 +24,26 @@
 	
 	
 	<%-- 제목 --%>
-	<form action="/tech/write.do" method="post">
+	<form action="/tech/write.do" method="post" enctype="multipart/form-data">
 		<div class="form-group row">
 			<label for="title" class="col-sm-2 col-form-label">제목</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" id="title" name="title"
-					placeholder="제목을 입력해주세요.">
+					placeholder="제목을 입력해주세요." required="required">
 			</div>
 		</div>
 
 
 		<%-- 내용 --%>
 		<%-- summernote_start --%>
-		<textarea id="summernote" name="summernote"></textarea>>
+		<textarea id="summernote" name="summernote" required="required"></textarea>>
 		
 		<br>
 		<%-- summernote_end --%>
 
 
 		<%-- 파일 첨부 --%>
-		<div class="form-group row">
+		<div id="fileUploadArea" class="form-group row">
 			<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>
 			<div class="col-sm-7">
 				<div class="custom-file">
@@ -82,14 +82,17 @@
 			$("#summernote").summernote("code");
 			$("form").submit();
 		});
+	
+		//file upload 파일 이름 업데이트
+		$('.custom-file-input').on('change', function() { 
+			   var fileName = $(this).val().split('\\').pop(); 
+			   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+		});
+
+		$('#summernote').summernote({
+			height : 500 // 높이 500 지정
+		});
 	});
-</script>
-<script type="text/javascript">
-    	$(document).ready(function() {
-      		$('#summernote').summernote({
-      			height : 500 // 높이 500 지정
-      		});
-    	});
 </script>
 
 <%@include file="../main/footer.jsp" %>
