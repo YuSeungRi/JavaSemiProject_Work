@@ -14,7 +14,7 @@ code write page
 		<div class="col-11">
 			<!-- source code uploader -->
 			<div class="card">
-				<form id="uploadForm" method="post" enctype="multipart/form-data">
+				<form id="uploadForm" method="post">
 					<div class="card-header">
 						<h5 class="card-title">파일 업로드</h5>
 					</div>
@@ -48,6 +48,7 @@ code write page
 						<div class="form-group">
 							<label for="sourceFile">소스코드 파일</label>
 							<input type="file" class="form-control-file" id="sourceFile" name="sourceFile" />
+							<button id="btnFileRead" type="button" class="btn btn-warning">업로드</button>
 						</div>
 					</div><!--  end of card-body -->
 					<div class="card-body">
@@ -56,7 +57,7 @@ code write page
 						<div id="techSelect" class="form-group form-check clearfix">
 							<c:forEach items="${techList }" var="tech">
 								<div class="float-left m-2">
-									<input type="checkbox" id="${tech.techNo }" name="${tech.techNo }" value="${tech.techName }" />
+									<input type="checkbox" name="${tech.techNo }" value="${tech.techNo }" />
 									<label class="form-check-label" for="${tech.techNo }">${tech.techName }</label>
 								</div>
 							</c:forEach>
@@ -71,7 +72,7 @@ code write page
 					</div><!-- end of card-body -->
 					<div class="card-footer">
 						<button id="btnHelp" type="button" class="btn btn-warning">kit 사용법?</button>
-						<button id="btnSubmit" class="btn btn-primary" >파일 업로드</button>
+						<button id="btnSubmit" class="btn btn-primary" >파싱 시작!</button>
 					</div>
 				</form>
 			</div>
@@ -108,19 +109,38 @@ var preview = function(){
 	});
 };
 
+var sourceFile;
+var reader = new FileReader();
+reader.onload = function(e) {
+	sourceFile = reader.result;	
+	$("#btnFileRead").attr("class", "btn btn-secondary");
+}
+
+$("#btnFileRead").on("click", function(){
+	event.stopPropagation(); 
+	event.preventDefault(); 
+	reader.readAsText(document.getElementById("sourceFile").files[0],"UTF-8");
+})
+
+
 //Ajax for file upload 
 $("#btnSubmit").on("click", function() {
-// 	event.stopPropagation(); 
-//     event.preventDefault(); 
-    var formData = new FormData(document.getElementById("uploadForm"));
+	event.stopPropagation(); 
+	event.preventDefault(); 
     
+    var codeCategory = document.getElementById("codeCategory").value;
+    var codeLanguage = document.getElementById("codeLanguage").value;
+    var selectedTech = document.querySelectorAll('input[type="checkbox"]:checked').value;
+
 	$.ajax({
 		type:"post"
 		, url: "/code/write.do"
-		, data: formData
+		, data: 
+			{"codeCategory": codeCategory
+			, "codeLanguage": codeLanguage
+			, "sourceFile" : sourceFile
+			, "selectedTech" : selectedTech }
 		, dataType: "text"
-		, processData: false
-		, contentType: false
 		, success: function(data){
 			console.log("----success----");
 			$("#parseList").empty();
@@ -128,6 +148,7 @@ $("#btnSubmit").on("click", function() {
 			$('html, body').animate({
 		        scrollTop: parseInt($("#parseList").offset().top)
 		    }, 2000);
+			preview();
 		}
 		, error : function(e){
 			console.log("----error----");

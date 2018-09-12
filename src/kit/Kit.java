@@ -28,6 +28,14 @@ public class Kit {
 	}
 	
 	/**
+	 * Parsing Source text to KitData Object
+	 * @param sourceText
+	 */
+	public Kit(String sourceText) {
+		kitParser(sourceText);
+	}
+	
+	/**
 	 * Parsing Source file to KitData Object
 	 * @param source
 	 */
@@ -42,7 +50,6 @@ public class Kit {
 	private String fileToString(File source) {
 		
 		String filePath = source.getAbsolutePath();
-		System.out.println(filePath);
 	    StringBuilder contentBuilder = new StringBuilder();
 	    try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8)) {
 	    	
@@ -108,7 +115,6 @@ public class Kit {
 					if(kitbits[0].length()>0) {
 						code += kitbits[0];
 						code +="\n";
-						System.out.println("1"+ code); 
 					}
 				} 
 			}
