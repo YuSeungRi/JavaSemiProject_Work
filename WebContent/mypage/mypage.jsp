@@ -25,7 +25,11 @@
 
 				<tr>
 					<td>등급</td>
-					<td>${requestScope.userinfo.userLevel }</td>
+					<td>
+					<c:if test="${requestScope.userinfo.userLevel  eq '1' }" >일반</c:if>
+					<c:if test="${requestScope.userinfo.userLevel  eq '2' }" >기업</c:if>
+					<c:if test="${requestScope.userinfo.userLevel  eq '9' }" >관리자</c:if>
+					</td>
 				</tr>
 
 				<tr>

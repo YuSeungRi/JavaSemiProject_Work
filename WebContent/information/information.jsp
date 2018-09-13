@@ -63,7 +63,11 @@
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label" for="Grade">등급</label>
-					<div class="col-sm-6">${requestScope.userinfo.userLevel }</div>
+					<div class="col-sm-6">
+					<c:if test="${requestScope.userinfo.userLevel  eq '1' }" >일반</c:if>
+					<c:if test="${requestScope.userinfo.userLevel  eq '2' }" >기업</c:if>
+					<c:if test="${requestScope.userinfo.userLevel  eq '9' }" >관리자</c:if>
+					</div>
 				</div>
 
 				<div class="form-group">
