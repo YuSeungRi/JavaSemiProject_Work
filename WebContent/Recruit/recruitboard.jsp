@@ -39,7 +39,7 @@
 			</form>
 
 			<div style="overflow: auto;" class="">
-				<table class="table table-hover table-sm">
+				<table class="table table-hover table-sm mt-1">
 					<thead class="thead-light">
 						<tr>
 							<th>글번호</th>

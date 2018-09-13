@@ -18,42 +18,19 @@
 		<i class="far fa-comments fa-lg"></i>자유게시판 게시글 상세조회
 	</h2>
 	<div class="col-md-11">
-		<form action="/Freeboard/search.do" name="search" method="get">
-			<div>
-				<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
-					<select name="keyField" size="1">
-					<option value="title" <c:if test='${keyField eq "title" }'> selected</c:if>> 제목 </option>
-					<option value="content" <c:if test='${keyField eq "content" }'> selected</c:if>> 내용 </option>
-					</select>
-					<input type="text" class="text-sm form-control"
-						placeholder="검색어를 입력하세요" required="required" aria-label=""
-						aria-describedby="basic-addon1" name="searchString">
-					<div class="input-group-append">
-						<button class="btn btn-success" type="submit">검색</button>
-					</div>
-				</div>
-				<ul class="nav">
-					<!-- <li class="nav-item"><a class="nav-link" href="#">최신순</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">조회순</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">추천순</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">댓글순</a></li> -->
-				</ul>
-			</div>
-		</form>
-
 		<div class="row justify-content-center">
-			<table class="col-md-10 table table-hover table-sm table-striped">
+			<table class="col-md-10 table table-hover table-sm table-striped mt-5">
 					<!-- 제목 -->
 					<tr>
 						<td colspan="1">제목</td><td colspan="15">${board.boardTitle }</td>
 					</tr>
 					<tr>
-						<td colspan="1">no.</td><td colspan="3">${board.boardNo }</td>
+						<td>no.</td><td>${board.boardNo }</td>
 						<%-- 수정일 : 2018.09.04 / 수정자 : 권미현 / ${board.boardUser } → ${board.boardNick } 변경 --%>
-						<td colspan="1">작성자</td><td colspan="2">${board.boardNick }</td>
-						<td colspan="1">조회수</td><td colspan="2">${board.boardRead }</td>
-						<td colspan="1">작성일</td><td colspan="2">${board.boardCreate }</td>	
-						<td colspan="2" id="recommend">${board.boardRecommend }</td><td colspan="1"><i class="far fa-thumbs-up fa-sm"></i></td>
+						<td>작성자</td><td>${board.boardNick }</td>
+						<td>조회수</td><td>${board.boardRead }</td>
+						<td>작성일</td><td>${board.boardCreate }</td>	
+						<td id="recommend">${board.boardRecommend }</td><td><i class="far fa-thumbs-up fa-sm"></i></td>
 					</tr>
 					<tr>
 					
