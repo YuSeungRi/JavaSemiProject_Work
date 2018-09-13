@@ -223,6 +223,25 @@ var deleteCategory = function(categoryNo, categoryCount) {
 	});
 };
 
+//Ajax for Refresh category
+var getCategory = function() {
+	$.ajax({
+		type:"post"
+		, url: "/code/codeCategory.do"
+		, data: {"mode" : null}
+		, dataType: "text"
+		, success: function(data){
+			console.log("----success----");
+			$("#codeCategory").empty();
+			$("#codeCategory").html(data);
+		}
+		, error : function(e){
+			console.log("----error----");
+			console.log(e.responseText);
+		}
+	});
+}
+
 //Aajx get a code. 
 var viewDetail = function(codeNo) {
 	$.ajax({
@@ -254,6 +273,7 @@ var deleteCode = function(codeNo, categoryNo){
 		, dataType: "text"
 		, success: function(data){
 			console.log("----success----");
+			getCategory();
 			viewList(categoryNo);
 			$("#codeDetail").empty();
 		}
