@@ -10,6 +10,22 @@
 	margin: 10;
 }
 
+.table .text {
+  position: relative;
+}
+.table .text span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.text:before {
+  content: '';
+  display: inline-block;
+}
+
 </style>
 
 <div class="container mt-1"><!-- Container start -->
@@ -30,7 +46,7 @@
 	
 	<div class="row mt-5"><!-- first row start -->
 	
-	<div class="col-lg-6"><!-- board1 start -->
+	<div class="col-lg-6 table-responsive"><!-- board1 start -->
         
 		<h4>
 			<i class="far fa-comments fa-lg"></i>자유게시판
@@ -40,14 +56,14 @@
 		<a href="/Freeboard/free.do" class="badge badge-warning badge-pill">더보기</a>
 		</div>
 		
-			<table class="table table-hover table-bordered table-sm">
+			<table class="table table-hover table-bordered table-sm ">
 				<thead>
 					<tr class="table-active">
-						<th>글번호</th>
+						<th><i class="fab fa-slack-hash fa-sm"></i></th>
 						<th>작성일</th>
 						<th>제목</th>
-						<th>작성자</th>
-						<th>조회수</th>
+						<th><i class="fas fa-pen fa-sm"></i></th>
+						<th><i class="fas fa-eye fa-sm"></i></th>
 						<th><i class="far fa-thumbs-up fa-sm"></i></th>
 					</tr>
 				</thead>
@@ -55,21 +71,21 @@
 				<tbody>
 					<c:forEach items="${FreeList }" var="board">
 						<tr>
-							<td>${board.boardNo }</td>
-							<td>${board.boardCreate }</td>
-							<td>
+							<td><small>${board.boardNo }</small></td>
+							<td><small>${board.boardCreate }</small></td>
+							<td><small>
 								<a href="/Freeboard/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
-							</td>
+							</small></td>
 							<c:choose >
 								<c:when test="${loginType eq null }">
-								<td>${board.boardNick }</td>
+								<td><small>${board.boardNick }</small></td>
 								</c:when>
 								<c:when test="${loginType ne null }">
-								<td>${board.boardUser }</td>
+								<td><small>${board.boardUser }</small></td>
 								</c:when>
 							</c:choose>
-							<td>${board.boardRead }</td>
-							<td>${board.boardRecommend }</td>
+							<td><small>${board.boardRead }</small></td>
+							<td><small>${board.boardRecommend }</small></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -90,33 +106,33 @@
 		</div>
 	
 			<table class="table table-hover table-bordered table-sm">
-				<thread>
+				<thead>
 					<tr class="table-active">
-						<th>글번호</th>
+						<th><i class="fab fa-slack-hash fa-sm"></i></th>
 						<th>작성일</th>
 						<th>제목</th>
-						<th>작성자</th>
-						<th>조회수</th>
+						<th><i class="fas fa-pen fa-sm"></i></th>
+						<th><i class="fas fa-eye fa-sm"></i></th>
 						<th><i class="far fa-thumbs-up fa-sm"></i></th>
 					</tr>
-				</thread>
+				</thead>
 				
 				<tbody>
 					<c:forEach items="${NoticeList }" var="board">
 						<tr>
-							<td>${board.boardNo }</td>
-							<td>${board.boardCreate }</td>
-							<td>
+							<td><small>${board.boardNo }</small></td>
+							<td><small>${board.boardCreate }</small></td>
+							<td><small>
 								<a href="/notice/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
-							</td>
+							</small></td>
 							<c:if test="${loginType eq null }">
-								<td>${board.boardNick }</td>
+								<td><small>${board.boardNick }</small></td>
 							</c:if>	
 							<c:if test="${loginType ne null }">
-								<td>${board.boardUser }</td>
+								<td><small>${board.boardUser }</small></td>
 							</c:if>
-							<td>${board.boardRead }</td>
-							<td>${board.boardRecommend }</td>
+							<td><small>${board.boardRead }</small></td>
+							<td><small>${board.boardRecommend }</small></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -141,33 +157,33 @@
 		</div>
 		
 			<table class="table table-hover table-bordered table-sm">
-				<thread>
+				<thead>
 					<tr class="table-active">
-						<th>글번호</th>
+						<th><i class="fab fa-slack-hash fa-sm"></i></th>
 						<th>작성일</th>
 						<th>제목</th>
-						<th>작성자</th>
-						<th>조회수</th>
+						<th><i class="fas fa-pen fa-sm"></i></th>
+						<th><i class="fas fa-eye fa-sm"></i></th>
 						<th><i class="far fa-thumbs-up fa-sm"></i></th>
 					</tr>
-				</thread>
+				</thead>
 				
 				<tbody>
 					<c:forEach items="${RecruitList }" var="board">
 						<tr>
-							<td>${board.boardNo }</td>
-							<td>${board.boardCreate }</td>
-							<td>
+							<td><small>${board.boardNo }</small></td>
+							<td><small>${board.boardCreate }</small></td>
+							<td><small><!--<td style="text-overflow:ellipsis; overflow:hidden">  -->
 								<a href="/recruit/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
-							</td>
+							</small></td>
 							<c:if test="${loginType eq null }">
-								<td>${board.boardNick }</td>
+								<td><small>${board.boardNick }</small></td>
 							</c:if>	
 							<c:if test="${loginType ne null }">
-								<td>${board.boardUser }</td>
+								<td><small>${board.boardUser }</small></td>
 							</c:if>
-							<td>${board.boardRead }</td>
-							<td>${board.boardRecommend }</td>
+							<td><small>${board.boardRead }</small></td>
+							<td><small>${board.boardRecommend }</small></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -188,33 +204,33 @@
 		</div>
 		
 			<table class="table table-hover table-bordered table-sm">
-				<thread>
+				<thead>
 					<tr class="table-active">
-						<th>글번호</th>
+						<th><i class="fab fa-slack-hash fa-sm"></i></th>
 						<th>작성일</th>
-						<th>제목</th>
 						<th>작성자</th>
-						<th>조회수</th>
+						<th><i class="fas fa-pen fa-sm"></i></th>
+						<th><i class="fas fa-eye fa-sm"></i></th>
 						<th><i class="far fa-thumbs-up fa-sm"></i></th>
 					</tr>
-				</thread>
+				</thead>
 				
 				<tbody>
 					<c:forEach items="${QuestionList }" var="board">
 						<tr>
-							<td>${board.boardNo }</td>
-							<td>${board.boardCreate }</td>
-							<td>
+							<td><small>${board.boardNo }</small></td>
+							<td><small>${board.boardCreate }</small></td>
+							<td><small>
 								<a href="/question/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
-							</td>
+							</small></td>
 							<c:if test="${loginType eq null }">
-								<td>${board.boardNick }</td>
+								<td><small>${board.boardNick }</small></td>
 							</c:if>	
 							<c:if test="${loginType ne null }">
-								<td>${board.boardUser }</td>
+								<td><small>${board.boardUser }</small></td>
 							</c:if>
-							<td>${board.boardRead }</td>
-							<td>${board.boardRecommend }</td>
+							<td><small>${board.boardRead }</small></td>
+							<td><small>${board.boardRecommend }</small></td>
 						</tr>
 					</c:forEach>
 				</tbody>
