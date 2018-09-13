@@ -8,7 +8,7 @@
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 	<h2>
-		<i class="far fa-comments fa-lg"></i>공지게시글 상세조회
+		<i class="far fa-comments fa-lg"></i>공지사항 게시글 상세조회
 	</h2>
 	<div class="col-md-11">
 		<form action="/notice/search.do" name="search" method="get">
