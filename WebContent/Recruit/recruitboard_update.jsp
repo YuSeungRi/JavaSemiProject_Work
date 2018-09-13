@@ -7,6 +7,12 @@
 <%@include file="../main/styleloader.jsp"%>
 <%-- 작성일 : 2018.09.03 / 작성자 : 권미현 / 구인구직 수정 --%>
 <div class="container m-3">
+<%if(session.getAttribute("userNick") == null) { %>
+	<script type="text/javascript">
+		alert("로그인 상태여야 사용 가능합니다.")
+		location.href = "/main/signin.do";
+	</script>
+<%} %>
 	<h2>
 		<i class="fas fa-pencil-alt fa-2x"></i>구인구직 수정
 	</h2>
@@ -40,18 +46,33 @@
 		<textarea id="summernote" name="content" class="form-control">${board.boardContent }</textarea>
 		<%-- summernote_end --%>
 
-
-		<%-- 파일 첨부 --%>
+		<%-- 업로드된 파일 --%>
 		<div class="form-group row mt-4">
-			<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>
-			<div class="col-sm-7">
-				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="file">
-					 <label class="custom-file-label" for="file"></label>
-				</div>
-			</div>
+			<label for="uploadedFile" class="col-sm-3 col-form-label">저장된 파일</label>
+			<ul class="list-group col-md-5 ">
+			<c:if test="${fileList eq null }" >
+				<li class="list-group-item"><span class="text-catuion">업로드한 파일이 없습니다.</span></li>
+			</c:if>
+			<c:if test="${fileList ne null }" >
+			<c:forEach items="${fileList }" var="file" >
+				<li class="list-group-item"><a href="/upload/${file.fileStoredName }" download>${file.fileName }</a>
+				<button class="file" type="button" value="${file.fileNo }" >삭제</button></li>
+			</c:forEach>
+			</c:if>
+			</ul>
 		</div>
 
+		<%-- 파일 첨부 --%>
+<!-- 		<div class="form-group row mt-4"> -->
+<!-- 			<label for="file" class="col-sm-3 col-form-label">파일 첨부</label> -->
+<!-- 			<div class="col-sm-7"> -->
+<!-- 				<div class="custom-file"> -->
+<!-- 					<input type="file" class="custom-file-input" id="file" name="file" /> -->
+<!-- 					 <label class="custom-file-label" for="file"></label> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+	
 
 		<%-- 버튼 --%>
 		<div class="row justify-content-center">
@@ -70,10 +91,33 @@
 		// 높이 500 지정
 		});
 		$("#btnUpdate").click(function() {
+			$("#summernote").summernote("code");
 			$("form").submit();	
 		});
 		$("#btnCancel").click(function() {
 			history.go(-1);
+		});
+		
+
+		//file 삭제
+		$("button.file").click(function(){
+			$a = $(this);
+			$.ajax({
+				type: "post"
+				, url: "/file/delete.do"
+				, dataType: "json"
+				, data: {
+					fileNo: $(this).val()
+				}
+				, success: function(data) {
+					console.log("success");
+					$a.parent().empty();
+				}
+				, error: function(e) {
+					console.log("fail");
+					console.log(e.responseText);
+				}
+			});
 		});
 	});
 </script>

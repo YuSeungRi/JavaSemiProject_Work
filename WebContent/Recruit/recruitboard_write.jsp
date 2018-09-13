@@ -57,7 +57,7 @@
 			<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>
 			<div class="col-sm-7">
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="file">
+					<input type="file" class="custom-file-input" id="file" name="file" />
 					<label class="custom-file-label" for="file"></label>
 				</div>
 			</div>
@@ -98,14 +98,10 @@
 			   var fileName = $(this).val().split('\\').pop(); 
 			   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
 		});
+		
+		$('#summernote').summernote({
+  			height : 500 // 높이 500 지정
+  		});
 	});
 </script>
-<script type="text/javascript">
-    	$(document).ready(function() {
-      		$('#summernote').summernote({
-      			height : 500 // 높이 500 지정
-      		});
-    	});
-</script>
-
 <%@include file="../main/footer.jsp" %>

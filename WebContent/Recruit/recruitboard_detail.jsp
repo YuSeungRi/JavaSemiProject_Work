@@ -64,7 +64,22 @@
 					<tr>
 						<td colspan="16" align="left">최근 수정 시간 : ${board.boardModify }</td>
 					</tr>
-			
+					<!-- 첨부파일 -->
+					<tr>
+						<td colspan="2">첨부파일</td>
+						<td colspan="14">
+							<c:if test="${fileList eq null }" >
+								업로드한 파일이 없습니다.
+							</c:if>
+							<ul>
+								<c:if test="${fileList ne null }" >
+								<c:forEach items="${fileList }" var="file" >
+									<li><a href="/upload/${file.fileStoredName }" download>${file.fileName }</a></li>
+								</c:forEach>
+								</c:if>
+							</ul>
+						</td>
+					</tr>
 			</table>
 			
 		</div>
@@ -79,17 +94,17 @@
 		
 			<c:choose>
 				<c:when test="${userId eq board.boardUser }">
-					<a href="/notice/update.do?boardno=${board.boardNo }"
+					<a href="/recruit/update.do?boardno=${board.boardNo }"
 						class="btn btn-secondary btn-sm active mr-1" role="button"
 						aria-pressed="true">수정</a>
 
-					<a href="/notice/delete.do?boardno=${board.boardNo }"
+					<a href="/recruit/delete.do?boardno=${board.boardNo }"
 						class="btn btn-secondary btn-sm active mr-1" role="button"
 						aria-pressed="true">삭제</a>
 				</c:when>
 				<%-- 모든 게시물은 관리자가 삭제할 수 있게끔 설정 --%>
 				<c:when test="${userId eq 'user99@naver.com' }">
-					<a href="/notice/delete.do?boardno=${board.boardNo }"
+					<a href="/recruit/delete.do?boardno=${board.boardNo }"
 						class="btn btn-secondary btn-sm active mr-1" role="button"
 						aria-pressed="true">삭제</a>
 				</c:when>

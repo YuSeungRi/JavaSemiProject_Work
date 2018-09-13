@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Service.BoardService;
+import Service.FileService;
+import dto.FileDto;
 import dto.RecruitDto;
 
 /*
@@ -23,7 +26,8 @@ public class RecruitmentUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private BoardService boardService = new BoardService();
-
+	private FileService fsvc = new FileService();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -37,6 +41,11 @@ public class RecruitmentUpdateController extends HttpServlet {
 		RecruitDto dto = boardService.getBoardRecruit(boardno);
 
 		request.setAttribute("board", dto);
+		
+		if(fsvc.getFileCount(boardno)>0) {
+			ArrayList<FileDto> fdtos = fsvc.getFileList(boardno);
+			request.setAttribute("fileList", fdtos);		
+		} 
 
 		request.getRequestDispatcher("/Recruit/recruitboard_update.jsp").forward(request, response);
 	}
@@ -45,7 +54,7 @@ public class RecruitmentUpdateController extends HttpServlet {
 			throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-
+		
 		RecruitDto recruitDto = new RecruitDto();
 		recruitDto.setBoardNo(Integer.parseInt(request.getParameter("boardno")));
 		recruitDto.setBoardTitle(request.getParameter("title"));

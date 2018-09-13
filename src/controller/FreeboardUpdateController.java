@@ -156,7 +156,7 @@ public class FreeboardUpdateController extends HttpServlet {
 			}
 		}
 
-		System.out.println(dto);
+//		System.out.println(dto);
 
 		bsvc.update(dto);
 

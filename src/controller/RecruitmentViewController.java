@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Service.BoardService;
+import Service.FileService;
 import Service.ReplyService;
+import dto.FileDto;
 import dto.RecruitDto;
 import dto.ReplyDto;
 
@@ -27,7 +29,8 @@ public class RecruitmentViewController extends HttpServlet {
 
 	private BoardService boardService = new BoardService();
 	private ReplyService replyService = new ReplyService();
-
+	private FileService  fsvc 		  =	new FileService();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String param = request.getParameter("boardno");
 		
@@ -44,6 +47,10 @@ public class RecruitmentViewController extends HttpServlet {
 		// 댓글
 		ArrayList<ReplyDto> dtos = replyService.getReplyList(boardno);
 		request.setAttribute("replyList", dtos);
+		
+		//첨부파일 
+		ArrayList<FileDto> fdtos = fsvc.getFileList(boardno);
+		request.setAttribute("fileList", fdtos);
 		
 		request.getRequestDispatcher("/Recruit/recruitboard_detail.jsp").forward(request, response);
 	}
