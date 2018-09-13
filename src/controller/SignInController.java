@@ -24,7 +24,6 @@ public class SignInController extends HttpServlet {
 
 		request.getRequestDispatcher("/main/signin.jsp").forward(request,response);
 	}
-
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserInfoDto user = new UserInfoDto();
@@ -65,7 +64,7 @@ public class SignInController extends HttpServlet {
 							
 							response.sendRedirect("/main/main.do?login=success");
 							
-						} else {
+						} else if(userservice.checkEmail(user) ) {
 							session.setAttribute("login", false);
 							System.out.println("로그인 실패");
 
