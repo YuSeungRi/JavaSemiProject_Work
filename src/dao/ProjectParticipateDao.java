@@ -21,5 +21,6 @@ public interface ProjectParticipateDao {
 
 	// 참가자 목록
 	public List<ProjectUserDto> participateList(int projectNo);
+
 	
 }

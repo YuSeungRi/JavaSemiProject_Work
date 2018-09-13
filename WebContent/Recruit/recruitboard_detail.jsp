@@ -14,7 +14,7 @@
 	<div class="col-md-11">
 		<form>
 			<div>
-				<div
+		<!--  	<div
 					class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
 					<input type="text" class="text-sm form-control"
 						placeholder="검색어를 입력하세요" aria-label=""
@@ -22,7 +22,7 @@
 					<div class="input-group-append">
 						<button class="btn btn-success" type="button">검색</button>
 					</div>
-				</div>
+				</div>  -->
 				<ul class="nav">
 					<!-- <li class="nav-item"><a class="nav-link" href="#">최신순</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">조회순</a></li>
@@ -120,7 +120,15 @@
 					<c:forEach items="${replyList}" var="reply">
 						<li class="list-group-item">
 							<div class="d-flex w-100 justify-contents-between">
-								<small>작성자 : ${reply.userNick }, 작성일 : ${reply.replyCreate } &nbsp</small>
+								<%-- 수정일 : 2018.09.13 / 수정자 : 권미현 / 작성자가 일반 회원인지 소셜 회원인지에 따른 처리  --%>
+								<c:choose>
+									<c:when test="${reply.userNick ne null }"> <%-- 작성자가 일반 회원일 경우, Nick으로 처리 --%>
+										<small>작성자 : ${reply.userNick }, 작성일 : ${reply.replyCreate } &nbsp</small>
+									</c:when>
+									<c:when test="${reply.userNick eq null }"> <%-- 작성자가 소셜 회원일 경우, Email로 처리 --%>
+										<small>작성자 : ${reply.userEmail }, 작성일 : ${reply.replyCreate } &nbsp</small>
+									</c:when>
+								</c:choose>
 								<c:if test="${userId eq reply.userEmail }">
 									<small>
 										<a href="/reply/delete.do?replyno=${reply.replyNo }&boardno=${board.boardNo }" style="color: red;">삭제</a>

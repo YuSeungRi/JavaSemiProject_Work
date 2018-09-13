@@ -79,7 +79,7 @@ CREATE TABLE login_log (
     login_time      DATE,
     login_result	VARCHAR2(20),
     
-    CONSTRAINT login_log_PK PRIMARY KEY (user_email)
+    CONSTRAINT login_log_PK PRIMARY KEY (user_email, login_time)
 );
 
 --사용기술
@@ -123,6 +123,14 @@ CREATE TABLE "location" (
     CONSTRAINT location_PK PRIMARY KEY (location_no)
 );
 CREATE SEQUENCE location_seq START WITH 10000;
+
+-- 프로젝트 참가 테이블 
+CREATE TABLE project_participant (
+	user_email 	VARCHAR2(50) 	NOT NULL,
+	project_no	NUMBER 			NOT NULL,
+	participate NUMBER,          
+	CONSTRAINT project_participant_pk PRIMARY KEY (user_email, project_no)
+);    
 
 --코드
 CREATE TABLE code (
@@ -196,11 +204,3 @@ ALTER TABLE reply
 ADD CONSTRAINT reply_FK
     FOREIGN KEY(board_no) REFERENCES board(board_no);
     
-
--- 프로젝트 참가 테이블 
-CREATE TABLE project_participant (
-	user_email 	VARCHAR2(50) 	NOT NULL,
-	project_no	NUMBER 			NOT NULL,
-	participate NUMBER,          
-	CONSTRAINT project_participant_pk PRIMARY KEY (user_email, project_no)
-);    

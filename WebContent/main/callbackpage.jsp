@@ -24,12 +24,12 @@
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 	
 	<!-- (2) LoginWithNaverId Javscript 설정 정보 및 초기화 -->
-	<script>
+	<script type="text/javascript">
 		var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "Tv6l_wHgo3oV3Xfm7PE8",
 				callbackUrl: "http://localhost:8088/main/callbackpage.jsp",
-				isPopup: false,
+				isPopup: true,
 				callbackHandle: true
 				/* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
 			}
@@ -59,19 +59,22 @@
 					document.getElementById("userNick").value = nick;
 					document.getElementById("userPhoto").value = photoPath;
 
-					//window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/main/main.do");
-					
 					document.getElementById("naver").submit();
+					
+					
 					
 				} else {
 					console.log("callback 처리에 실패하였습니다.");
 				}
 			});
+			
+			window.opener.location.replace("http://localhost:8088/main/callbackpage.jsp");    //부모창 reload
+			window.close();
+			
 		});
-		
-	</script>
-	 
 
+	</script>	
+	
 	
 </body>
 

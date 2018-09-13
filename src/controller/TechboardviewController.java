@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Service.TechBoardService;
+import Service.FileService;
 import Service.ReplyService;
 import dto.BoardDto;
+import dto.FileDto;
 import dto.ReplyDto;
 
 /*
@@ -30,6 +32,7 @@ public class TechboardviewController extends HttpServlet {
        
 	private TechBoardService techBoardService = new TechBoardService();
 	private ReplyService rsvc = new ReplyService();
+	private FileService fsvc = new FileService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String param = request.getParameter("boardno");
@@ -51,9 +54,13 @@ public class TechboardviewController extends HttpServlet {
 		//추천상태정보 추가
 		request.setAttribute("recommend", techBoardService.recommendCheck(recommend));
 		
-		ArrayList<ReplyDto> dtos = rsvc.getReplyList(boardno);
+		// 댓글
+		ArrayList<ReplyDto> rdtos = rsvc.getReplyList(boardno);
+		request.setAttribute("replyList", rdtos);
 		
-		request.setAttribute("replyList", dtos);
+		// 첨부 파일
+		ArrayList<FileDto> fdtos = fsvc.getFileList(boardno);
+		request.setAttribute("fileList", fdtos);
 		
 		request.getRequestDispatcher("/tech/techboard_detail.jsp").forward(request, response);
 		

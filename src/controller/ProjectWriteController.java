@@ -54,7 +54,6 @@ public class ProjectWriteController extends HttpServlet {
 
 			techDto.setProjectNo(projectNo);
 			projectService.techWrite(techDto);
-//			System.out.println("기술번호 :" + tech);
 		}
 		
 		projectDto.setProjectNo(projectNo);

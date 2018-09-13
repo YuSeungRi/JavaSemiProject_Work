@@ -8,6 +8,7 @@ import dao.BoardDaoImpl;
 import dao.RecommendDao;
 import dao.RecommendDaoImpl;
 import dto.BoardDto;
+import dto.ReplyDto;
 
 
 /*
@@ -21,6 +22,8 @@ import dto.BoardDto;
  * 수정일 : 2018.09.04
  * 수정자 : 안희민
  *  - getSearchList 추가
+ *  
+ *  페이지네이션 추가
  */
 
 public class TechBoardService {
@@ -33,11 +36,21 @@ public class TechBoardService {
 		return dao.getTotal(categoryName);
 	}
 	
+	public int searchTotal(String searchString) {
+		
+		return dao.searchTotal(searchString);
+	}
+	
 	public List<BoardDto> getPagingList(Paging paging, String categoryName, String order) {
 	
 		return dao.getPagingList(paging, categoryName, order);
 	}
 	
+	// 페이지네이션 추가
+	public List<BoardDto> getSearchpagingList(Paging paging, String categorynName, String searchString, String searchTarget) {
+		
+		return dao.getSearchpagingList(paging, categorynName, searchString, searchTarget);
+	}
 //	public List<BoardDto> getSearchList(Paging paging, String categoryName, String order, String searchString) {
 	
 //		return dao.getSearchList(paging, categoryName, order, searchString);
@@ -92,5 +105,17 @@ public class TechBoardService {
 		return dao.getboards(categoryName, listnum);
 	}
 	
+	// 추가
+	public List<BoardDto> getMyBoard(String userEmail, int listnum) {
+		return dao.getMyBoard(userEmail, listnum);
+	}
+	
+	public int getNewBoardNo() {
+		return dao.newBoardNo();
+	}
+	
+	public List<ReplyDto> getMyReply(String userEmail, int listnum) {
+		return dao.getMyReply(userEmail, listnum);
+	}
 	
 }

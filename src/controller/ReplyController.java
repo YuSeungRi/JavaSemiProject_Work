@@ -52,7 +52,14 @@ public class ReplyController extends HttpServlet {
 			reController = "Freeboard";
 		} else if (category.equals("Recruit")) {
 			reController = "recruit";
-		} // TODO 나머지 게시판들도 리다이렉트 설정해주세요!
+		} else if (category.equals("NoticeBoard")) {
+			reController = "notice";
+		} else if (category.equals("QuestionBoard")) {
+			reController = "question";
+		} else if (category.equals("TechBoard")) {
+			reController = "tech";
+		}
+		// TODO 나머지 게시판들도 리다이렉트 설정해주세요!
 		
 //		System.out.println("ReplyController_category : " + category);
 //		System.out.println("ReplyController_reController : " + reController);

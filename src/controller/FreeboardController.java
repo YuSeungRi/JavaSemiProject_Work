@@ -53,14 +53,13 @@ public class FreeboardController extends HttpServlet {
 		
 		
 		if (orderParam == null || orderParam.isEmpty() || orderParam.equals("create")) {
-			order = "create";
+			order = "create"; 
 		} else if (orderParam.equals("read")) {
 			order = orderParam;
 		} else if (orderParam.equals("recommend")) {
 			order = orderParam;
 		}
-//		System.out.println("FreeboardController_order : " + order);
-		// --------------
+	
 		
 		
 		// 게시글 조회 결과

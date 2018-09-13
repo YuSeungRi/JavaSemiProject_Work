@@ -64,4 +64,32 @@ public interface CodeDao {
 	 * @return
 	 */
 	public String getCategoryName(int categoryNo);
+	
+	/**
+	 * get a category no from categoryName
+	 * @param inputCategory
+	 * @param userEmail 
+	 * @return
+	 */
+	public int getCatgoryNo(String inputCategory, String userEmail);
+
+	/**
+	 * Insert new code 
+	 * @param cdto
+	 * @return inserted new codeNo
+	 */
+	public int setNewCode(CodeDto cdto);
+
+	/**
+	 * [DO NOT USE!!] Insert Tech
+	 * @param cdto
+	 * @param codeNo 
+	 */
+	public void setTech(CodeDto cdto, int codeNo);
+
+	/**
+	 * Delete a code
+	 * @param codeNo
+	 */
+	public void deleteCode(int codeNo);
 }

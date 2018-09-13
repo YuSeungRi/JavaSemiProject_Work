@@ -8,18 +8,21 @@
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 	<h2>
-		<i class="far fa-comments fa-lg"></i>게시글 상세조회
+		<i class="far fa-comments fa-lg"></i>QnA 게시글 상세조회
 	</h2>
 	<div class="col-md-11">
-		<form>
+		<form action="/question/search.do" name="search" method="get">
 			<div>
-				<div
-					class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
+				<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 mb-2">
+					<select name="keyField" size="1">
+					<option value="title" <c:if test='${keyField eq "title" }'> selected</c:if>> 제목 </option>
+					<option value="content" <c:if test='${keyField eq "content" }'> selected</c:if>> 내용 </option>
+					</select>
 					<input type="text" class="text-sm form-control"
-						placeholder="검색어를 입력하세요" aria-label=""
-						aria-describedby="basic-addon1">
+						placeholder="검색어를 입력하세요" required="required" aria-label=""
+						aria-describedby="basic-addon1" name="searchString"> 
 					<div class="input-group-append">
-						<button class="btn btn-success" type="button">검색</button>
+						<button class="btn btn-success" type="submit">검색</button>
 					</div>
 				</div>
 				<ul class="nav">
@@ -55,10 +58,29 @@
 					<tr>
 						<td colspan="16" align="left">최근 수정 시간 : ${board.boardModify }</td>
 					</tr>
-			
+					<!-- 첨부파일 -->
+						<tr>
+							<td colspan="2">첨부파일</td>
+							<td colspan="14">
+								<c:if test="${fileList eq null }" >
+									업로드한 파일이 없습니다.
+								</c:if>
+								<ul>
+									<c:if test="${fileList ne null }" >
+									<c:forEach items="${fileList }" var="file" >
+										<li><a href="/upload/${file.fileStoredName }" download>${file.fileName }</a></li>
+									</c:forEach>
+									</c:if>
+								</ul>
+							</td>
+						</tr>
 			</table>
 			
 		</div>
+		
+		<!-- 파일 업로드 영역  -->
+<%-- 		<c:import url="/file/upload.do"></c:import> --%>
+		
 		
 		<div class="row justify-content-center">
 			<a href="/question/Q&A.do" class="btn btn-secondary btn-sm active mr-1"
@@ -120,8 +142,15 @@
 					<c:forEach items="${replyList}" var="reply">
 						<li class="list-group-item">
 							<div class="d-flex w-100 justify-contents-between">
-								<%-- 수정일 : 2018.09.05 / 수정자 : 권미현 / 작성자:${reply.userEmail } → 작성자:${reply.userNick }  --%>
-								<small>작성자 : ${reply.userNick }, 작성일 : ${reply.replyCreate } &nbsp</small>
+								<%-- 수정일 : 2018.09.13 / 수정자 : 권미현 / 작성자가 일반 회원인지 소셜 회원인지에 따른 처리  --%>
+								<c:choose>
+									<c:when test="${reply.userNick ne null }"> <%-- 작성자가 일반 회원일 경우, Nick으로 처리 --%>
+										<small>작성자 : ${reply.userNick }, 작성일 : ${reply.replyCreate } &nbsp</small>
+									</c:when>
+									<c:when test="${reply.userNick eq null }"> <%-- 작성자가 소셜 회원일 경우, Email로 처리 --%>
+										<small>작성자 : ${reply.userEmail }, 작성일 : ${reply.replyCreate } &nbsp</small>
+									</c:when>
+								</c:choose>
 								<c:if test="${userId eq reply.userEmail }">
 									<%-- 수정일 : 2018.09.07 / 수정자 : 권미현 / <button> → <a> 로 변경, 링크 연결 --%>
 									<small>
@@ -192,6 +221,17 @@
 				console.log(e.responseText);
 			}
 		});
+	});
+	
+	// 수정일 : 2018.09.06 / 수정자 : 권미현 / 버튼 기능 추가
+	// 댓글 입력 클릭시 로그인 상태가 아닐 경우
+	$("#btnReply").click(function(){
+		if(<%=session.getAttribute("userId") == null %>) {
+			alert("로그인 상태여야 사용 가능합니다.");
+			location.href = "/main/signin.do";
+		} else if(<%=session.getAttribute("userId") != null %>) {
+			$("form").submit();
+		}
 	});
 
 </script>

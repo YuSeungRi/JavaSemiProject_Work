@@ -18,10 +18,6 @@ public class CodeListController extends HttpServlet {
 
 	CodeService csvc = new CodeService();
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getSession().getAttribute("userId").toString();
 		int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));

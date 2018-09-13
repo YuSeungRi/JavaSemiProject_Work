@@ -22,4 +22,13 @@ public class FileService {
 		if(dao.getFileData(fileNo)!=null)
 			dao.deleteFile(fileNo);
 	}
+
+	public int getFileCount(int boardNo) {
+		return dao.boardFileCount(boardNo);
+	}
+
+	public String getFileOwner(int fileNo) {
+		return dao.getFileOwner(fileNo);
+	}
+	
 }

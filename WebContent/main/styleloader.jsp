@@ -12,7 +12,7 @@
     <img src="../img/logo1.png" width="90" height="40" alt="logo" class="d-inline-block align-top">
   </a>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav navbar-hover ">
+    <ul class="navbar-nav navbar-hover">
       <li class="nav-item dropdown d-sm-block d-md-none">
 			<a class="dropdown-item" href="/main/main.do">홈</a>
             <a class="dropdown-item" href="/notice/notice.do">공지사항</a>
@@ -20,10 +20,8 @@
             <a class="dropdown-item" href="/recruit/recruit.do">구인구직</a>
             <a class="dropdown-item" href="/Freeboard/free.do">자유게시판</a>
             <a class="dropdown-item" href="/tech/tech.do">기술동향</a>
+            <hr>
             <a class="dropdown-item" href="/project/project.do">프로젝트</a>
-            <hr>
-            <a class="dropdown-item" href="/Education/edu.do">교육자료</a>
-            <hr>
             <a class="dropdown-item" href="/code/code.do">코드</a>
             <hr>
            <c:if test="${sessionScope.login eq true }" >
@@ -68,7 +66,7 @@
 					  <div class="input-group-prepend">
 					    <button class="btn btn-outline-secondary" type="submit" id="button-addon1"><span class="fa fa-search" id="basic-addon1"></span></button>
 					  </div>
-					  <input type="text" class="form-control" placeholder="검색" aria-label="search" aria-describedby="search" name="searchString">
+					  <input type="text" class="form-control" placeholder="검색" aria-label="search" aria-describedby="search" required="required" name="searchString">
 					</div>
 				</form>
                 </div>
@@ -111,21 +109,17 @@
                     <span class="menu-collapsed">기술동향</span>    
                 </div>
             </a>
-            <a href="/project/project.do" class="list-group-item list-group-item-action bg-warning">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-project-diagram fa-fw mr-3"></span>
-                    <span class="menu-collapsed">프로젝트</span>    
-                </div>
-            </a>
+           
             <!-- Separator with title -->
             <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
 <!--                 <small>OPTIONS</small> -->
             </li>
             <!-- /END Separator -->
-            <a href="/Education/edu.do" class="list-group-item list-group-item-action bg-warning">
+            
+             <a href="/project/project.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-graduation-cap fa-fw mr-3"></span>
-                    <span class="menu-collapsed">교육자료</span>    
+                    <span class="fa fa-project-diagram fa-fw mr-3"></span>
+                    <span class="menu-collapsed">프로젝트</span>    
                 </div>
             </a>
             <a href="/code/code.do" class="list-group-item list-group-item-action bg-warning">

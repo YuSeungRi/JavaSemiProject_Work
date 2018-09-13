@@ -14,14 +14,14 @@
 		<div class="col-mt-11">
 			<form>
 				<div>
-					<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4">
+		<!--  			<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4">
 						<input type="text" class="text-sm form-control"
 							placeholder="내용을입력하세요" aria-label=""
 							aria-describedby="basic-addon1">
 						<div class="input-group-append">
 							<button class="btn btn-success" type="button">검색</button>
 						</div>
-					</div>
+					</div> -->
 					<ul class="nav">
 						<li class="nav-item"><a class="nav-link" href="/recruit/recruit.do?curPage=${paging.curPage }&order=create">최신순</a></li>
 						<li class="nav-item"><a class="nav-link" href="/recruit/recruit.do?curPage=${paging.curPage }&order=read">조회순</a></li>

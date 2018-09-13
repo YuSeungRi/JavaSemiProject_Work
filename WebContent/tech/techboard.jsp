@@ -12,56 +12,22 @@
 		<div class="col-mt-11">
 			<form action="/tech/search.do" name="search" method="get">	
 				<div>
-					<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4">
-						<div class="input-group mb-3">
-  							<div class="input-group-prepend">
-    						<button class="btn btn-outline-secondary dropdown-toggle" type="button" 
-    						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
-    						 <div class="dropdown-menu">
-      						 <a class="dropdown-item" href="#">제목</a> <!--제이쿼리로 해야함  -->
-      						 <a class="dropdown-item" href="#">내용</a>
-      						 <a class="dropdown-item" href="#">Something else here</a>
-      							<div role="separator" class="dropdown-divider"></div>
-      							<a class="dropdown-item" href="#">Separated link</a>
-    						 </div>
-  								</div>
-  						 		<input type="text" class="form-control" placeholder="검색어를 입력하세요" 
-  						 		aria-label="Text input with dropdown button">
-						</div>
-						
-						
-						<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon1">Button</button>
-  </div>
-  <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-</div>
-	
-		<div class="input-group input-group-sm mb-3">
-					  <div class="input-group-prepend">
-					    <button class="btn btn-outline-secondary" type="button" id="button-addon1"><span class="fa fa-search" id="basic-addon1"></span></button>
-					  </div> <!--이부분 메인 검색 부분  -->
-					  <input type="text" class="form-control" placeholder="검색" 
-					  aria-label="search" aria-describedby="search" name="searchString">					
-					</div>   <!-- 추가부분 전부 삭제 원위치시킴  -->				
-						
-						
-						<select name="keyFiled" size="1">
-						<option value="title" <c:if test="${'title'==keyFiled }"> selected</c:if>> 제목 </option>
-						<option value="content" <c:if test="${'content'==keyFiled }"> selected</c:if>> 내용 </option>
+					<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4">						
+						<select name="keyField" size="1">
+						<option value="title" <c:if test='${keyField eq "title" }'> selected</c:if>> 제목 </option>
+						<option value="content" <c:if test='${keyField eq "content" }'> selected</c:if>> 내용 </option>
 						</select>
 						<input type="text" class="text-sm form-control"
-							placeholder="내용을입력하세요" aria-label=""
+							placeholder="내용을입력하세요" required="required" aria-label=""
 							aria-describedby="basic-addon1" name="searchString">
 						<div class="input-group-append">
 							<button class="btn btn-success" type="submit">검색</button>
 						</div>
 					</div>
-					<ul class="nav">
-						<li class="nav-item"><a class="nav-link" href="#">최신순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">조회순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">추천순</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">댓글순</a></li>
+					<ul class="nav"> <%-- 수정일 : 2018.09.13 / 수정자 : 권미현 / 정렬 처리(댓글순) 기능 삭제 --%>
+						<li class="nav-item"><a class="nav-link" href="/tech/tech.do?curPage=${paging.curPage }&order=create">최신순</a></li>
+						<li class="nav-item"><a class="nav-link" href="/tech/tech.do?curPage=${paging.curPage }&order=read">조회순</a></li>
+						<li class="nav-item"><a class="nav-link" href="/tech/tech.do?curPage=${paging.curPage }&order=recommend">추천순</a></li>
 					</ul>
 				</div>
 			</form>

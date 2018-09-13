@@ -20,17 +20,17 @@
 	
     <form action = "/project/search.do" method="post" id="form">    
 	  <div class="form-group row">
-	    <label for="projectName" class="col-sm-2 col-form-label">프로젝트 명</label>
+	    <label for="title" class="col-sm-2 col-form-label">프로젝트 명</label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="projectName" placeholder="프로젝트명을 입력하세요">
+	      <input type="text" class="form-control" id="title" placeholder="프로젝트명을 입력하세요" name="title">
 	    </div>
 	  </div>	  
 	  	  
 	  <div class="form-group row">
 	    <div class="col-sm-2">지역</div>
 	    <div class="col-sm-10">
-	 	<select class="custom-select" name="location">	 	
-			<option selected>지역을 선택하세요</option>	 		
+	 	<select class="custom-select" name="location" id="location" >	 	
+			<option selected >지역을 선택하세요</option>	 		
 	 		<c:forEach items="${location }" var="location">
  				<option value="${location.locationNo }">${location.locationName }</option>
 	 		</c:forEach>	 		
@@ -42,12 +42,12 @@
 	    <div class="col-sm-2">사용기술</div>
 	    <div class="col-sm-10">
 	    
-	    	<c:forEach items="${tech }" var="tech" varStatus="stat">
-	      	  <div class="form-check form-check-inline">
-			  <input class="form-check-input" type="checkbox" id="inlineCheckbox${stat.index+1}" name="checkbox" value="${tech.techNo }">
-			  <label class="form-check-label" for="inlineCheckbox${stat.index+1}">${tech.techName }</label>
-			</div>
-	    	</c:forEach>		
+		 	<select class="custom-select" name="Searchtech" id="Searchtech" >	 	
+				<option selected >기술을 선택하세요</option>	 		
+		 		<c:forEach items="${tech }" var="tech">
+	 				<option value="${tech.techNo }">${tech.techName }</option>
+		 		</c:forEach>	 		
+			</select>	    
 			
 	    </div>
 	  </div>
@@ -87,18 +87,6 @@
     			<div class="col-md-12">
     			
     			<a href="/project/projectWrite.do" class="btn btn-secondary btn-sm active mt-3 mx-10 mb-2" role="button" aria-pressed="true">프로젝트 등록하기</a>
-	  
-
-<!-- 				<form> -->
-<!-- 					<div class="mt-4  form-inline" > -->
-<!-- 						<ul class="nav"> -->
-<!-- 							<li class="nav-item"><a class="nav-link" href="#">최신순</a></li> -->
-<!-- 							<li class="nav-item"><a class="nav-link" href="#">지역</a></li> -->
-<!-- 							<li class="nav-item"><a class="nav-link" href="#">시작일</a></li>						  -->
-<!-- 						</ul> -->
-<!-- 					</div> -->
-
-<!-- 				</form>					 -->
 
 					<c:forEach items="${projectList }" var="project">
 					<ul class="list-group list-group-flush">
@@ -135,8 +123,6 @@
 					</ul>
 					</c:forEach>	
 					
-<!-- 			<a href="/project/projectWrite.do" class="btn btn-secondary btn-sm active mt-2 mx-10" role="button" aria-pressed="true">프로젝트 등록하기</a>					 -->
-
 			<div class="row justify-content-center">
 				<div class="col m-4">
 				<!-- 페이지네이션 -->

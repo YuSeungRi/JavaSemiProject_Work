@@ -14,6 +14,7 @@ import dbutil.DBConn;
 import dto.ProjectDto;
 import dto.ProjectLocationDto;
 import dto.ProjectTechDto;
+import dto.ProjectUserDto;
 
 public class ProjectDaoImpl implements ProjectDao {
 	
@@ -118,7 +119,6 @@ public class ProjectDaoImpl implements ProjectDao {
 				techDto.setTechName( rs.getString("tech_name"));
 				
 				techList.add(techDto);		
-//				System.out.println(techDto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -155,7 +155,6 @@ public class ProjectDaoImpl implements ProjectDao {
 				techDto.setTechName( rs.getString("tech_name"));
 				
 				techList.add(techDto);		
-//				System.out.println(techDto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -175,21 +174,6 @@ public class ProjectDaoImpl implements ProjectDao {
 				+ " JOIN userinfo u"
 				+ " ON p.project_lead = u.user_email"
 				+ " WHERE p.project_no=?";
-
-		
-//		String sql = "SELECT l.location_name, p.*, u.user_nick FROM \"project\"p ";
-//		sql += " LEFT JOIN \"location\" l";
-//		sql +=" ON l.location_no = p.location_no";
-//		sql +=" JOIN userinfo u";
-//		sql +=" ON p.project_lead = u.user_email";
-//		sql +=" WHERE 1=1";
-//		if( projectNo != -1 ) {
-//			sql +=" AND p.project_no=?";
-//		}
-////		if( projectName != null && !"".equals(projectName) ) {
-////			sql += " AND projectNo = ?"
-////		}
-		
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -260,8 +244,6 @@ public class ProjectDaoImpl implements ProjectDao {
 			ps = conn.prepareStatement(sql);
 			
 			ps.setInt(1, projectNo);
-			
-			System.out.println(projectNo);
 			
 			ps.executeQuery();
 		} catch (SQLException e) {
@@ -359,8 +341,6 @@ public class ProjectDaoImpl implements ProjectDao {
 			ps.setInt(2, techDto.getTechNo());;
 			
 			ps.executeUpdate();
-			
-//			System.out.println("게시글 작성 techDTO : " + techDto);			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -479,5 +459,221 @@ public class ProjectDaoImpl implements ProjectDao {
 			}
 		}
 	}
+
+	@Override
+	public List<ProjectDto> search(String title, String location, String tech, String startday, String endday) {
+		
+//		String sql = null;
+//		
+//		if(tech != "0" && !"".equals(tech) ) {
+//			
+//			sql += " SELECT * FROM ( "
+//					+ " SELECT l.location_name, p2.*, U.user_nick FROM "
+//					+ " (SELECT t.tech_name, p1.* FROM"
+//					+ " (SELECT pt.tech_no, p.* FROM \"project\" p "
+//					+ " LEFT JOIN project_tech pt"
+//					+ " ON pt.project_no = p.project_no) p1"
+//					+ " LEFT JOIN tech t "
+//					+ " ON p1.tech_no = t.tech_no"
+//					+ " )p2"
+//					+ " LEFT JOIN \"location\" l "
+//					+ " ON l.location_no = p2.location_no"
+//					+ " JOIN userinfo U"
+//					+ " ON p2.project_lead = U.user_email"
+//					+ " ORDER BY p2.project_no DESC ) A"
+//					+ " WHERE 1=1";			
+//			
+//			sql+= " AND tech_no ="+tech+"";
+//			
+//			if(title != null && !"".equals(title) ) {
+//				sql+= " AND project_title like '%"+title+"%'";
+//			}
+//			
+//			if(location != "0" && !"".equals(location) ) {
+//				sql+= " AND location_no ="+location+"";
+//			} 
+//			
+//			
+//			if(startday != null && !"".equals(startday)) {
+//				sql += " AND project_start >= TO_DATE('"+startday+"','yy-MM-dd')";
+//			}
+//			
+//			if(endday != null && !"".equals(endday)) {
+//				sql += " AND project_end <= TO_DATE('"+endday+"','yy-MM-dd')";
+//			}
+//			
+//			
+//		} else {
+//			sql += "SELECT * FROM ("
+//					+ " SELECT rownum rnum, B.* FROM("
+//					+ " SELECT * FROM ( "
+//					+ " SELECT l.location_name, p.*, U.user_nick"
+//					+ " FROM \"project\" p "
+//					+ " LEFT JOIN \"location\" l "
+//					+ " ON l.location_no = p.location_no "
+//					+ " JOIN userInfo u"
+//					+ " ON p.project_lead = u.user_email"
+//					+ " ORDER BY p.project_no DESC ) A"
+//					+ " WHERE 1=1";
+//			
+//			if(title != null && !"".equals(title) ) {
+//				sql+= " AND project_title like '%"+title+"%'";
+//			}
+//			
+//			if(location != "0" && !"".equals(location) ) {
+//				sql+= " AND location_no ="+location+"";
+//			} 
+//			
+//			if(startday != null && !"".equals(startday)) {
+//				sql += " AND project_start >= TO_DATE('"+startday+"','yy-MM-dd')";
+//			}
+//			
+//			if(endday != null && !"".equals(endday)) {
+//				sql += " AND project_end <= TO_DATE('"+endday+"','yy-MM-dd')";
+//			}			
+//			
+//		}
+		
+//		String sql = "SELECT * FROM ("
+//				+ " SELECT rownum rnum, B.* FROM("
+//				+ " SELECT * FROM ( "
+//				+ " SELECT l.location_name, p.*, U.user_nick"
+//				+ " FROM \"project\" p "
+//				+ " LEFT JOIN \"location\" l "
+//				+ " ON l.location_no = p.location_no "
+//				+ " JOIN userInfo u"
+//				+ " ON p.project_lead = u.user_email"
+//				+ " ORDER BY p.project_no DESC ) A"
+//				+ " WHERE 1=1";
+		
+		
+		String sql =" SELECT * FROM ( "
+				+ " SELECT l.location_name, p2.*, U.user_nick FROM "
+				+ " (SELECT t.tech_name, p1.* FROM"
+				+ " (SELECT pt.tech_no, p.* FROM \"project\" p "
+				+ " LEFT JOIN project_tech pt"
+				+ " ON pt.project_no = p.project_no) p1"
+				+ " LEFT JOIN tech t "
+				+ " ON p1.tech_no = t.tech_no"
+				+ " )p2"
+				+ " LEFT JOIN \"location\" l "
+				+ " ON l.location_no = p2.location_no"
+				+ " JOIN userinfo U"
+				+ " ON p2.project_lead = U.user_email"
+				+ " ORDER BY p2.project_no DESC ) A"
+				+ " WHERE 1=1";
+		
+		if(title != null && !"".equals(title) ) {
+			sql+= " AND project_title like '%"+title+"%'";
+		}
+		
+		if(location != "0" && !"".equals(location) ) {
+			sql+= " AND location_no ="+location+"";
+		} 
+		
+		if(tech != "0" && !"".equals(tech) ) {
+			sql+= " AND tech_no ="+tech+"";
+		} 
+		
+		if(startday != null && !"".equals(startday)) {
+			sql += " AND project_start >= TO_DATE('"+startday+"','yy-MM-dd')";
+		}
+		
+		if(endday != null && !"".equals(endday)) {
+			sql += " AND project_end <= TO_DATE('"+endday+"','yy-MM-dd')";
+		}
+		
+		List<ProjectDto> projectList = new ArrayList<>();
+		
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				ProjectDto projectDto = new ProjectDto();
+				
+				projectDto.setProjectNo( rs.getInt("project_no") );
+				projectDto.setLocationNo( rs.getInt("location_no"));
+				projectDto.setProjectTitle( rs.getString("project_title"));
+				projectDto.setProjectStart(rs.getString("project_start"));
+				projectDto.setProjectEnd(rs.getString("project_end"));
+				projectDto.setProjectContent( rs.getString("project_content"));
+				projectDto.setProjectParticpant( rs.getInt("project_participant"));
+				projectDto.setProjectLead( rs.getString("project_lead"));
+				projectDto.setProjectNick( rs.getString("user_nick"));
+				projectDto.setLocationName( rs.getString("location_name"));	
+				
+				projectList.add(projectDto);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return projectList;
+	}		
+	
+	
+	@Override
+	public List<ProjectDto> search(String title, String location, String startday, String endday) {
+		
+		String sql = " SELECT * FROM ( "
+				+ " SELECT l.location_name, p.*, U.user_nick"
+				+ " FROM \"project\" p "
+				+ " LEFT JOIN \"location\" l "
+				+ " ON l.location_no = p.location_no "
+				+ " JOIN userInfo u"
+				+ " ON p.project_lead = u.user_email"
+				+ " ORDER BY p.project_no DESC ) A"
+				+ " WHERE 1=1";
+	
+		if(title != null && !"".equals(title) ) {
+			sql+= " AND project_title like '%"+title+"%'";
+		}
+		
+		if(location != "0" && !"".equals(location) ) {
+			sql+= " AND location_no ="+location+"";
+		} 
+		
+		if(startday != null && !"".equals(startday)) {
+			sql += " AND project_start >= TO_DATE('"+startday+"','yy-MM-dd')";
+		}
+		
+		if(endday != null && !"".equals(endday)) {
+			sql += " AND project_end <= TO_DATE('"+endday+"','yy-MM-dd')";
+		}
+		
+		List<ProjectDto> projectList = new ArrayList<>();
+		
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				ProjectDto projectDto = new ProjectDto();
+				
+				projectDto.setProjectNo( rs.getInt("project_no") );
+				projectDto.setLocationNo( rs.getInt("location_no"));
+				projectDto.setProjectTitle( rs.getString("project_title"));
+				projectDto.setProjectStart(rs.getString("project_start"));
+				projectDto.setProjectEnd(rs.getString("project_end"));
+				projectDto.setProjectContent( rs.getString("project_content"));
+				projectDto.setProjectParticpant( rs.getInt("project_participant"));
+				projectDto.setProjectLead( rs.getString("project_lead"));
+				projectDto.setProjectNick( rs.getString("user_nick"));
+				projectDto.setLocationName( rs.getString("location_name"));	
+				
+				projectList.add(projectDto);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return projectList;
+	}	
+	
 
 }

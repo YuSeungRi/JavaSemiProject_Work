@@ -52,6 +52,15 @@ public interface BoardDao {
 	public int searchTotal(String searchString); 
 	
 	/**
+	 * 카테고리 검색 결과 수 조회 
+	 * @param searchString
+	 * @param categoryName
+	 * @param searchTarget
+	 * @return
+	 */
+	public int searchTotal(String searchString, String categoryName, String searchTarget);
+	
+	/**
 	 * 작성자 : 안희민 
 	 * 카테고리별 페이징 리스트 조회(정렬없음)
 	 * @param paging
@@ -59,7 +68,17 @@ public interface BoardDao {
 	 * @return
 	 */
 	public ArrayList<BoardDto> getPagingList(Paging paging, String categoryName);
-		
+	
+	/**
+	 * 작성자 : 안희민
+	 * 게시판 별 검색용
+	 * @param paging
+	 * @param categoryName
+	 * @param searchString
+	 * @return
+	 */
+	public ArrayList<BoardDto> getSearchpagingList(Paging paging, String categoryName, String searchString, String searchTarget);
+	
 	/**
 	 * 카테고리별 페이징 리스트 조회
 	 * @param paging
@@ -146,5 +165,12 @@ public interface BoardDao {
 	 * @return
 	 */
 	public ArrayList<ReplyDto> getMyReply(String Email, int listnum);
+	
+	/*
+	 * 소셜로그인 댓글, 글 작성 
+	 * @param
+	 * @return 
+	 * 
+	 */
 	
 }

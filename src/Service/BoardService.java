@@ -20,6 +20,10 @@ import dto.ReplyDto;
  *  - '게시글 수정_구인구직' 추가(71행)
  *  - '게시글 삭제_구인구직' 추가(79행)
  *  - '구인구직_상태 조회 후, 총 개수' 추가(34행)
+ *  
+ *  수정일 : 2018.09.12
+ *  수정자 : 안희민
+ *   - 페이지네이션 추가
  */
 
 public class BoardService {
@@ -53,6 +57,13 @@ public class BoardService {
 
 		return dao.getPagingList(paging, categoryName, order);
 	}
+	
+	// 페이지네이션 추가
+	public List<BoardDto> getSearchpagingList(Paging paging, String categorynName, String searchString, String searchTarget) {
+		
+		return dao.getSearchpagingList(paging, categorynName, searchString, searchTarget);
+	}
+	
 	// 구인구직 페이징 리스트 조회
 	public List<RecruitDto> getPagingListRecruit(Paging paging, String order) {
 		return recruitDao.getPagingListRecruit(paging, order);

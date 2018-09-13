@@ -19,11 +19,7 @@
 		<div class="col-mt-11">
 			<form action="/Main/search.do" name="search" method="get">	
 				<div>
-					<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4">
-						<select name="keyFiled" size="1">
-						<option value="title" <c:if test="${'title'==keyFiled }"> selected</c:if>> 제목 </option>
-						<option value="content" <c:if test="${'content'==keyFiled }"> selected</c:if>> 내용 </option>
-						</select>
+					<div class="input-group input-group-sm col-12 offset-sm-8 col-sm-4 my-3">
 						<input type="text" class="text-sm form-control"
 							placeholder="내용을입력하세요" aria-label=""
 							aria-describedby="basic-addon1" name="searchString">

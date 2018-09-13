@@ -18,7 +18,14 @@ public interface FileDao {
 	 * @return ArrayList
 	 */
 	public ArrayList<FileDto> getFileList(int boardNo);
-
+	
+	/**
+	 * get count files in a board post. 
+	 * @param boardNo
+	 * @return
+	 */
+	public int boardFileCount(int boardNo);
+	
 	/**
 	 * delete a file
 	 * @param fileNo
@@ -31,5 +38,12 @@ public interface FileDao {
 	 * @return
 	 */
 	public FileDto getFileData(int fileNo);
+
+	/**
+	 * get a file owner
+	 * @param fileNo
+	 * @return
+	 */
+	public String getFileOwner(int fileNo);
 	
 }

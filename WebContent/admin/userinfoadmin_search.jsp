@@ -74,6 +74,11 @@
 											<option value="9" <c:if test="${'9'==level}">selected</c:if>>9</option>
 										</select>
 										<input type="hidden" name="email" value="${UserSearch.userEmail }">
+										<%-- 수정일 : 2018.09.13 / 수정자 : 권미현 / 회원검색 후 회원등급 설정 시 오류 - 해결 --%>
+										<input type="hidden" name="keyFiled" value="${keyFiled }">
+										<input type="hidden" name="searchString" value="${searchString }">
+										<input type="hidden" name="curPage" value="${paging.curPage }"> <%-- 페이지 유지되도록 설정 --%>
+										<%------------------------------------------------------------------%>
 									</form>
 								</td>
 							</tr>

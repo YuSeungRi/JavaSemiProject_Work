@@ -23,9 +23,9 @@
 							class="input-group input-group-sm col-12 offset-sm-8 col-sm-4">
 							<select name="keyFiled" size="1">
 								<option value="userEmail"
-									<c:if test="${'useremail'==keyFiled }"> selected</c:if>>이메일</option>
+									<c:if test="${'userEmail'==keyFiled }"> selected</c:if>>이메일</option>
 								<option value="userNick"
-									<c:if test="${'usernick'==keyFiled }"> selected</c:if>>닉네임</option>
+									<c:if test="${'userNick'==keyFiled }"> selected</c:if>>닉네임</option>
 							</select> 
 							<input type="text" class="text-sm form-control" placeholder="내용을입력하세요" name="searchString" required>
 							<div class="input-group-append">
@@ -75,6 +75,8 @@
 											<option value="9" <c:if test="${'9'==level}">selected</c:if>>9</option>
 										</select>
 										<input type="hidden" name="email" value="${User.userEmail }">
+										<%-- 수정일 : 2018.09.13 / 수정자 : 권미현 / 페이지 유지되도록 설정 --%>
+										<input type="hidden" name="curPage" value="${paging.curPage }">
 									</form>
 								</td>
 							</tr>

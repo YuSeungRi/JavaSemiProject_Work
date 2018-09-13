@@ -10,9 +10,9 @@ import dbutil.DBConn;
 import dto.ReplyDto;
 
 /*
- * 수정일 : 2018.09.07
+ * 수정일 : 2018.09.13
  * 수정자 : 권미현
- *  - deleteReply : 쿼리문 수정(잘못된 컬럼명)
+ *  - getReplyList : 쿼리문 수정(잘못된 조인)
  */
 
 public class ReplyDaoImpl implements ReplyDao {
@@ -36,7 +36,7 @@ public class ReplyDaoImpl implements ReplyDao {
 				"    R.reply_content," + 
 				"    U.user_nick" + 
 				" FROM reply R" + 
-				"  JOIN userInfo U" + 
+				" LEFT OUTER JOIN userInfo U" + 
 				"    USING(user_email)" + 
 				" WHERE R.board_no=?" +
 				" ORDER BY R.reply_no DESC"; // 1. no

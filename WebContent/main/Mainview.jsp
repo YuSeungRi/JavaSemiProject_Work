@@ -4,22 +4,33 @@
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="./styleloader.jsp" %>
 
-<div class="container m-3">	
-<!-- 탬플릿 부분(상단) -->
-	
-	<div class="col mt-1"><!-- Main Col start -->
-	
-	<div class="container"><!-- Container start -->
+<style>
+
+.col, .col-lg-6 {
+	margin: 10;
+}
+
+</style>
+
+<div class="container mt-1"><!-- Container start -->
 		<div id="loginAlert" class="alert alert-dismissible fade show" role="alert">
 			<span id="loginText"></span>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
+		
+		<div id="signupAlert" class="alert alert-dismissible fade show" role="alert">
+			<span id="SignupText"></span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>		
+		
 	
-	<div class="row"><!-- first row start -->
+	<div class="row mt-5"><!-- first row start -->
 	
-	<div class="col-md-6"><!-- board1 start -->
+	<div class="col-lg-6"><!-- board1 start -->
         
 		<h4>
 			<i class="far fa-comments fa-lg"></i>자유게시판
@@ -49,8 +60,14 @@
 							<td>
 								<a href="/Freeboard/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardUser }</td>
-							
+							<c:choose >
+								<c:when test="${loginType eq null }">
+								<td>${board.boardNick }</td>
+								</c:when>
+								<c:when test="${loginType ne null }">
+								<td>${board.boardUser }</td>
+								</c:when>
+							</c:choose>
 							<td>${board.boardRead }</td>
 							<td>${board.boardRecommend }</td>
 						</tr>
@@ -62,7 +79,7 @@
 		
 	</div><!-- board1 END -->
        
-    <div class="col-md-6"><!-- board2 start -->
+    <div class="col-lg-6"><!-- board2 start -->
     	
     	<h4>
 			<i class="fa fa-bullhorn fa-fw mr-3"></i>공지사항
@@ -92,7 +109,12 @@
 							<td>
 								<a href="/notice/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardUser }</td>
+							<c:if test="${loginType eq null }">
+								<td>${board.boardNick }</td>
+							</c:if>	
+							<c:if test="${loginType ne null }">
+								<td>${board.boardUser }</td>
+							</c:if>
 							<td>${board.boardRead }</td>
 							<td>${board.boardRecommend }</td>
 						</tr>
@@ -108,7 +130,7 @@
 	
 	<div class="row"><!-- second row start -->
 	
-	<div class="col-md-6"><!-- board3 start -->
+	<div class="col-lg-6"><!-- board3 start -->
 	
 		<h4>
 			<i class="fa fa-users fa-fw mr-3"></i>구인구직
@@ -138,7 +160,12 @@
 							<td>
 								<a href="/recruit/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardUser }</td>
+							<c:if test="${loginType eq null }">
+								<td>${board.boardNick }</td>
+							</c:if>	
+							<c:if test="${loginType ne null }">
+								<td>${board.boardUser }</td>
+							</c:if>
 							<td>${board.boardRead }</td>
 							<td>${board.boardRecommend }</td>
 						</tr>
@@ -150,7 +177,7 @@
 
 		</div><!-- board3 END -->
 	
-	<div class="col-md-6"><!-- board4 start -->
+	<div class="col-lg-6"><!-- board4 start -->
 		
 		<h4>
 			<i class="fa fa-question-circle fa-fw mr-3"></i>Q&A
@@ -180,7 +207,12 @@
 							<td>
 								<a href="/question/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardUser }</td>
+							<c:if test="${loginType eq null }">
+								<td>${board.boardNick }</td>
+							</c:if>	
+							<c:if test="${loginType ne null }">
+								<td>${board.boardUser }</td>
+							</c:if>
 							<td>${board.boardRead }</td>
 							<td>${board.boardRecommend }</td>
 						</tr>
@@ -194,17 +226,13 @@
 		
 	</div><!-- second row END -->
        
-   	</div><!-- containter END -->
+</div><!-- containter END -->
        
-    </div><!-- Main Col END -->
-    
-	
-<!-- 탬플릿 부분(하단) -->
-</div>	
 <%@include file="../main/scriptloader.jsp" %>
 <script type="text/javascript">
 $(document).ready(function(){	
 	$("#loginAlert").hide();
+	$("#signupAlert").hide();
 	
 	//쿼리스트링 값을 Array로 가져오는 함수 
 	function getQueryStringObject() {
@@ -240,6 +268,27 @@ $(document).ready(function(){
 	
 	// 경고창 x 버튼 클릭시 경고창 사라짐
 	$("#loginAlert").click(function(){
+        $(this).hide();
+    });
+	
+	//쿼리스트링에서 로그인 값 가져옴
+	var signup= getQueryStringObject().signup;
+	
+	if(signup=="fail") {
+		//로그인 실패 - 경고 창 보여줌
+		$("#signupAlert").show();
+		$("#signupAlert").addClass("alert-danger");
+		$("#SignupText").text("회원가입에 실패했습니다");
+
+	} else if(signup=="success") {
+		//로그인 성공 - 환영 메시지 보여줌
+		$("#signupAlert").show();
+		$("#signupAlert").addClass("alert-success");
+		$("#SignupText").text("회원가입에 성공했습니다. 로그인해주세요.");
+	}
+	
+	// 경고창 x 버튼 클릭시 경고창 사라짐
+	$("#signupAlert").click(function(){
         $(this).hide();
     });
 	
