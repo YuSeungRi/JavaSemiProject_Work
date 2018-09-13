@@ -4,6 +4,15 @@
 <%@include file="../main/header.jsp"%>
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp"%>
+<%-- 
+수정일 : 2018.09.13
+수정자 : 권미현
+ - 회원검색 후 회원등급 설정 시 오류 - 해결
+ - 페이지 유지되도록 설정
+ - 관리자 등급은 수정 못 하도록 설정
+ - 레벨에 따른 등급 분류
+ 	1 : 일반 / 2 : 기업 / 9 : 관리자
+--%>
 <div class="container m-3">
 	<h1>
 		<span class="fa fa-sign-in-alt fa-fw mr-1"></span>회원관리
@@ -55,27 +64,34 @@
 							<tr>
 								<td>${UserSearch.userEmail }</td>
 								<td>${UserSearch.userNick }</td>
-								<td>${UserSearch.userLevel }</td>
+								<td> 
+									<c:choose> <%-- 레벨에 따른 등급 분류 --%>
+										<c:when test="${UserSearch.userLevel eq 1 }">일반</c:when>
+										<c:when test="${UserSearch.userLevel eq 2 }">기업</c:when>
+										<c:when test="${UserSearch.userLevel eq 9 }">관리자</c:when>
+									</c:choose>
+								</td>
 								<td>${UserSearch.cntboard }</td>
 								<td>${UserSearch.cntreply }</td>
 								<td>${UserSearch.userRegistDate }</td>
 								<td>${UserSearch.logintime }</td>
 								<td>
 									<form action="/admin/userinfoadminsearch.do" method="get">
+									<%-- 관리자 등급은 수정 못 하도록 설정(경고 무시하세요.) --%>
+									<c:choose>
+									<c:when test="${UserSearch.userEmail ne 'user99@naver.com' }">
 										<select onchange="this.form.submit()" name="level" class="custom-select">
-											<option value="1" <c:if test="${'1'==level}">selected</c:if>>${UserSearch.userLevel }</option>
-											<option value="1" <c:if test="${'1'==level}">selected</c:if>>1</option>
-											<option value="2" <c:if test="${'2'==level}">selected</c:if>>2</option>
-											<option value="3" <c:if test="${'3'==level}">selected</c:if>>3</option>
-											<option value="4" <c:if test="${'4'==level}">selected</c:if>>4</option>
-											<option value="5" <c:if test="${'5'==level}">selected</c:if>>5</option>
-											<option value="6" <c:if test="${'6'==level}">selected</c:if>>6</option>
-											<option value="7" <c:if test="${'7'==level}">selected</c:if>>7</option>
-											<option value="8" <c:if test="${'8'==level}">selected</c:if>>8</option>
-											<option value="9" <c:if test="${'9'==level}">selected</c:if>>9</option>
+									</c:when>
+									<c:when test="${UserSearch.userEmail eq 'user99@naver.com' }">
+										<select onchange="this.form.submit()" name="level" class="custom-select" disabled="disabled">
+									</c:when>
+									</c:choose> <%-- 레벨에 따른 등급 분류 --%>
+											<option value="1" <c:if test="${'1'==UserSearch.userLevel}">selected</c:if>>일반</option>
+											<option value="2" <c:if test="${'2'==UserSearch.userLevel}">selected</c:if>>기업</option>
+											<option value="9" <c:if test="${'9'==UserSearch.userLevel}">selected</c:if> hidden="hidden">관리자</option>
 										</select>
 										<input type="hidden" name="email" value="${UserSearch.userEmail }">
-										<%-- 수정일 : 2018.09.13 / 수정자 : 권미현 / 회원검색 후 회원등급 설정 시 오류 - 해결 --%>
+										<%-- 회원검색 후 회원등급 설정 시 오류 - 해결 --%>
 										<input type="hidden" name="keyFiled" value="${keyFiled }">
 										<input type="hidden" name="searchString" value="${searchString }">
 										<input type="hidden" name="curPage" value="${paging.curPage }"> <%-- 페이지 유지되도록 설정 --%>
