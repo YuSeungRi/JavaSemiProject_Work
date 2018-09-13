@@ -1011,7 +1011,7 @@ public class BoardDaoImpl implements BoardDao {
 				+ " FROM reply r"
 				+ " JOIN board b" 
 				+ " ON b.board_no = r.board_no"
-				+ " WHERE user_email(+)= ?)"
+				+ " WHERE user_email= ?)"
 				+ " WHERE rownum <= ?"; 
 
 		
