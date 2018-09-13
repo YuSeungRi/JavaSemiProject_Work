@@ -42,7 +42,7 @@
 		</form>
 
 		<div class="row justify-content-center">
-			<table class="col-md-10 table table-hover table-sm table-striped">
+			<table class="col-md-10 table table-hover table-sm table-striped mt-5">
 					<!-- 제목 -->
 					<tr>
 						<td colspan="1">제목</td><td colspan="15">${board.boardTitle }</td>
