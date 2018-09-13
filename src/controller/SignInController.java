@@ -32,9 +32,9 @@ public class SignInController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		boolean isLoggedin =  false;
+		
 		String userId = null;
 		String userNick = null;
-		String Type = null;
 		String loginType = request.getParameter("loginType");
 		
 		if( loginType != null) {
@@ -43,19 +43,65 @@ public class SignInController extends HttpServlet {
 			
 				if(request.getParameter("userEmail") != null && request.getParameter("userEmail") !="") {
 				
-					if( loginType.equals("google") ) {
-						Type = "google";
-						session.setAttribute("logType", Type);
-						
-					} else if( loginType.equals("naver") ) {
-						Type = "naver";
-						session.setAttribute("logType", Type);
-						
+					if(loginType.equals("google") ) {
+						session.setAttribute("logType", "google");
+					} else if(loginType.equals("naver") ) {
+						session.setAttribute("logType", "naver");
 					}
 					
-					isLoggedin = true;
-					userId = request.getParameter("userEmail");
-					userNick = request.getParameter("userNick");
+					user.setUserEmail( request.getParameter("userEmail") );
+					user.setUserNick( request.getParameter("userNick") );
+					user.setUserPhoto( request.getParameter("userPhoto") );
+				
+					if( !(userservice.checkEmail(user)) ) {
+						
+						int result = userservice.socialjoin(user);
+						if( result == 1) {
+							session.setAttribute("login", true);
+							System.out.println("로그인성공");
+							
+							userId = user.getUserEmail();
+							userNick = userservice.getUserNick(user);
+							
+							response.sendRedirect("/main/main.do?login=success");
+							
+						} else {
+							session.setAttribute("login", false);
+							System.out.println("로그인 실패");
+
+							response.sendRedirect("/main/main.do?login=fail");
+						}
+						
+					
+					} else {
+						System.out.println("소셜 아이디 중복");
+
+						isLoggedin = userservice.socialLogin(user);
+						
+						if(isLoggedin) {
+							session.setAttribute("login", true);
+							System.out.println("성공");
+							
+							if(request.getParameter("userPhoto") != null && request.getParameter("userPhoto") !="") {
+					            session.setAttribute("userPhoto", request.getParameter("userPhoto"));
+					         }
+							
+							userId = user.getUserEmail();
+							userNick = userservice.getUserNick(user);
+							session.setAttribute("userId", userId);
+					        session.setAttribute("userNick", userNick);
+							
+							response.sendRedirect("/main/main.do?login=success");
+							
+						} else {
+							session.setAttribute("login", false);
+							System.out.println("실패");
+							
+							response.sendRedirect("/main/main.do?login=fail");
+							
+						}
+					}
+					
 				}
 			
 			}
@@ -67,33 +113,25 @@ public class SignInController extends HttpServlet {
 			isLoggedin = userservice.login(user);
 			
 			if(isLoggedin) {
-			
+				session.setAttribute("login", true);
+				
+				if(request.getParameter("userPhoto") != null && request.getParameter("userPhoto") !="") {
+		            session.setAttribute("userPhoto", request.getParameter("userPhoto"));
+		         }
+				
 				userId = user.getUserEmail();
 				userNick = userservice.getUserNick(user);
+				session.setAttribute("userId", userId);
+		        session.setAttribute("userNick", userNick);
+		        
+				response.sendRedirect("/main/main.do?login=success");
+			} else {
+				session.setAttribute("login", false);
+				
+				response.sendRedirect("/main/main.do?login=fail");
 			}
 		}
-		
-		
-		if( isLoggedin) {
-			
-			session.setAttribute("login", true);
-			session.setAttribute("userId", userId);
-			session.setAttribute("userNick", userNick);
-			
-			if(request.getParameter("userPhoto") != null && request.getParameter("userPhoto") !="") {
-				session.setAttribute("userPhoto", request.getParameter("userPhoto"));
-			}
-			
-			System.out.println("로그인성공");
-			response.sendRedirect("/main/main.do?login=success");
-			
-		} else {
-			session.setAttribute("login", false);
-			System.out.println("로그인 실패");
 
-			response.sendRedirect("/main/main.do?login=fail");
-		}
-	
 	}
 }
 

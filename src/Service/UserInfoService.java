@@ -15,8 +15,20 @@ public class UserInfoService {
 		return dao.createUser(dto);
 	}
 	
+	public int socialjoin(UserInfoDto dto) {
+		return dao.socialcreateUser(dto);
+	}
+	
+	public boolean checkEmail(UserInfoDto dto) {
+		return dao.checkUser(dto);
+	}
+	
 	public boolean login(UserInfoDto dto) {
 		return dao.login(dto);
+	}
+	
+	public boolean socialLogin(UserInfoDto dto) {
+		return dao.socialLogin(dto);
 	}
 	
 	public UserInfoDto getUserInfo(String userEmail) {
