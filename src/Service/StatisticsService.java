@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import dao.StatisticsDao;
 import dao.StatisticsDaoImpl;
-import dto.StatisticsPostDto;
 import dto.StatisticsVisitantDto;
 
 /*
@@ -12,6 +11,10 @@ import dto.StatisticsVisitantDto;
  * 작성자 : 권미현
  * 
  *  관리자 - 통계 Service
+ *  
+ * 수정일 : 2018.09.13
+ * 수정자 : 권미현
+ *  - 계시물 수 조회 : 삭제
  */
 
 public class StatisticsService {
@@ -21,11 +24,6 @@ public class StatisticsService {
 	// 방문자 수 조회
 	public ArrayList<StatisticsVisitantDto> getVisitant(String date) {
 		return dao.getVisitant(date);
-	}
-	
-	// 게시물 수 조회
-	public ArrayList<StatisticsPostDto> getPost(String date) {
-		return dao.getPost(date);
 	}
 	
 }
