@@ -28,6 +28,13 @@
 
 </style>
 
+<%-- 수정일 : 2018.09.14 / 수정자 : 권미현 / 로그아웃 처리 되었음을 알림 --%>
+<%if(request.getAttribute("logout") != null && (boolean) request.getAttribute("logout")) { %>
+	<script type="text/javascript">
+		alert("로그아웃 되었습니다.")
+	</script>
+<%} %>
+
 <div class="container mt-1"><!-- Container start -->
 		<div id="loginAlert" class="alert alert-dismissible fade show" role="alert">
 			<span id="loginText"></span>
