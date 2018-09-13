@@ -24,11 +24,10 @@
 							<button class="btn btn-success" type="submit">검색</button>
 						</div>
 					</div>
-					<ul class="nav">
+					<ul class="nav"> <%-- 수정일 : 2018.09.13 / 수정자 : 권미현 / 정렬 처리(댓글순) 기능 삭제 --%>
 						<li class="nav-item"><a class="nav-link" href="/question/Q&A.do?curPage=${paging.curPage }&order=create">최신순</a></li>
 						<li class="nav-item"><a class="nav-link" href="/question/Q&A.do?curPage=${paging.curPage }&order=read">조회순</a></li>
 						<li class="nav-item"><a class="nav-link" href="/question/Q&A.do?curPage=${paging.curPage }&order=recommend">추천순</a></li>
-						<li class="nav-item"><a class="nav-link" href="/question/Q&A.do?curPage=${paging.curPage }&order=">댓글순</a></li>
 					</ul>
 				</div>
 			</form>
