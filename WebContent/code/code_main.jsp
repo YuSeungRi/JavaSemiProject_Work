@@ -255,6 +255,7 @@ var deleteCode = function(codeNo, categoryNo){
 		, success: function(data){
 			console.log("----success----");
 			viewList(categoryNo);
+			$("#codeDetail").empty();
 		}
 		, error : function(e){
 			console.log("----error----");

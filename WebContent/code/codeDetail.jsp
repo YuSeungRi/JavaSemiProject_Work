@@ -14,6 +14,6 @@
 <%-- 		<c:forEach items="${code.tech }" var="techName" > --%>
 <%-- 			<span class="badge badge-primary">${techName }</span> --%>
 <%-- 		</c:forEach> --%>
-		<button type="button" id="codeDelete" class="btn btn-danger btn-sm" onclick="deleteCode(${code.codeNo});">삭제</button>
+		<button type="button" id="codeDelete" class="btn btn-danger btn-sm" onclick="deleteCode(${code.codeNo}, ${code.categoryNo });">삭제</button>
 	</div>
 </div><!-- end of card -->

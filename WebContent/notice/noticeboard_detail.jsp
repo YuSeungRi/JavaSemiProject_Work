@@ -58,7 +58,22 @@
 					<tr>
 						<td colspan="16" align="left">최근 수정 시간 : ${board.boardModify }</td>
 					</tr>
-					
+					<!-- 첨부파일 -->
+					<tr>
+						<td colspan="2">첨부파일</td>
+						<td colspan="14">
+							<c:if test="${fileList eq null }" >
+								업로드한 파일이 없습니다.
+							</c:if>
+							<ul>
+								<c:if test="${fileList ne null }" >
+								<c:forEach items="${fileList }" var="file" >
+									<li><a href="/upload/${file.fileStoredName }" download>${file.fileName }</a></li>
+								</c:forEach>
+								</c:if>
+							</ul>
+						</td>
+					</tr>
 			</table>
 			
 		</div>

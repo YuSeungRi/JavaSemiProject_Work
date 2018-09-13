@@ -7,10 +7,10 @@
 <%@include file="../main/styleloader.jsp" %>
 <div class="container m-3">
 
-<%if(session.getAttribute("userNick") == null) { %>
+<%if(session.getAttribute("userNick") == null || !session.getAttribute("userNick").equals("관리자")) { %>
 	<script type="text/javascript">
-		alert("로그인 상태여야 사용 가능합니다.")
-		location.href = "/main/signin.do";
+		alert("게시글 작성 권한이 없습니다.")
+		location.href = "/notice/notice.do";
 	</script>
 <%} %>
 	<h2><i class="fas fa-pencil-alt fa-2x"></i>게시글 작성</h2>
@@ -40,7 +40,7 @@
 			<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>
 			<div class="col-sm-7">
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="file"> 
+					<input type="file" class="custom-file-input" id="file" name="file"> 
 					<label class="custom-file-label" for="file"></label>
 				</div>
 			</div>

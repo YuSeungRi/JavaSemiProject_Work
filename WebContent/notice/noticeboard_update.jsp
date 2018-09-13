@@ -13,7 +13,7 @@
 
 
 	<%-- 제목 --%>
-	<form action="/notice/update.do" method="post">
+	<form action="/notice/update.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="boardno" value="${board.boardNo }" />
 		<div class="form-group row">
 			<label for="title" class="col-sm-2 col-form-label">제목</label>
@@ -31,22 +31,25 @@
 		<%-- 업로드된 파일 --%>
 		<div class="form-group row mt-4">
 			<label for="uploadedFile" class="col-sm-3 col-form-label">저장된 파일</label>
-			<div class="card col-sm-7">
-				<div class="card-body">
-					<c:forEach items="fileList" var="file" >
-						<a href="/upload/${file.storedFile }" >${file.fileName }</a>
-						<button type="button" id="${file.fileNo }">삭제</button>
-					</c:forEach>
-				</div>
-			</div>
+			<ul class="list-group col-md-5 ">
+			<c:if test="${fileList eq null }" >
+				<li class="list-group-item"><span class="text-catuion">업로드한 파일이 없습니다.</span></li>
+			</c:if>
+			<c:if test="${fileList ne null }" >
+			<c:forEach items="${fileList }" var="file" >
+				<li class="list-group-item"><a href="/upload/${file.fileStoredName }" download>${file.fileName }</a>
+				<button class="file" type="button" value="${file.fileNo }" >삭제</button></li>
+			</c:forEach>
+			</c:if>
+			</ul>
 		</div>
-
+		
 		<%-- 파일 첨부 --%>
 		<div class="form-group row mt-4">
 			<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>
 			<div class="col-sm-7">
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="file">
+					<input type="file" class="custom-file-input" id="file" name="file">
 					 <label class="custom-file-label" for="file"></label>
 				</div>
 			</div>
@@ -64,17 +67,44 @@
 <%-- 여기에 페이지에 사용할 js를 삽입하세요. --%>
 <script type="text/javascript" src="../summernote/summernote-bs4.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#summernote').summernote({
-			height : 500
-		// 높이 500 지정
-		});
-		$("#btnUpdate").click(function() {
-			$("form").submit();	
-		});
-		$("#btnCancel").click(function() {
-			history.go(-1);
+$(document).ready(function() {
+	$('#summernote').summernote({
+		height : 500
+	// 높이 500 지정
+	});
+	$("#btnUpdate").click(function() {
+		$("#summernote").summernote("code");
+		$("form").submit();	
+	});
+	$("#btnCancel").click(function() {
+		history.go(-1);
+	});
+	//file upload 파일 이름 업데이트
+	$('.custom-file-input').on('change', function() { 
+		   var fileName = $(this).val().split('\\').pop(); 
+		   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+	});
+	
+	//file 삭제
+	$("button.file").click(function(){
+		$a = $(this);
+		$.ajax({
+			type: "post"
+			, url: "/file/delete.do"
+			, dataType: "json"
+			, data: {
+				fileNo: $(this).val()
+			}
+			, success: function(data) {
+				console.log("success");
+				$a.parent().empty();
+			}
+			, error: function(e) {
+				console.log("fail");
+				console.log(e.responseText);
+			}
 		});
 	});
+});
 </script>
 <%@include file="../main/footer.jsp"%>
