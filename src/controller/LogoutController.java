@@ -44,8 +44,10 @@ public class LogoutController extends HttpServlet {
 		
 			// 로그아웃 처리
 			request.getSession().invalidate();
-			// 메인화면으로 리다이렉트
-			response.sendRedirect("/main/main.do");
+			request.setAttribute("logout", true);; // 로그아웃 되었음을 알림 (수정일 : 2018.09.14 / 수정자 : 권미현)
+			
+			// 메인화면으로 이동(request 값 가진채로)
+			request.getRequestDispatcher("/main/main.do").forward(request, response);
 		
 		}
 	}

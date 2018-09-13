@@ -60,6 +60,8 @@ public class MainController extends HttpServlet {
 				// JSP에 전달할 MODEL 처리
 				request.setAttribute("QuestionList", QuestionList);
 				
+				// 로그아웃 처리 값 확인 (수정일 : 2018.09.14 / 수정자 : 권미현)
+//				System.out.println("MainController_logout : " + request.getAttribute("logout"));
 				
 				request.getRequestDispatcher("/main/Mainview.jsp").forward(request, response);
 				
