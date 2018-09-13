@@ -46,7 +46,7 @@
 		</div>
 		<div class="col-md-3 col-8 ">
 			<img class ="img-thumbnail img-fluid rounded float-left mb-3"
- 						src="/upload/${sessionScope.userPhoto }" id='img-upload' style="width:250px; height:300px;" />
+ 						src="/upload/${requestScope.userinfo.userPhoto }" id='img-upload' style="width:250px; height:300px;" />
 		</div>
 	</div>
 	<div>
