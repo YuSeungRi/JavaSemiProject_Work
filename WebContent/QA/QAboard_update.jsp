@@ -7,6 +7,12 @@
 <link rel="stylesheet" href="../summernote/summernote-bs4.css" />
 <%@include file="../main/styleloader.jsp"%>
 <div class="container m-3">
+<%if(session.getAttribute("userNick") == null) { %>
+	<script type="text/javascript">
+		alert("로그인 상태여야 사용 가능합니다.")
+		location.href = "/main/signin.do";
+	</script>
+<%} %>
 	<h2>
 		<i class="fas fa-pencil-alt fa-2x"></i>게시글 수정
 	</h2>
@@ -46,7 +52,7 @@
 			<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>
 			<div class="col-sm-7">
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="file">
+					<input type="file" class="custom-file-input" id="file" name="file" />
 					 <label class="custom-file-label" for="file"></label>
 				</div>
 			</div>
@@ -64,17 +70,44 @@
 <%-- 여기에 페이지에 사용할 js를 삽입하세요. --%>
 <script type="text/javascript" src="../summernote/summernote-bs4.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#summernote').summernote({
-			height : 500
-		// 높이 500 지정
-		});
-		$("#btnUpdate").click(function() {
-			$("form").submit();	
-		});
-		$("#btnCancel").click(function() {
-			history.go(-1);
+$(document).ready(function() {
+	$('#summernote').summernote({
+		height : 500
+	// 높이 500 지정
+	});
+	$("#btnUpdate").click(function() {
+		$("#summernote").summernote("code");
+		$("form").submit();	
+	});
+	$("#btnCancel").click(function() {
+		history.go(-1);
+	});
+	//file upload 파일 이름 업데이트
+	$('.custom-file-input').on('change', function() { 
+		   var fileName = $(this).val().split('\\').pop(); 
+		   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+	});
+	
+	//file 삭제
+	$("button.file").click(function(){
+		$a = $(this);
+		$.ajax({
+			type: "post"
+			, url: "/file/delete.do"
+			, dataType: "json"
+			, data: {
+				fileNo: $(this).val()
+			}
+			, success: function(data) {
+				console.log("success");
+				$a.parent().empty();
+			}
+			, error: function(e) {
+				console.log("fail");
+				console.log(e.responseText);
+			}
 		});
 	});
+});
 </script>
 <%@include file="../main/footer.jsp"%>

@@ -107,9 +107,9 @@ public class QuestionWriteController extends HttpServlet {
 			} else {
 				// java.util.UUID
 				UUID uid = UUID.randomUUID();
-				System.out.println(uid);
+//				System.out.println(uid);
 				String u = uid.toString().split("-")[0];
-				System.out.println(u);
+//				System.out.println(u);
 				
 				String fileName = item.getName();
 //				System.out.println(fileName);

@@ -40,7 +40,7 @@
 			<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>
 			<div class="col-sm-7">
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="file"> 
+					<input type="file" class="custom-file-input" id="file" name="file" /> 
 					<label class="custom-file-label" for="file"></label>
 				</div>
 			</div>
