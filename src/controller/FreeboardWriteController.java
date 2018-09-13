@@ -129,7 +129,7 @@ public class FreeboardWriteController extends HttpServlet {
 				fdto.setFileName(item.getName());
 				fdto.setFileStoredName(storedFileName);
 				fdto.setFileType(fileSplit[fileSplit.length-1]);
-				
+				System.out.println("fdto" + fdto);
 				// 파일 데이터일 경우
 				File up = new File(getServletContext().getRealPath("upload"), storedFileName);
 			

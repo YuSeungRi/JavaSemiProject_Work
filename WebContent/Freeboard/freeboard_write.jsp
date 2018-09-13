@@ -31,14 +31,14 @@
 			<label for="title" class="col-sm-2 col-form-label">제목</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" id="title" name="title"
-					placeholder="제목을 입력해주세요." required="required">
+					placeholder="제목을 입력해주세요." required="required" />
 			</div>
 		</div>
 
 
 		<%-- 내용 --%>
 		<%-- summernote_start --%>
-		<textarea id="summernote" name="summernote" required="required"></textarea>>
+		<textarea id="summernote" name="summernote" class="form-control" required="required"></textarea>>
 		
 		<br>
 		<%-- summernote_end --%>
@@ -49,7 +49,7 @@
 			<label for="file" class="col-sm-3 col-form-label">파일 첨부</label>
 			<div class="col-sm-7">
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="file"> 
+					<input type="file" class="custom-file-input" id="file" name="file"> 
 					<label class="custom-file-label" for="file"></label>
 				</div>
 			</div>
