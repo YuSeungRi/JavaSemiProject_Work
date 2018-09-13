@@ -234,6 +234,7 @@ INSERT INTO board VALUES ( 30, 'FreeBoard', '제목30', 'User30', 0, 0, TO_CHAR(
 -- DELETE FROM board WHERE board_no BETWEEN 1 AND 30;
 
 
+
 -- FreeBoard (추천수, 조회수 추가된 데이터)
 INSERT INTO board VALUES( 31, 'FreeBoard', '제목31', 'user1@naver.com', 13, 5, TO_CHAR( sysdate-4, 'YYYY-MM-DD' ), null, '내용31', 0 );
 INSERT INTO board VALUES( 32, 'FreeBoard', '제목32', 'user1@naver.com', 20, 4, TO_CHAR( sysdate-3, 'YYYY-MM-DD' ), null, '내용32', 0 );
@@ -276,6 +277,19 @@ INSERT INTO board VALUES( 68, 'FreeBoard', '제목68', 'user5@naver.com', 50, 40
 INSERT INTO board VALUES( 69, 'FreeBoard', '제목69', 'user4@naver.com', 22, 15, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용69', 0 );
 INSERT INTO board VALUES( 70, 'FreeBoard', '제목70', 'user2@naver.com', 11, 2, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용70', 0 );
 -- DELETE FROM board WHERE board_no BETWEEN 31 AND 70;
+-- 캡처용 test data
+INSERT INTO board VALUES ( 11000, 'FreeBoard', '안녕하세요', 'user1@naver.com', 15, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '안녕하세요 오늘 가입했서요', 0 );
+INSERT INTO board VALUES ( 11001, 'FreeBoard', '자유게시판입니다', 'user2@naver.com', 12, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용21', 0 );
+INSERT INTO board VALUES ( 11002, 'FreeBoard', '손흥민가즈아', 'user10@naver.com', 123, 3, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용22', 0 );
+INSERT INTO board VALUES ( 11003, 'FreeBoard', '자게엔 바른말만 씁시다', 'user3@naver.com', 562, 138, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용23', 0 );
+INSERT INTO board VALUES ( 11004, 'FreeBoard', 'ㅇㅇ', 'user4@naver.com', 3, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용24', 0 );
+INSERT INTO board VALUES ( 11005, 'FreeBoard', '너무 어려워요....ㅠㅠ', 'user8@naver.com', 44, 1, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용25', 0 );
+INSERT INTO board VALUES ( 11006, 'FreeBoard', '오늘도 로또를 샀습니다', 'user9@naver.com', 680, 82, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용26', 0 );
+INSERT INTO board VALUES ( 11007, 'FreeBoard', '이길이 맞나 의심이 들어요', 'user5@naver.com', 122, 4, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용27', 0 );
+INSERT INTO board VALUES ( 11008, 'FreeBoard', '야식추천점', 'user7@naver.com', 9, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용28', 0 );
+INSERT INTO board VALUES ( 11009, 'FreeBoard', '갓구글을 애용합시다', 'user6@naver.com', 111, 12, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용29', 0 );
+INSERT INTO board VALUES ( 11010, 'FreeBoard', '하아', 'user5@naver.com', 5, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용30', 0 );
+-- DELETE FROM board WHERE board_no BETWEEN 11000 AND 11010;
 
 
 -- NoticeBoard											
@@ -379,6 +393,20 @@ INSERT INTO board VALUES( 1097, 'NoticeBoard', '제목1097', 'user17@naver.com',
 INSERT INTO board VALUES( 1098, 'NoticeBoard', '제목1098', 'user18@naver.com', 13, 5, TO_CHAR( sysdate-4, 'YYYY-MM-DD' ), null, '내용1098', 0 );
 INSERT INTO board VALUES( 1099, 'NoticeBoard', '제목1099', 'user19@naver.com', 13, 5, TO_CHAR( sysdate-4, 'YYYY-MM-DD' ), null, '내용1099', 0 );
 -- DELETE FROM board WHERE board_no BETWEEN 1000 AND 1999; Notice
+-- 캡처용 test data
+INSERT INTO board VALUES ( 13000, 'NoticeBoard', 'Tistory 블로그 초대장 요청 관련 공지 (앞으로 해당 공지에 댓글로만 가능)', 'user1@naver.com', 15, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '안녕하세요 오늘 가입했서요', 0 );
+INSERT INTO board VALUES ( 13001, 'NoticeBoard', 'OKKYDOKKY 회원,게시글 관리 정책', 'user2@naver.com', 12, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용21', 0 );
+INSERT INTO board VALUES ( 13002, 'NoticeBoard', 'OKKYDOKKY 스팸 단어로 인한 글 등록 불가 문제 관련 공지사항', 'user10@naver.com', 123, 3, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용22', 0 );
+INSERT INTO board VALUES ( 13003, 'NoticeBoard', '비속어/욕설 계정 제재 안내', 'user3@naver.com', 562, 138, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '앞으로 일주일 후인 9월 20일부로는 욕설/비속어(영타변환 포함)가 담긴 닉네임을 가진 모든 사용자를 경고 없이 삭제 조치(계정)합니다. 혹시라도 닉네임에 욕설/비속어가 포함되어 있는 분께서는 9월 19일까지 반드시 변경하시어 계정 삭제의 피해를 보시는 일이 없도록 하시길 바랍니다.', 0 );
+INSERT INTO board VALUES ( 13004, 'NoticeBoard', 'OKKYDOKKY와 함께하는, 이것만은 꼭! 지켜요~ 맞춤법 20선', 'user4@naver.com', 3, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용24', 0 );
+INSERT INTO board VALUES ( 13005, 'NoticeBoard', '[OKKYDOKKY] 서버 업그레이드로 인한 서비스 중단(작업 완료)', 'user8@naver.com', 44, 1, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용25', 0 );
+INSERT INTO board VALUES ( 13006, 'NoticeBoard', 'OKKYDOKKY가 안전해졌습니다.', 'user9@naver.com', 680, 82, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용26', 0 );
+INSERT INTO board VALUES ( 13007, 'NoticeBoard', '[마감] OKKYDOKKY에서 국비 지원 학원에 대한 설문조사를 실시합니다!', 'user5@naver.com', 122, 4, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용27', 0 );
+INSERT INTO board VALUES ( 13008, 'NoticeBoard', 'OKKYDOKKY 국비지원 학원 설문조사 이벤트 당첨자 발표!', 'user7@naver.com', 9, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용28', 0 );
+INSERT INTO board VALUES ( 13009, 'NoticeBoard', 'OKKYDOKKY 국비 지원 학원 설문 결과 발표', 'user6@naver.com', 111, 12, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용29', 0 );
+INSERT INTO board VALUES ( 13010, 'NoticeBoard', 'OKKYDOKKY Jobs에 건의해주세요!', 'user5@naver.com', 5, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용30', 0 );
+-- DELETE FROM board WHERE board_no BETWEEN 13000 AND 13010;
+
 
 -- QuestionBoard
 INSERT INTO board VALUES( 2000, 'QuestionBoard', '제목2000', 'user20@naver.com', 13, 5, TO_CHAR( sysdate-4, 'YYYY-MM-DD' ), null, '내용2000', 0 );
@@ -482,6 +510,32 @@ INSERT INTO board VALUES( 2097, 'QuestionBoard', '제목2097', 'user7@naver.com'
 INSERT INTO board VALUES( 2098, 'QuestionBoard', '제목2098', 'user8@naver.com', 13, 5, TO_CHAR( sysdate-4, 'YYYY-MM-DD' ), null, '내용2098', 0 );
 INSERT INTO board VALUES( 2099, 'QuestionBoard', '제목2099', 'user9@naver.com', 13, 5, TO_CHAR( sysdate-4, 'YYYY-MM-DD' ), null, '내용2099', 0 );
 -- DELETE FROM board WHERE board_no BETWEEN 2000 AND 2999; Question
+-- 캡처용 test data
+INSERT INTO board VALUES ( 12000, 'QuestionBoard', '[jsp] 글목록 만들 떄 pageNum의 정체는 무엇인가요?', 'user1@naver.com', 15, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '안녕하세요 오늘 가입했서요', 0 );
+INSERT INTO board VALUES ( 12001, 'QuestionBoard', '실무에서의 Spring project', 'user2@naver.com', 12, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용21', 0 );
+INSERT INTO board VALUES ( 12002, 'QuestionBoard', '자바스크립트 정규식 문법 다시질문입니다', 'user10@naver.com', 123, 3, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용22', 0 );
+INSERT INTO board VALUES ( 12003, 'QuestionBoard', '자바스크립트 배열 초기화 질문드립니다.', 'user3@naver.com', 562, 138, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '안녕하세요!
+
+자바스크립트질문좀 드리려고합니다.
+
+var array= []; 
+
+위와 같이 배열을 선언하고 []로 초기화했을때 아래 each메서드안 콘솔이 안찍히는데,
+
+왜 each메서드를 1회조차도 실행하지 않는건가요?
+
+  $.each(array, function(){
+console.log("찍힐까?");
+
+		            }); ', 0 );
+INSERT INTO board VALUES ( 12004, 'QuestionBoard', '살려주세요', 'user4@naver.com', 3, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용24', 0 );
+INSERT INTO board VALUES ( 12005, 'QuestionBoard', '신입 연봉...괜찮나요?', 'user8@naver.com', 44, 1, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용25', 0 );
+INSERT INTO board VALUES ( 12006, 'QuestionBoard', '이것좀 알려주실분? ㅠㅠ', 'user9@naver.com', 680, 82, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용26', 0 );
+INSERT INTO board VALUES ( 12007, 'QuestionBoard', '질문입니다', 'user5@naver.com', 122, 4, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용27', 0 );
+INSERT INTO board VALUES ( 12008, 'QuestionBoard', '이 회사 어떤가요??', 'user7@naver.com', 9, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용28', 0 );
+INSERT INTO board VALUES ( 12009, 'QuestionBoard', 'AJAX 사용법에 관해서....', 'user6@naver.com', 111, 12, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용29', 0 );
+INSERT INTO board VALUES ( 12010, 'QuestionBoard', '질문좀 드릴게요', 'user5@naver.com', 5, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용30', 0 );
+-- DELETE FROM board WHERE board_no BETWEEN 12000 AND 12010;
 
 
 -- Recruit
@@ -517,7 +571,53 @@ INSERT INTO board VALUES( 4028, 'Recruit', '제목_구인구직29', 'user3@naver
 INSERT INTO board VALUES( 4029, 'Recruit', '제목_구인구직30', 'user2@naver.com', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직30', 0 );
 INSERT INTO board VALUES( 4030, 'Recruit', '제목_구인구직31', 'user4@naver.com', 0, 0, TO_CHAR( sysdate, 'YYYY-MM-DD' ), null, '내용_구인구직31', 0 );
 -- DELETE FROM board WHERE board_category='Recruit';
+-- 캡처용 test data
+INSERT INTO board VALUES ( 14000, 'Recruit', '[국회의사당역]현대캐피탈 채권 운영', 'user1@naver.com', 150, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '안녕하세요 오늘 가입했서요', 0 );
+INSERT INTO board VALUES ( 14001, 'Recruit', '[강남역] 엑스플래닛 / 모바일게임 서버개발자 모집', 'user2@naver.com', 122, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용21', 0 );
+INSERT INTO board VALUES ( 14002, 'Recruit', 'SI에서 대기업으로 Jump-! 강남에 위치한 물류/유통 대기업', 'user10@naver.com', 1230, 3, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용22', 0 );
+INSERT INTO board VALUES ( 14003, 'Recruit', '대기업_공사관리업무 개발_Java, Nexacro 경험 [ 천호동 / 중,고급 ]', 'user3@naver.com', 1562, 138, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용23', 0 );
+INSERT INTO board VALUES ( 14004, 'Recruit', '[여의도] JB 우리 캐피탈 운영', 'user4@naver.com', 3, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용24', 0 );
+INSERT INTO board VALUES ( 14005, 'Recruit', '대기업_관리업무_UI 개발_Java, 웹스퀘어 [ 수원 / 고급 ]', 'user8@naver.com', 144, 1, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용25', 0 );
+INSERT INTO board VALUES ( 14006, 'Recruit', '(영등포)관공서 웹기획 (초급)', 'user9@naver.com', 1680, 82, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용26', 0 );
+INSERT INTO board VALUES ( 14007, 'Recruit', '자바 고급 프로젝트입니다(즉시)', 'user5@naver.com', 1122, 4, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용27', 0 );
+INSERT INTO board VALUES ( 14008, 'Recruit', '(을지로)시금고 지방세 관련업무', 'user7@naver.com', 19, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용28', 0 );
+INSERT INTO board VALUES ( 14009, 'Recruit', '배달 어플 서비스 백엔드 개발 및 운영 PHP 개발', 'user6@naver.com', 3111, 12, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, 
+'프로젝트 정보
+<br>
+<br>
+담당업무
+<br>
+배달의민족 서비스와 관련된 Back-End 관리툴(PHP) 개발 및 운영<br>
+꾸준한 성장세로 개발 업무 환경도 뛰어난 회사 입니다. 
+<br>
+빠른 채용이 가능하니 많은 지원 부탁 드립니다. 
+<br>
+<br>
+지원자격
+<br>
+<br>
+PHP 개발 경력 5년 이상<br>
+MS-SQL / Linux / Apache / Nginx 에 대한 이해<br>
+Stroed Procedure / JavaScript / jQuery 개발경험<br>
+커머스, 광고 플랫폼 관련 개발 경험<br>
 
+우대사항
+<br>
+<br>
+Code Igniter framework 사용경험이 있으신 분<br>
+AWS 활용한 개발, 운영 경험이 있으신 분<br>
+형상 관리 및 코드 배포 자동화 경험 ( Git, Jenkins, Jira )<br>
+원활한 커뮤니케이션 가능자<br>
+대용량 트래픽 및 데이터 처리 경험<br>
+
+계약기간
+<br>
+3개월 (필요시 최대 6개월까지 연장 가능)<br>
+
+문의 사항 있으면 주저말고 연락주세요<br>
+감사합니다', 0 );
+INSERT INTO board VALUES ( 14010, 'Recruit', '(동대문)CJ제일제당 대리점(CJWINGS) 장류 대리점 프로세스개선', 'user5@naver.com', 25, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용30', 0 );
+-- DELETE FROM board WHERE board_no BETWEEN 14000 AND 14010;
 
 -- recruit
 INSERT INTO recruit VALUES( 4000, '구인' );
@@ -552,7 +652,19 @@ INSERT INTO recruit VALUES( 4028, '구직' );
 INSERT INTO recruit VALUES( 4029, '구직' );
 INSERT INTO recruit VALUES( 4030, '구인' );
 -- DELETE recruit;
-
+-- 캡처용 test data
+INSERT INTO recruit VALUES( 14000, '구인' );
+INSERT INTO recruit VALUES( 14001, '구인' );
+INSERT INTO recruit VALUES( 14002, '구인' );
+INSERT INTO recruit VALUES( 14003, '구인' );
+INSERT INTO recruit VALUES( 14004, '구직' );
+INSERT INTO recruit VALUES( 14005, '구인' );
+INSERT INTO recruit VALUES( 14006, '구인' );
+INSERT INTO recruit VALUES( 14007, '구인' );
+INSERT INTO recruit VALUES( 14008, '구인' );
+INSERT INTO recruit VALUES( 14009, '구인' );
+INSERT INTO recruit VALUES( 14010, '구인' );
+-- DELETE recruit;
 
 -- TechBoard
 INSERT INTO board VALUES ( 3001, 'TechBoard', '제목1', 'user1@naver.com', 0, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '아무의미없다123123123123', 0 );
@@ -585,7 +697,33 @@ INSERT INTO board VALUES ( 3027, 'TechBoard', '제목27', 'user7@naver.com', 0, 
 INSERT INTO board VALUES ( 3028, 'TechBoard', '제목28', 'user8@naver.com', 0, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용28', 0 );
 INSERT INTO board VALUES ( 3029, 'TechBoard', '제목29', 'user9@naver.com', 0, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용29', 0 );
 INSERT INTO board VALUES ( 3030, 'TechBoard', '제목30', 'user10@naver.com', 0, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용30', 0 );
---DELETE FROM board WHERE board_category='TechBoard'; 
+--DELETE FROM board WHERE board_category='TechBoard';
+-- 캡처용 test data
+INSERT INTO board VALUES ( 15000, 'TechBoard', 'Higher-Order Function이란 무엇인가', 'user1@naver.com', 115, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '안녕하세요 오늘 가입했서요', 0 );
+INSERT INTO board VALUES ( 15001, 'TechBoard', '15일간 무선랜 기술로 벌어지는 회사원들의 이야기', 'user2@naver.com', 12, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용21', 0 );
+INSERT INTO board VALUES ( 15002, 'TechBoard', '[펌] 소프트웨어 합성 Index 및 번역후기', 'user10@naver.com', 1123, 3, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용22', 0 );
+INSERT INTO board VALUES ( 15003, 'TechBoard', 'Spring Boot, JBoss Infinispan을 이용한 분산 캐시 적용하기', 'user3@naver.com', 562, 138, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '앞으로 일주일 후인 9월 20일부로는 욕설/비속어(영타변환 포함)가 담긴 닉네임을 가진 모든 사용자를 경고 없이 삭제 조치(계정)합니다. 혹시라도 닉네임에 욕설/비속어가 포함되어 있는 분께서는 9월 19일까지 반드시 변경하시어 계정 삭제의 피해를 보시는 일이 없도록 하시길 바랍니다.', 0 );
+INSERT INTO board VALUES ( 15004, 'TechBoard', '웹크롤링 기능에 최적화된 페이지 개발툴을 소개합니다', 'user4@naver.com', 30, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용24', 0 );
+INSERT INTO board VALUES ( 15005, 'TechBoard', '[펌] Clean Code PHP - 한글판', 'user8@naver.com', 144, 1, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용25', 0 );
+INSERT INTO board VALUES ( 15006, 'TechBoard', '[펌] 블록체인 생태계 플레이어(Player)들 간의 역할 지도', 'user9@naver.com', 680, 82, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용26', 0 );
+INSERT INTO board VALUES ( 15007, 'TechBoard', 'Android + Firebase 예제 (게시판)', 'user5@naver.com', 122, 4, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용27', 0 );
+INSERT INTO board VALUES ( 15008, 'TechBoard', '[펌] MQL - Node.js 데이터베이스 쿼리 빌더', 'user7@naver.com', 119, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용28', 0 );
+INSERT INTO board VALUES ( 15009, 'TechBoard', '[펌] 이더리움 Geth 클라이언트 코드로 이해하는 Go', 'user6@naver.com', 111, 12, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, '내용29', 0 );
+INSERT INTO board VALUES ( 15010, 'TechBoard', '메이븐에 MyBatis Generator 설정하기!', 'user5@naver.com', 5, 0, TO_CHAR( sysdate,  'YYYY-MM-DD' ), null, 
+'JOOQ codegen을 설정하다가 MyBatis generator에 관심이 생겨서 설정해보았습니다.<br><br>
+
+
+
+단순하게 테이블과 컬럼에 대한 DTO를 뽑아내는 정도로만 사용해도 꽤 괜찮을 것 같아서, 공유합니다.<br><br>
+
+
+
+감사합니다.<br><br>
+
+
+
+Using MyBatis generator in Maven ', 0 );
+-- DELETE FROM board WHERE board_no BETWEEN 15000 AND 15010;
 
 
 -- userinfo
@@ -718,7 +856,6 @@ INSERT INTO "project" VALUES( 16 , 2 ,'프로젝트명16', TO_CHAR( sysdate, 'YY
 INSERT INTO "project" VALUES( 17 , 3 ,'프로젝트명17', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용17', 10 ,'user7@naver.com');
 INSERT INTO "project" VALUES( 18 , 4 ,'프로젝트명18', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용18', 10 ,'user8@naver.com');
 -- DELETE FROM "project";
-
 
 -- tech
 INSERT INTO tech VALUES( 1 ,'JAVA');
