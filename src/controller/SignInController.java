@@ -51,28 +51,9 @@ public class SignInController extends HttpServlet {
 					user.setUserEmail( request.getParameter("userEmail") );
 					user.setUserNick( request.getParameter("userNick") );
 					user.setUserPhoto( request.getParameter("userPhoto") );
-				
-					if( !(userservice.checkEmail(user)) ) {
+					//System.out.println(userservice.checkEmail(user));
+					if(userservice.checkEmail(user) ) {
 						
-						int result = userservice.socialjoin(user);
-						if( result == 1) {
-							session.setAttribute("login", true);
-							System.out.println("로그인성공");
-							
-							userId = user.getUserEmail();
-							userNick = userservice.getUserNick(user);
-							
-							response.sendRedirect("/main/main.do?login=success");
-							
-						} else if(userservice.checkEmail(user) ) {
-							session.setAttribute("login", false);
-							System.out.println("로그인 실패");
-
-							response.sendRedirect("/main/main.do?login=fail");
-						}
-						
-					
-					} else {
 						System.out.println("소셜 아이디 중복");
 
 						isLoggedin = userservice.socialLogin(user);
@@ -99,6 +80,30 @@ public class SignInController extends HttpServlet {
 							response.sendRedirect("/main/main.do?login=fail");
 							
 						}
+						
+						
+					
+					} else {
+						
+						int result = userservice.socialjoin(user);
+						if( result == 1) {
+							session.setAttribute("login", true);
+							System.out.println("로그인성공");
+							
+							userId = user.getUserEmail();
+							userNick = userservice.getUserNick(user);
+							session.setAttribute("userId", userId);
+					        session.setAttribute("userNick", userNick);
+							
+							response.sendRedirect("/main/main.do?login=success");
+							
+						} else {
+							session.setAttribute("login", false);
+							System.out.println("로그인 실패");
+
+							response.sendRedirect("/main/main.do?login=fail");
+						}
+						
 					}
 					
 				}

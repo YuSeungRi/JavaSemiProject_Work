@@ -193,7 +193,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	@Override
 	public boolean checkUser(UserInfoDto dto) {
 		boolean result = false;
-		
+		int num = 0;
 		conn = DBConn.getConnection();
 		
 		String query =" SELECT COUNT(*) FROM USERINFO "
@@ -204,9 +204,13 @@ public class UserInfoDaoImpl implements UserInfoDao {
 			
 			ps.setString(1, dto.getUserEmail());
 			 
-			ps.executeUpdate();
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				num = rs.getInt(1);
+			}
 			
-			result = true;
+			if(num>0)
+				result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -218,9 +222,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 				e.printStackTrace();
 			}
 		}
-		
 		return result;
-		
 	}
 
 	@Override
