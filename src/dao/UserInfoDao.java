@@ -17,6 +17,13 @@ public interface UserInfoDao {
 	public boolean login(UserInfoDto dto);
 	
 	/**
+	 * Compare Login input data and Database 
+	 * @param userEmail
+	 * @return 1: login success, 0: login fail
+	 */
+	public boolean socialLogin(UserInfoDto dto);
+	
+	/**
 	 * Create new user 
 	 * @param dto
 	 * @return 1: create success, 0: create fail
@@ -24,11 +31,27 @@ public interface UserInfoDao {
 	public int createUser(UserInfoDto dto);
 	
 	/**
+	 * Create new user 
+	 * @param dto
+	 * @return 1: create success, 0: create fail
+	 */
+	public int socialcreateUser(UserInfoDto dto);
+	
+	/**
 	 * Change userPassword 
 	 * @param userEmail
 	 * @param newPassword
 	 * @return 1: password change success, 0: password change fail
 	 */
+	
+	
+	public boolean checkUser(UserInfoDto dto);
+	/*
+	 * Check userEmail
+	 * @param userEmail
+	 * @return false: userEmail not exist true: userEmail exist
+	 * */
+	
 	public boolean pwChange(String userEmail, String newPassword);
 	
 	/**

@@ -12,7 +12,7 @@
     <img src="../img/logo1.png" width="90" height="40" alt="logo" class="d-inline-block align-top">
   </a>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav navbar-hover ">
+    <ul class="navbar-nav navbar-hover">
       <li class="nav-item dropdown d-sm-block d-md-none">
 			<a class="dropdown-item" href="/main/main.do">홈</a>
             <a class="dropdown-item" href="/notice/notice.do">공지사항</a>
@@ -115,6 +115,7 @@
 <!--                 <small>OPTIONS</small> -->
             </li>
             <!-- /END Separator -->
+            
              <a href="/project/project.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-project-diagram fa-fw mr-3"></span>

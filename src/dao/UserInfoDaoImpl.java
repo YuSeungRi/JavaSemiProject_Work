@@ -63,6 +63,52 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		
 		return result;
 	}
+	
+	@Override
+	public boolean socialLogin(UserInfoDto dto) {
+		
+		boolean result = false;
+		
+		conn = DBConn.getConnection();
+		
+		String query = "SELECT COUNT(*) FROM userInfo" 
+				+ " WHERE user_email = ? ";
+		
+		String afterQuery = "INSERT INTO login_log(user_email, login_time, login_result) VALUES ("
+				+ " ?,"	//1. user_email
+				+ " sysdate," //2. login_time
+				+ " ?)";//3. login_result
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, dto.getUserEmail());
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				if(rs.getInt(1)>0) result = true;
+				else result = false;
+			}
+			//afterQuery : logging
+			ps = conn.prepareStatement(afterQuery);
+			ps.setString(1, dto.getUserEmail());
+			ps.setString(2, result?"Success":"Fail");
+			ps.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
 
 	@Override
 	public int createUser(UserInfoDto dto) {
@@ -76,7 +122,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 				+ " ?," // 3. user_pw
 				+ " '1'," // 4. user_level
 				+ " SYSDATE," // 5. user_registDate
-				+ " 'ddd'," // 6. user_intro
+				+ " 'new'," // 6. user_intro
 				+ " 'mm1.jpg'" // 7. user_photo
 				+ " )";
 		
@@ -102,6 +148,79 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		}
 		
 		return result;
+	}
+	
+	
+	@Override
+	public int socialcreateUser(UserInfoDto dto) {
+		int result = 0;
+		
+		conn = DBConn.getConnection();
+		
+		String query = "INSERT INTO userInfo VALUES ("
+				+ " ?," // 1. user_email
+				+ " ?," // 2. user_nick
+				+ " '1234'," // 3. user_Pw 
+				+ " '1'," // 4. user_level
+				+ " SYSDATE," // 5. user_registDate
+				+ " 'new'," // 6. user_intro
+				+ " 'mm1.jpg'" // 7. user_photo
+				+ " )";
+		
+		try {
+			ps = conn.prepareStatement(query);
+
+			ps.setString(1, dto.getUserEmail());
+			ps.setString(2, dto.getUserNick());
+
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public boolean checkUser(UserInfoDto dto) {
+		boolean result = false;
+		
+		conn = DBConn.getConnection();
+		
+		String query =" SELECT COUNT(*) FROM USERINFO "
+				+ " WHERE USER_EMAIL = ? ";//1. userEmail
+		
+		try {
+			ps = conn.prepareStatement(query);
+			
+			ps.setString(1, dto.getUserEmail());
+			 
+			ps.executeUpdate();
+			
+			result = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+		
 	}
 
 	@Override

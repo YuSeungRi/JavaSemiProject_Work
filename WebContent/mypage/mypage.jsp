@@ -20,7 +20,7 @@
 
 				<tr>
 					<td>닉네임</td>
-					<td>${sessionScope.userNick }</td>
+					<td>${requestScope.userinfo.userNick }</td>
 				</tr>
 
 				<tr>
