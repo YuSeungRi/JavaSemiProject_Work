@@ -28,7 +28,7 @@
 		</div>		
 		
 	
-	<div class="row"><!-- first row start -->
+	<div class="row mt-5"><!-- first row start -->
 	
 	<div class="col-lg-6"><!-- board1 start -->
         
