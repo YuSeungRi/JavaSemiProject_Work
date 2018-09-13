@@ -50,7 +50,7 @@ public class BoardDaoImpl implements BoardDao {
 				+ " 	B.board_tech,"
 				+ " 	U.user_nick"
 				+ " FROM board B, userInfo U"
-				+ " WHERE B.board_user = U.user_email AND board_no=?"; // 1. no
+				+ " WHERE B.board_user = U.user_email(+) AND board_no=?"; // 1. no
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -333,7 +333,7 @@ public class BoardDaoImpl implements BoardDao {
 					+ " 		B.board_tech,"
 					+ "			U.user_nick"
 					+ "        FROM board B, userInfo U" 
-					+ "        WHERE B.board_user = U.user_email AND board_category=?" // 1. category
+					+ "        WHERE B.board_user = U.user_email(+) AND board_category=?" // 1. category
 					+ "        ORDER BY board_create DESC, board_no DESC" +
 					"    ) B" + 
 					"    ORDER BY rnum" + 
@@ -358,7 +358,7 @@ public class BoardDaoImpl implements BoardDao {
 					+ " 		B.board_tech,"
 					+ "			U.user_nick"
 					+ "        FROM board B, userInfo U" 
-					+ "        WHERE B.board_user = U.user_email AND board_category=?" // 1. category
+					+ "        WHERE B.board_user = U.user_email(+) AND board_category=?" // 1. category
 					+ "        ORDER BY board_read DESC, board_no DESC" +
 					"    ) B" 
 					+ "    ORDER BY rnum" 
@@ -383,7 +383,7 @@ public class BoardDaoImpl implements BoardDao {
 					+ " 		B.board_tech,"
 					+ "			U.user_nick"
 					+ "        FROM board B, userInfo U" 
-					+ "        WHERE B.board_user = U.user_email AND board_category=?" // 1. category
+					+ "        WHERE B.board_user = U.user_email(+) AND board_category=?" // 1. category
 					+ "        ORDER BY board_recommend DESC, board_no DESC" 
 					+ "    ) B" 
 					+ "    ORDER BY rnum" 
@@ -448,7 +448,7 @@ public class BoardDaoImpl implements BoardDao {
 						+ " board_category,"
 						+ " board_title,"
 						+ " board_user,"
-						+ " (SELECT user_nick FROM userInfo WHERE user_email=board.board_user) board_nick,"
+						+ " (SELECT user_nick FROM userInfo WHERE user_email(+)=board.board_user) board_nick,"
 						+ " board_read,"
 						+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
 						+ " board_create,"
@@ -474,7 +474,7 @@ public class BoardDaoImpl implements BoardDao {
 						+ " board_category,"
 						+ " board_title,"
 						+ " board_user,"
-						+ " (SELECT user_nick FROM userInfo WHERE user_email=board.board_user) board_nick,"
+						+ " (SELECT user_nick FROM userInfo WHERE user_email(+)=board.board_user) board_nick,"
 						+ " board_read,"
 						+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
 						+ " board_create,"
@@ -500,7 +500,7 @@ public class BoardDaoImpl implements BoardDao {
 						+ " board_category,"
 						+ " board_title,"
 						+ " board_user,"
-						+ " (SELECT user_nick FROM userInfo WHERE user_email=board.board_user) board_nick,"
+						+ " (SELECT user_nick FROM userInfo WHERE user_email(+)=board.board_user) board_nick,"
 						+ " board_read,"
 						+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
 						+ " board_create,"
@@ -706,7 +706,7 @@ public class BoardDaoImpl implements BoardDao {
 				+ " 		B.board_tech,"
 				+ "			U.user_nick"	
 				+ "        FROM board B, userInfo U" 
-				+ "        WHERE B.board_user = U.user_email AND board_category = ? ORDER BY board_no DESC) " // 1. categoryName
+				+ "        WHERE B.board_user = U.user_email(+) AND board_category = ? ORDER BY board_no DESC) " // 1. categoryName
 				+ " WHERE rownum <= ? "; // 2. listnum
 		
 		try {
@@ -836,7 +836,7 @@ public class BoardDaoImpl implements BoardDao {
 				+ " board_category,"
 				+ " board_title,"
 				+ " board_user,"
-				+ " (SELECT user_nick FROM userInfo WHERE user_email=board.board_user) board_nick,"
+				+ " (SELECT user_nick FROM userInfo WHERE user_email(+)=board.board_user) board_nick,"
 				+ " board_read,"
 				+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
 				+ " board_create,"
@@ -907,7 +907,7 @@ public class BoardDaoImpl implements BoardDao {
 					+ " board_category,"
 					+ " board_title,"
 					+ " board_user,"
-					+ " (SELECT user_nick FROM userInfo WHERE user_email=board.board_user) board_nick,"
+					+ " (SELECT user_nick FROM userInfo WHERE user_email(+)=board.board_user) board_nick,"
 					+ " board_read,"
 					+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
 					+ " board_create,"
@@ -931,7 +931,7 @@ public class BoardDaoImpl implements BoardDao {
 					+ " board_category,"
 					+ " board_title,"
 					+ " board_user,"
-					+ " (SELECT user_nick FROM userInfo WHERE user_email=board.board_user) board_nick,"
+					+ " (SELECT user_nick FROM userInfo WHERE user_email(+)=board.board_user) board_nick,"
 					+ " board_read,"
 					+ " (SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) board_recommend,"
 					+ " board_create,"
@@ -1011,7 +1011,7 @@ public class BoardDaoImpl implements BoardDao {
 				+ " FROM reply r"
 				+ " JOIN board b" 
 				+ " ON b.board_no = r.board_no"
-				+ " WHERE user_email= ?)"
+				+ " WHERE user_email(+)= ?)"
 				+ " WHERE rownum <= ?"; 
 
 		

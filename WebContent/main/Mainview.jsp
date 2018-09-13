@@ -60,8 +60,14 @@
 							<td>
 								<a href="/Freeboard/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardUser }</td>
-							
+							<c:choose >
+								<c:when test="${loginType eq null }">
+								<td>${board.boardNick }</td>
+								</c:when>
+								<c:when test="${loginType ne null }">
+								<td>${board.boardUser }</td>
+								</c:when>
+							</c:choose>
 							<td>${board.boardRead }</td>
 							<td>${board.boardRecommend }</td>
 						</tr>
@@ -103,7 +109,12 @@
 							<td>
 								<a href="/notice/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardUser }</td>
+							<c:if test="${loginType eq null }">
+								<td>${board.boardNick }</td>
+							</c:if>	
+							<c:if test="${loginType ne null }">
+								<td>${board.boardUser }</td>
+							</c:if>
 							<td>${board.boardRead }</td>
 							<td>${board.boardRecommend }</td>
 						</tr>
@@ -149,7 +160,12 @@
 							<td>
 								<a href="/recruit/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardUser }</td>
+							<c:if test="${loginType eq null }">
+								<td>${board.boardNick }</td>
+							</c:if>	
+							<c:if test="${loginType ne null }">
+								<td>${board.boardUser }</td>
+							</c:if>
 							<td>${board.boardRead }</td>
 							<td>${board.boardRecommend }</td>
 						</tr>
@@ -191,7 +207,12 @@
 							<td>
 								<a href="/question/detail.do?boardno=${board.boardNo }">${board.boardTitle }</a>
 							</td>
-							<td>${board.boardUser }</td>
+							<c:if test="${loginType eq null }">
+								<td>${board.boardNick }</td>
+							</c:if>	
+							<c:if test="${loginType ne null }">
+								<td>${board.boardUser }</td>
+							</c:if>
 							<td>${board.boardRead }</td>
 							<td>${board.boardRecommend }</td>
 						</tr>

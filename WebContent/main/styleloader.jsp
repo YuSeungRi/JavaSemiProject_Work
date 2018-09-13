@@ -22,8 +22,6 @@
             <a class="dropdown-item" href="/tech/tech.do">기술동향</a>
             <a class="dropdown-item" href="/project/project.do">프로젝트</a>
             <hr>
-            <a class="dropdown-item" href="/Education/edu.do">교육자료</a>
-            <hr>
             <a class="dropdown-item" href="/code/code.do">코드</a>
             <hr>
            <c:if test="${sessionScope.login eq true }" >
@@ -122,12 +120,6 @@
 <!--                 <small>OPTIONS</small> -->
             </li>
             <!-- /END Separator -->
-            <a href="/Education/edu.do" class="list-group-item list-group-item-action bg-warning">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-graduation-cap fa-fw mr-3"></span>
-                    <span class="menu-collapsed">교육자료</span>    
-                </div>
-            </a>
             <a href="/code/code.do" class="list-group-item list-group-item-action bg-warning">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-code fa-fw mr-3"></span>
