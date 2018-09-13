@@ -53,7 +53,8 @@ code게시판 Main
 						<th hidden="true">
 						<th>Title</th>
 						<th>Language</th>
-						<th>설명</th>
+						<th>Contenet</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -74,6 +75,7 @@ code게시판 Main
 <%-- 								}%> --%>
 <!-- 							</td> -->
 							<td>${code.codeContent }</td>
+							<td class="text-center"><button onclick="deleteCode(${code.codeNo},${code.categoryNo })" name="${code.codeNo}" class="btn btn-sm btn-transparent"><span>&times;</span></button></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -244,7 +246,7 @@ var viewDetail = function(codeNo) {
 };
 
 //Ajax for delete a code
-var deleteCode = function(codeNo){
+var deleteCode = function(codeNo, categoryNo){
 	$.ajax({
 		type:"post"
 		, url: "/code/delete.do"
@@ -252,8 +254,7 @@ var deleteCode = function(codeNo){
 		, dataType: "text"
 		, success: function(data){
 			console.log("----success----");
-			$("#codeDetail").empty();
-			console.log(data);
+			viewList(categoryNo);
 		}
 		, error : function(e){
 			console.log("----error----");

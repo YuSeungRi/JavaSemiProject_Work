@@ -10,6 +10,7 @@
 			<th>Language</th>
 <!-- 			<th>Tech</th> -->
 			<th>Content</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -30,6 +31,7 @@
 <%-- 					}%> --%>
 <!-- 				</td> -->
 				<td>${code.codeContent}</td>
+				<td class="text-center"><button onclick="deleteCode(${code.codeNo},${code.categoryNo })" name="${code.codeNo}" class="btn btn-sm btn-transparent"><span>&times;</span></button></td>
 			</tr>
 		</c:forEach>
 	</tbody>
