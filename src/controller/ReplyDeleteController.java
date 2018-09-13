@@ -56,7 +56,10 @@ public class ReplyDeleteController extends HttpServlet {
 			reController = "notice";
 		} else if (category.equals("QuestionBoard")) {
 			reController = "question";
-		} // TODO 나머지 게시판들도 리다이렉트 설정해주세요!
+		} else if (category.equals("TechBoard")) {
+			reController = "tech";			
+		}
+		// TODO 나머지 게시판들도 리다이렉트 설정해주세요!
 		
 //		System.out.println("ReplyDeleteController_category : " + category);
 //		System.out.println("ReplyDeleteController_reController : " + reController);
