@@ -24,8 +24,8 @@ public class UserInfoSearch extends HttpServlet {
 		
 		String newLevel = request.getParameter("level");
 		String userEmail = request.getParameter("email");
-		System.out.println("level ="+newLevel);
-		System.out.println("userEmail ="+userEmail);
+//		System.out.println("level ="+newLevel);
+//		System.out.println("userEmail ="+userEmail);
 		String param = request.getParameter("curPage");
 		String searchString = request.getParameter("searchString");
 		String keyfiled = request.getParameter("keyFiled");
@@ -39,8 +39,8 @@ public class UserInfoSearch extends HttpServlet {
 		int totalCount = uisv.getTotal(); // DB에서 회원들의 숫자를 가져옴
 		
 		// 회원 등급설정
-		System.out.println("searchString = "+searchString);
-		System.out.println("keyfiled = "+keyfiled);
+//		System.out.println("searchString = "+searchString);
+//		System.out.println("keyfiled = "+keyfiled);
 		
 		if(keyfiled.equals("userEmail")==true) {
 			
@@ -58,6 +58,14 @@ public class UserInfoSearch extends HttpServlet {
 			request.setAttribute("totalSearchCount", totalSearchCount);
 			request.setAttribute("UserSearchList", UserSearchList);
 			request.setAttribute("paging", paging);
+			
+			// 수정일 : 2018.09.13 / 수정자 : 권미현 / 회원검색 후 회원등급 설정 시 오류 - 해결
+			// --- 검색값 유지 ---
+			request.setAttribute("keyFiled", keyfiled);
+			request.setAttribute("searchString", searchString);
+//			System.out.println("if_searchString = "+searchString);
+//			System.out.println("if_keyfiled = "+keyfiled);
+			// ---------------
 
 			request.getRequestDispatcher("/admin/userinfoadmin_search.jsp").forward(request, response);
 		
@@ -77,12 +85,16 @@ public class UserInfoSearch extends HttpServlet {
 			request.setAttribute("UserSearchList", UserSearchList);
 			request.setAttribute("paging", paging);
 			
+			// 수정일 : 2018.09.13 / 수정자 : 권미현 / 회원검색 후 회원등급 설정 시 오류 - 해결
+			// --- 검색값 유지 ---
+			request.setAttribute("keyFiled", keyfiled);
+			request.setAttribute("searchString", searchString);
+//			System.out.println("if_searchString = "+searchString);
+//			System.out.println("if_keyfiled = "+keyfiled);
+			// ---------------
+			
 			request.getRequestDispatcher("/admin/userinfoadmin_search.jsp").forward(request, response);
 		}
-		
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 
