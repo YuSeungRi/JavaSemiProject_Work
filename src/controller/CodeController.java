@@ -21,9 +21,8 @@ public class CodeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if( session.getAttribute("login").equals(false) || session.getAttribute("userId") == null ) {
-			//TODO: 에러 페이지로 리다이렉트, if문 수정 
-			response.sendRedirect("/main/main.do?login=fail"); 
+		if( session.getAttribute("login") == null  || session.getAttribute("login").equals("fail") ) {
+				response.sendRedirect("/main/main.do?login=fail"); 
 		}
 		String userEmail = session.getAttribute("userId").toString();
 		

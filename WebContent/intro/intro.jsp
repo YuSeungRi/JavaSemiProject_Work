@@ -196,7 +196,7 @@
             	Intro페이지, Q&A, 공지사항 게시판 작업<br><br>
             	이번 프로젝트에 참가한 조원 배창환 입니다.<br>
             	프론트 쪽으로는 아는것이 거의 없었는데<br>
-            	이번에 많이 알게되서 좋은 경험이 되었습니다.<br>
+            	이번에 많이 알게되서 좋은 경험이 되었습니
             	<a href="mailto:sindy6639@naver.com">
             	<img src="http://www.cnplugins.com/uploads/crximage/201511/www.cnplugins.com_gobamlfhmmmpbeiolmgeoebfciogcpoa_logo.jpg" width="40" height="40"/>
             	</a>

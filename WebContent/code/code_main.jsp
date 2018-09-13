@@ -53,7 +53,7 @@ code게시판 Main
 						<th hidden="true">
 						<th>Title</th>
 						<th>Language</th>
-						<th>Tech</th>
+						<th>설명</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -64,22 +64,23 @@ code게시판 Main
 							<td hidden="true">${code.codeNo }</td>
 							<td>${code.codeTitle }</td>
 							<td>${code.language }</td>
-							<td>
-								<c:set var="items" value="${code.tech }" />
-								<%if(pageContext.getAttribute("items") instanceof ArrayList<?>){
-									ArrayList<?> arrStr = (ArrayList<?>)pageContext.getAttribute("items"); 
-									for(Object tech: arrStr) {%>
-										<span class="badge badge-primary"><%=tech %></span>
-								<%	} 
-								}%>
-							</td>
+<!-- 							<td> -->
+<%-- 								<c:set var="items" value="${code.tech }" /> --%>
+<%-- 								<%if(pageContext.getAttribute("items") instanceof ArrayList<?>){ --%>
+<%--//  									ArrayList<?> arrStr = (ArrayList<?>)pageContext.getAttribute("items");--%> 
+<%-- 									for(Object tech: arrStr) {%> --%>
+<%-- 										<span class="badge badge-primary"><%=tech %></span> --%>
+<%-- 								<%	}  --%>
+<%-- 								}%> --%>
+<!-- 							</td> -->
+							<td>${code.codeContent }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div><!-- end of code list -->
 	</div><!-- end of first row -->
-	<div class="row mt-3 justify-content-center">
+	<div class="row my-3 justify-content-center">
 		<div class="col-sm-11">
 			<div id="codeDetail" class="card">
 				<div class="card-header d-flex justify-content-between align-items-center">
@@ -106,9 +107,9 @@ public static Connection getConnection() {
 				</div>
 				<div class="card-footer text-muted">
 					<p id="code_content" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<span class="badge badge-primary">Java</span>
-					<span class="badge badge-primary">Oracle</span>
-					<span class="badge badge-primary">JSP/Servlet</span>
+<!-- 					<span class="badge badge-primary">Java</span> -->
+<!-- 					<span class="badge badge-primary">Oracle</span> -->
+<!-- 					<span class="badge badge-primary">JSP/Servlet</span> -->
 				</div>
 			</div><!-- end of card -->
 		</div><!-- end of col -->
@@ -167,7 +168,7 @@ var viewList = function(categoryNo) {
 	});
 }
 
-// Ajax for Add category : TODO - 모달에서 값 받아서 전달하기 
+// Ajax for Add category
 var addCategory = function() {
 	var categoryName = $("#newCategory").val();
 	$.ajax({
@@ -240,8 +241,26 @@ var viewDetail = function(codeNo) {
 			console.log(e.responseText);
 		}
 	});
-}
+};
 
+//Ajax for delete a code
+var deleteCode = function(codeNo){
+	$.ajax({
+		type:"post"
+		, url: "/code/delete.do"
+		, data: { "codeNo" : codeNo }
+		, dataType: "text"
+		, success: function(data){
+			console.log("----success----");
+			$("#codeDetail").empty();
+			console.log(data);
+		}
+		, error : function(e){
+			console.log("----error----");
+			console.log(e.responseText);
+		}
+	});
+};
 
 //copy to clipboard
 var copyToClipboard = function() {

@@ -7,7 +7,9 @@
 			<th>#</th>
 			<th hidden="true">
 			<th>Title</th>
-			<th>Tech</th>
+			<th>Language</th>
+<!-- 			<th>Tech</th> -->
+			<th>Content</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,15 +19,17 @@
 				<td><%=++idx %></td>
 				<td hidden="true">${code.codeNo }</td>
 				<td>${code.codeTitle }</td>
-				<td>
-					<c:set var="items" value="${code.tech }" />
-					<%if(pageContext.getAttribute("items") instanceof ArrayList<?>){
-						ArrayList<?> arrStr = (ArrayList<?>)pageContext.getAttribute("items"); 
-						for(Object tech: arrStr) {%>
-							<span class="badge badge-primary"><%=tech %></span>
-					<%	} 
-					}%>
-				</td>
+				<td>${code.language }</td>
+<!-- 				<td> -->
+<%-- 					<c:set var="items" value="${code.tech }" /> --%>
+<%-- 					<%if(pageContext.getAttribute("items") instanceof ArrayList<?>){ --%> 
+<%--// 						ArrayList<?> arrStr = (ArrayList<?>)pageContext.getAttribute("items"); --%> 
+<%-- 						for(Object tech: arrStr) {%> --%>
+<%-- 							<span class="badge badge-primary"><%=tech %></span> --%>
+<%-- 					<%	}  --%>
+<%-- 					}%> --%>
+<!-- 				</td> -->
+				<td>${code.codeContent}</td>
 			</tr>
 		</c:forEach>
 	</tbody>

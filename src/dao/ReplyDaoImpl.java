@@ -36,7 +36,7 @@ public class ReplyDaoImpl implements ReplyDao {
 				"    R.reply_content," + 
 				"    U.user_nick" + 
 				" FROM reply R" + 
-				"  JOIN userInfo U" + 
+				" OUTER JOIN userInfo U" + 
 				"    USING(user_email)" + 
 				" WHERE R.board_no=?" +
 				" ORDER BY R.reply_no DESC"; // 1. no

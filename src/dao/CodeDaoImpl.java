@@ -90,18 +90,18 @@ public class CodeDaoImpl implements CodeDao {
 	public ArrayList<CodeDto> getCodeList(int categoryNo, String userEmail) {
 		ArrayList<CodeDto> dtos = new ArrayList<>();
 		CodeDto dto = null;
-		ArrayList<String> arrTech = null;
+//		ArrayList<String> arrTech = null;
 		
 		String sql = "SELECT * FROM code WHERE category_no = ? AND user_email =? ";
-		String afterSql = "SELECT B.tech_name" + 
-				" FROM code A, (" + 
-				"    SELECT  C.*, T.TECH_NAME" + 
-				"    FROM code_tech C, tech T" + 
-				"    WHERE C.tech_no = T.tech_no" + 
-				"    AND C.code_no = ?" + 
-				"    ) B " + 
-				" WHERE A.code_no = B.code_no" + 
-				" AND A.category_no = ?";
+//		String afterSql = "SELECT B.tech_name" + 
+//				" FROM code A, (" + 
+//				"    SELECT  C.*, T.TECH_NAME" + 
+//				"    FROM code_tech C, tech T" + 
+//				"    WHERE C.tech_no = T.tech_no" + 
+//				"    AND C.code_no = ?" + 
+//				"    ) B " + 
+//				" WHERE A.code_no = B.code_no" + 
+//				" AND A.category_no = ?";
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -119,16 +119,16 @@ public class CodeDaoImpl implements CodeDao {
 				dto.setUserEmail(rs.getString("user_email"));
 				dto.setLanguage(rs.getString("language"));
 				
-				ps = conn.prepareStatement(afterSql);
-				ps.setInt(1, dto.getCodeNo());
-				ps.setInt(2, categoryNo);
-				rs2 = ps.executeQuery();
-				arrTech = new ArrayList<>();
-				
-				while(rs2.next()) {
-					arrTech.add(rs2.getString("tech_name"));
-				}
-				dto.setTech(arrTech);
+//				ps = conn.prepareStatement(afterSql);
+//				ps.setInt(1, dto.getCodeNo());
+//				ps.setInt(2, categoryNo);
+//				rs2 = ps.executeQuery();
+//				arrTech = new ArrayList<>();
+//				
+//				while(rs2.next()) {
+//					arrTech.add(rs2.getString("tech_name"));
+//				}
+//				dto.setTech(arrTech);
 				
 				dtos.add(dto);
 			}
@@ -150,14 +150,14 @@ public class CodeDaoImpl implements CodeDao {
 
 	@Override
 	public ArrayList<CodeDto> getCodeList(String userEmail) {
+		String sql = "SELECT * FROM code WHERE user_email =? ";
 		
 		ArrayList<CodeDto> dtos = new ArrayList<>();
 		CodeDto dto = null;
 		
-		ArrayList<String> arrTech = null;
-		String sql = "SELECT * FROM code WHERE user_email =? ";
-		String afterSql = "SELECT T.tech_name FROM code_tech C, tech T WHERE C.tech_no = T.tech_no AND"
-				+ " C.code_no = ? ";
+//		ArrayList<String> arrTech = null;
+//		String afterSql = "SELECT T.tech_name FROM code_tech C, tech T WHERE C.tech_no = T.tech_no AND"
+//				+ " C.code_no = ? ";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, userEmail);
@@ -173,16 +173,16 @@ public class CodeDaoImpl implements CodeDao {
 				dto.setUserEmail(rs.getString("user_email"));
 				dto.setLanguage(rs.getString("language"));
 				
-				ps = conn.prepareStatement(afterSql);
-				ps.setInt(1, dto.getCodeNo());
-				rs2 = ps.executeQuery();
-				arrTech = new ArrayList<>();
-				
-				while(rs2.next()) {
-					arrTech.add(rs2.getString("tech_name"));
-				}
-				
-				dto.setTech(arrTech);
+//				ps = conn.prepareStatement(afterSql);
+//				ps.setInt(1, dto.getCodeNo());
+//				rs2 = ps.executeQuery();
+//				arrTech = new ArrayList<>();
+//				
+//				while(rs2.next()) {
+//					arrTech.add(rs2.getString("tech_name"));
+//				}
+//				
+//				dto.setTech(arrTech);
 				
 				dtos.add(dto);
 			}
@@ -246,11 +246,11 @@ public class CodeDaoImpl implements CodeDao {
 	@Override
 	public CodeDto getCode(int codeNo) {
 		String sql = "SELECT * FROM code WHERE code_no = ?";
-		String afterSql = "SELECT T.tech_name FROM code_tech C, tech T WHERE C.tech_no = T.tech_no AND"
-				+ " C.code_no = ? ";
+//		String afterSql = "SELECT T.tech_name FROM code_tech C, tech T WHERE C.tech_no = T.tech_no AND"
+//				+ " C.code_no = ? ";
 		
 		CodeDto dto = null;
-		ArrayList<String> arrTech = null;
+//		ArrayList<String> arrTech = null;
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, codeNo);
@@ -266,15 +266,15 @@ public class CodeDaoImpl implements CodeDao {
 				dto.setUserEmail(rs.getString("user_email"));
 				dto.setLanguage(rs.getString("language"));
 				
-				ps = conn.prepareStatement(afterSql);
-				ps.setInt(1, codeNo);
-				rs2 = ps.executeQuery();
-				arrTech= new ArrayList<>();
+//				ps = conn.prepareStatement(afterSql);
+//				ps.setInt(1, codeNo);
+//				rs2 = ps.executeQuery();
+//				arrTech= new ArrayList<>();
 				
-				while(rs2.next()) {
-					arrTech.add(rs2.getString("tech_name"));
-				}
-				dto.setTech(arrTech);
+//				while(rs2.next()) {
+//					arrTech.add(rs2.getString("tech_name"));
+//				}
+//				dto.setTech(arrTech);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -366,5 +366,123 @@ public class CodeDaoImpl implements CodeDao {
 		}
 
 		return result;
+	}
+
+	@Override
+	public int getCatgoryNo(String inputCategory, String userEmail) {
+		String sql = "SELECT category_no FROM code_category"
+				+ " WHERE category_name = ?" //1.inputCategory
+				+ " AND user_email = ?"; //2.userEmail
+		
+		int result = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, inputCategory);
+			ps.setString(2, userEmail);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt("category_no");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) ps.close();
+				if (rs != null) rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public int setNewCode(CodeDto cdto) {
+		String sql = "INSERT INTO code (code_no, category_no, code_title, code_content, code_source, user_email, language) "
+				+ " VALUES (code_seq.nextval, "
+				+ " ?," // 1.category_no
+				+ " ?," // 2.code_title
+				+ " ?," // 3.code_content
+				+ " ?," // 4.code_source
+				+ " ?," // 5.user_email
+				+ " ?)"; //6.language
+		String afterSql = "SELECT code_seq.currval FROM dual";
+		int result = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, cdto.getCategoryNo());
+			ps.setString(2, cdto.getCodeTitle());
+			ps.setString(3, cdto.getCodeContent());
+			ps.setString(4, cdto.getCodeSource());
+			ps.setString(5, cdto.getUserEmail());
+			ps.setString(6, cdto.getLanguage());
+			
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(afterSql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
+	@Override
+	public void setTech(CodeDto cdto, int codeNo) {
+		String sql = "INSERT code_tech(code_no, tech_no) VALUES (?, ?)"; 
+		
+		ArrayList<String> techs = cdto.getTech();
+		
+		try {
+			for(String str : techs) {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, codeNo);
+				ps.setString(2, str);
+				ps.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void deleteCode(int codeNo) {
+		String sql = "DELETE FROM code WHERE code_no = ?"; 
+	
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, codeNo);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 }

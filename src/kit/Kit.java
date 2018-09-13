@@ -28,13 +28,21 @@ public class Kit {
 	}
 	
 	/**
+	 * Parsing Source text to KitData Object
+	 * @param sourceText
+	 */
+	public Kit(String sourceText) {
+		kitParser(sourceText);
+	}
+	
+	/**
 	 * Parsing Source file to KitData Object
 	 * @param source
 	 */
 	public Kit(File source) {
 
-		String strFile = fileToString(source);
-		kitParser(strFile);
+		String sourceText = fileToString(source);
+		kitParser(sourceText);
 
 	}
 	
@@ -42,7 +50,6 @@ public class Kit {
 	private String fileToString(File source) {
 		
 		String filePath = source.getAbsolutePath();
-		System.out.println(filePath);
 	    StringBuilder contentBuilder = new StringBuilder();
 	    try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8)) {
 	    	
@@ -54,12 +61,12 @@ public class Kit {
 	    return contentBuilder.toString();
 	}
 	
-	private void kitParser(String readfile) {
+	private void kitParser(String sourceText) {
 		boolean codeContinue = false;
 		String code = "";
 		pasredCode = new ArrayList<>();
 		
-		String[] splitStr = readfile.split("\n");
+		String[] splitStr = sourceText.split("\n");
 		for(String s : splitStr) {
 			//split kit tags 
 			String[] kitbits = s.split("@kit:");
@@ -108,7 +115,6 @@ public class Kit {
 					if(kitbits[0].length()>0) {
 						code += kitbits[0];
 						code +="\n";
-						System.out.println("1"+ code); 
 					}
 				} 
 			}

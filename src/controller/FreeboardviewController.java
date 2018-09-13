@@ -24,6 +24,7 @@ public class FreeboardviewController extends HttpServlet {
 	private BoardService boardservice = new BoardService();
 	private ReplyService 	rsvc = 		new ReplyService();
 	private FileService 	fsvc = 		new FileService();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String param = request.getParameter("boardno");
 		

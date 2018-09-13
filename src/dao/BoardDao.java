@@ -166,4 +166,11 @@ public interface BoardDao {
 	 */
 	public ArrayList<ReplyDto> getMyReply(String Email, int listnum);
 	
+	/*
+	 * 소셜로그인 댓글, 글 작성 
+	 * @param
+	 * @return 
+	 * 
+	 */
+	
 }
