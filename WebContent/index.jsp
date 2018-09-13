@@ -22,8 +22,8 @@
 	}
 	
 	.col-lg-4 , .col-md-6  {
-		padding: 0;
-		margin: 0;
+		padding: 2;
+		margin: 2;
 	}
 	
 	p {

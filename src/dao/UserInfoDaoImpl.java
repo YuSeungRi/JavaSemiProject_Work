@@ -160,7 +160,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		String query = "INSERT INTO userInfo VALUES ("
 				+ " ?," // 1. user_email
 				+ " ?," // 2. user_nick
-				+ " '1234'," // 3. user_Pw 
+				+ " ''," // 3. user_Pw 
 				+ " '1'," // 4. user_level
 				+ " SYSDATE," // 5. user_registDate
 				+ " 'new'," // 6. user_intro
