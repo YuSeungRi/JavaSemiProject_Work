@@ -89,16 +89,38 @@
 			<a href="/project/project.do" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">목록으로</a>
 			
-			<!-- 글쓴사람만 수정 삭제 버튼 보이게 구현 -->	
-			<a href="/project/projectUpdate.do?projectno=${project.projectNo }" class="btn btn-secondary btn-sm active mr-1"
-			role="button" aria-pressed="true">수정</a>
-			
-			<a href="/project/projectDelete.do?projectno=${project.projectNo }" class="btn btn-secondary btn-sm active mr-1"
-			role="button" aria-pressed="true">삭제</a>
+			<c:choose>
+				<c:when test="${userId eq project.projectLead }">
+					<a href="/project/projectUpdate.do?projectno=${project.projectNo }"
+						class="btn btn-secondary btn-sm active mr-1" role="button"
+						aria-pressed="true">수정</a>
+
+					<a href="/project/projectDelete.do?projectno=${project.projectNo }"
+						class="btn btn-secondary btn-sm active mr-1" role="button"
+						aria-pressed="true">삭제</a>
+						
+				</c:when>
+				<%-- 모든 게시물은 관리자가 삭제할 수 있게끔 설정 --%>
+				<c:when test="${userId eq 'user99@naver.com' }">
+					<a href="/project/projectDelete.do?projectno=${project.projectNo }"
+						class="btn btn-secondary btn-sm active mr-1" role="button"
+						aria-pressed="true">삭제</a>
+				</c:when>
+			</c:choose>			
 			
 			<c:if test="${login }">
 			<button id="btnParticipate" type="button" class="btn btn-secondary btn-sm active">참가하기</button>
-			</c:if>			
+			</c:if>							
+			<!-- 글쓴사람만 수정 삭제 버튼 보이게 구현	 -->
+<%-- 			<a href="/project/projectUpdate.do?projectno=${project.projectNo }" class="btn btn-secondary btn-sm active mr-1" --%>
+<!-- 			role="button" aria-pressed="true">수정</a> -->
+			
+<%-- 			<a href="/project/projectDelete.do?projectno=${project.projectNo }" class="btn btn-secondary btn-sm active mr-1" --%>
+<!-- 			role="button" aria-pressed="true">삭제</a> -->
+			
+<%-- 			<c:if test="${login }"> --%>
+<!-- 			<button id="btnParticipate" type="button" class="btn btn-secondary btn-sm active">참가하기</button> -->
+<%-- 			</c:if>			 --%>
 
 		</div>
 
