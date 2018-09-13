@@ -88,8 +88,7 @@
 
 		series : [ {
 			name : '방문자',
-			data : visitant
-		// data 갯수에 따라 포인트가 달라짐
+			data : visitant // data 갯수에 따라 포인트가 달라짐
 		} ],
 
 		responsive : {
