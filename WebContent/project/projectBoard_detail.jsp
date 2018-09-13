@@ -144,7 +144,7 @@
 			.text("참가하기");
 	}
 	
-	// 추천 버튼 클릭 이벤트 처리
+	// 참가 버튼 클릭 이벤트 처리
 	$("#btnParticipate").click(function() {
 		
 		$.ajax({
@@ -158,17 +158,17 @@
 					console.log("success");
 				console.log(data);
 				
-				//추천 버튼 색상 변경
+				//참가 버튼 색상 변경
 				$("#btnParticipate")
 					.toggleClass("btn-primary")
 					.toggleClass("btn-danger");
 	
-				//추천수 갱신
+				//참가자수 갱신
 				$("#participate").text(data.participate);
 				
 				location.reload();
 				
-				//추천 버튼 텍스트 변경
+				//참가 버튼 텍스트 변경
 				if(data.result) {
 					$("#btnParticipate").text("참가 취소");
 				} else {
