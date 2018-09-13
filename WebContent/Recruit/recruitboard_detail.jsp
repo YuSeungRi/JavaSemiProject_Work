@@ -7,6 +7,13 @@
 <link rel="stylesheet" href="../css/Main.css" />
 <%@include file="../main/styleloader.jsp" %>
 <%-- 작성일 : 2018.09.03 / 작성자 : 권미현 / 구인구직 상세(내용) 조회 --%>
+<%--
+ 수정일 : 2018.09.13
+ 수정자 : 권미현
+  - 작성자가 일반 회원인지 소셜 회원인지에 따른 처리
+  - 모든 게시물은 관리자가 삭제할 수 있게끔 설정
+  - 모든 댓글은 관리자가 삭제할 수 있게끔 설정
+ --%>
 <div class="container m-3">
 	<h2>
 		<i class="far fa-comments fa-lg"></i>구인구직 상세조회
@@ -70,14 +77,23 @@
 			<a href="/recruit/recruit.do" class="btn btn-secondary btn-sm active mr-1"
 			role="button" aria-pressed="true">목록으로</a>
 		
-			<%-- 수정일 : 2018.09.04 / 수정자 : 권미현 / ${userNick eq board.boardUser } → ${userId eq board.boardUser } 변경 --%>
-			<c:if test="${userId eq board.boardUser }">	
-				<a href="/recruit/update.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
-				role="button" aria-pressed="true">수정</a>
-			
-				<a href="/recruit/delete.do?boardno=${board.boardNo }" class="btn btn-secondary btn-sm active mr-1"
-				role="button" aria-pressed="true">삭제</a>
-			</c:if>
+			<c:choose>
+				<c:when test="${userId eq board.boardUser }">
+					<a href="/notice/update.do?boardno=${board.boardNo }"
+						class="btn btn-secondary btn-sm active mr-1" role="button"
+						aria-pressed="true">수정</a>
+
+					<a href="/notice/delete.do?boardno=${board.boardNo }"
+						class="btn btn-secondary btn-sm active mr-1" role="button"
+						aria-pressed="true">삭제</a>
+				</c:when>
+				<%-- 모든 게시물은 관리자가 삭제할 수 있게끔 설정 --%>
+				<c:when test="${userId eq 'user99@naver.com' }">
+					<a href="/notice/delete.do?boardno=${board.boardNo }"
+						class="btn btn-secondary btn-sm active mr-1" role="button"
+						aria-pressed="true">삭제</a>
+				</c:when>
+			</c:choose>
 		</div>
 		<%-- 수정일 : 2018.09.08 / 수정자 : 권미현 / 댓글 기능 추가 --%>
 		<!-- 댓글 입력 영역  -->
@@ -120,7 +136,7 @@
 					<c:forEach items="${replyList}" var="reply">
 						<li class="list-group-item">
 							<div class="d-flex w-100 justify-contents-between">
-								<%-- 수정일 : 2018.09.13 / 수정자 : 권미현 / 작성자가 일반 회원인지 소셜 회원인지에 따른 처리  --%>
+								<%-- 작성자가 일반 회원인지 소셜 회원인지에 따른 처리  --%>
 								<c:choose>
 									<c:when test="${reply.userNick ne null }"> <%-- 작성자가 일반 회원일 경우, Nick으로 처리 --%>
 										<small>작성자 : ${reply.userNick }, 작성일 : ${reply.replyCreate } &nbsp</small>
@@ -129,7 +145,9 @@
 										<small>작성자 : ${reply.userEmail }, 작성일 : ${reply.replyCreate } &nbsp</small>
 									</c:when>
 								</c:choose>
-								<c:if test="${userId eq reply.userEmail }">
+								<%-- 모든 댓글은 관리자가 삭제할 수 있게끔 설정 --%>
+								<c:if test="${userId eq reply.userEmail || userId eq 'user99@naver.com' }">
+									<%-- 수정일 : 2018.09.07 / 수정자 : 권미현 / <button> → <a> 로 변경, 링크 연결 --%>
 									<small>
 										<a href="/reply/delete.do?replyno=${reply.replyNo }&boardno=${board.boardNo }" style="color: red;">삭제</a>
 									</small>
