@@ -10,6 +10,10 @@ import dto.StatisticsVisitantDto;
  * 작성자 : 권미현
  * 
  *  관리자 - 통계 DAO
+ *  
+ * 수정일 : 2018.09.13
+ * 수정자 : 권미현
+ *  - 통계 : 게시물(getPost) 메소드 삭제
  */
 
 public interface StatisticsDao {
@@ -22,10 +26,4 @@ public interface StatisticsDao {
 	 */
 	public ArrayList<StatisticsVisitantDto> getVisitant(String date);
 	
-	/**
-	 * 게시물 수 조회
-	 * @param date
-	 * @return ArrayList<StatisticsPostDto>
-	 */
-	public ArrayList<StatisticsPostDto> getPost(String date);
 }

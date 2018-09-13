@@ -7,9 +7,9 @@
  작성자 : 권미현
   관리자 페이지_통계
   
- 수정일 : 2018.09.12
+ 수정일 : 2018.09.13
  수정자 : 권미현
-  - 관리자 페이지_통계 : 방문자 - 완료
+  - 관리자 페이지_통계 : 게시물 삭제
  --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../main/header.jsp"%>
@@ -37,26 +37,6 @@
 		</div>
 		<div class="col-md-1"></div>
 	</div>
-	<br><br><br>
-	<%-- 
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10">
-			<div class="row">
-				<label class="col-form-label">게시물 수</label>
-				<div class="col-md-6">
-					<select name="post" class="custom-select">
-						<option value="day">일별</option>
-						<option value="week">주간별</option>
-						<option value="month">월별</option>
-					</select>
-				</div>
-			</div>
-			<div id="postChart">게시물 통계</div>
-		</div>
-		<div class="col-md-1"></div>
-	</div>
-	 --%>
 </div>
 <%@include file="../main/scriptloader.jsp"%>
 
@@ -129,56 +109,6 @@
 
 	});
 
-/*
-	Highcharts.chart('postChart', {
-
-		title : {
-			text : '게시물 통계'
-		},
-
-		yAxis : {
-			title : {
-				text : '게시물 수'
-			}
-		},
-		legend : {
-			layout : '게시물',
-			align : 'right',
-			verticalAlign : 'middle'
-		},
-
-		plotOptions : {
-			series : {
-				label : {
-					connectorAllowed : false
-				},
-				pointStart : 1
-			}
-		},
-
-		series : [ {
-			name : '게시물',
-			data : [ 5, 20, 23, 18, 13, 3, 30, 41 ]
-		// data 갯수에 따라 포인트가 달라짐
-		} ],
-
-		responsive : {
-			rules : [ {
-				condition : {
-					maxWidth : 500
-				},
-				chartOptions : {
-					legend : {
-						layout : 'horizontal',
-						align : 'center',
-						verticalAlign : 'bottom'
-					}
-				}
-			} ]
-		}
-
-	});
- */	
 </script>
 
 <script type="text/javascript">

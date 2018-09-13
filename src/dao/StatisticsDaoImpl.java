@@ -19,9 +19,9 @@ import dto.StatisticsVisitantDto;
  * 
  *  관리자 - 통계 DAO(구현)
  *  
- * 수정일 : 2018.09.12
+ * 수정일 : 2018.09.13
  * 수정자 : 권미현
- *  - 통계 : 방문자(getVisitant) - 완료
+ *  - 통계 : 게시물(getPost) 메소드 삭제
  */
 
 public class StatisticsDaoImpl implements StatisticsDao {
@@ -153,12 +153,6 @@ public class StatisticsDaoImpl implements StatisticsDao {
 		}
 		
 		return list;
-	}
-
-	@Override
-	public ArrayList<StatisticsPostDto> getPost(String date) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
