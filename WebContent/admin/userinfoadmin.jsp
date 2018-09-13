@@ -27,8 +27,7 @@
 								<option value="userNick"
 									<c:if test="${'usernick'==keyFiled }"> selected</c:if>>닉네임</option>
 							</select> 
-							<input type="text" class="text-sm form-control" placeholder="내용을입력하세요" aria-label=""
-								aria-describedby="basic-addon1" name="searchString" required>
+							<input type="text" class="text-sm form-control" placeholder="내용을입력하세요" name="searchString" required>
 							<div class="input-group-append">
 								<button class="btn btn-success" type="submit">검색</button>
 							</div>
