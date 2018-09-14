@@ -10,6 +10,8 @@
 	margin: 10;
 }
 
+
+/*
 .table .text {
   position: relative;
 }
@@ -18,14 +20,39 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 0; 
+  right: 0; 
 }
 .text:before {
   content: '';
   display: inline-block;
 }
+*/
 
+/*
+div { 
+	width: 150px;
+	height: 150px;
+	overflow: scroll;
+}
+*/
+/*
+div td {
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+  position: absolute;
+
+}
+*/
+/*
+div td {
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
+ }
+ */
 </style>
 
 <%-- 수정일 : 2018.09.14 / 수정자 : 권미현 / 로그아웃 처리 되었음을 알림 --%>
@@ -65,6 +92,7 @@
 		
 			<table class="table table-hover table-bordered table-sm ">
 				<thead>
+				
 					<tr class="table-active">
 						<th><i class="fab fa-slack-hash fa-sm"></i></th>
 						<th>작성일</th>
@@ -215,7 +243,7 @@
 					<tr class="table-active">
 						<th><i class="fab fa-slack-hash fa-sm"></i></th>
 						<th>작성일</th>
-						<th>작성자</th>
+						<th>제목</th>
 						<th><i class="fas fa-pen fa-sm"></i></th>
 						<th><i class="fas fa-eye fa-sm"></i></th>
 						<th><i class="far fa-thumbs-up fa-sm"></i></th>
