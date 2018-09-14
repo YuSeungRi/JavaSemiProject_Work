@@ -857,6 +857,44 @@ INSERT INTO "project" VALUES( 17 , 3 ,'프로젝트명17', TO_CHAR( sysdate, 'YY
 INSERT INTO "project" VALUES( 18 , 4 ,'프로젝트명18', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용18', 10 ,'user8@naver.com');
 -- DELETE FROM "project";
 
+-- TO_CHAR( '2018-09-01','YYYY-MM-DD' ), TO_CHAR( '2019-01-02','YYYY-MM-DD' )
+-- 캡처용 test data
+INSERT INTO "project" VALUES( 15009 , 9 ,'통신사 음성총량제 프로젝트 인원 모집합니다', TO_CHAR( sysdate-100,'YYYY-MM-DD' ), TO_CHAR( sysdate+100,'YYYY-MM-DD' ),'d', 10 ,'user9@naver.com');
+INSERT INTO "project" VALUES( 15010 , 10 ,'cj헬로비전 sm프로젝트 인원 모집합니다(상암동 고급 자바)', TO_CHAR( sysdate,'YYYY-MM-DD' ), TO_CHAR( sysdate,'YYYY-MM-DD' ),'프로젝트 내용10', 10 ,'user10@naver.com');
+INSERT INTO "project" VALUES( 15011 , 11 ,'(광화문)대림산업 통합건설정보 구축 프로젝트', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용11', 10 ,'user1@naver.com');
+INSERT INTO "project" VALUES( 15012 , 12 ,'자바 고급 프로젝트입니다(즉시)', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용12', 10 ,'user2@naver.com');
+INSERT INTO "project" VALUES( 15013 , 13 ,'[을지로] Java 고급 개발자님 모십니다. (SI, 6개월)', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용13', 10 ,'user3@naver.com');
+INSERT INTO "project" VALUES( 15014 , 14 ,'(동양생명)프로젝트(3개월) 중급 프리랜서', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용14', 10 ,'user4@naver.com');
+INSERT INTO "project" VALUES( 15015 , 1 ,'(구로)CJ오쇼핑 프로모션 프로젝트', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용15', 10 ,'user5@naver.com');
+INSERT INTO "project" VALUES( 15016 , 2 ,'(여의도)KB국민은행 WM(자산관리) 프로젝트', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용16', 10 ,'user6@naver.com');
+INSERT INTO "project" VALUES( 15017 , 3 ,'프로젝트명28', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용17', 10 ,'user7@naver.com');
+INSERT INTO "project" VALUES( 15018 , 4 ,'프로젝트명29', TO_CHAR( sysdate, 'YYYY-MM-DD' ), TO_CHAR( sysdate, 'YYYY-MM-DD' ),'프로젝트 내용18', 10 ,'user8@naver.com');
+-- DELETE FROM "project";
+-- test data
+INSERT INTO project_tech VALUES( 15009 , 11 );
+INSERT INTO project_tech VALUES( 15010 , 12 );
+INSERT INTO project_tech VALUES( 15011 , 13 );
+INSERT INTO project_tech VALUES( 15012 , 14 );
+INSERT INTO project_tech VALUES( 15013 , 15 );
+INSERT INTO project_tech VALUES( 15014 , 16 );
+INSERT INTO project_tech VALUES( 15015 , 1 );
+INSERT INTO project_tech VALUES( 15016 , 2 );
+INSERT INTO project_tech VALUES( 15017 , 3 );
+INSERT INTO project_tech VALUES( 15018 , 3 );
+--DELETE FROM tech;
+-- test data
+INSERT INTO project_tech VALUES( 15009 , 1 );
+INSERT INTO project_tech VALUES( 15010 , 2 );
+INSERT INTO project_tech VALUES( 15011 , 3 );
+INSERT INTO project_tech VALUES( 15012 , 4 );
+INSERT INTO project_tech VALUES( 15013 , 5 );
+INSERT INTO project_tech VALUES( 15014 , 6 );
+INSERT INTO project_tech VALUES( 15015 , 7 );
+INSERT INTO project_tech VALUES( 15016 , 8 );
+INSERT INTO project_tech VALUES( 15017 , 9 );
+INSERT INTO project_tech VALUES( 15018 , 10 );
+--DELETE FROM tech;
+
 -- tech
 INSERT INTO tech VALUES( 1 ,'JAVA');
 INSERT INTO tech VALUES( 2 ,'C++');
