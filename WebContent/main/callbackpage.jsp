@@ -28,7 +28,7 @@
 		var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "Tv6l_wHgo3oV3Xfm7PE8",
-				callbackUrl: "http://localhost:8088/main/callbackpage.jsp",
+				callbackUrl: "http://192.168.20.242:8088/main/callbackpage.jsp",
 				isPopup: true,
 				callbackHandle: true
 				/* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
@@ -68,7 +68,7 @@
 				}
 			});
 			
-			window.opener.location.replace("http://localhost:8088/main/callbackpage.jsp");    //부모창 reload
+			window.opener.location.replace("http://192.168.20.242:8088/main/callbackpage.jsp");    //부모창 reload
 			window.close();
 			
 		});
