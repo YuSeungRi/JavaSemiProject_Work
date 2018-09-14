@@ -46,13 +46,13 @@ div td {
 
 }
 */
-/*
+
 div td {
  white-space:nowrap;
  overflow:hidden;
  text-overflow:ellipsis;
  }
- */
+
 </style>
 
 <%-- 수정일 : 2018.09.14 / 수정자 : 권미현 / 로그아웃 처리 되었음을 알림 --%>
@@ -90,16 +90,16 @@ div td {
 		<a href="/Freeboard/free.do" class="badge badge-warning badge-pill">더보기</a>
 		</div>
 		
-			<table class="table table-hover table-bordered table-sm ">
+			<table class="table table-hover table-bordered table-sm " style="table-layout:fixed; width:100%;">
 				<thead>
 				
 					<tr class="table-active">
-						<th><i class="fab fa-slack-hash fa-sm"></i></th>
-						<th>작성일</th>
-						<th>제목</th>
-						<th><i class="fas fa-pen fa-sm"></i></th>
-						<th><i class="fas fa-eye fa-sm"></i></th>
-						<th><i class="far fa-thumbs-up fa-sm"></i></th>
+						<th width="10%"><i class="fab fa-slack-hash fa-sm"></i></th>
+						<th width="16%">작성일</th>
+						<th width="50%">제목</th>
+						<th width="10%"><i class="fas fa-pen fa-sm"></i></th>
+						<th width="7%"><i class="fas fa-eye fa-sm"></i></th>
+						<th width="7%"><i class="far fa-thumbs-up fa-sm"></i></th>
 					</tr>
 				</thead>
 				
@@ -140,15 +140,15 @@ div td {
 		<a href="/notice/notice.do" class="badge badge-warning badge-pill">더보기</a>
 		</div>
 	
-			<table class="table table-hover table-bordered table-sm">
+			<table class="table table-hover table-bordered table-sm" style="table-layout:fixed; width:100%;">
 				<thead>
 					<tr class="table-active">
-						<th><i class="fab fa-slack-hash fa-sm"></i></th>
-						<th>작성일</th>
-						<th>제목</th>
-						<th><i class="fas fa-pen fa-sm"></i></th>
-						<th><i class="fas fa-eye fa-sm"></i></th>
-						<th><i class="far fa-thumbs-up fa-sm"></i></th>
+						<th width="10%"><i class="fab fa-slack-hash fa-sm"></i></th>
+						<th width="16%">작성일</th>
+						<th width="50%">제목</th>
+						<th width="10%"><i class="fas fa-pen fa-sm"></i></th>
+						<th width="7%"><i class="fas fa-eye fa-sm"></i></th>
+						<th width="7%"><i class="far fa-thumbs-up fa-sm"></i></th>
 					</tr>
 				</thead>
 				
@@ -191,15 +191,15 @@ div td {
 		<a href="/recruit/recruit.do" class="badge badge-warning badge-pill">더보기</a>
 		</div>
 		
-			<table class="table table-hover table-bordered table-sm">
+			<table class="table table-hover table-bordered table-sm" style="table-layout:fixed; width:100%;">
 				<thead>
 					<tr class="table-active">
-						<th><i class="fab fa-slack-hash fa-sm"></i></th>
-						<th>작성일</th>
-						<th>제목</th>
-						<th><i class="fas fa-pen fa-sm"></i></th>
-						<th><i class="fas fa-eye fa-sm"></i></th>
-						<th><i class="far fa-thumbs-up fa-sm"></i></th>
+						<th width="10%"><i class="fab fa-slack-hash fa-sm"></i></th>
+						<th width="16%">작성일</th>
+						<th width="50%">제목</th>
+						<th width="10%"><i class="fas fa-pen fa-sm"></i></th>
+						<th width="7%"><i class="fas fa-eye fa-sm"></i></th>
+						<th width="7%"><i class="far fa-thumbs-up fa-sm"></i></th>
 					</tr>
 				</thead>
 				
@@ -238,15 +238,15 @@ div td {
 		<a href="/question/Q&A.do" class="badge badge-warning badge-pill">더보기</a>
 		</div>
 		
-			<table class="table table-hover table-bordered table-sm">
+			<table class="table table-hover table-bordered table-sm" style="table-layout:fixed; width:100%;">
 				<thead>
 					<tr class="table-active">
-						<th><i class="fab fa-slack-hash fa-sm"></i></th>
-						<th>작성일</th>
-						<th>제목</th>
-						<th><i class="fas fa-pen fa-sm"></i></th>
-						<th><i class="fas fa-eye fa-sm"></i></th>
-						<th><i class="far fa-thumbs-up fa-sm"></i></th>
+						<th width="10%"><i class="fab fa-slack-hash fa-sm"></i></th>
+						<th width="16%">작성일</th>
+						<th width="50%">제목</th>
+						<th width="10%"><i class="fas fa-pen fa-sm"></i></th>
+						<th width="7%"><i class="fas fa-eye fa-sm"></i></th>
+						<th width="7%"><i class="far fa-thumbs-up fa-sm"></i></th>
 					</tr>
 				</thead>
 				
