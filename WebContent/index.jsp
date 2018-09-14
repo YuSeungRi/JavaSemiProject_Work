@@ -15,13 +15,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     
 <style type="text/css">
+
 	#myVideo {
 		position: fixed;
 		right: 0;
 		bottom: 0;
 	}
 	
-	.col-lg-4 , .col-md-6  {
+	.col-lg-4, .col-md-6 {
 		padding: 2;
 		margin: 2;
 	}
@@ -79,7 +80,6 @@
 		    </div>
 	    </div>
 
-
         <div class="row my-5">
           <div class="col-md-6 text-md-right mt-5">
             <h1>자유게시판</h1>
@@ -133,7 +133,7 @@
             <h3>유승리</h3>
             <p>  
             	웹개발 응용SW 엔지니어 양성과정 12회차<br>
-            	Intro페이지, Q&A, 공지사항 게시판 작업<br><br>
+            	프로젝트 게시판, 자유게시판 추천수, 조회수<br><br>
             	이번 프로젝트의 조장을 맡은 유승리 입니다!<br> 
 				프로젝트에서 배운점을 바탕으로 발전하는<br>
 				개발자가 되고싶습니다 화이팅!<br>
@@ -148,7 +148,7 @@
             <h3>정지훈</h3>
             <p>  
             	웹개발 응용SW 엔지니어 양성과정 12회차<br>
-            	Intro페이지, Q&A, 코드 게시판 작업<br><br>
+            	프로토 타입 제작 , DB 설계, 코드 게시판,<br> 첨부파일 기능<br><br>
             	살려줘<br>
             	<a href="mailto:jihoonys82@gmail.com">
             	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" width="30" height="30"/>
@@ -161,7 +161,7 @@
             <h3>안희민</h3>
             <p>  
             	웹개발 응용SW 엔지니어 양성과정 12회차<br>
-            	Intro페이지, Q&A, 공지사항 게시판 작업<br><br>
+            	전체검색 기능, 게시판별 검색기능, 기술동향 게시판, 페이지네이션<br><br>
             	프로젝트의 조원으로 참여한 안희민입니다 <br>
             	이번 프로젝트로 인해 많은걸 배울 수 있었고,<br>
             	부족한 부분을 많이 알 수 있었습니다.<br>
@@ -177,7 +177,7 @@
             <h3>한상근</h3>
             <p>  
             	웹개발 응용SW 엔지니어 양성과정 12회차<br>
-            	Intro페이지, Q&A, 공지사항 게시판 작업<br><br>
+            	세션로그인, 마이페이지, 회원정보수정, 회원관리,<br> 회원가입 <br><br>
             	안녕하세요 오키도키 조원 한상근입니다.<br> 
             	이번 프로젝트를 통해서 많은것을 배울수 있어서<br>
             	 참 좋았습니다. 앞으로도 노력하여 좋은<br>
@@ -193,10 +193,10 @@
             <h3>배창환</h3>
             <p> 
             	웹개발 응용SW 엔지니어 양성과정 12회차<br>
-            	Intro페이지, Q&A, 공지사항 게시판 작업<br><br>
+            	intro페이지, 소셜로그인, Q&A, 공지사항, 자유게시판 상세보기 <br><br>
             	이번 프로젝트에 참가한 조원 배창환 입니다.<br>
             	프론트 쪽으로는 아는것이 거의 없었는데<br>
-            	이번에 많이 알게되서 좋은 경험이 되었습니
+            	이번에 많이 알게되서 좋은 경험이 되었습니<br>
             	<a href="mailto:sindy6639@naver.com">
             	<img src="http://www.cnplugins.com/uploads/crximage/201511/www.cnplugins.com_gobamlfhmmmpbeiolmgeoebfciogcpoa_logo.jpg" width="40" height="40"/>
             	</a>
@@ -208,7 +208,7 @@
             <h3>권미현</h3>
             <p>  
             	웹개발 응용SW 엔지니어 양성과정 12회차<br>
-            	Intro페이지, Q&A, 공지사항 게시판 작업<br><br>
+            	구인구직 게시판, 통계페이지, 자유게시판 작성기능, 댓글 기능 <br><br>
 				프로젝트에 참가한 권미현입니다.<br>
 				이번 프로젝트를 통해서 여러 기술들을 알고 배울 수 있었습니다.<br>
 				배운 기술들을 통해서 더욱 많이 배우고 나아갈 수 있도록 하겠습니다.<br>
